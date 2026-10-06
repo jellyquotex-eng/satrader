@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Professional Trading Education</title>
+  <title>SA TRADER — Professional Trading Education</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -25,13 +25,10 @@
     a{color:inherit;text-decoration:none}
     .wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 20px}
 
-    /* ================= NAV (unchanged structure, grid-centered) ================= */
+    /* ================= NAV (unchanged) ================= */
     .nav{position:sticky;top:14px;z-index:50;margin:14px auto 0;max-width:1240px;padding:0 20px}
     .nav-in{
-      display:grid;
-      grid-template-columns:1fr auto 1fr;
-      align-items:center;
-      gap:20px;
+      display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;
       background:rgba(22,22,22,.9);backdrop-filter:blur(14px);
       border:1px solid var(--line);border-radius:999px;
       padding:8px 12px 8px 14px;box-shadow:0 10px 40px rgba(0,0,0,.5)
@@ -55,7 +52,7 @@
     .menu{display:none}
 
     /* ================= HERO (unchanged) ================= */
-    .hero{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center;padding:90px 0 70px}
+    .hero{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center;padding:70px 0 40px}
     h1{font-size:clamp(34px,5vw,62px);line-height:1.1;font-weight:800;letter-spacing:-.02em;text-transform:capitalize}
     h1 span{color:var(--yellow)}
     .sub{margin:22px 0 34px;color:var(--muted);font-size:clamp(15px,1.6vw,18px);max-width:520px;line-height:1.7}
@@ -69,156 +66,318 @@
     .box b{display:block;font-size:clamp(24px,3.2vw,36px);font-weight:800;line-height:1}
     .box small{display:block;margin-top:6px;font-size:11px;font-weight:600;letter-spacing:.06em}
 
-    /* ================= COURSE SHOWCASE ================= */
-    .course-section{
-      position:relative;max-width:1100px;margin:10px auto 90px;
-      padding:clamp(16px,2.5vw,28px);
+    /* ================= SHOWCASE — DASHBOARD LAYOUT ================= */
+    .showcase{
+      position:relative;
+      max-width:1240px;margin:10px auto 90px;
+      padding:clamp(16px,2vw,24px);
       border-radius:36px;
       background:linear-gradient(160deg,#181818,#0f0f0f);
       border:1px solid var(--line);
       box-shadow:0 30px 90px rgba(0,0,0,.6);
     }
-    .course-header{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:16px;margin-bottom:22px;flex-wrap:wrap;
-    }
-    .course-header h2{
-      font-size:clamp(22px,2.8vw,32px);font-weight:800;letter-spacing:-.01em;
-    }
-    .course-header h2 span{color:var(--yellow)}
-    .course-header p{color:var(--muted);font-size:14px;max-width:520px;line-height:1.6}
 
-    /* Featured course card */
-    .featured-card{
+    /* --- MAIN GRID: 3 columns (left | center | right) --- */
+    .showcase-main{
       display:grid;
-      grid-template-columns:1.1fr 1fr;
-      gap:clamp(16px,2.5vw,28px);
-      background:linear-gradient(160deg,#1e1e1e,#121212);
-      border:1px solid var(--line);
-      border-radius:28px;
-      padding:clamp(14px,2vw,20px);
-      margin-bottom:26px;
-      overflow:hidden;
+      grid-template-columns: 240px 1fr 280px;
+      gap:clamp(14px,1.6vw,20px);
+      align-items:stretch;
     }
-    .featured-media{
-      position:relative;border-radius:20px;overflow:hidden;
-      aspect-ratio:16/10;
-      background:#0d0d0d;
-      border:1px solid var(--line);
-    }
-    .featured-media img{
-      width:100%;height:100%;object-fit:cover;display:block;
-      transition:transform .5s ease, filter .4s ease;
-    }
-    .featured-media::after{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.55) 100%);
-      pointer-events:none;
-    }
-    .featured-media:hover img{transform:scale(1.04);filter:brightness(1.06)}
-    .badge{
-      position:absolute;top:14px;left:14px;
-      background:linear-gradient(135deg,var(--yellow),var(--orange));
-      color:#111;font-size:11px;font-weight:700;letter-spacing:.08em;
-      padding:6px 12px;border-radius:999px;z-index:2;
-      box-shadow:0 6px 18px rgba(255,150,30,.35);
-    }
-    .featured-body{display:flex;flex-direction:column;justify-content:center;padding:clamp(4px,1vw,10px)}
-    .featured-body .cat{
-      font-size:12px;color:var(--yellow);font-weight:600;letter-spacing:.1em;margin-bottom:10px;
-    }
-    .featured-body h3{
-      font-size:clamp(20px,2.4vw,28px);font-weight:800;line-height:1.2;margin-bottom:12px;
-    }
-    .featured-body p{
-      color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:18px;max-width:520px;
-    }
-    .meta{
-      display:flex;gap:18px;flex-wrap:wrap;margin-bottom:20px;
-    }
-    .meta span{
-      display:inline-flex;align-items:center;gap:8px;
-      font-size:13px;color:var(--muted);
-    }
-    .meta span b{color:#fff;font-weight:600}
-    .meta .dot{width:6px;height:6px;border-radius:50%;background:var(--yellow);flex:none}
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
 
-    /* Thumbnail grid */
-    .course-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
-      gap:clamp(12px,1.6vw,18px);
-    }
-    .course-card{
-      position:relative;
-      display:flex;flex-direction:column;
-      background:linear-gradient(160deg,#1a1a1a,#111);
+    /* ============ LEFT SIDEBAR ============ */
+    .side-left{display:flex;flex-direction:column;gap:14px;min-width:0}
+
+    .mini-course{
+      background:linear-gradient(160deg,#1c1c1c,#121212);
       border:1px solid var(--line);
       border-radius:20px;
       overflow:hidden;
-      transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+      transition:transform .3s ease,border-color .3s ease;
     }
-    .course-card:hover{
-      transform:translateY(-4px);
-      border-color:rgba(255,194,26,.35);
-      box-shadow:0 18px 40px rgba(0,0,0,.55);
+    .mini-course:hover{transform:translateY(-3px);border-color:rgba(255,194,26,.35)}
+    .mini-course .thumb{
+      aspect-ratio:16/10;overflow:hidden;background:#0d0d0d;position:relative;
     }
-    .card-media{
-      position:relative;aspect-ratio:16/10;overflow:hidden;background:#0d0d0d;
-    }
-    .card-media img{
-      width:100%;height:100%;object-fit:cover;display:block;
-      transition:transform .5s ease, filter .4s ease;
-    }
-    .card-media::after{
+    .mini-course .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+    .mini-course:hover .thumb img{transform:scale(1.05)}
+    .mini-course .thumb::after{
       content:"";position:absolute;inset:0;
-      background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.55) 100%);
+      background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.55) 100%);
       pointer-events:none;
     }
-    .course-card:hover .card-media img{transform:scale(1.05);filter:brightness(1.07)}
-    .card-tag{
-      position:absolute;top:10px;left:10px;z-index:2;
-      background:rgba(10,10,10,.85);
+    .mini-course .body{padding:14px}
+    .mini-course .num{
+      font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--yellow);margin-bottom:6px;
+    }
+    .mini-course h4{font-size:14px;font-weight:700;line-height:1.3;margin-bottom:6px;text-transform:uppercase;letter-spacing:.02em}
+    .mini-course p{font-size:12px;color:var(--muted);line-height:1.55}
+
+    .pdf-card{
+      background:linear-gradient(160deg,#1c1c1c,#121212);
       border:1px solid var(--line);
+      border-radius:20px;
+      padding:18px 16px;
+      display:flex;flex-direction:column;gap:12px;
+      transition:border-color .3s ease,transform .3s ease;
+    }
+    .pdf-card:hover{border-color:rgba(255,194,26,.35);transform:translateY(-2px)}
+    .pdf-card .pdf-head{display:flex;align-items:center;gap:10px}
+    .pdf-icon{
+      width:36px;height:44px;flex:none;position:relative;
+      background:linear-gradient(160deg,#2a2a2a,#1a1a1a);
+      border:1px solid var(--line);border-radius:6px;
+      display:grid;place-items:center;
+    }
+    .pdf-icon::before{
+      content:"";position:absolute;top:-1px;right:-1px;
+      width:12px;height:12px;background:var(--yellow);
+      clip-path:polygon(0 0,100% 0,100% 100%);
+      border-top-right-radius:6px;
+    }
+    .pdf-icon span{font-size:9px;font-weight:800;color:var(--yellow);letter-spacing:.05em}
+    .pdf-card .pdf-label{font-size:10.5px;font-weight:700;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+    .pdf-card h5{font-size:14px;font-weight:700;line-height:1.3}
+    .pdf-card .btn{width:100%;text-align:center;padding:11px 16px;font-size:13px;margin-top:auto}
+
+    /* ============ CENTER — FEATURED COURSE ============ */
+    .featured{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      min-height:420px;
+      background:#0d0d0d;
+      border:1px solid var(--line);
+      display:grid;
+      grid-template-columns: 1.15fr 1fr;
+      isolation:isolate;
+    }
+    /* subtle gold accent line on left edge */
+    .featured::before{
+      content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+      background:linear-gradient(180deg,var(--yellow),var(--orange));
+      z-index:3;
+    }
+    /* text side */
+    .featured-text{
+      position:relative;z-index:2;
+      padding:clamp(22px,2.6vw,36px);
+      display:flex;flex-direction:column;justify-content:center;
+      background:linear-gradient(120deg,#121212 40%,rgba(18,18,18,.4) 100%);
+    }
+    .featured-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:10.5px;font-weight:700;letter-spacing:.15em;
+      color:var(--yellow);text-transform:uppercase;margin-bottom:14px;
+    }
+    .featured-badge::before{
+      content:"";width:18px;height:1.5px;background:var(--yellow);display:block;
+    }
+    .featured-brand{
+      font-size:clamp(22px,2.6vw,30px);font-weight:800;line-height:1.05;
+      letter-spacing:-.01em;margin-bottom:10px;
+    }
+    .featured-brand span{color:var(--yellow)}
+    .featured-title{
+      font-size:clamp(14px,1.3vw,16px);font-weight:600;
+      color:#e8e8e8;line-height:1.45;margin-bottom:12px;max-width:420px;
+    }
+    .featured-desc{
+      font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:22px;max-width:420px;
+    }
+    .featured-meta{
+      display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:22px;
+    }
+    .featured-meta span{display:inline-flex;align-items:center;gap:7px}
+    .featured-meta .dot{width:5px;height:5px;border-radius:50%;background:var(--yellow);flex:none}
+    .featured-meta b{color:#fff;font-weight:600}
+    .featured-cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .featured-plus{
+      margin-left:auto;
+      width:42px;height:42px;border-radius:50%;
+      display:grid;place-items:center;
+      background:rgba(255,194,26,.1);
+      border:1px solid rgba(255,194,26,.35);
+      color:var(--yellow);font-size:20px;font-weight:300;line-height:1;
+      transition:background .25s,transform .25s;
+      cursor:pointer;flex:none;
+    }
+    .featured-plus:hover{background:rgba(255,194,26,.2);transform:rotate(90deg)}
+
+    /* image side */
+    .featured-media{position:relative;overflow:hidden;min-height:280px;background:#0a0a0a}
+    .featured-media img{
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+      transition:transform .8s ease, filter .5s ease;
+    }
+    .featured:hover .featured-media img{transform:scale(1.05);filter:brightness(1.05)}
+    .featured-media::after{
+      content:"";position:absolute;inset:0;
+      background:
+        linear-gradient(90deg,#121212 0%,rgba(18,18,18,.85) 18%,rgba(18,18,18,0) 55%),
+        linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.5) 100%);
+      pointer-events:none;
+    }
+
+    /* ============ RIGHT SIDEBAR ============ */
+    .side-right{
+      display:flex;flex-direction:column;gap:14px;min-width:0;
+      background:linear-gradient(160deg,#1c1c1c,#121212);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:18px 16px;
+    }
+    .side-right-head{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding-bottom:14px;border-bottom:1px solid var(--line);
+    }
+    .side-right-head .brand-name{
+      font-size:15px;font-weight:800;letter-spacing:.02em;
+    }
+    .side-right-head .brand-name span{color:var(--yellow)}
+    /* circular progress */
+    .progress-ring{
+      position:relative;width:56px;height:56px;flex:none;
+    }
+    .progress-ring svg{transform:rotate(-90deg);display:block}
+    .progress-ring .bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:4}
+    .progress-ring .fg{fill:none;stroke:url(#goldGrad);stroke-width:4;stroke-linecap:round;
+      stroke-dasharray:150.8;stroke-dashoffset:15.08; /* 90% of 2πr (r=24 → 150.8) */}
+    .progress-ring .val{
+      position:absolute;inset:0;display:grid;place-items:center;
+      font-size:12px;font-weight:700;color:#fff;
+    }
+    .side-right h6{
+      font-size:14px;font-weight:700;line-height:1.3;margin-bottom:4px;
+    }
+    .side-right .side-desc{
+      font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px;
+    }
+    .side-stats{
+      display:flex;gap:10px;margin-bottom:16px;
+    }
+    .stat{
+      flex:1;
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:10px 8px;text-align:center;
+    }
+    .stat b{display:block;font-size:15px;font-weight:800;color:var(--yellow);line-height:1}
+    .stat small{display:block;font-size:9.5px;color:var(--muted);letter-spacing:.08em;margin-top:4px;text-transform:uppercase}
+
+    .lesson-mini{
+      display:flex;gap:10px;align-items:center;
+      background:rgba(255,255,255,.025);
+      border:1px solid var(--line);
+      border-radius:14px;padding:8px;
+      transition:border-color .25s ease, background .25s ease, transform .25s ease;
+      cursor:pointer;
+    }
+    .lesson-mini + .lesson-mini{margin-top:10px}
+    .lesson-mini:hover{border-color:rgba(255,194,26,.4);background:rgba(255,194,26,.05);transform:translateX(2px)}
+    .lesson-mini .lm-thumb{
+      width:58px;height:44px;border-radius:10px;overflow:hidden;flex:none;background:#0d0d0d;
+    }
+    .lesson-mini .lm-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .lesson-mini .lm-body{min-width:0;flex:1}
+    .lesson-mini .lm-num{
+      font-size:10px;font-weight:700;color:var(--yellow);letter-spacing:.1em;margin-bottom:2px;
+    }
+    .lesson-mini .lm-title{
+      font-size:12px;font-weight:600;color:#e8e8e8;line-height:1.3;
+      display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+    }
+
+    /* ================= BOTTOM THUMBNAIL ROW ================= */
+    .bottom-row{
+      margin-top:20px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:clamp(12px,1.5vw,18px);
+    }
+    .bottom-card{
+      position:relative;
+      border-radius:20px;
+      overflow:hidden;
+      background:linear-gradient(160deg,#1a1a1a,#111);
+      border:1px solid var(--line);
+      transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+      isolation:isolate;
+      min-height:170px;
+    }
+    .bottom-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,194,26,.4);
+      box-shadow:0 18px 40px rgba(0,0,0,.55);
+    }
+    /* huge translucent number behind */
+    .bottom-card .big-num{
+      position:absolute;
+      top:-10px;right:-6px;
+      font-size:120px;
+      font-weight:900;
+      line-height:.9;
+      color:rgba(255,194,26,.09);
+      letter-spacing:-.04em;
+      z-index:0;
+      pointer-events:none;
+      user-select:none;
+      transition:color .35s ease, transform .5s ease;
+    }
+    .bottom-card:hover .big-num{color:rgba(255,194,26,.16);transform:translateY(-4px)}
+    .bottom-card .bc-media{
+      position:relative;height:112px;overflow:hidden;background:#0d0d0d;z-index:1;
+    }
+    .bottom-card .bc-media img{
+      width:100%;height:100%;object-fit:cover;display:block;
+      transition:transform .6s ease, filter .4s ease;
+    }
+    .bottom-card:hover .bc-media img{transform:scale(1.07);filter:brightness(1.08)}
+    .bottom-card .bc-media::after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.65) 100%);
+      pointer-events:none;
+    }
+    .bottom-card .bc-cat{
+      position:absolute;top:10px;left:10px;z-index:2;
+      font-size:9.5px;font-weight:700;letter-spacing:.12em;
       color:var(--yellow);
-      font-size:10px;font-weight:700;letter-spacing:.08em;
-      padding:4px 9px;border-radius:999px;
+      background:rgba(10,10,10,.85);
+      border:1px solid rgba(255,194,26,.3);
+      padding:3px 8px;border-radius:999px;
       backdrop-filter:blur(6px);
     }
-    .card-num{
-      position:absolute;top:10px;right:10px;z-index:2;
+    .bottom-card .bc-num{
+      position:absolute;bottom:10px;right:10px;z-index:2;
+      font-size:11px;font-weight:700;color:#fff;
       background:rgba(10,10,10,.85);
       border:1px solid var(--line);
-      color:#fff;font-size:11px;font-weight:600;
       width:26px;height:26px;border-radius:50%;
       display:grid;place-items:center;
       backdrop-filter:blur(6px);
     }
-    .card-body{padding:14px 14px 16px;display:flex;flex-direction:column;flex:1}
-    .card-body h4{
-      font-size:15px;font-weight:700;line-height:1.3;margin-bottom:6px;
+    .bottom-card .bc-body{
+      padding:11px 13px 13px;position:relative;z-index:1;
     }
-    .card-body p{
-      font-size:12.5px;color:var(--muted);line-height:1.55;margin-bottom:12px;
-      display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+    .bottom-card .bc-body h5{
+      font-size:13px;font-weight:700;line-height:1.25;margin-bottom:3px;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
-    .card-foot{
-      display:flex;align-items:center;justify-content:space-between;
-      margin-top:auto;font-size:11.5px;color:var(--muted);gap:8px;flex-wrap:wrap;
+    .bottom-card .bc-body small{
+      font-size:11px;color:var(--muted);
     }
-    .card-foot .dot{width:5px;height:5px;border-radius:50%;background:var(--yellow);display:inline-block;margin-right:6px;vertical-align:middle}
-    .card-link{
-      color:var(--yellow);font-weight:600;font-size:12px;transition:color .25s;
-    }
-    .card-link:hover{color:#fff}
 
+    /* ================= ANIMATIONS ================= */
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
     @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
     .in{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
     .in.d1{animation-delay:.12s}.in.d2{animation-delay:.24s}.in.d3{animation-delay:.36s}
 
     /* ================= RESPONSIVE ================= */
+    @media(max-width:1100px){
+      .showcase-main{grid-template-columns:220px 1fr 250px}
+    }
     @media(max-width:1000px){
       .nav-in{display:flex}
       .links,.actions .lang{display:none}
@@ -227,8 +386,19 @@
       .menu.open{display:flex;flex-direction:column;gap:4px;margin-top:10px;background:rgba(22,22,22,.97);border:1px solid var(--line);border-radius:24px;padding:14px;box-shadow:0 20px 50px rgba(0,0,0,.6)}
       .menu a{padding:13px 16px;border-radius:14px;color:var(--muted)}
       .menu a.active{color:var(--yellow);background:rgba(255,194,26,.1)}
-      .hero{grid-template-columns:1fr;padding:60px 0 50px;gap:36px}
-      .featured-card{grid-template-columns:1fr}
+      .hero{grid-template-columns:1fr;padding:50px 0 30px;gap:28px}
+
+      /* Tablet: featured full width, right sidebar below */
+      .showcase-main{
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          "featured featured"
+          "left     right";
+      }
+      .featured{grid-area:featured}
+      .side-left{grid-area:left}
+      .side-right{grid-area:right}
+      .bottom-row{grid-template-columns:repeat(2,1fr)}
     }
     @media(max-width:640px){
       .nav,.wrap{padding:0 14px}
@@ -238,19 +408,46 @@
       .box{border-radius:12px;padding:12px 2px}
       .box small{font-size:9px}
       .logo img{height:32px;max-width:110px}
-      .course-section{border-radius:22px;padding:14px}
-      .featured-card{border-radius:20px;padding:12px}
-      .featured-body h3{font-size:20px}
-      .cta-row{flex-direction:column;align-items:stretch}
-      .cta-row .btn{width:100%;text-align:center}
-      .course-grid{grid-template-columns:1fr 1fr;gap:10px}
-      .card-body{padding:10px 10px 12px}
-      .card-body h4{font-size:13.5px}
-      .card-body p{font-size:11.5px;-webkit-line-clamp:2}
-      .card-foot{font-size:10.5px}
+
+      /* Mobile: full vertical stack */
+      .showcase{padding:12px;border-radius:22px}
+      .showcase-main{
+        grid-template-columns:1fr;
+        grid-template-areas:
+          "featured"
+          "right"
+          "left";
+        gap:12px;
+      }
+      .featured{
+        grid-template-columns:1fr;
+        min-height:auto;
+      }
+      .featured-media{min-height:200px;order:-1}
+      .featured-media::after{
+        background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.55) 100%);
+      }
+      .featured::before{display:none}
+      .featured-text{padding:18px 16px}
+      .featured-brand{font-size:22px}
+      .featured-cta{gap:8px}
+      .featured-cta .btn{flex:1;text-align:center;padding:10px 14px;font-size:13px}
+      .featured-plus{width:38px;height:38px;font-size:18px}
+
+      .bottom-row{grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+      .bottom-card .big-num{font-size:90px}
+      .bottom-card .bc-media{height:90px}
+      .bottom-card .bc-body{padding:9px 10px 11px}
+      .bottom-card .bc-body h5{font-size:12px}
+      .bottom-card .bc-body small{font-size:10px}
+
+      .side-right{padding:14px}
+      .mini-course .body{padding:11px}
+      .mini-course h4{font-size:13px}
     }
     @media(max-width:380px){
-      .course-grid{grid-template-columns:1fr}
+      .bottom-row{grid-template-columns:1fr}
+      .side-stats{flex-wrap:wrap}
     }
     @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
   </style>
@@ -259,11 +456,7 @@
 <header class="nav">
   <div class="nav-in">
     <a class="logo" href="#home">
-      <img 
-        src="IMG_20261007_001230_648.jpg" 
-        alt="SA TRADER logo"
-        loading="eager"
-      >
+      <img src="IMG_20261007_001230_648.jpg" alt="SA TRADER logo" loading="eager">
     </a>
     <nav class="links" aria-label="Main">
       <a class="active" href="#home">Home</a>
@@ -283,6 +476,7 @@
 </header>
 
 <main class="wrap" id="home">
+  <!-- ============ HERO (unchanged) ============ -->
   <section class="hero">
     <div>
       <h1 class="in">bangladesh top 1 <span>professional trading education</span></h1>
@@ -301,119 +495,170 @@
     </aside>
   </section>
 
-  <!-- ================= COURSE SHOWCASE (replaces old large profile image) ================= -->
-  <section class="course-section in d3" id="courses" aria-label="Trading courses">
-    <div class="course-header">
-      <div>
-        <h2>Our <span>Trading Programs</span></h2>
-        <p>Structured lessons covering market analysis, risk management and trading psychology — built for real execution.</p>
-      </div>
-      <a class="btn ghost" href="#all-courses">View All Courses</a>
-    </div>
+  <!-- ============ PREMIUM SHOWCASE (replaces old large profile image) ============ -->
+  <section class="showcase in d3" id="courses" aria-label="SA TRADER course showcase">
 
-    <!-- Featured course -->
-    <article class="featured-card" id="featured">
-      <div class="featured-media">
-        <span class="badge">FEATURED</span>
-        <img src="download (1).png" alt="Featured course — Trading Chart Mastery" loading="eager">
-      </div>
-      <div class="featured-body">
-        <div class="cat">TRADING CHART #01</div>
-        <h3>Master Professional Trading &amp; Market Analysis</h3>
-        <p>Build a complete trading framework — from candlestick reading and market structure to risk control and disciplined execution in live markets.</p>
-        <div class="meta">
-          <span><span class="dot"></span><b>10</b> Lessons</span>
-          <span><span class="dot"></span><b>1.5</b> Hours</span>
-          <span><span class="dot"></span>Beginner → Pro</span>
-        </div>
-        <div class="cta-row">
-          <a class="btn" href="#join">Join Course</a>
-          <a class="btn ghost" href="#learn-more">Learn More</a>
-        </div>
-      </div>
-    </article>
+    <div class="showcase-main">
 
-    <!-- Other course thumbnails -->
-    <div class="course-grid">
-      <article class="course-card">
-        <div class="card-media">
-          <span class="card-tag">BASICS</span>
-          <span class="card-num">02</span>
+      <!-- ============ LEFT SIDEBAR ============ -->
+      <aside class="side-left">
+        <!-- small course card #1 -->
+        <article class="mini-course">
+          <div class="thumb">
+            <img src="download (6).png" alt="Trading Mindset course thumbnail" loading="lazy">
+          </div>
+          <div class="body">
+            <div class="num">09 · TRADING MINDSET</div>
+            <h4>Trading Mindset</h4>
+            <p>Master trading psychology, discipline and emotional control.</p>
+          </div>
+        </article>
+
+        <!-- PDF / curriculum card -->
+        <article class="pdf-card">
+          <div class="pdf-head">
+            <div class="pdf-icon" aria-hidden="true"><span>PDF</span></div>
+            <div>
+              <div class="pdf-label">Premium Course</div>
+              <h5>Full Curriculum</h5>
+            </div>
+          </div>
+          <a class="btn" href="#curriculum-download" download>⬇ Download PDF</a>
+        </article>
+      </aside>
+
+      <!-- ============ CENTER — FEATURED COURSE ============ -->
+      <article class="featured" id="featured">
+        <div class="featured-text">
+          <div class="featured-badge">Featured</div>
+          <div class="featured-brand"><span>SA</span> TRADER <span>#01</span></div>
+          <div class="featured-title">Master Professional Trading &amp; Market Analysis</div>
+          <p class="featured-desc">
+            A complete trading framework — from candlestick reading and market structure
+            to risk control and disciplined execution in live markets.
+          </p>
+          <div class="featured-meta">
+            <span><span class="dot"></span><b>10</b> Lessons</span>
+            <span><span class="dot"></span><b>1.5</b> Hours</span>
+            <span><span class="dot"></span>Beginner → Pro</span>
+          </div>
+          <div class="featured-cta">
+            <a class="btn" href="#join">Join Course</a>
+            <a class="btn ghost" href="#learn-more">Learn More</a>
+            <button class="featured-plus" type="button" aria-label="Add to list">+</button>
+          </div>
+        </div>
+        <div class="featured-media">
+          <img src="download (1).png" alt="SA TRADER featured course — Trading Chart Mastery" loading="eager">
+        </div>
+      </article>
+
+      <!-- ============ RIGHT SIDEBAR ============ -->
+      <aside class="side-right">
+        <div class="side-right-head">
+          <div class="brand-name"><span>SA</span> TRADER</div>
+          <div class="progress-ring" aria-label="Course progress 90 percent">
+            <svg width="56" height="56" viewBox="0 0 56 56">
+              <defs>
+                <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#ffc21a"/>
+                  <stop offset="1" stop-color="#ff8a1f"/>
+                </linearGradient>
+              </defs>
+              <circle class="bg" cx="28" cy="28" r="24"/>
+              <circle class="fg" cx="28" cy="28" r="24"/>
+            </svg>
+            <span class="val">90%</span>
+          </div>
+        </div>
+
+        <h6>Professional Trading Education</h6>
+        <p class="side-desc">Structured lessons built for real execution and risk-first decision making.</p>
+
+        <div class="side-stats">
+          <div class="stat"><b>10</b><small>Lessons</small></div>
+          <div class="stat"><b>1.5</b><small>Hours</small></div>
+        </div>
+
+        <!-- mini lesson cards -->
+        <div class="lesson-mini">
+          <div class="lm-thumb">
+            <img src="download (2).png" alt="Lesson 01 thumbnail" loading="lazy">
+          </div>
+          <div class="lm-body">
+            <div class="lm-num">01</div>
+            <div class="lm-title">Starting Your Trading Journey</div>
+          </div>
+        </div>
+
+        <div class="lesson-mini">
+          <div class="lm-thumb">
+            <img src="download (3).png" alt="Lesson 02 thumbnail" loading="lazy">
+          </div>
+          <div class="lm-body">
+            <div class="lm-num">02</div>
+            <div class="lm-title">Mastering Trading Psychology</div>
+          </div>
+        </div>
+      </aside>
+
+    </div><!-- /showcase-main -->
+
+    <!-- ============ BOTTOM THUMBNAIL ROW ============ -->
+    <div class="bottom-row" aria-label="More courses">
+
+      <article class="bottom-card">
+        <span class="big-num" aria-hidden="true">01</span>
+        <div class="bc-media">
+          <span class="bc-cat">BASICS</span>
+          <span class="bc-num">01</span>
           <img src="download (2).png" alt="Trading Basics course thumbnail" loading="lazy">
         </div>
-        <div class="card-body">
-          <h4>Trading Basics</h4>
-          <p>Foundations of forex markets, chart types, order flow and platform mastery.</p>
-          <div class="card-foot">
-            <span><span class="dot"></span>6 Lessons · 45 min</span>
-            <a class="card-link" href="#course-2">Start →</a>
-          </div>
+        <div class="bc-body">
+          <h5>Trading Basics</h5>
+          <small>6 Lessons · 45 min</small>
         </div>
       </article>
 
-      <article class="course-card">
-        <div class="card-media">
-          <span class="card-tag">STRUCTURE</span>
-          <span class="card-num">03</span>
+      <article class="bottom-card">
+        <span class="big-num" aria-hidden="true">02</span>
+        <div class="bc-media">
+          <span class="bc-cat">STRUCTURE</span>
+          <span class="bc-num">02</span>
           <img src="download (3).png" alt="Market Structure course thumbnail" loading="lazy">
         </div>
-        <div class="card-body">
-          <h4>Market Structure</h4>
-          <p>Read trends, identify swing points and understand institutional price delivery.</p>
-          <div class="card-foot">
-            <span><span class="dot"></span>8 Lessons · 1.2 hrs</span>
-            <a class="card-link" href="#course-3">Start →</a>
-          </div>
+        <div class="bc-body">
+          <h5>Market Structure</h5>
+          <small>8 Lessons · 1.2 hrs</small>
         </div>
       </article>
 
-      <article class="course-card">
-        <div class="card-media">
-          <span class="card-tag">SUPPLY &amp; DEMAND</span>
-          <span class="card-num">04</span>
+      <article class="bottom-card">
+        <span class="big-num" aria-hidden="true">03</span>
+        <div class="bc-media">
+          <span class="bc-cat">SUPPLY &amp; DEMAND</span>
+          <span class="bc-num">03</span>
           <img src="download (4).png" alt="Supply and Demand course thumbnail" loading="lazy">
         </div>
-        <div class="card-body">
-          <h4>Supply &amp; Demand</h4>
-          <p>Map high-probability zones and time entries with institutional logic.</p>
-          <div class="card-foot">
-            <span><span class="dot"></span>7 Lessons · 1 hr</span>
-            <a class="card-link" href="#course-4">Start →</a>
-          </div>
+        <div class="bc-body">
+          <h5>Supply &amp; Demand</h5>
+          <small>7 Lessons · 1 hr</small>
         </div>
       </article>
 
-      <article class="course-card">
-        <div class="card-media">
-          <span class="card-tag">LIQUIDITY</span>
-          <span class="card-num">05</span>
+      <article class="bottom-card">
+        <span class="big-num" aria-hidden="true">04</span>
+        <div class="bc-media">
+          <span class="bc-cat">LIQUIDITY</span>
+          <span class="bc-num">04</span>
           <img src="download (5).png" alt="Liquidity course thumbnail" loading="lazy">
         </div>
-        <div class="card-body">
-          <h4>Liquidity Concepts</h4>
-          <p>Understand sweeps, stop hunts and how smart money moves the market.</p>
-          <div class="card-foot">
-            <span><span class="dot"></span>5 Lessons · 50 min</span>
-            <a class="card-link" href="#course-5">Start →</a>
-          </div>
+        <div class="bc-body">
+          <h5>Liquidity Concepts</h5>
+          <small>5 Lessons · 50 min</small>
         </div>
       </article>
 
-      <article class="course-card">
-        <div class="card-media">
-          <span class="card-tag">PSYCHOLOGY</span>
-          <span class="card-num">06</span>
-          <img src="download (6).png" alt="Trading Psychology course thumbnail" loading="lazy">
-        </div>
-        <div class="card-body">
-          <h4>Trading Psychology &amp; Risk</h4>
-          <p>Build discipline, control emotions and protect capital with a solid risk plan.</p>
-          <div class="card-foot">
-            <span><span class="dot"></span>6 Lessons · 55 min</span>
-            <a class="card-link" href="#course-6">Start →</a>
-          </div>
-        </div>
-      </article>
     </div>
   </section>
 
