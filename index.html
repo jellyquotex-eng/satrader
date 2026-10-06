@@ -27,10 +27,18 @@
 
     /* NAV */
     .nav{position:sticky;top:14px;z-index:50;margin:14px auto 0;max-width:1240px;padding:0 20px}
-    .nav-in{display:flex;align-items:center;gap:20px;background:rgba(22,22,22,.9);backdrop-filter:blur(14px);
-      border:1px solid var(--line);border-radius:999px;padding:8px 12px 8px 14px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
-    .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
-    /* NEW: navbar logo image – replaces "SA TRADER" text, keeps full image visible, no crop */
+    /* CHANGED: navbar now uses a 3-column grid for true centering of the nav links */
+    .nav-in{
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      gap:20px;
+      background:rgba(22,22,22,.9);backdrop-filter:blur(14px);
+      border:1px solid var(--line);border-radius:999px;
+      padding:8px 12px 8px 14px;box-shadow:0 10px 40px rgba(0,0,0,.5)
+    }
+    /* CHANGED: logo sits in the left column */
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;justify-self:start}
     .logo img{
       width:auto;
       height:42px;
@@ -41,11 +49,18 @@
       border-radius:6px;
     }
     .brand b{color:var(--yellow)}
-    .links{display:flex;gap:6px;margin-left:auto}
+    /* CHANGED: nav links now in the center column */
+    .links{
+      display:flex;gap:6px;
+      justify-self:center;
+      align-items:center;
+      justify-content:center;
+    }
     .links a{padding:9px 16px;border-radius:999px;font-size:14px;color:var(--muted);transition:.25s}
     .links a:hover{color:#fff;background:rgba(255,255,255,.06)}
     .links a.active{color:var(--yellow);background:rgba(255,194,26,.1)}
-    .actions{display:flex;align-items:center;gap:8px}
+    /* CHANGED: right-side actions sit in the right column */
+    .actions{display:flex;align-items:center;gap:8px;justify-self:end}
     .lang{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:999px;padding:8px 12px;font:inherit;font-size:13px}
     .lang option{background:#111}
     .btn{display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:600;font-size:14px;border-radius:999px;padding:11px 22px;
@@ -53,7 +68,8 @@
     .btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,150,30,.45)}
     .btn.ghost{background:transparent;color:#fff;box-shadow:none;border:1px solid var(--line)}
     .btn.ghost:hover{background:rgba(255,255,255,.06);box-shadow:none}
-    .burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);color:#fff;border-radius:50%;width:42px;height:42px;font-size:18px;cursor:pointer}
+    /* burger hidden on desktop; in grid it sits in the right column area */
+    .burger{display:none;background:none;border:1px solid var(--line);color:#fff;border-radius:50%;width:42px;height:42px;font-size:18px;cursor:pointer;justify-self:end}
     .menu{display:none}
 
     /* HERO */
@@ -93,6 +109,8 @@
     @media(max-width:1000px){.c2,.c4{display:none}}
     /* RESPONSIVE */
     @media(max-width:1000px){
+      /* on mobile: collapse to simple flex, center nav hidden, burger shown */
+      .nav-in{display:flex}
       .links,.actions .lang{display:none}
       .actions{margin-left:auto}
       .burger{display:block;margin-left:0}
@@ -110,7 +128,6 @@
       .box small{font-size:9px}
       .chip{padding:9px 12px;font-size:11px}.chip b{font-size:14px}.chip i{width:26px;height:26px;border-radius:8px}
       .c2{right:-4px}.c4{display:none}
-      /* navbar logo scales down on mobile while keeping full image visible */
       .logo img{height:32px;max-width:110px}
     }
     @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
@@ -119,7 +136,6 @@
 <body>
 <header class="nav">
   <div class="nav-in">
-    <!-- CHANGED: "SA TRADER" text replaced with provided image as navbar logo -->
     <a class="logo" href="#home">
       <img 
         src="IMG_20261007_001230_648.jpg" 
