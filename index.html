@@ -28,6 +28,20 @@ a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 20px}
 
+/* ============ BENGALI MODE — FONT + LAYOUT SAFETY ============ */
+html[lang="bn"] body{font-family:'Hind Siliguri','Poppins',system-ui,sans-serif;line-height:1.6}
+html[lang="bn"] h1,
+html[lang="bn"] .featured-brand,
+html[lang="bn"] .featured-title,
+html[lang="bn"] .featured-desc,
+html[lang="bn"] .sub{line-height:1.55}
+html[lang="bn"] .btn,
+html[lang="bn"] .links a,
+html[lang="bn"] .menu a{white-space:normal;line-height:1.35}
+html[lang="bn"] .links a{padding:9px 14px}
+html[lang="bn"] .box small,
+html[lang="bn"] .stat small{letter-spacing:0}
+
 /* ============ NAVBAR ============ */
 .nav{position:sticky;top:14px;z-index:50;margin:14px auto 0;max-width:1240px;padding:0 20px}
 .nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;
@@ -55,7 +69,7 @@ img{max-width:100%;display:block}
 /* ============ HERO ============ */
 .hero{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center;padding:70px 0 40px}
 h1{font-size:clamp(34px,5vw,62px);line-height:1.1;font-weight:800;letter-spacing:-.02em;text-transform:capitalize}
-h1 span{color:var(--yellow)}
+h1 span.hl{color:var(--yellow)}
 .sub{margin:22px 0 34px;color:var(--muted);font-size:clamp(15px,1.6vw,18px);max-width:520px;line-height:1.7}
 .count{background:linear-gradient(160deg,#1c1c1c,#121212);border:1px solid var(--line);border-radius:var(--radius-lg);padding:34px;
   box-shadow:0 24px 70px rgba(0,0,0,.6),0 0 0 1px rgba(255,194,26,.06) inset;text-align:center;animation:float 6s ease-in-out infinite}
@@ -184,207 +198,80 @@ h1 span{color:var(--yellow)}
 /* =========================================================
    MODAL — Download PDF
    ========================================================= */
-.modal-backdrop{
-  position:fixed;inset:0;z-index:200;
-  background:rgba(5,5,5,.72);
+.modal-backdrop{position:fixed;inset:0;z-index:200;background:rgba(5,5,5,.72);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  display:flex;align-items:center;justify-content:center;
-  padding:20px;
-  opacity:0;visibility:hidden;
-  transition:opacity .3s ease, visibility .3s ease;
-}
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  opacity:0;visibility:hidden;transition:opacity .3s ease, visibility .3s ease}
 .modal-backdrop.open{opacity:1;visibility:visible}
-
-.modal{
-  width:min(880px, 100%);
-  max-height:92vh;
-  display:flex;flex-direction:column;
-  background:linear-gradient(160deg,#1a1a1a,#101010);
-  border:1px solid var(--line);
-  border-radius:24px;
-  box-shadow:0 40px 100px rgba(0,0,0,.75), 0 0 0 1px rgba(255,194,26,.08);
-  overflow:hidden;
-  transform:scale(.94);
-  opacity:0;
-  transition:transform .35s cubic-bezier(.2,.7,.2,1), opacity .35s ease;
-}
+.modal{width:min(880px, 100%);max-height:92vh;display:flex;flex-direction:column;
+  background:linear-gradient(160deg,#1a1a1a,#101010);border:1px solid var(--line);border-radius:24px;
+  box-shadow:0 40px 100px rgba(0,0,0,.75), 0 0 0 1px rgba(255,194,26,.08);overflow:hidden;
+  transform:scale(.94);opacity:0;transition:transform .35s cubic-bezier(.2,.7,.2,1), opacity .35s ease}
 .modal-backdrop.open .modal{transform:scale(1);opacity:1}
-
-/* Modal header */
-.modal-head{
-  position:sticky;top:0;z-index:3;
-  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;
-  padding:16px 18px;
-  background:rgba(20,20,20,.92);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line);
-}
+.modal-head{position:sticky;top:0;z-index:3;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;
+  padding:16px 18px;background:rgba(20,20,20,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .modal-brand{display:flex;align-items:center;gap:10px;justify-self:start;font-size:15px;font-weight:800;letter-spacing:.02em}
 .modal-brand span{color:var(--yellow)}
 .modal-lang{display:flex;justify-self:center;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}
-.modal-lang button{
-  border:0;background:transparent;color:var(--muted);font:inherit;font-size:12.5px;font-weight:600;
-  padding:7px 14px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;
-}
+.modal-lang button{border:0;background:transparent;color:var(--muted);font:inherit;font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
 .modal-lang button.active{background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111}
-.modal-close{
-  justify-self:end;width:38px;height:38px;border-radius:50%;
-  border:1px solid var(--line);background:rgba(255,255,255,.04);
-  color:#fff;font-size:18px;cursor:pointer;display:grid;place-items:center;
-  transition:background .2s, transform .2s;
-}
+.modal-close{justify-self:end;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;font-size:18px;cursor:pointer;display:grid;place-items:center;transition:background .2s, transform .2s}
 .modal-close:hover{background:rgba(255,255,255,.1);transform:rotate(90deg)}
-
-/* Tabs */
-.modal-tabs{
-  display:flex;gap:6px;padding:12px 18px 0;border-bottom:1px solid var(--line);
-  background:rgba(20,20,20,.6);
-}
-.modal-tab{
-  border:0;background:transparent;color:var(--muted);font:inherit;font-size:13.5px;font-weight:600;
-  padding:11px 16px;border-radius:12px 12px 0 0;cursor:pointer;position:relative;transition:color .2s, background .2s;
-}
+.modal-tabs{display:flex;gap:6px;padding:12px 18px 0;border-bottom:1px solid var(--line);background:rgba(20,20,20,.6)}
+.modal-tab{border:0;background:transparent;color:var(--muted);font:inherit;font-size:13.5px;font-weight:600;padding:11px 16px;border-radius:12px 12px 0 0;cursor:pointer;position:relative;transition:color .2s, background .2s}
 .modal-tab:hover{color:#fff;background:rgba(255,255,255,.04)}
 .modal-tab.active{color:var(--yellow);background:rgba(255,194,26,.08)}
-.modal-tab.active::after{
-  content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;border-radius:2px;
-  background:linear-gradient(90deg,var(--yellow),var(--orange));
-}
-
-/* Modal body (scrolls inside) */
-.modal-body{
-  flex:1;overflow-y:auto;padding:22px 22px 26px;
-  scrollbar-width:thin;scrollbar-color:rgba(255,194,26,.4) transparent;
-}
+.modal-tab.active::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--yellow),var(--orange))}
+.modal-body{flex:1;overflow-y:auto;padding:22px 22px 26px;scrollbar-width:thin;scrollbar-color:rgba(255,194,26,.4) transparent}
 .modal-body::-webkit-scrollbar{width:8px}
 .modal-body::-webkit-scrollbar-track{background:transparent}
 .modal-body::-webkit-scrollbar-thumb{background:rgba(255,194,26,.35);border-radius:8px}
-
 .modal-panel{display:none;animation:panelIn .35s ease}
 .modal-panel.active{display:block}
 @keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-/* Bengali mode */
-body.lang-bn .modal-body,
-body.lang-bn .modal-tab,
-body.lang-bn .modal-brand,
-body.lang-bn .modal-foot .btn,
-body.lang-bn .modal-warn{
-  font-family:'Hind Siliguri','Poppins',system-ui,sans-serif;
-}
-
-/* Warning note */
-.modal-warn{
-  display:flex;align-items:flex-start;gap:12px;
-  background:rgba(255,138,31,.09);
-  border:1px solid rgba(255,138,31,.35);
-  border-left:3px solid var(--orange);
-  border-radius:14px;
-  padding:14px 16px;
-  font-size:13px;line-height:1.6;color:#ffd9a8;
-  margin-bottom:18px;
-}
+html[lang="bn"] .modal-body,
+html[lang="bn"] .modal-tab,
+html[lang="bn"] .modal-brand{font-family:'Hind Siliguri','Poppins',system-ui,sans-serif}
+.modal-warn{display:flex;align-items:flex-start;gap:12px;background:rgba(255,138,31,.09);border:1px solid rgba(255,138,31,.35);border-left:3px solid var(--orange);
+  border-radius:14px;padding:14px 16px;font-size:13px;line-height:1.6;color:#ffd9a8;margin-bottom:18px}
 .modal-warn svg{flex:none;width:20px;height:20px;margin-top:2px;stroke:#ff8a1f;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-
-/* Curriculum cards */
 .curr-list{display:flex;flex-direction:column;gap:10px}
-.curr-card{
-  display:flex;align-items:center;gap:14px;
-  background:linear-gradient(160deg,#1e1e1e,#141414);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:14px 16px;
-  transition:border-color .25s ease, box-shadow .25s ease, transform .25s ease;
-}
-.curr-card:hover{
-  border-color:rgba(255,194,26,.45);
-  box-shadow:0 10px 30px rgba(0,0,0,.5), 0 0 0 1px rgba(255,194,26,.25);
-  transform:translateX(3px);
-}
-.curr-num{
-  flex:none;width:46px;height:46px;border-radius:14px;
-  display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));
-  color:#111;font-weight:800;font-size:15px;
-  box-shadow:0 8px 20px rgba(255,150,30,.3);
-}
+.curr-card{display:flex;align-items:center;gap:14px;background:linear-gradient(160deg,#1e1e1e,#141414);border:1px solid var(--line);border-radius:16px;padding:14px 16px;
+  transition:border-color .25s ease, box-shadow .25s ease, transform .25s ease}
+.curr-card:hover{border-color:rgba(255,194,26,.45);box-shadow:0 10px 30px rgba(0,0,0,.5), 0 0 0 1px rgba(255,194,26,.25);transform:translateX(3px)}
+.curr-num{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;font-weight:800;font-size:15px;box-shadow:0 8px 20px rgba(255,150,30,.3)}
 .curr-title{font-size:13.5px;font-weight:500;line-height:1.55;color:#e8e8e8}
-
-/* Terms list */
 .terms-list{display:flex;flex-direction:column;gap:12px;counter-reset:term}
-.term-item{
-  display:flex;align-items:flex-start;gap:12px;
-  background:rgba(255,255,255,.02);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:14px 16px;
-  transition:border-color .25s ease, background .25s ease;
-}
+.term-item{display:flex;align-items:flex-start;gap:12px;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:14px;padding:14px 16px;
+  transition:border-color .25s ease, background .25s ease}
 .term-item:hover{border-color:rgba(255,194,26,.35);background:rgba(255,194,26,.04)}
-.term-num{
-  flex:none;width:26px;height:26px;border-radius:50%;
-  display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));
-  color:#111;font-size:12px;font-weight:800;
-  box-shadow:0 4px 12px rgba(255,150,30,.3);
-  margin-top:1px;
-}
+.term-num{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;font-size:12px;font-weight:800;
+  box-shadow:0 4px 12px rgba(255,150,30,.3);margin-top:1px}
 .term-text{font-size:13px;line-height:1.7;color:#d5d5d5}
-
-/* Modal footer */
-.modal-foot{
-  position:sticky;bottom:0;z-index:3;
-  display:flex;justify-content:flex-end;gap:10px;
-  padding:14px 18px;
-  background:rgba(20,20,20,.92);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-top:1px solid var(--line);
-}
-
-/* Lock scroll when modal open */
+.modal-foot{position:sticky;bottom:0;z-index:3;display:flex;justify-content:flex-end;gap:10px;padding:14px 18px;
+  background:rgba(20,20,20,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line)}
 body.modal-open{overflow:hidden}
 
-/* Print stylesheet */
+/* Print */
 @media print{
   body{background:#fff !important;color:#000 !important}
   body::before,.nav,.hero,.showcase,.stats-wrap,.modal-head,.modal-tabs,.modal-foot,
-  .modal-close,.modal-lang,.modal-backdrop::before{display:none !important}
-  .modal-backdrop{position:static;background:#fff;padding:0;opacity:1;visibility:visible;
-    display:block;backdrop-filter:none;-webkit-backdrop-filter:none}
-  .modal{max-height:none;width:100%;box-shadow:none;border:0;background:#fff;transform:none;opacity:1;
-    display:block;border-radius:0;overflow:visible}
+  .modal-close,.modal-lang{display:none !important}
+  .modal-backdrop{position:static;background:#fff;padding:0;opacity:1;visibility:visible;display:block;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .modal{max-height:none;width:100%;box-shadow:none;border:0;background:#fff;transform:none;opacity:1;display:block;border-radius:0;overflow:visible}
   .modal-body{overflow:visible;padding:0;max-height:none;flex:none}
   .modal-panel{display:block !important;page-break-after:always}
   .modal-panel:last-child{page-break-after:auto}
-
-  /* Print header */
-  .modal-body::before{
-    content:"SA TRADER — Professional Trading Education";
-    display:block;font-size:16pt;font-weight:800;color:#111;
-    border-bottom:3px solid #ffc21a;padding-bottom:10px;margin-bottom:20px;
-  }
-  /* Print section titles */
-  .modal-panel::before{
-    display:block;font-size:13pt;font-weight:700;color:#111;margin:18px 0 12px;
-  }
+  .modal-body::before{content:"SA TRADER — Professional Trading Education";display:block;font-size:16pt;font-weight:800;color:#111;border-bottom:3px solid #ffc21a;padding-bottom:10px;margin-bottom:20px}
+  .modal-panel::before{display:block;font-size:13pt;font-weight:700;color:#111;margin:18px 0 12px}
   #panel-curriculum::before{content:"Curriculum"}
   #panel-terms::before{content:"Terms & Conditions"}
-
-  .curr-card,.term-item{
-    background:#fff !important;border:1px solid #ddd !important;color:#000 !important;
-    box-shadow:none !important;page-break-inside:avoid;transform:none !important;
-    border-radius:8px;padding:10px 12px;
-  }
-  .curr-card:hover,.term-item:hover{border-color:#ddd !important;box-shadow:none !important}
-  .curr-num,.term-num{
-    background:#ffc21a !important;color:#111 !important;box-shadow:none !important;
-    -webkit-print-color-adjust:exact;print-color-adjust:exact;
-  }
+  .curr-card,.term-item{background:#fff !important;border:1px solid #ddd !important;color:#000 !important;box-shadow:none !important;page-break-inside:avoid;transform:none !important;border-radius:8px;padding:10px 12px}
+  .curr-num,.term-num{background:#ffc21a !important;color:#111 !important;box-shadow:none !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .curr-title,.term-text{color:#000 !important;font-size:10.5pt;line-height:1.5}
-  .modal-warn{
-    background:#fff7e6 !important;border:1px solid #f0c674 !important;color:#7a4a00 !important;
-    -webkit-print-color-adjust:exact;print-color-adjust:exact;
-  }
+  .modal-warn{background:#fff7e6 !important;border:1px solid #f0c674 !important;color:#7a4a00 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 
 /* Modal responsive */
@@ -414,6 +301,9 @@ body.modal-open{overflow:hidden}
   .menu.open{display:flex;flex-direction:column;gap:4px;margin-top:10px;background:rgba(22,22,22,.97);border:1px solid var(--line);border-radius:24px;padding:14px;box-shadow:0 20px 50px rgba(0,0,0,.6)}
   .menu a{padding:13px 16px;border-radius:14px;color:var(--muted)}
   .menu a.active{color:var(--yellow);background:rgba(255,194,26,.1)}
+  .menu-lang{margin-top:6px;display:flex;gap:8px;padding:6px 4px 2px;border-top:1px solid var(--line)}
+  .menu-lang button{flex:1;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:12px;padding:10px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+  .menu-lang button.active{background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;border-color:transparent}
   .hero{grid-template-columns:1fr;padding:50px 0 30px;gap:28px}
   .showcase-main{grid-template-columns:1fr 1fr;grid-template-areas:"featured featured" "left right"}
   .featured{grid-area:featured}.side-left{grid-area:left}.side-right{grid-area:right}
@@ -465,24 +355,31 @@ body.modal-open{overflow:hidden}
 <!-- ============ NAVBAR ============ -->
 <header class="nav">
   <div class="nav-in">
-    <a class="logo" href="#home">
+    <a class="logo" href="#home" aria-label="SA TRADER home">
       <img src="IMG_20261007_001230_648.jpg" alt="SA TRADER logo" loading="eager">
     </a>
     <nav class="links" aria-label="Main">
-      <a class="active" href="#home">Home</a>
-      <a href="#courses">Courses &amp; Services</a>
-      <a href="#contact">Contact Us</a>
+      <a class="active" href="#home" data-i18n="nav_home">Home</a>
+      <a href="#courses" data-i18n="nav_courses">Courses &amp; Services</a>
+      <a href="#contact" data-i18n="nav_contact">Contact Us</a>
     </nav>
     <div class="actions">
-      <select class="lang" aria-label="Language"><option>EN</option><option>বাংলা</option></select>
-      <a class="btn" href="#enroll">Enroll Now</a>
+      <select class="lang" id="langSelect" aria-label="Language">
+        <option value="en">EN</option>
+        <option value="bn">বাংলা</option>
+      </select>
+      <a class="btn" href="#enroll" data-i18n="nav_enroll">Enroll Now</a>
     </div>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
   </div>
   <nav class="menu" id="menu" aria-label="Mobile">
-    <a class="active" href="#home">Home</a>
-    <a href="#courses">Courses &amp; Services</a>
-    <a href="#contact">Contact Us</a>
+    <a class="active" href="#home" data-i18n="nav_home">Home</a>
+    <a href="#courses" data-i18n="nav_courses">Courses &amp; Services</a>
+    <a href="#contact" data-i18n="nav_contact">Contact Us</a>
+    <div class="menu-lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="bn">বাংলা</button>
+    </div>
   </nav>
 </header>
 
@@ -491,18 +388,22 @@ body.modal-open{overflow:hidden}
   <!-- ============ HERO ============ -->
   <section class="hero">
     <div>
-      <h1 class="in">bangladesh top 1 <span>professional trading education</span></h1>
-      <p class="sub in d1">Learn forex trading with a trusted mentor. Manage risk and trade with confidence.</p>
-      <a class="btn lg in d2" id="enroll" href="#enroll">Enroll Now</a>
+      <!-- Highlighted heading: two parts so the yellow span stays intact -->
+      <h1 class="in">
+        <span data-i18n="hero_a">bangladesh top 1</span>
+        <span class="hl" data-i18n="hero_b">professional trading education</span>
+      </h1>
+      <p class="sub in d1" data-i18n="hero_sub">Learn forex trading with a trusted mentor. Manage risk and trade with confidence.</p>
+      <a class="btn lg in d2" id="enroll" href="#enroll" data-i18n="hero_cta">Enroll Now</a>
     </div>
     <aside class="count in d2" aria-label="Next batch">
-      <h3>Next Batch</h3>
-      <p>Starting on ★</p>
+      <h3 data-i18n="next_batch">Next Batch</h3>
+      <p data-i18n="starting_on">Starting on ★</p>
       <div class="boxes">
-        <div class="box"><b>00</b><small>DAYS</small></div>
-        <div class="box"><b>00</b><small>HOURS</small></div>
-        <div class="box"><b>00</b><small>MINS</small></div>
-        <div class="box"><b>00</b><small>SECS</small></div>
+        <div class="box"><b>00</b><small data-i18n="unit_days">DAYS</small></div>
+        <div class="box"><b>00</b><small data-i18n="unit_hours">HOURS</small></div>
+        <div class="box"><b>00</b><small data-i18n="unit_mins">MINS</small></div>
+        <div class="box"><b>00</b><small data-i18n="unit_secs">SECS</small></div>
       </div>
     </aside>
   </section>
@@ -516,12 +417,11 @@ body.modal-open{overflow:hidden}
           <div class="pdf-head">
             <div class="pdf-icon" aria-hidden="true"><span>PDF</span></div>
             <div>
-              <div class="pdf-label">Premium Course</div>
-              <h5>Full Curriculum</h5>
+              <div class="pdf-label" data-i18n="pdf_label">Premium Course</div>
+              <h5 data-i18n="pdf_title">Full Curriculum</h5>
             </div>
           </div>
-          <!-- CHANGED: id added so JS can open the modal -->
-          <button class="btn" id="openPdfModal" type="button">⬇ Download PDF</button>
+          <button class="btn" id="openPdfModal" type="button" data-i18n="pdf_btn">⬇ Download PDF</button>
         </article>
 
         <article class="mini-course">
@@ -529,49 +429,49 @@ body.modal-open{overflow:hidden}
             <img src="download (6).png" alt="Trading Mindset course thumbnail" loading="lazy">
           </div>
           <div class="body">
-            <div class="num">09 · TRADING MINDSET</div>
-            <h4>Trading Mindset</h4>
-            <p>Master trading psychology, discipline and emotional control.</p>
+            <div class="num" data-i18n="mini_tag">09 · TRADING MINDSET</div>
+            <h4 data-i18n="mini_title">Trading Mindset</h4>
+            <p data-i18n="mini_desc">Master trading psychology, discipline and emotional control.</p>
           </div>
         </article>
       </aside>
 
       <article class="featured" id="featured">
         <div class="featured-text">
-          <div class="featured-badge">Featured</div>
+          <div class="featured-badge" data-i18n="feat_badge">Featured</div>
           <div class="featured-brand"><span>SA</span> TRADER <span>#01</span></div>
-          <div class="featured-title">Master Professional Trading &amp; Market Analysis</div>
-          <p class="featured-desc">A complete trading framework — from candlestick reading and market structure to risk control and disciplined execution in live markets.</p>
+          <div class="featured-title" data-i18n="feat_title">Master Professional Trading &amp; Market Analysis</div>
+          <p class="featured-desc" data-i18n="feat_desc">A complete trading framework — from candlestick reading and market structure to risk control and disciplined execution in live markets.</p>
           <div class="featured-meta">
-            <span><span class="dot"></span><b>10</b> Lessons</span>
-            <span><span class="dot"></span><b>1.5</b> Hours</span>
-            <span><span class="dot"></span>Beginner → Pro</span>
+            <span><span class="dot"></span><b>10</b>&nbsp;<span data-i18n="feat_lessons">Lessons</span></span>
+            <span><span class="dot"></span><b>1.5</b>&nbsp;<span data-i18n="feat_hours">Hours</span></span>
+            <span><span class="dot"></span><span data-i18n="feat_level">Beginner → Pro</span></span>
           </div>
           <div class="featured-cta">
-            <a class="btn" href="#join">Join Course</a>
-            <a class="btn ghost" href="#learn-more">Learn More</a>
+            <a class="btn" href="#join" data-i18n="feat_join">Join Course</a>
+            <a class="btn ghost" href="#learn-more" data-i18n="feat_learn">Learn More</a>
             <button class="featured-plus" type="button" aria-label="Add to list">+</button>
           </div>
           <div class="video-row" aria-label="Course previews">
             <a class="video-card" href="#video-1" aria-label="Preview 1">
               <span class="big-num" aria-hidden="true">1</span>
               <span class="vc-img"><img src="download (1).png" alt="Course preview 1" loading="lazy"></span>
-              <span class="vc-tag">Top Pick</span>
+              <span class="vc-tag" data-i18n="tag_top">Top Pick</span>
             </a>
             <a class="video-card" href="#video-2" aria-label="Preview 2">
               <span class="big-num" aria-hidden="true">2</span>
               <span class="vc-img"><img src="download (2).png" alt="Course preview 2" loading="lazy"></span>
-              <span class="vc-tag pop">Popular</span>
+              <span class="vc-tag pop" data-i18n="tag_pop">Popular</span>
             </a>
             <a class="video-card" href="#video-3" aria-label="Preview 3">
               <span class="big-num" aria-hidden="true">3</span>
               <span class="vc-img"><img src="download (3).png" alt="Course preview 3" loading="lazy"></span>
-              <span class="vc-tag">Top Pick</span>
+              <span class="vc-tag" data-i18n="tag_top">Top Pick</span>
             </a>
             <a class="video-card" href="#video-4" aria-label="Preview 4">
               <span class="big-num" aria-hidden="true">4</span>
               <span class="vc-img"><img src="download (4).png" alt="Course preview 4" loading="lazy"></span>
-              <span class="vc-tag pop">Popular</span>
+              <span class="vc-tag pop" data-i18n="tag_pop">Popular</span>
             </a>
           </div>
         </div>
@@ -597,30 +497,30 @@ body.modal-open{overflow:hidden}
             <span class="val">90%</span>
           </div>
         </div>
-        <h6>Professional Trading Education</h6>
-        <p class="side-desc">Structured lessons built for real execution and risk-first decision making.</p>
+        <h6 data-i18n="side_title">Professional Trading Education</h6>
+        <p class="side-desc" data-i18n="side_desc">Structured lessons built for real execution and risk-first decision making.</p>
         <div class="side-stats">
-          <div class="stat"><b>10</b><small>Lessons</small></div>
-          <div class="stat"><b>1.5</b><small>Hours</small></div>
+          <div class="stat"><b>10</b><small data-i18n="side_lessons">Lessons</small></div>
+          <div class="stat"><b>1.5</b><small data-i18n="side_hours">Hours</small></div>
         </div>
         <div class="lesson-mini">
           <div class="lm-thumb"><img src="download (2).png" alt="Lesson 01 thumbnail" loading="lazy"></div>
-          <div class="lm-body"><div class="lm-title">Starting Your Trading Journey</div></div>
+          <div class="lm-body"><div class="lm-title" data-i18n="l1">Starting Your Trading Journey</div></div>
           <span class="lm-num">01</span>
         </div>
         <div class="lesson-mini">
           <div class="lm-thumb"><img src="download (3).png" alt="Lesson 02 thumbnail" loading="lazy"></div>
-          <div class="lm-body"><div class="lm-title">Mastering Trading Psychology</div></div>
+          <div class="lm-body"><div class="lm-title" data-i18n="l2">Mastering Trading Psychology</div></div>
           <span class="lm-num">02</span>
         </div>
         <div class="lesson-mini">
           <div class="lm-thumb"><img src="download (4).png" alt="Lesson 03 thumbnail" loading="lazy"></div>
-          <div class="lm-body"><div class="lm-title">Reading Market Structure</div></div>
+          <div class="lm-body"><div class="lm-title" data-i18n="l3">Reading Market Structure</div></div>
           <span class="lm-num">03</span>
         </div>
         <div class="lesson-mini">
           <div class="lm-thumb"><img src="download (1).png" alt="Lesson 04 thumbnail" loading="lazy"></div>
-          <div class="lm-body"><div class="lm-title">Risk &amp; Money Management</div></div>
+          <div class="lm-body"><div class="lm-title" data-i18n="l4">Risk &amp; Money Management</div></div>
           <span class="lm-num">04</span>
         </div>
       </aside>
@@ -639,7 +539,7 @@ body.modal-open{overflow:hidden}
           </svg>
         </div>
         <div class="stat-num" data-target="5" data-suffix="k+"><span>0</span>k+</div>
-        <div class="stat-label">Our Subscribers</div>
+        <div class="stat-label" data-i18n="stat_subs">Our Subscribers</div>
       </div>
       <div class="stat-card">
         <div class="stat-icon" aria-hidden="true">
@@ -657,7 +557,7 @@ body.modal-open{overflow:hidden}
           </svg>
         </div>
         <div class="stat-num" data-target="3" data-suffix="k+"><span>0</span>k+</div>
-        <div class="stat-label">Active Traders</div>
+        <div class="stat-label" data-i18n="stat_traders">Active Traders</div>
       </div>
       <div class="stat-card">
         <div class="stat-icon" aria-hidden="true">
@@ -674,7 +574,7 @@ body.modal-open{overflow:hidden}
           </svg>
         </div>
         <div class="stat-num" data-target="1" data-suffix="k+"><span>0</span>k+</div>
-        <div class="stat-label">Active Students</div>
+        <div class="stat-label" data-i18n="stat_students">Active Students</div>
       </div>
       <div class="stat-card">
         <div class="stat-icon" aria-hidden="true">
@@ -687,7 +587,7 @@ body.modal-open{overflow:hidden}
           </svg>
         </div>
         <div class="stat-num" data-target="4" data-suffix="+"><span>0</span>+</div>
-        <div class="stat-label">Years Experience</div>
+        <div class="stat-label" data-i18n="stat_years">Years Experience</div>
       </div>
     </div>
   </section>
@@ -700,51 +600,165 @@ body.modal-open{overflow:hidden}
      ========================================================= -->
 <div class="modal-backdrop" id="pdfModal" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle" aria-describedby="pdfModalDesc">
-    <!-- Sticky header -->
     <div class="modal-head">
       <div class="modal-brand" id="pdfModalTitle"><span>SA</span> TRADER</div>
       <div class="modal-lang" role="group" aria-label="Language">
-        <button type="button" data-lang="en" class="active">EN</button>
-        <button type="button" data-lang="bn">বাংলা</button>
+        <button type="button" data-modal-lang="en" class="active">EN</button>
+        <button type="button" data-modal-lang="bn">বাংলা</button>
       </div>
       <button class="modal-close" id="closePdfModal" type="button" aria-label="Close">✕</button>
     </div>
 
-    <!-- Tabs -->
     <div class="modal-tabs" role="tablist" aria-label="Sections">
-      <button class="modal-tab active" id="tab-curriculum" role="tab" aria-selected="true" aria-controls="panel-curriculum" data-tab="curriculum">Curriculum</button>
-      <button class="modal-tab" id="tab-terms" role="tab" aria-selected="false" aria-controls="panel-terms" data-tab="terms">Terms &amp; Conditions</button>
+      <button class="modal-tab active" id="tab-curriculum" role="tab" aria-selected="true" aria-controls="panel-curriculum" data-tab="curriculum" data-i18n="modal_tab_curr">Curriculum</button>
+      <button class="modal-tab" id="tab-terms" role="tab" aria-selected="false" aria-controls="panel-terms" data-tab="terms" data-i18n="modal_tab_terms">Terms &amp; Conditions</button>
     </div>
 
-    <!-- Body (scrolls internally) -->
     <div class="modal-body" id="pdfModalDesc">
       <div class="modal-panel active" id="panel-curriculum" role="tabpanel" aria-labelledby="tab-curriculum">
-        <div class="curr-list" id="currList"><!-- rendered by JS --></div>
+        <div class="curr-list" id="currList"></div>
       </div>
       <div class="modal-panel" id="panel-terms" role="tabpanel" aria-labelledby="tab-terms">
-        <div class="modal-warn" id="termWarn">
+        <div class="modal-warn">
           <svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
-          <span>Trading involves substantial financial risk.</span>
+          <span data-i18n="modal_warn">Trading involves substantial financial risk.</span>
         </div>
-        <div class="terms-list" id="termsList"><!-- rendered by JS --></div>
+        <div class="terms-list" id="termsList"></div>
       </div>
     </div>
 
-    <!-- Sticky footer -->
     <div class="modal-foot">
-      <button class="btn" id="printPdf" type="button">⬇ Download PDF</button>
+      <button class="btn" id="printPdf" type="button" data-i18n="modal_download">⬇ Download PDF</button>
     </div>
   </div>
 </div>
 
 <script>
 /* =========================================================
-   CONTENT DATA — easy to edit
+   TRANSLATION DICTIONARY — every key exists in en & bn
    ========================================================= */
-const CONTENT = {
+const I18N = {
   en: {
-    tabs: { curriculum: "Curriculum", terms: "Terms & Conditions" },
-    warn: "Trading involves substantial financial risk.",
+    /* Navbar */
+    nav_home:"Home",
+    nav_courses:"Courses & Services",
+    nav_contact:"Contact Us",
+    nav_enroll:"Enroll Now",
+    /* Hero */
+    hero_a:"bangladesh top 1",
+    hero_b:"professional trading education",
+    hero_sub:"Learn forex trading with a trusted mentor. Manage risk and trade with confidence.",
+    hero_cta:"Enroll Now",
+    /* Countdown */
+    next_batch:"Next Batch",
+    starting_on:"Starting on ★",
+    unit_days:"DAYS",
+    unit_hours:"HOURS",
+    unit_mins:"MINS",
+    unit_secs:"SECS",
+    /* PDF card */
+    pdf_label:"Premium Course",
+    pdf_title:"Full Curriculum",
+    pdf_btn:"⬇ Download PDF",
+    /* Mini course */
+    mini_tag:"09 · TRADING MINDSET",
+    mini_title:"Trading Mindset",
+    mini_desc:"Master trading psychology, discipline and emotional control.",
+    /* Featured */
+    feat_badge:"Featured",
+    feat_title:"Master Professional Trading & Market Analysis",
+    feat_desc:"A complete trading framework — from candlestick reading and market structure to risk control and disciplined execution in live markets.",
+    feat_lessons:"Lessons",
+    feat_hours:"Hours",
+    feat_level:"Beginner → Pro",
+    feat_join:"Join Course",
+    feat_learn:"Learn More",
+    tag_top:"Top Pick",
+    tag_pop:"Popular",
+    /* Right sidebar */
+    side_title:"Professional Trading Education",
+    side_desc:"Structured lessons built for real execution and risk-first decision making.",
+    side_lessons:"Lessons",
+    side_hours:"Hours",
+    l1:"Starting Your Trading Journey",
+    l2:"Mastering Trading Psychology",
+    l3:"Reading Market Structure",
+    l4:"Risk & Money Management",
+    /* Stats */
+    stat_subs:"Our Subscribers",
+    stat_traders:"Active Traders",
+    stat_students:"Active Students",
+    stat_years:"Years Experience",
+    /* Modal */
+    modal_tab_curr:"Curriculum",
+    modal_tab_terms:"Terms & Conditions",
+    modal_warn:"Trading involves substantial financial risk.",
+    modal_download:"⬇ Download PDF"
+  },
+  bn: {
+    /* Navbar */
+    nav_home:"হোম",
+    nav_courses:"কোর্স ও সার্ভিস",
+    nav_contact:"যোগাযোগ করুন",
+    nav_enroll:"এনরোল করুন",
+    /* Hero */
+    hero_a:"বাংলাদেশের ১ নম্বর",
+    hero_b:"প্রফেশনাল ট্রেডিং এডুকেশন",
+    hero_sub:"বিশ্বস্ত মেন্টরের সাথে Forex ট্রেডিং শিখুন। Risk ম্যানেজ করে আত্মবিশ্বাসের সাথে ট্রেড করুন।",
+    hero_cta:"এনরোল করুন",
+    /* Countdown */
+    next_batch:"পরবর্তী ব্যাচ",
+    starting_on:"শুরু হবে ★",
+    unit_days:"দিন",
+    unit_hours:"ঘণ্টা",
+    unit_mins:"মিনিট",
+    unit_secs:"সেকেন্ড",
+    /* PDF card */
+    pdf_label:"প্রিমিয়াম কোর্স",
+    pdf_title:"সম্পূর্ণ কারিকুলাম",
+    pdf_btn:"⬇ PDF ডাউনলোড",
+    /* Mini course */
+    mini_tag:"০৯ · ট্রেডিং মাইন্ডসেট",
+    mini_title:"ট্রেডিং মাইন্ডসেট",
+    mini_desc:"ট্রেডিং সাইকোলজি, ডিসিপ্লিন ও ইমোশনাল কন্ট্রোল আয়ত্ত করুন।",
+    /* Featured */
+    feat_badge:"ফিচার্ড",
+    feat_title:"প্রফেশনাল ট্রেডিং ও মার্কেট অ্যানালাইসিস মাস্টার করুন",
+    feat_desc:"ক্যান্ডেলস্টিক রিডিং ও মার্কেট স্ট্রাকচার থেকে শুরু করে Risk কন্ট্রোল ও লাইভ মার্কেটে ডিসিপ্লিনড এক্সিকিউশন — সম্পূর্ণ ট্রেডিং ফ্রেমওয়ার্ক।",
+    feat_lessons:"লেসন",
+    feat_hours:"ঘণ্টা",
+    feat_level:"বিগিনার → প্রো",
+    feat_join:"কোর্সে যোগ দিন",
+    feat_learn:"আরও জানুন",
+    tag_top:"টপ পিক",
+    tag_pop:"জনপ্রিয়",
+    /* Right sidebar */
+    side_title:"প্রফেশনাল ট্রেডিং এডুকেশন",
+    side_desc:"বাস্তব এক্সিকিউশন ও Risk-ফার্স্ট সিদ্ধান্তের জন্য সাজানো স্ট্রাকচার্ড লেসন।",
+    side_lessons:"লেসন",
+    side_hours:"ঘণ্টা",
+    l1:"আপনার ট্রেডিং যাত্রা শুরু",
+    l2:"ট্রেডিং সাইকোলজি আয়ত্ত করা",
+    l3:"মার্কেট স্ট্রাকচার পড়া",
+    l4:"Risk ও মানি ম্যানেজমেন্ট",
+    /* Stats */
+    stat_subs:"আমাদের সাবস্ক্রাইবার",
+    stat_traders:"অ্যাক্টিভ ট্রেডার",
+    stat_students:"অ্যাক্টিভ স্টুডেন্ট",
+    stat_years:"বছরের অভিজ্ঞতা",
+    /* Modal */
+    modal_tab_curr:"কারিকুলাম",
+    modal_tab_terms:"শর্তাবলী",
+    modal_warn:"ট্রেডিংয়ে উল্লেখযোগ্য আর্থিক ঝুঁকি রয়েছে।",
+    modal_download:"⬇ PDF ডাউনলোড"
+  }
+};
+
+/* =========================================================
+   MODAL CONTENT (Curriculum + Terms) — per language
+   ========================================================= */
+const MODAL_CONTENT = {
+  en: {
     curriculum: [
       "Forex - Crypto - Futures Trading & Investing Core Basics to Advanced Complete Masterclass",
       "Market Mechanics, Structure & Liquidity Understanding",
@@ -775,8 +789,6 @@ const CONTENT = {
     ]
   },
   bn: {
-    tabs: { curriculum: "কোর্স কারিকুলাম", terms: "শর্তাবলী" },
-    warn: "ট্রেডিংয়ে উল্লেখযোগ্য আর্থিক ঝুঁকি রয়েছে।",
     curriculum: [
       "ফরেক্স – ক্রিপ্টো – ফিউচার্স ট্রেডিং ও ইনভেস্টিং: সম্পূর্ণ বেসিক থেকে অ্যাডভান্সড মাস্টারক্লাস",
       "মার্কেট মেকানিক্স, স্ট্রাকচার ও লিকুইডিটি বোঝার কৌশল",
@@ -785,7 +797,7 @@ const CONTENT = {
       "Price Action, SMC ও ICT কনসেপ্টস এবং প্রফেশনাল মার্কেট অভিজ্ঞতা",
       "কার্যকর স্মার্ট ইন্ডিকেটরসহ মাস্টার টেকনিক্যাল ও ফান্ডামেন্টাল অ্যানালাইসিস",
       "বড় মার্কেট মুভের জন্য এন্ট্রি, এক্সিট ও ট্রেড ধরে রাখার কৌশল",
-      "স্মার্ট রিস্ক, ক্যাপিটাল ও সাইকোলজিক্যাল ম্যানেজমেন্ট সিস্টেম এবং লাইভ মার্কেট এক্সিকিউশন",
+      "স্মার্ট Risk, ক্যাপিটাল ও সাইকোলজিক্যাল ম্যানেজমেন্ট সিস্টেম এবং লাইভ মার্কেট এক্সিকিউশন",
       "নিজের ট্রেডিং স্ট্র্যাটেজি তৈরি, টিম সাপোর্টে Backtest এবং প্রতিদিন উন্নতি",
       "ইমোশনাল কন্ট্রোল, ট্রেডিং ডিসিপ্লিন ও দৈনিক পারফরম্যান্স গ্রোথ"
     ],
@@ -809,66 +821,139 @@ const CONTENT = {
 };
 
 /* =========================================================
+   PAGE TITLE per language
+   ========================================================= */
+const PAGE_TITLE = {
+  en: "SA TRADER — Professional Trading Education",
+  bn: "SA TRADER — প্রফেশনাল ট্রেডিং এডুকেশন"
+};
+
+/* =========================================================
+   setLang(lang) — main switch function
+   ========================================================= */
+function setLang(lang){
+  if (lang !== 'en' && lang !== 'bn') lang = 'en';
+  const dict = I18N[lang];
+  const fallback = I18N.en;
+
+  /* 1. Text nodes */
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    let val = dict[key];
+    if (val === undefined) { val = fallback[key]; console.warn('[i18n] missing bn key:', key); }
+    if (val !== undefined) el.textContent = val;
+  });
+
+  /* 2. innerHTML nodes (for translations that include markup) */
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    let val = dict[key];
+    if (val === undefined) { val = fallback[key]; console.warn('[i18n] missing bn key:', key); }
+    if (val !== undefined) el.innerHTML = val;
+  });
+
+  /* 3. Placeholders */
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    let val = dict[key];
+    if (val === undefined) { val = fallback[key]; console.warn('[i18n] missing bn key:', key); }
+    if (val !== undefined) el.setAttribute('placeholder', val);
+  });
+
+  /* 4. Aria-labels */
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    const key = el.getAttribute('data-i18n-aria');
+    let val = dict[key];
+    if (val === undefined) { val = fallback[key]; console.warn('[i18n] missing bn key:', key); }
+    if (val !== undefined) el.setAttribute('aria-label', val);
+  });
+
+  /* 5. html lang + document title + font mode */
+  document.documentElement.lang = lang;
+  document.title = PAGE_TITLE[lang] || PAGE_TITLE.en;
+
+  /* 6. Sync all language selectors */
+  const sel = document.getElementById('langSelect');
+  if (sel) sel.value = lang;
+  document.querySelectorAll('.menu-lang button').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+
+  /* 7. Re-render modal content in the new language (if modal exists) */
+  if (typeof renderModal === 'function') renderModal(lang);
+
+  /* 8. Persist */
+  try { localStorage.setItem('sa_lang', lang); } catch(e){ /* ignore */ }
+}
+
+/* =========================================================
+   Modal content rendering
+   ========================================================= */
+function renderModal(lang){
+  const data = MODAL_CONTENT[lang] || MODAL_CONTENT.en;
+  const currList = document.getElementById('currList');
+  const termsList = document.getElementById('termsList');
+  if (currList) {
+    currList.innerHTML = data.curriculum.map((title, i) => `
+      <div class="curr-card">
+        <div class="curr-num">#${i+1}</div>
+        <div class="curr-title">${title}</div>
+      </div>`).join('');
+  }
+  if (termsList) {
+    termsList.innerHTML = data.terms.map((text, i) => `
+      <div class="term-item">
+        <div class="term-num">${i+1}</div>
+        <div class="term-text">${text}</div>
+      </div>`).join('');
+  }
+}
+
+/* =========================================================
+   Wire up language selectors + restore saved choice
+   ========================================================= */
+(function(){
+  /* Desktop dropdown */
+  const sel = document.getElementById('langSelect');
+  if (sel) sel.addEventListener('change', e => setLang(e.target.value));
+
+  /* Mobile menu buttons */
+  document.querySelectorAll('.menu-lang button').forEach(b => {
+    b.addEventListener('click', () => setLang(b.dataset.lang));
+  });
+
+  /* Restore saved language */
+  let saved = 'en';
+  try { saved = localStorage.getItem('sa_lang') || 'en'; } catch(e){ /* ignore */ }
+  setLang(saved);
+})();
+
+/* =========================================================
    MODAL LOGIC
    ========================================================= */
 (function(){
   const backdrop  = document.getElementById('pdfModal');
+  if (!backdrop) return;
   const modal     = backdrop.querySelector('.modal');
   const openBtn   = document.getElementById('openPdfModal');
   const closeBtn  = document.getElementById('closePdfModal');
   const printBtn  = document.getElementById('printPdf');
   const tabs      = backdrop.querySelectorAll('.modal-tab');
   const panels    = backdrop.querySelectorAll('.modal-panel');
-  const langBtns  = backdrop.querySelectorAll('.modal-lang button');
-  const currList  = document.getElementById('currList');
-  const termsList = document.getElementById('termsList');
-  const warnEl    = document.getElementById('termWarn').querySelector('span');
+  const modalLangBtns = backdrop.querySelectorAll('.modal-lang button');
 
-  let currentLang = 'en';
   let lastFocused = null;
 
-  /* ---------- Render content ---------- */
-  function render(){
-    const data = CONTENT[currentLang];
-
-    // tabs
-    tabs[0].textContent = data.tabs.curriculum;
-    tabs[1].textContent = data.tabs.terms;
-
-    // warning
-    warnEl.textContent = data.warn;
-
-    // curriculum
-    currList.innerHTML = data.curriculum.map((title, i) => `
-      <div class="curr-card">
-        <div class="curr-num">#${i+1}</div>
-        <div class="curr-title">${title}</div>
-      </div>
-    `).join('');
-
-    // terms
-    termsList.innerHTML = data.terms.map((text, i) => `
-      <div class="term-item">
-        <div class="term-num">${i+1}</div>
-        <div class="term-text">${text}</div>
-      </div>
-    `).join('');
-
-    // body class for Bengali font
-    document.body.classList.toggle('lang-bn', currentLang === 'bn');
-
-    // lang button active states
-    langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
-  }
-
-  /* ---------- Open / close ---------- */
   function openModal(){
     lastFocused = document.activeElement;
-    render();
+    /* render current language content */
+    const cur = document.documentElement.lang === 'bn' ? 'bn' : 'en';
+    renderModal(cur);
+    /* sync modal-lang buttons */
+    modalLangBtns.forEach(b => b.classList.toggle('active', b.dataset.modalLang === cur));
     backdrop.classList.add('open');
     backdrop.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
-    // focus first focusable in modal
     setTimeout(() => closeBtn.focus(), 50);
   }
 
@@ -876,26 +961,21 @@ const CONTENT = {
     backdrop.classList.remove('open');
     backdrop.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
-    document.body.classList.remove('lang-bn');
     if (lastFocused) lastFocused.focus();
   }
 
   openBtn.addEventListener('click', openModal);
   closeBtn.addEventListener('click', closeModal);
 
-  // click backdrop to close (but not the modal itself)
   backdrop.addEventListener('click', (e) => {
     if (e.target === backdrop) closeModal();
   });
 
-  // Esc to close
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && backdrop.classList.contains('open')) {
-      closeModal();
-    }
+    if (e.key === 'Escape' && backdrop.classList.contains('open')) closeModal();
   });
 
-  /* ---------- Focus trap ---------- */
+  /* Focus trap */
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Tab' || !backdrop.classList.contains('open')) return;
     const focusables = modal.querySelectorAll(
@@ -905,14 +985,11 @@ const CONTENT = {
     if (!list.length) return;
     const first = list[0];
     const last  = list[list.length - 1];
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault(); last.focus();
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault(); first.focus();
-    }
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
 
-  /* ---------- Tabs ---------- */
+  /* Tabs */
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const target = tab.dataset.tab;
@@ -927,27 +1004,23 @@ const CONTENT = {
     });
   });
 
-  /* ---------- Language toggle (inside modal) ---------- */
-  langBtns.forEach(btn => {
+  /* Modal-only language toggle */
+  modalLangBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      currentLang = btn.dataset.lang;
-      render();
+      const target = btn.dataset.modalLang;
+      setLang(target);
+      modalLangBtns.forEach(b => b.classList.toggle('active', b.dataset.modalLang === target));
     });
   });
 
-  /* ---------- Print / Download PDF ---------- */
-  printBtn.addEventListener('click', () => {
-    // Ensure both panels are rendered; the print stylesheet shows both.
-    // Small delay to allow any layout to settle.
-    setTimeout(() => window.print(), 60);
-  });
+  /* Print */
+  printBtn.addEventListener('click', () => setTimeout(() => window.print(), 60));
 })();
 
 /* =========================================================
    EXISTING PAGE JS — mobile menu, fade-up, counters
    ========================================================= */
 (function(){
-  // Mobile menu
   const b = document.getElementById('burger');
   const m = document.getElementById('menu');
   if (b && m) {
@@ -963,7 +1036,6 @@ const CONTENT = {
     }));
   }
 
-  // Fade-up on scroll
   const fadeEls = document.querySelectorAll('.fade-up');
   if ('IntersectionObserver' in window) {
     const fadeObs = new IntersectionObserver((entries) => {
@@ -979,7 +1051,6 @@ const CONTENT = {
     fadeEls.forEach(el => el.classList.add('visible'));
   }
 
-  // Animated counters
   const counters = document.querySelectorAll('.stat-num[data-target]');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
