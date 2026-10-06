@@ -1,839 +1,1023 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>SA TRADER — Professional Trading Education</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    /* =========================================================
-       ROOT TOKENS
-       ========================================================= */
-    :root{
-      --bg:#0a0a0a;--bg2:#141414;--card:#1a1a1a;--line:rgba(255,255,255,.08);
-      --yellow:#ffc21a;--orange:#ff8a1f;--text:#fff;--muted:#a3a3a3;
-      --radius-lg:28px;--radius-md:20px;--radius-sm:14px;
-      box-sizing:border-box;
-      padding-top:env(safe-area-inset-top,0px);
-      padding-bottom:env(safe-area-inset-bottom,0px);
-    }
-    html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
-    *,*::before,*::after{box-sizing:border-box;margin:0}
-    body{
-      background:var(--bg);color:var(--text);font-family:'Poppins',system-ui,-apple-system,Segoe UI,sans-serif;
-      overflow-x:hidden;min-height:100%;
-      background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:26px 26px;
-    }
-    body::before{
-      content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-      background:radial-gradient(600px 400px at 85% 10%,rgba(255,170,30,.12),transparent 70%),
-                 radial-gradient(500px 380px at 5% 40%,rgba(255,194,26,.07),transparent 70%);
-    }
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    .wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 20px}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SA TRADER — Professional Trading Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a;--bg2:#141414;--card:#1a1a1a;--line:rgba(255,255,255,.08);
+  --yellow:#ffc21a;--orange:#ff8a1f;--text:#fff;--muted:#a3a3a3;
+  --radius-lg:28px;--radius-md:20px;--radius-sm:14px;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box;margin:0}
+body{
+  background:var(--bg);color:var(--text);font-family:'Poppins',system-ui,-apple-system,Segoe UI,sans-serif;
+  overflow-x:hidden;min-height:100%;
+  background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:26px 26px;
+}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(600px 400px at 85% 10%,rgba(255,170,30,.12),transparent 70%),
+             radial-gradient(500px 380px at 5% 40%,rgba(255,194,26,.07),transparent 70%)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 20px}
 
-    /* =========================================================
-       NAVBAR
-       ========================================================= */
-    .nav{position:sticky;top:14px;z-index:50;margin:14px auto 0;max-width:1240px;padding:0 20px}
-    .nav-in{
-      display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;
-      background:rgba(22,22,22,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-      border:1px solid var(--line);border-radius:999px;
-      padding:8px 12px 8px 14px;box-shadow:0 10px 40px rgba(0,0,0,.5);
-    }
-    .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;justify-self:start}
-    .logo img{width:auto;height:42px;max-width:140px;object-fit:contain;object-position:center;display:block;border-radius:6px}
-    .links{display:flex;gap:6px;justify-self:center;align-items:center;justify-content:center}
-    .links a{position:relative;padding:9px 16px;border-radius:999px;font-size:14px;color:var(--muted);transition:.25s}
-    .links a:hover{color:#fff;background:rgba(255,255,255,.06)}
-    .links a.active{color:var(--yellow);background:rgba(255,194,26,.1)}
-    .links a.active::after{
-      content:"";position:absolute;left:50%;transform:translateX(-50%);
-      bottom:4px;width:18px;height:2px;border-radius:2px;
-      background:linear-gradient(90deg,var(--yellow),var(--orange));
-    }
-    .actions{display:flex;align-items:center;gap:8px;justify-self:end}
-    .lang{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:999px;padding:8px 12px;font:inherit;font-size:13px;cursor:pointer}
-    .lang option{background:#111}
-    .btn{
-      display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:600;font-size:14px;
-      border-radius:999px;padding:11px 22px;
-      background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;
-      box-shadow:0 8px 24px rgba(255,150,30,.3);transition:transform .25s,box-shadow .25s;
-    }
-    .btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,150,30,.45)}
-    .btn.ghost{background:transparent;color:#fff;box-shadow:none;border:1px solid var(--line)}
-    .btn.ghost:hover{background:rgba(255,255,255,.06);box-shadow:none}
-    .btn.lg{padding:15px 34px;font-size:16px}
-    .burger{display:none;background:none;border:1px solid var(--line);color:#fff;border-radius:50%;width:42px;height:42px;font-size:18px;cursor:pointer;justify-self:end}
-    .menu{display:none}
+/* ============ NAVBAR ============ */
+.nav{position:sticky;top:14px;z-index:50;margin:14px auto 0;max-width:1240px;padding:0 20px}
+.nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;
+  background:rgba(22,22,22,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--line);border-radius:999px;padding:8px 12px 8px 14px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;justify-self:start}
+.logo img{width:auto;height:42px;max-width:140px;object-fit:contain;object-position:center;display:block;border-radius:6px}
+.links{display:flex;gap:6px;justify-self:center;align-items:center;justify-content:center}
+.links a{position:relative;padding:9px 16px;border-radius:999px;font-size:14px;color:var(--muted);transition:.25s}
+.links a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.links a.active{color:var(--yellow);background:rgba(255,194,26,.1)}
+.links a.active::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:4px;width:18px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--yellow),var(--orange))}
+.actions{display:flex;align-items:center;gap:8px;justify-self:end}
+.lang{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:999px;padding:8px 12px;font:inherit;font-size:13px;cursor:pointer}
+.lang option{background:#111}
+.btn{display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:600;font-size:14px;border-radius:999px;padding:11px 22px;
+  background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;box-shadow:0 8px 24px rgba(255,150,30,.3);transition:transform .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,150,30,.45)}
+.btn.ghost{background:transparent;color:#fff;box-shadow:none;border:1px solid var(--line)}
+.btn.ghost:hover{background:rgba(255,255,255,.06);box-shadow:none}
+.btn.lg{padding:15px 34px;font-size:16px}
+.burger{display:none;background:none;border:1px solid var(--line);color:#fff;border-radius:50%;width:42px;height:42px;font-size:18px;cursor:pointer;justify-self:end}
+.menu{display:none}
 
-    /* =========================================================
-       HERO
-       ========================================================= */
-    .hero{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center;padding:70px 0 40px}
-    h1{font-size:clamp(34px,5vw,62px);line-height:1.1;font-weight:800;letter-spacing:-.02em;text-transform:capitalize}
-    h1 span{color:var(--yellow)}
-    .sub{margin:22px 0 34px;color:var(--muted);font-size:clamp(15px,1.6vw,18px);max-width:520px;line-height:1.7}
+/* ============ HERO ============ */
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center;padding:70px 0 40px}
+h1{font-size:clamp(34px,5vw,62px);line-height:1.1;font-weight:800;letter-spacing:-.02em;text-transform:capitalize}
+h1 span{color:var(--yellow)}
+.sub{margin:22px 0 34px;color:var(--muted);font-size:clamp(15px,1.6vw,18px);max-width:520px;line-height:1.7}
+.count{background:linear-gradient(160deg,#1c1c1c,#121212);border:1px solid var(--line);border-radius:var(--radius-lg);padding:34px;
+  box-shadow:0 24px 70px rgba(0,0,0,.6),0 0 0 1px rgba(255,194,26,.06) inset;text-align:center;animation:float 6s ease-in-out infinite}
+.count h3{font-size:26px;font-weight:700;color:var(--yellow)}
+.count p{color:var(--muted);margin:6px 0 24px;font-size:15px}
+.boxes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.box{border-radius:16px;padding:16px 4px;background:linear-gradient(160deg,var(--yellow),var(--orange));color:#111;box-shadow:0 8px 20px rgba(255,150,30,.25)}
+.box b{display:block;font-size:clamp(24px,3.2vw,36px);font-weight:800;line-height:1}
+.box small{display:block;margin-top:6px;font-size:11px;font-weight:600;letter-spacing:.06em}
 
-    .count{
-      background:linear-gradient(160deg,#1c1c1c,#121212);border:1px solid var(--line);
-      border-radius:var(--radius-lg);padding:34px;
-      box-shadow:0 24px 70px rgba(0,0,0,.6),0 0 0 1px rgba(255,194,26,.06) inset;
-      text-align:center;animation:float 6s ease-in-out infinite;
-    }
-    .count h3{font-size:26px;font-weight:700;color:var(--yellow)}
-    .count p{color:var(--muted);margin:6px 0 24px;font-size:15px}
-    .boxes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-    .box{border-radius:16px;padding:16px 4px;background:linear-gradient(160deg,var(--yellow),var(--orange));color:#111;box-shadow:0 8px 20px rgba(255,150,30,.25)}
-    .box b{display:block;font-size:clamp(24px,3.2vw,36px);font-weight:800;line-height:1}
-    .box small{display:block;margin-top:6px;font-size:11px;font-weight:600;letter-spacing:.06em}
+/* ============ SHOWCASE ============ */
+.showcase{position:relative;max-width:1240px;margin:10px auto 60px;padding:clamp(16px,2vw,24px);border-radius:36px;
+  background:linear-gradient(160deg,#181818,#0f0f0f);border:1px solid var(--line);box-shadow:0 30px 90px rgba(0,0,0,.6)}
+.showcase-main{display:grid;grid-template-columns:260px 1fr 280px;gap:clamp(14px,1.6vw,20px);align-items:stretch}
+.side-left{display:flex;flex-direction:column;gap:14px;min-width:0}
+.pdf-card{position:relative;overflow:hidden;background:linear-gradient(160deg,#1c1c1c,#121212);border:1px solid var(--line);border-radius:var(--radius-md);
+  padding:20px 16px;display:flex;flex-direction:column;gap:14px;transition:border-color .3s ease,transform .3s ease}
+.pdf-card::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+  background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:14px 14px}
+.pdf-card:hover{border-color:rgba(255,194,26,.35);transform:translateY(-2px)}
+.pdf-card > *{position:relative;z-index:1}
+.pdf-head{display:flex;align-items:center;gap:12px}
+.pdf-icon{width:44px;height:54px;flex:none;position:relative;background:linear-gradient(160deg,#2a2a2a,#1a1a1a);border:1px solid var(--line);border-radius:8px;display:grid;place-items:center}
+.pdf-icon::before{content:"";position:absolute;top:-1px;right:-1px;width:14px;height:14px;background:var(--yellow);clip-path:polygon(0 0,100% 0,100% 100%);border-top-right-radius:8px}
+.pdf-icon span{font-size:10px;font-weight:800;color:var(--yellow);letter-spacing:.05em}
+.pdf-card .pdf-label{font-size:10.5px;font-weight:700;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.pdf-card h5{font-size:15px;font-weight:700;line-height:1.3}
+.pdf-card .btn{width:100%;text-align:center;padding:12px 16px;font-size:13px;margin-top:auto}
+.mini-course{background:linear-gradient(160deg,#1c1c1c,#121212);border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;transition:transform .3s ease,border-color .3s ease}
+.mini-course:hover{transform:translateY(-3px);border-color:rgba(255,194,26,.35)}
+.mini-course .thumb{aspect-ratio:16/10;overflow:hidden;background:#0d0d0d;position:relative}
+.mini-course .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.mini-course:hover .thumb img{transform:scale(1.05)}
+.mini-course .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.55) 100%);pointer-events:none}
+.mini-course .body{padding:14px}
+.mini-course .num{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--yellow);margin-bottom:6px}
+.mini-course h4{font-size:14px;font-weight:700;line-height:1.3;margin-bottom:6px;text-transform:uppercase;letter-spacing:.02em}
+.mini-course p{font-size:12px;color:var(--muted);line-height:1.55}
+.featured{position:relative;border-radius:24px;overflow:hidden;min-height:460px;background:#0d0d0d;border:1px solid var(--line);
+  display:grid;grid-template-columns:1.15fr 1fr;isolation:isolate}
+.featured::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--yellow),var(--orange));z-index:3}
+.featured-text{position:relative;z-index:2;padding:clamp(22px,2.6vw,36px);display:flex;flex-direction:column;justify-content:center;background:linear-gradient(120deg,#121212 40%,rgba(18,18,18,.4) 100%)}
+.featured-badge{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:700;letter-spacing:.15em;color:var(--yellow);text-transform:uppercase;margin-bottom:14px}
+.featured-badge::before{content:"";width:18px;height:1.5px;background:var(--yellow);display:block}
+.featured-brand{font-size:clamp(22px,2.6vw,30px);font-weight:800;line-height:1.05;letter-spacing:-.01em;margin-bottom:10px}
+.featured-brand span{color:var(--yellow)}
+.featured-title{font-size:clamp(14px,1.3vw,16px);font-weight:600;color:#e8e8e8;line-height:1.45;margin-bottom:12px;max-width:420px}
+.featured-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:22px;max-width:420px}
+.featured-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:22px}
+.featured-meta span{display:inline-flex;align-items:center;gap:7px}
+.featured-meta .dot{width:5px;height:5px;border-radius:50%;background:var(--yellow);flex:none}
+.featured-meta b{color:#fff;font-weight:600}
+.featured-cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.featured-plus{margin-left:auto;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,194,26,.1);border:1px solid rgba(255,194,26,.35);
+  color:var(--yellow);font-size:20px;font-weight:300;line-height:1;transition:background .25s,transform .25s;cursor:pointer;flex:none}
+.featured-plus:hover{background:rgba(255,194,26,.2);transform:rotate(90deg)}
+.featured-media{position:relative;overflow:hidden;min-height:300px;background:#0a0a0a}
+.featured-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s ease, filter .5s ease}
+.featured:hover .featured-media img{transform:scale(1.05);filter:brightness(1.05)}
+.featured-media::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,#121212 0%,rgba(18,18,18,.85) 18%,rgba(18,18,18,0) 55%),
+             linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.5) 100%)}
+.video-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+.video-card{position:relative;border-radius:14px;overflow:hidden;background:#151515;border:1px solid var(--line);min-height:78px;isolation:isolate;transition:transform .3s ease, border-color .3s ease}
+.video-card:hover{transform:translateY(-3px);border-color:rgba(255,194,26,.4)}
+.video-card .big-num{position:absolute;top:-12px;right:-4px;font-size:64px;font-weight:900;line-height:.85;letter-spacing:-.05em;color:rgba(255,194,26,.12);z-index:0;pointer-events:none;user-select:none;transition:color .35s ease}
+.video-card:hover .big-num{color:rgba(255,194,26,.22)}
+.video-card .vc-img{position:absolute;inset:0;z-index:1}
+.video-card .vc-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease, filter .4s ease}
+.video-card:hover .vc-img img{transform:scale(1.08);filter:brightness(1.08)}
+.video-card .vc-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.7) 100%);pointer-events:none}
+.video-card .vc-tag{position:absolute;top:6px;left:6px;z-index:2;font-size:8.5px;font-weight:700;letter-spacing:.1em;color:var(--yellow);background:rgba(10,10,10,.85);
+  border:1px solid rgba(255,194,26,.35);padding:2px 6px;border-radius:999px;backdrop-filter:blur(6px)}
+.video-card .vc-tag.pop{color:#fff;border-color:var(--line)}
+.side-right{display:flex;flex-direction:column;gap:12px;min-width:0;background:linear-gradient(160deg,#1c1c1c,#121212);border:1px solid var(--line);border-radius:22px;padding:18px 16px}
+.side-right-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.side-right-head .brand-name{font-size:15px;font-weight:800;letter-spacing:.02em}
+.side-right-head .brand-name span{color:var(--yellow)}
+.progress-ring{position:relative;width:56px;height:56px;flex:none}
+.progress-ring svg{transform:rotate(-90deg);display:block}
+.progress-ring .bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:4}
+.progress-ring .fg{fill:none;stroke:url(#goldGrad);stroke-width:4;stroke-linecap:round;stroke-dasharray:150.8;stroke-dashoffset:15.08}
+.progress-ring .val{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff}
+.side-right h6{font-size:14px;font-weight:700;line-height:1.3;margin-bottom:4px}
+.side-right .side-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:6px}
+.side-stats{display:flex;gap:10px;margin-bottom:6px}
+.stat{flex:1;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:10px 8px;text-align:center}
+.stat b{display:block;font-size:15px;font-weight:800;color:var(--yellow);line-height:1}
+.stat small{display:block;font-size:9.5px;color:var(--muted);letter-spacing:.08em;margin-top:4px;text-transform:uppercase}
+.lesson-mini{position:relative;display:flex;gap:10px;align-items:center;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:14px;padding:9px;
+  transition:border-color .25s ease, background .25s ease, transform .25s ease;cursor:pointer}
+.lesson-mini:hover{border-color:rgba(255,194,26,.4);background:rgba(255,194,26,.05);transform:translateX(2px)}
+.lesson-mini .lm-thumb{width:62px;height:46px;border-radius:10px;overflow:hidden;flex:none;background:#0d0d0d}
+.lesson-mini .lm-thumb img{width:100%;height:100%;object-fit:cover}
+.lesson-mini .lm-body{min-width:0;flex:1;padding-right:26px}
+.lesson-mini .lm-title{font-size:12.5px;font-weight:600;color:#e8e8e8;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lesson-mini .lm-num{position:absolute;right:8px;bottom:8px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;font-size:10.5px;font-weight:800;box-shadow:0 4px 12px rgba(255,150,30,.35)}
 
-    /* =========================================================
-       SHOWCASE
-       ========================================================= */
-    .showcase{
-      position:relative;max-width:1240px;margin:10px auto 60px;
-      padding:clamp(16px,2vw,24px);
-      border-radius:36px;
-      background:linear-gradient(160deg,#181818,#0f0f0f);
-      border:1px solid var(--line);
-      box-shadow:0 30px 90px rgba(0,0,0,.6);
-    }
-    .showcase-main{
-      display:grid;
-      grid-template-columns: 260px 1fr 280px;
-      gap:clamp(14px,1.6vw,20px);
-      align-items:stretch;
-    }
+/* ============ STATS ============ */
+.stats-wrap{position:relative;max-width:1240px;margin:0 auto 90px;padding:clamp(22px,3vw,40px);border-radius:36px;
+  background:linear-gradient(160deg,#141414,#0e0e0e);border:1px solid var(--line);overflow:hidden}
+.stats-wrap::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:22px 22px;
+  mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%)}
+.stats-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.6vw,18px)}
+.stat-card{background:linear-gradient(160deg,#1c1c1c,#121212);border:1px solid var(--line);border-radius:28px;padding:26px 20px;text-align:center;
+  transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease}
+.stat-card:hover{transform:translateY(-6px);border-color:rgba(255,194,26,.65);
+  box-shadow:0 18px 45px rgba(0,0,0,.6), 0 0 0 1px rgba(255,194,26,.35), 0 0 30px rgba(255,170,30,.18)}
+.stat-icon{width:80px;height:80px;border-radius:22px;margin:0 auto 18px;display:grid;place-items:center;background:rgba(255,194,26,.22);
+  border:1px solid rgba(255,194,26,.28);box-shadow:0 0 40px rgba(255,170,30,.25);transition:transform .3s ease, box-shadow .3s ease, background .3s ease}
+.stat-card:hover .stat-icon{transform:scale(1.06);background:rgba(255,194,26,.28);box-shadow:0 0 50px rgba(255,170,30,.35)}
+.stat-icon svg{width:44px;height:44px;display:block}
+.stat-card .stat-num{font-size:clamp(26px,3vw,36px);font-weight:800;line-height:1;letter-spacing:-.02em;color:#fff;margin-bottom:8px;display:inline-block}
+.stat-card .stat-label{font-size:12.5px;color:var(--muted);font-weight:500;letter-spacing:.02em}
 
-    .side-left{display:flex;flex-direction:column;gap:14px;min-width:0}
+/* ============ ANIMATIONS ============ */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.in{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.in.d1{animation-delay:.12s}.in.d2{animation-delay:.24s}.in.d3{animation-delay:.36s}
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease}
+.fade-up.visible{opacity:1;transform:none}
 
-    .pdf-card{
-      position:relative;overflow:hidden;
-      background:linear-gradient(160deg,#1c1c1c,#121212);
-      border:1px solid var(--line);border-radius:var(--radius-md);
-      padding:20px 16px;
-      display:flex;flex-direction:column;gap:14px;
-      transition:border-color .3s ease,transform .3s ease;
-    }
-    .pdf-card::before{
-      content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
-      background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);
-      background-size:14px 14px;
-    }
-    .pdf-card:hover{border-color:rgba(255,194,26,.35);transform:translateY(-2px)}
-    .pdf-card > *{position:relative;z-index:1}
-    .pdf-head{display:flex;align-items:center;gap:12px}
-    .pdf-icon{
-      width:44px;height:54px;flex:none;position:relative;
-      background:linear-gradient(160deg,#2a2a2a,#1a1a1a);
-      border:1px solid var(--line);border-radius:8px;
-      display:grid;place-items:center;
-    }
-    .pdf-icon::before{
-      content:"";position:absolute;top:-1px;right:-1px;
-      width:14px;height:14px;background:var(--yellow);
-      clip-path:polygon(0 0,100% 0,100% 100%);
-      border-top-right-radius:8px;
-    }
-    .pdf-icon span{font-size:10px;font-weight:800;color:var(--yellow);letter-spacing:.05em}
-    .pdf-card .pdf-label{font-size:10.5px;font-weight:700;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
-    .pdf-card h5{font-size:15px;font-weight:700;line-height:1.3}
-    .pdf-card .btn{width:100%;text-align:center;padding:12px 16px;font-size:13px;margin-top:auto}
+/* =========================================================
+   MODAL — Download PDF
+   ========================================================= */
+.modal-backdrop{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(5,5,5,.72);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;visibility:hidden;
+  transition:opacity .3s ease, visibility .3s ease;
+}
+.modal-backdrop.open{opacity:1;visibility:visible}
 
-    .mini-course{
-      background:linear-gradient(160deg,#1c1c1c,#121212);
-      border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;
-      transition:transform .3s ease,border-color .3s ease;
-    }
-    .mini-course:hover{transform:translateY(-3px);border-color:rgba(255,194,26,.35)}
-    .mini-course .thumb{aspect-ratio:16/10;overflow:hidden;background:#0d0d0d;position:relative}
-    .mini-course .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
-    .mini-course:hover .thumb img{transform:scale(1.05)}
-    .mini-course .thumb::after{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.55) 100%);
-      pointer-events:none;
-    }
-    .mini-course .body{padding:14px}
-    .mini-course .num{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--yellow);margin-bottom:6px}
-    .mini-course h4{font-size:14px;font-weight:700;line-height:1.3;margin-bottom:6px;text-transform:uppercase;letter-spacing:.02em}
-    .mini-course p{font-size:12px;color:var(--muted);line-height:1.55}
+.modal{
+  width:min(880px, 100%);
+  max-height:92vh;
+  display:flex;flex-direction:column;
+  background:linear-gradient(160deg,#1a1a1a,#101010);
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:0 40px 100px rgba(0,0,0,.75), 0 0 0 1px rgba(255,194,26,.08);
+  overflow:hidden;
+  transform:scale(.94);
+  opacity:0;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1), opacity .35s ease;
+}
+.modal-backdrop.open .modal{transform:scale(1);opacity:1}
 
-    .featured{
-      position:relative;border-radius:24px;overflow:hidden;min-height:460px;
-      background:#0d0d0d;border:1px solid var(--line);
-      display:grid;grid-template-columns:1.15fr 1fr;isolation:isolate;
-    }
-    .featured::before{
-      content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
-      background:linear-gradient(180deg,var(--yellow),var(--orange));z-index:3;
-    }
-    .featured-text{
-      position:relative;z-index:2;padding:clamp(22px,2.6vw,36px);
-      display:flex;flex-direction:column;justify-content:center;
-      background:linear-gradient(120deg,#121212 40%,rgba(18,18,18,.4) 100%);
-    }
-    .featured-badge{
-      display:inline-flex;align-items:center;gap:8px;
-      font-size:10.5px;font-weight:700;letter-spacing:.15em;
-      color:var(--yellow);text-transform:uppercase;margin-bottom:14px;
-    }
-    .featured-badge::before{content:"";width:18px;height:1.5px;background:var(--yellow);display:block}
-    .featured-brand{font-size:clamp(22px,2.6vw,30px);font-weight:800;line-height:1.05;letter-spacing:-.01em;margin-bottom:10px}
-    .featured-brand span{color:var(--yellow)}
-    .featured-title{font-size:clamp(14px,1.3vw,16px);font-weight:600;color:#e8e8e8;line-height:1.45;margin-bottom:12px;max-width:420px}
-    .featured-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:22px;max-width:420px}
-    .featured-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:22px}
-    .featured-meta span{display:inline-flex;align-items:center;gap:7px}
-    .featured-meta .dot{width:5px;height:5px;border-radius:50%;background:var(--yellow);flex:none}
-    .featured-meta b{color:#fff;font-weight:600}
-    .featured-cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .featured-plus{
-      margin-left:auto;width:42px;height:42px;border-radius:50%;
-      display:grid;place-items:center;
-      background:rgba(255,194,26,.1);border:1px solid rgba(255,194,26,.35);
-      color:var(--yellow);font-size:20px;font-weight:300;line-height:1;
-      transition:background .25s,transform .25s;cursor:pointer;flex:none;
-    }
-    .featured-plus:hover{background:rgba(255,194,26,.2);transform:rotate(90deg)}
+/* Modal header */
+.modal-head{
+  position:sticky;top:0;z-index:3;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;
+  padding:16px 18px;
+  background:rgba(20,20,20,.92);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.modal-brand{display:flex;align-items:center;gap:10px;justify-self:start;font-size:15px;font-weight:800;letter-spacing:.02em}
+.modal-brand span{color:var(--yellow)}
+.modal-lang{display:flex;justify-self:center;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}
+.modal-lang button{
+  border:0;background:transparent;color:var(--muted);font:inherit;font-size:12.5px;font-weight:600;
+  padding:7px 14px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;
+}
+.modal-lang button.active{background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111}
+.modal-close{
+  justify-self:end;width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--line);background:rgba(255,255,255,.04);
+  color:#fff;font-size:18px;cursor:pointer;display:grid;place-items:center;
+  transition:background .2s, transform .2s;
+}
+.modal-close:hover{background:rgba(255,255,255,.1);transform:rotate(90deg)}
 
-    .featured-media{position:relative;overflow:hidden;min-height:300px;background:#0a0a0a}
-    .featured-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s ease, filter .5s ease}
-    .featured:hover .featured-media img{transform:scale(1.05);filter:brightness(1.05)}
-    .featured-media::after{
-      content:"";position:absolute;inset:0;pointer-events:none;
-      background:
-        linear-gradient(90deg,#121212 0%,rgba(18,18,18,.85) 18%,rgba(18,18,18,0) 55%),
-        linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.5) 100%);
-    }
+/* Tabs */
+.modal-tabs{
+  display:flex;gap:6px;padding:12px 18px 0;border-bottom:1px solid var(--line);
+  background:rgba(20,20,20,.6);
+}
+.modal-tab{
+  border:0;background:transparent;color:var(--muted);font:inherit;font-size:13.5px;font-weight:600;
+  padding:11px 16px;border-radius:12px 12px 0 0;cursor:pointer;position:relative;transition:color .2s, background .2s;
+}
+.modal-tab:hover{color:#fff;background:rgba(255,255,255,.04)}
+.modal-tab.active{color:var(--yellow);background:rgba(255,194,26,.08)}
+.modal-tab.active::after{
+  content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--yellow),var(--orange));
+}
 
-    .video-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
-    .video-card{
-      position:relative;border-radius:14px;overflow:hidden;
-      background:#151515;border:1px solid var(--line);
-      min-height:78px;isolation:isolate;
-      transition:transform .3s ease, border-color .3s ease;
-    }
-    .video-card:hover{transform:translateY(-3px);border-color:rgba(255,194,26,.4)}
-    .video-card .big-num{
-      position:absolute;top:-12px;right:-4px;
-      font-size:64px;font-weight:900;line-height:.85;letter-spacing:-.05em;
-      color:rgba(255,194,26,.12);z-index:0;pointer-events:none;user-select:none;
-      transition:color .35s ease;
-    }
-    .video-card:hover .big-num{color:rgba(255,194,26,.22)}
-    .video-card .vc-img{position:absolute;inset:0;z-index:1}
-    .video-card .vc-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease, filter .4s ease}
-    .video-card:hover .vc-img img{transform:scale(1.08);filter:brightness(1.08)}
-    .video-card .vc-img::after{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.7) 100%);
-      pointer-events:none;
-    }
-    .video-card .vc-tag{
-      position:absolute;top:6px;left:6px;z-index:2;
-      font-size:8.5px;font-weight:700;letter-spacing:.1em;
-      color:var(--yellow);background:rgba(10,10,10,.85);
-      border:1px solid rgba(255,194,26,.35);
-      padding:2px 6px;border-radius:999px;
-      backdrop-filter:blur(6px);
-    }
-    .video-card .vc-tag.pop{color:#fff;border-color:var(--line)}
+/* Modal body (scrolls inside) */
+.modal-body{
+  flex:1;overflow-y:auto;padding:22px 22px 26px;
+  scrollbar-width:thin;scrollbar-color:rgba(255,194,26,.4) transparent;
+}
+.modal-body::-webkit-scrollbar{width:8px}
+.modal-body::-webkit-scrollbar-track{background:transparent}
+.modal-body::-webkit-scrollbar-thumb{background:rgba(255,194,26,.35);border-radius:8px}
 
-    .side-right{
-      display:flex;flex-direction:column;gap:12px;min-width:0;
-      background:linear-gradient(160deg,#1c1c1c,#121212);
-      border:1px solid var(--line);border-radius:22px;padding:18px 16px;
-    }
-    .side-right-head{
-      display:flex;align-items:center;justify-content:space-between;gap:10px;
-      padding-bottom:14px;border-bottom:1px solid var(--line);
-    }
-    .side-right-head .brand-name{font-size:15px;font-weight:800;letter-spacing:.02em}
-    .side-right-head .brand-name span{color:var(--yellow)}
-    .progress-ring{position:relative;width:56px;height:56px;flex:none}
-    .progress-ring svg{transform:rotate(-90deg);display:block}
-    .progress-ring .bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:4}
-    .progress-ring .fg{fill:none;stroke:url(#goldGrad);stroke-width:4;stroke-linecap:round;stroke-dasharray:150.8;stroke-dashoffset:15.08}
-    .progress-ring .val{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff}
-    .side-right h6{font-size:14px;font-weight:700;line-height:1.3;margin-bottom:4px}
-    .side-right .side-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:6px}
-    .side-stats{display:flex;gap:10px;margin-bottom:6px}
-    .stat{flex:1;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:10px 8px;text-align:center}
-    .stat b{display:block;font-size:15px;font-weight:800;color:var(--yellow);line-height:1}
-    .stat small{display:block;font-size:9.5px;color:var(--muted);letter-spacing:.08em;margin-top:4px;text-transform:uppercase}
+.modal-panel{display:none;animation:panelIn .35s ease}
+.modal-panel.active{display:block}
+@keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-    .lesson-mini{
-      position:relative;display:flex;gap:10px;align-items:center;
-      background:rgba(255,255,255,.025);border:1px solid var(--line);
-      border-radius:14px;padding:9px;
-      transition:border-color .25s ease, background .25s ease, transform .25s ease;
-      cursor:pointer;
-    }
-    .lesson-mini:hover{border-color:rgba(255,194,26,.4);background:rgba(255,194,26,.05);transform:translateX(2px)}
-    .lesson-mini .lm-thumb{width:62px;height:46px;border-radius:10px;overflow:hidden;flex:none;background:#0d0d0d}
-    .lesson-mini .lm-thumb img{width:100%;height:100%;object-fit:cover}
-    .lesson-mini .lm-body{min-width:0;flex:1;padding-right:26px}
-    .lesson-mini .lm-title{
-      font-size:12.5px;font-weight:600;color:#e8e8e8;line-height:1.3;
-      display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-    }
-    .lesson-mini .lm-num{
-      position:absolute;right:8px;bottom:8px;
-      width:22px;height:22px;border-radius:50%;
-      display:grid;place-items:center;
-      background:linear-gradient(135deg,var(--yellow),var(--orange));
-      color:#111;font-size:10.5px;font-weight:800;
-      box-shadow:0 4px 12px rgba(255,150,30,.35);
-    }
+/* Bengali mode */
+body.lang-bn .modal-body,
+body.lang-bn .modal-tab,
+body.lang-bn .modal-brand,
+body.lang-bn .modal-foot .btn,
+body.lang-bn .modal-warn{
+  font-family:'Hind Siliguri','Poppins',system-ui,sans-serif;
+}
 
-    /* =========================================================
-       STATS SECTION  — heading removed, new SVG icons
-       ========================================================= */
-    .stats-wrap{
-      position:relative;max-width:1240px;margin:0 auto 90px;padding:clamp(22px,3vw,40px);
-      border-radius:36px;
-      background:linear-gradient(160deg,#141414,#0e0e0e);
-      border:1px solid var(--line);
-      overflow:hidden;
-    }
-    /* faint dotted pattern behind the row */
-    .stats-wrap::before{
-      content:"";position:absolute;inset:0;pointer-events:none;
-      background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);
-      background-size:22px 22px;
-      mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
-      -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
-    }
+/* Warning note */
+.modal-warn{
+  display:flex;align-items:flex-start;gap:12px;
+  background:rgba(255,138,31,.09);
+  border:1px solid rgba(255,138,31,.35);
+  border-left:3px solid var(--orange);
+  border-radius:14px;
+  padding:14px 16px;
+  font-size:13px;line-height:1.6;color:#ffd9a8;
+  margin-bottom:18px;
+}
+.modal-warn svg{flex:none;width:20px;height:20px;margin-top:2px;stroke:#ff8a1f;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-    .stats-grid{
-      position:relative;z-index:1;
-      display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.6vw,18px);
-    }
-    .stat-card{
-      background:linear-gradient(160deg,#1c1c1c,#121212);
-      border:1px solid var(--line);border-radius:28px;
-      padding:26px 20px;text-align:center;
-      transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
-    }
-    .stat-card:hover{
-      transform:translateY(-6px);
-      border-color:rgba(255,194,26,.65);
-      box-shadow:0 18px 45px rgba(0,0,0,.6), 0 0 0 1px rgba(255,194,26,.35), 0 0 30px rgba(255,170,30,.18);
-    }
+/* Curriculum cards */
+.curr-list{display:flex;flex-direction:column;gap:10px}
+.curr-card{
+  display:flex;align-items:center;gap:14px;
+  background:linear-gradient(160deg,#1e1e1e,#141414);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px 16px;
+  transition:border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.curr-card:hover{
+  border-color:rgba(255,194,26,.45);
+  box-shadow:0 10px 30px rgba(0,0,0,.5), 0 0 0 1px rgba(255,194,26,.25);
+  transform:translateX(3px);
+}
+.curr-num{
+  flex:none;width:46px;height:46px;border-radius:14px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--yellow),var(--orange));
+  color:#111;font-weight:800;font-size:15px;
+  box-shadow:0 8px 20px rgba(255,150,30,.3);
+}
+.curr-title{font-size:13.5px;font-weight:500;line-height:1.55;color:#e8e8e8}
 
-    /* icon box — 80x80, gold-tinted, soft glow */
-    .stat-icon{
-      width:80px;height:80px;border-radius:22px;margin:0 auto 18px;
-      display:grid;place-items:center;
-      background:rgba(255,194,26,.22);
-      border:1px solid rgba(255,194,26,.28);
-      box-shadow:0 0 40px rgba(255,170,30,.25);
-      transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
-    }
-    .stat-card:hover .stat-icon{
-      transform:scale(1.06);
-      background:rgba(255,194,26,.28);
-      box-shadow:0 0 50px rgba(255,170,30,.35);
-    }
-    .stat-icon svg{width:44px;height:44px;display:block}
+/* Terms list */
+.terms-list{display:flex;flex-direction:column;gap:12px;counter-reset:term}
+.term-item{
+  display:flex;align-items:flex-start;gap:12px;
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px 16px;
+  transition:border-color .25s ease, background .25s ease;
+}
+.term-item:hover{border-color:rgba(255,194,26,.35);background:rgba(255,194,26,.04)}
+.term-num{
+  flex:none;width:26px;height:26px;border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--yellow),var(--orange));
+  color:#111;font-size:12px;font-weight:800;
+  box-shadow:0 4px 12px rgba(255,150,30,.3);
+  margin-top:1px;
+}
+.term-text{font-size:13px;line-height:1.7;color:#d5d5d5}
 
-    .stat-card .stat-num{
-      font-size:clamp(26px,3vw,36px);font-weight:800;line-height:1;
-      letter-spacing:-.02em;color:#fff;margin-bottom:8px;
-      display:inline-block;
-    }
-    .stat-card .stat-num span{color:#fff}
-    .stat-card .stat-label{
-      font-size:12.5px;color:var(--muted);font-weight:500;letter-spacing:.02em;
-    }
+/* Modal footer */
+.modal-foot{
+  position:sticky;bottom:0;z-index:3;
+  display:flex;justify-content:flex-end;gap:10px;
+  padding:14px 18px;
+  background:rgba(20,20,20,.92);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);
+}
 
-    /* =========================================================
-       ANIMATIONS
-       ========================================================= */
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-    @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-    .in{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
-    .in.d1{animation-delay:.12s}.in.d2{animation-delay:.24s}.in.d3{animation-delay:.36s}
+/* Lock scroll when modal open */
+body.modal-open{overflow:hidden}
 
-    .fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease}
-    .fade-up.visible{opacity:1;transform:none}
+/* Print stylesheet */
+@media print{
+  body{background:#fff !important;color:#000 !important}
+  body::before,.nav,.hero,.showcase,.stats-wrap,.modal-head,.modal-tabs,.modal-foot,
+  .modal-close,.modal-lang,.modal-backdrop::before{display:none !important}
+  .modal-backdrop{position:static;background:#fff;padding:0;opacity:1;visibility:visible;
+    display:block;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .modal{max-height:none;width:100%;box-shadow:none;border:0;background:#fff;transform:none;opacity:1;
+    display:block;border-radius:0;overflow:visible}
+  .modal-body{overflow:visible;padding:0;max-height:none;flex:none}
+  .modal-panel{display:block !important;page-break-after:always}
+  .modal-panel:last-child{page-break-after:auto}
 
-    /* =========================================================
-       RESPONSIVE
-       ========================================================= */
-    @media(max-width:1100px){
-      .showcase-main{grid-template-columns:230px 1fr 260px}
-    }
-    @media(max-width:1000px){
-      .nav-in{display:flex}
-      .links,.actions .lang{display:none}
-      .actions{margin-left:auto}
-      .burger{display:block;margin-left:0}
-      .menu.open{display:flex;flex-direction:column;gap:4px;margin-top:10px;background:rgba(22,22,22,.97);border:1px solid var(--line);border-radius:24px;padding:14px;box-shadow:0 20px 50px rgba(0,0,0,.6)}
-      .menu a{padding:13px 16px;border-radius:14px;color:var(--muted)}
-      .menu a.active{color:var(--yellow);background:rgba(255,194,26,.1)}
+  /* Print header */
+  .modal-body::before{
+    content:"SA TRADER — Professional Trading Education";
+    display:block;font-size:16pt;font-weight:800;color:#111;
+    border-bottom:3px solid #ffc21a;padding-bottom:10px;margin-bottom:20px;
+  }
+  /* Print section titles */
+  .modal-panel::before{
+    display:block;font-size:13pt;font-weight:700;color:#111;margin:18px 0 12px;
+  }
+  #panel-curriculum::before{content:"Curriculum"}
+  #panel-terms::before{content:"Terms & Conditions"}
 
-      .hero{grid-template-columns:1fr;padding:50px 0 30px;gap:28px}
+  .curr-card,.term-item{
+    background:#fff !important;border:1px solid #ddd !important;color:#000 !important;
+    box-shadow:none !important;page-break-inside:avoid;transform:none !important;
+    border-radius:8px;padding:10px 12px;
+  }
+  .curr-card:hover,.term-item:hover{border-color:#ddd !important;box-shadow:none !important}
+  .curr-num,.term-num{
+    background:#ffc21a !important;color:#111 !important;box-shadow:none !important;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .curr-title,.term-text{color:#000 !important;font-size:10.5pt;line-height:1.5}
+  .modal-warn{
+    background:#fff7e6 !important;border:1px solid #f0c674 !important;color:#7a4a00 !important;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+}
 
-      .showcase-main{
-        grid-template-columns:1fr 1fr;
-        grid-template-areas:
-          "featured featured"
-          "left     right";
-      }
-      .featured{grid-area:featured}
-      .side-left{grid-area:left}
-      .side-right{grid-area:right}
+/* Modal responsive */
+@media(max-width:640px){
+  .modal-backdrop{padding:0}
+  .modal{max-height:100vh;height:100vh;width:100%;border-radius:0;border:0}
+  .modal-head{padding:14px;gap:8px}
+  .modal-lang button{padding:6px 10px;font-size:12px}
+  .modal-close{width:34px;height:34px;font-size:16px}
+  .modal-tabs{padding:10px 14px 0;overflow-x:auto}
+  .modal-tab{padding:10px 12px;font-size:12.5px;white-space:nowrap}
+  .modal-body{padding:18px 14px 22px}
+  .curr-num{width:40px;height:40px;font-size:13px;border-radius:12px}
+  .curr-title{font-size:12.5px}
+  .term-num{width:24px;height:24px;font-size:11px}
+  .term-text{font-size:12.5px}
+  .modal-foot{padding:12px 14px}
+}
 
-      .stats-grid{grid-template-columns:repeat(2,1fr)}
-    }
-    @media(max-width:640px){
-      .nav,.wrap{padding:0 14px}
-      .nav-in{padding:6px 8px 6px 10px}
-      .count{padding:24px 16px;border-radius:22px}
-      .boxes{gap:6px}
-      .box{border-radius:12px;padding:12px 2px}
-      .box small{font-size:9px}
-      .logo img{height:32px;max-width:110px}
-
-      .showcase{padding:12px;border-radius:22px;margin-bottom:40px}
-      .showcase-main{
-        grid-template-columns:1fr;
-        grid-template-areas:
-          "featured"
-          "right"
-          "left";
-        gap:12px;
-      }
-      .featured{grid-template-columns:1fr;min-height:auto}
-      .featured-media{min-height:210px;order:-1}
-      .featured-media::after{background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.55) 100%)}
-      .featured::before{display:none}
-      .featured-text{padding:18px 16px}
-      .featured-brand{font-size:22px}
-      .featured-cta{gap:8px}
-      .featured-plus{width:38px;height:38px;font-size:18px}
-
-      .video-row{grid-template-columns:repeat(4,1fr);gap:8px}
-      .video-card{min-height:64px;border-radius:12px}
-      .video-card .big-num{font-size:48px;top:-8px}
-      .video-card .vc-tag{font-size:7.5px;padding:2px 5px}
-
-      .side-right{padding:14px}
-      .mini-course .body{padding:11px}
-      .mini-course h4{font-size:13px}
-      .pdf-card{padding:16px 14px}
-
-      .stats-wrap{padding:22px 14px;border-radius:22px;margin-bottom:60px}
-      .stats-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-      .stat-card{padding:18px 12px;border-radius:20px}
-      .stat-icon{width:64px;height:64px;border-radius:18px;margin-bottom:12px}
-      .stat-icon svg{width:36px;height:36px}
-      .stat-card .stat-label{font-size:11px}
-    }
-    @media(max-width:380px){
-      .stats-grid{grid-template-columns:1fr}
-      .side-stats{flex-wrap:wrap}
-      .video-row{grid-template-columns:repeat(2,1fr)}
-    }
-    @media(prefers-reduced-motion:reduce){
-      *{animation:none!important;transition:none!important}
-      html{scroll-behavior:auto}
-      .fade-up{opacity:1;transform:none}
-    }
-  </style>
+/* ============ MAIN RESPONSIVE ============ */
+@media(max-width:1100px){.showcase-main{grid-template-columns:230px 1fr 260px}}
+@media(max-width:1000px){
+  .nav-in{display:flex}
+  .links,.actions .lang{display:none}
+  .actions{margin-left:auto}
+  .burger{display:block;margin-left:0}
+  .menu.open{display:flex;flex-direction:column;gap:4px;margin-top:10px;background:rgba(22,22,22,.97);border:1px solid var(--line);border-radius:24px;padding:14px;box-shadow:0 20px 50px rgba(0,0,0,.6)}
+  .menu a{padding:13px 16px;border-radius:14px;color:var(--muted)}
+  .menu a.active{color:var(--yellow);background:rgba(255,194,26,.1)}
+  .hero{grid-template-columns:1fr;padding:50px 0 30px;gap:28px}
+  .showcase-main{grid-template-columns:1fr 1fr;grid-template-areas:"featured featured" "left right"}
+  .featured{grid-area:featured}.side-left{grid-area:left}.side-right{grid-area:right}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+  .nav,.wrap{padding:0 14px}
+  .nav-in{padding:6px 8px 6px 10px}
+  .count{padding:24px 16px;border-radius:22px}
+  .boxes{gap:6px}.box{border-radius:12px;padding:12px 2px}.box small{font-size:9px}
+  .logo img{height:32px;max-width:110px}
+  .showcase{padding:12px;border-radius:22px;margin-bottom:40px}
+  .showcase-main{grid-template-columns:1fr;grid-template-areas:"featured" "right" "left";gap:12px}
+  .featured{grid-template-columns:1fr;min-height:auto}
+  .featured-media{min-height:210px;order:-1}
+  .featured-media::after{background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.55) 100%)}
+  .featured::before{display:none}
+  .featured-text{padding:18px 16px}
+  .featured-brand{font-size:22px}
+  .featured-cta{gap:8px}.featured-plus{width:38px;height:38px;font-size:18px}
+  .video-row{grid-template-columns:repeat(4,1fr);gap:8px}
+  .video-card{min-height:64px;border-radius:12px}
+  .video-card .big-num{font-size:48px;top:-8px}
+  .video-card .vc-tag{font-size:7.5px;padding:2px 5px}
+  .side-right{padding:14px}.mini-course .body{padding:11px}.mini-course h4{font-size:13px}
+  .pdf-card{padding:16px 14px}
+  .stats-wrap{padding:22px 14px;border-radius:22px;margin-bottom:60px}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .stat-card{padding:18px 12px;border-radius:20px}
+  .stat-icon{width:64px;height:64px;border-radius:18px;margin-bottom:12px}
+  .stat-icon svg{width:36px;height:36px}
+  .stat-card .stat-label{font-size:11px}
+}
+@media(max-width:380px){
+  .stats-grid{grid-template-columns:1fr}
+  .side-stats{flex-wrap:wrap}
+  .video-row{grid-template-columns:repeat(2,1fr)}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .fade-up{opacity:1;transform:none}
+  .modal,.modal-backdrop{transition:none}
+}
+</style>
 </head>
 <body>
 
-  <!-- =====================================================
-       NAVBAR
-       ===================================================== -->
-  <header class="nav">
-    <div class="nav-in">
-      <a class="logo" href="#home">
-        <img src="IMG_20261007_001230_648.jpg" alt="SA TRADER logo" loading="eager">
-      </a>
-      <nav class="links" aria-label="Main">
-        <a class="active" href="#home">Home</a>
-        <a href="#courses">Courses &amp; Services</a>
-        <a href="#contact">Contact Us</a>
-      </nav>
-      <div class="actions">
-        <select class="lang" aria-label="Language">
-          <option>EN</option><option>বাংলা</option>
-        </select>
-        <a class="btn" href="#enroll">Enroll Now</a>
-      </div>
-      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
-    </div>
-    <nav class="menu" id="menu" aria-label="Mobile">
+<!-- ============ NAVBAR ============ -->
+<header class="nav">
+  <div class="nav-in">
+    <a class="logo" href="#home">
+      <img src="IMG_20261007_001230_648.jpg" alt="SA TRADER logo" loading="eager">
+    </a>
+    <nav class="links" aria-label="Main">
       <a class="active" href="#home">Home</a>
       <a href="#courses">Courses &amp; Services</a>
       <a href="#contact">Contact Us</a>
     </nav>
-  </header>
+    <div class="actions">
+      <select class="lang" aria-label="Language"><option>EN</option><option>বাংলা</option></select>
+      <a class="btn" href="#enroll">Enroll Now</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+  <nav class="menu" id="menu" aria-label="Mobile">
+    <a class="active" href="#home">Home</a>
+    <a href="#courses">Courses &amp; Services</a>
+    <a href="#contact">Contact Us</a>
+  </nav>
+</header>
 
-  <main class="wrap" id="home">
+<main class="wrap" id="home">
 
-    <!-- =====================================================
-         HERO
-         ===================================================== -->
-    <section class="hero">
-      <div>
-        <h1 class="in">bangladesh top 1 <span>professional trading education</span></h1>
-        <p class="sub in d1">Learn forex trading with a trusted mentor. Manage risk and trade with confidence.</p>
-        <a class="btn lg in d2" id="enroll" href="#enroll">Enroll Now</a>
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div>
+      <h1 class="in">bangladesh top 1 <span>professional trading education</span></h1>
+      <p class="sub in d1">Learn forex trading with a trusted mentor. Manage risk and trade with confidence.</p>
+      <a class="btn lg in d2" id="enroll" href="#enroll">Enroll Now</a>
+    </div>
+    <aside class="count in d2" aria-label="Next batch">
+      <h3>Next Batch</h3>
+      <p>Starting on ★</p>
+      <div class="boxes">
+        <div class="box"><b>00</b><small>DAYS</small></div>
+        <div class="box"><b>00</b><small>HOURS</small></div>
+        <div class="box"><b>00</b><small>MINS</small></div>
+        <div class="box"><b>00</b><small>SECS</small></div>
       </div>
-      <aside class="count in d2" aria-label="Next batch">
-        <h3>Next Batch</h3>
-        <p>Starting on ★</p>
-        <div class="boxes">
-          <div class="box"><b>00</b><small>DAYS</small></div>
-          <div class="box"><b>00</b><small>HOURS</small></div>
-          <div class="box"><b>00</b><small>MINS</small></div>
-          <div class="box"><b>00</b><small>SECS</small></div>
-        </div>
-      </aside>
-    </section>
+    </aside>
+  </section>
 
-    <!-- =====================================================
-         SHOWCASE — 3 columns
-         ===================================================== -->
-    <section class="showcase in d3" id="courses" aria-label="SA TRADER course showcase">
-      <div class="showcase-main">
+  <!-- ============ SHOWCASE ============ -->
+  <section class="showcase in d3" id="courses" aria-label="SA TRADER course showcase">
+    <div class="showcase-main">
 
-        <!-- LEFT SIDEBAR -->
-        <aside class="side-left">
-
-          <article class="pdf-card">
-            <div class="pdf-head">
-              <div class="pdf-icon" aria-hidden="true"><span>PDF</span></div>
-              <div>
-                <div class="pdf-label">Premium Course</div>
-                <h5>Full Curriculum</h5>
-              </div>
-            </div>
-            <a class="btn" href="#curriculum-download" download>⬇ Download PDF</a>
-          </article>
-
-          <article class="mini-course">
-            <div class="thumb">
-              <img src="download (6).png" alt="Trading Mindset course thumbnail" loading="lazy">
-            </div>
-            <div class="body">
-              <div class="num">09 · TRADING MINDSET</div>
-              <h4>Trading Mindset</h4>
-              <p>Master trading psychology, discipline and emotional control.</p>
-            </div>
-          </article>
-
-        </aside>
-
-        <!-- CENTER: FEATURED COURSE -->
-        <article class="featured" id="featured">
-          <div class="featured-text">
-            <div class="featured-badge">Featured</div>
-            <div class="featured-brand"><span>SA</span> TRADER <span>#01</span></div>
-            <div class="featured-title">Master Professional Trading &amp; Market Analysis</div>
-            <p class="featured-desc">
-              A complete trading framework — from candlestick reading and market structure
-              to risk control and disciplined execution in live markets.
-            </p>
-            <div class="featured-meta">
-              <span><span class="dot"></span><b>10</b> Lessons</span>
-              <span><span class="dot"></span><b>1.5</b> Hours</span>
-              <span><span class="dot"></span>Beginner → Pro</span>
-            </div>
-            <div class="featured-cta">
-              <a class="btn" href="#join">Join Course</a>
-              <a class="btn ghost" href="#learn-more">Learn More</a>
-              <button class="featured-plus" type="button" aria-label="Add to list">+</button>
-            </div>
-
-            <div class="video-row" aria-label="Course previews">
-              <a class="video-card" href="#video-1" aria-label="Preview 1">
-                <span class="big-num" aria-hidden="true">1</span>
-                <span class="vc-img">
-                  <img src="download (1).png" alt="Course preview 1" loading="lazy">
-                </span>
-                <span class="vc-tag">Top Pick</span>
-              </a>
-              <a class="video-card" href="#video-2" aria-label="Preview 2">
-                <span class="big-num" aria-hidden="true">2</span>
-                <span class="vc-img">
-                  <img src="download (2).png" alt="Course preview 2" loading="lazy">
-                </span>
-                <span class="vc-tag pop">Popular</span>
-              </a>
-              <a class="video-card" href="#video-3" aria-label="Preview 3">
-                <span class="big-num" aria-hidden="true">3</span>
-                <span class="vc-img">
-                  <img src="download (3).png" alt="Course preview 3" loading="lazy">
-                </span>
-                <span class="vc-tag">Top Pick</span>
-              </a>
-              <a class="video-card" href="#video-4" aria-label="Preview 4">
-                <span class="big-num" aria-hidden="true">4</span>
-                <span class="vc-img">
-                  <img src="download (4).png" alt="Course preview 4" loading="lazy">
-                </span>
-                <span class="vc-tag pop">Popular</span>
-              </a>
+      <aside class="side-left">
+        <article class="pdf-card">
+          <div class="pdf-head">
+            <div class="pdf-icon" aria-hidden="true"><span>PDF</span></div>
+            <div>
+              <div class="pdf-label">Premium Course</div>
+              <h5>Full Curriculum</h5>
             </div>
           </div>
-
-          <div class="featured-media">
-            <img src="download (5).png" alt="SA TRADER featured course" loading="eager">
-          </div>
+          <!-- CHANGED: id added so JS can open the modal -->
+          <button class="btn" id="openPdfModal" type="button">⬇ Download PDF</button>
         </article>
 
-        <!-- RIGHT SIDEBAR: LESSON LIST -->
-        <aside class="side-right">
-          <div class="side-right-head">
-            <div class="brand-name"><span>SA</span> TRADER</div>
-            <div class="progress-ring" aria-label="Course progress 90 percent">
-              <svg width="56" height="56" viewBox="0 0 56 56">
-                <defs>
-                  <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#ffc21a"/>
-                    <stop offset="1" stop-color="#ff8a1f"/>
-                  </linearGradient>
-                </defs>
-                <circle class="bg" cx="28" cy="28" r="24"/>
-                <circle class="fg" cx="28" cy="28" r="24"/>
-              </svg>
-              <span class="val">90%</span>
-            </div>
+        <article class="mini-course">
+          <div class="thumb">
+            <img src="download (6).png" alt="Trading Mindset course thumbnail" loading="lazy">
           </div>
-
-          <h6>Professional Trading Education</h6>
-          <p class="side-desc">Structured lessons built for real execution and risk-first decision making.</p>
-
-          <div class="side-stats">
-            <div class="stat"><b>10</b><small>Lessons</small></div>
-            <div class="stat"><b>1.5</b><small>Hours</small></div>
+          <div class="body">
+            <div class="num">09 · TRADING MINDSET</div>
+            <h4>Trading Mindset</h4>
+            <p>Master trading psychology, discipline and emotional control.</p>
           </div>
+        </article>
+      </aside>
 
-          <div class="lesson-mini">
-            <div class="lm-thumb">
-              <img src="download (2).png" alt="Lesson 01 thumbnail" loading="lazy">
-            </div>
-            <div class="lm-body">
-              <div class="lm-title">Starting Your Trading Journey</div>
-            </div>
-            <span class="lm-num">01</span>
+      <article class="featured" id="featured">
+        <div class="featured-text">
+          <div class="featured-badge">Featured</div>
+          <div class="featured-brand"><span>SA</span> TRADER <span>#01</span></div>
+          <div class="featured-title">Master Professional Trading &amp; Market Analysis</div>
+          <p class="featured-desc">A complete trading framework — from candlestick reading and market structure to risk control and disciplined execution in live markets.</p>
+          <div class="featured-meta">
+            <span><span class="dot"></span><b>10</b> Lessons</span>
+            <span><span class="dot"></span><b>1.5</b> Hours</span>
+            <span><span class="dot"></span>Beginner → Pro</span>
           </div>
-
-          <div class="lesson-mini">
-            <div class="lm-thumb">
-              <img src="download (3).png" alt="Lesson 02 thumbnail" loading="lazy">
-            </div>
-            <div class="lm-body">
-              <div class="lm-title">Mastering Trading Psychology</div>
-            </div>
-            <span class="lm-num">02</span>
+          <div class="featured-cta">
+            <a class="btn" href="#join">Join Course</a>
+            <a class="btn ghost" href="#learn-more">Learn More</a>
+            <button class="featured-plus" type="button" aria-label="Add to list">+</button>
           </div>
-
-          <div class="lesson-mini">
-            <div class="lm-thumb">
-              <img src="download (4).png" alt="Lesson 03 thumbnail" loading="lazy">
-            </div>
-            <div class="lm-body">
-              <div class="lm-title">Reading Market Structure</div>
-            </div>
-            <span class="lm-num">03</span>
+          <div class="video-row" aria-label="Course previews">
+            <a class="video-card" href="#video-1" aria-label="Preview 1">
+              <span class="big-num" aria-hidden="true">1</span>
+              <span class="vc-img"><img src="download (1).png" alt="Course preview 1" loading="lazy"></span>
+              <span class="vc-tag">Top Pick</span>
+            </a>
+            <a class="video-card" href="#video-2" aria-label="Preview 2">
+              <span class="big-num" aria-hidden="true">2</span>
+              <span class="vc-img"><img src="download (2).png" alt="Course preview 2" loading="lazy"></span>
+              <span class="vc-tag pop">Popular</span>
+            </a>
+            <a class="video-card" href="#video-3" aria-label="Preview 3">
+              <span class="big-num" aria-hidden="true">3</span>
+              <span class="vc-img"><img src="download (3).png" alt="Course preview 3" loading="lazy"></span>
+              <span class="vc-tag">Top Pick</span>
+            </a>
+            <a class="video-card" href="#video-4" aria-label="Preview 4">
+              <span class="big-num" aria-hidden="true">4</span>
+              <span class="vc-img"><img src="download (4).png" alt="Course preview 4" loading="lazy"></span>
+              <span class="vc-tag pop">Popular</span>
+            </a>
           </div>
+        </div>
+        <div class="featured-media">
+          <img src="download (5).png" alt="SA TRADER featured course" loading="eager">
+        </div>
+      </article>
 
-          <div class="lesson-mini">
-            <div class="lm-thumb">
-              <img src="download (1).png" alt="Lesson 04 thumbnail" loading="lazy">
-            </div>
-            <div class="lm-body">
-              <div class="lm-title">Risk &amp; Money Management</div>
-            </div>
-            <span class="lm-num">04</span>
+      <aside class="side-right">
+        <div class="side-right-head">
+          <div class="brand-name"><span>SA</span> TRADER</div>
+          <div class="progress-ring" aria-label="Course progress 90 percent">
+            <svg width="56" height="56" viewBox="0 0 56 56">
+              <defs>
+                <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#ffc21a"/>
+                  <stop offset="1" stop-color="#ff8a1f"/>
+                </linearGradient>
+              </defs>
+              <circle class="bg" cx="28" cy="28" r="24"/>
+              <circle class="fg" cx="28" cy="28" r="24"/>
+            </svg>
+            <span class="val">90%</span>
           </div>
-        </aside>
+        </div>
+        <h6>Professional Trading Education</h6>
+        <p class="side-desc">Structured lessons built for real execution and risk-first decision making.</p>
+        <div class="side-stats">
+          <div class="stat"><b>10</b><small>Lessons</small></div>
+          <div class="stat"><b>1.5</b><small>Hours</small></div>
+        </div>
+        <div class="lesson-mini">
+          <div class="lm-thumb"><img src="download (2).png" alt="Lesson 01 thumbnail" loading="lazy"></div>
+          <div class="lm-body"><div class="lm-title">Starting Your Trading Journey</div></div>
+          <span class="lm-num">01</span>
+        </div>
+        <div class="lesson-mini">
+          <div class="lm-thumb"><img src="download (3).png" alt="Lesson 02 thumbnail" loading="lazy"></div>
+          <div class="lm-body"><div class="lm-title">Mastering Trading Psychology</div></div>
+          <span class="lm-num">02</span>
+        </div>
+        <div class="lesson-mini">
+          <div class="lm-thumb"><img src="download (4).png" alt="Lesson 03 thumbnail" loading="lazy"></div>
+          <div class="lm-body"><div class="lm-title">Reading Market Structure</div></div>
+          <span class="lm-num">03</span>
+        </div>
+        <div class="lesson-mini">
+          <div class="lm-thumb"><img src="download (1).png" alt="Lesson 04 thumbnail" loading="lazy"></div>
+          <div class="lm-body"><div class="lm-title">Risk &amp; Money Management</div></div>
+          <span class="lm-num">04</span>
+        </div>
+      </aside>
 
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="stats-wrap fade-up" id="stats" aria-label="SA TRADER stats">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="10" width="36" height="24" rx="7" fill="#ff0000"/>
+            <path d="M19 17.5l8.5 4.5-8.5 4.5z" fill="#ffffff"/>
+          </svg>
+        </div>
+        <div class="stat-num" data-target="5" data-suffix="k+"><span>0</span>k+</div>
+        <div class="stat-label">Our Subscribers</div>
       </div>
-    </section>
-
-    <!-- =====================================================
-         STATS SECTION — heading removed, custom SVG icons
-         ===================================================== -->
-    <section class="stats-wrap fade-up" id="stats" aria-label="SA TRADER stats">
-
-      <div class="stats-grid">
-
-        <!-- 5k+ Subscribers — YouTube -->
-        <div class="stat-card">
-          <div class="stat-icon" aria-hidden="true">
-            <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
-              <rect x="4" y="10" width="36" height="24" rx="7" fill="#ff0000"/>
-              <path d="M19 17.5l8.5 4.5-8.5 4.5z" fill="#ffffff"/>
-            </svg>
-          </div>
-          <div class="stat-num" data-target="5" data-suffix="k+"><span>0</span>k+</div>
-          <div class="stat-label">Our Subscribers</div>
+      <div class="stat-card">
+        <div class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 36h30" stroke="#8a8a8a" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+            <path d="M6 8v28" stroke="#8a8a8a" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+            <rect x="11" y="14" width="5" height="12" rx="1.2" fill="#e63946"/>
+            <path d="M13.5 10v4M13.5 26v4" stroke="#e63946" stroke-width="1.6" stroke-linecap="round"/>
+            <rect x="19" y="10" width="5" height="14" rx="1.2" fill="#2ecc71"/>
+            <path d="M21.5 6v4M21.5 24v4" stroke="#2ecc71" stroke-width="1.6" stroke-linecap="round"/>
+            <rect x="27" y="16" width="5" height="10" rx="1.2" fill="#e63946"/>
+            <path d="M29.5 12v4M29.5 26v4" stroke="#e63946" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="33" cy="33" r="7" fill="#f5b400" stroke="#c88a00" stroke-width="1.4"/>
+            <text x="33" y="36.2" font-family="Poppins, sans-serif" font-size="9" font-weight="800" fill="#ffffff" text-anchor="middle">$</text>
+          </svg>
         </div>
-
-        <!-- 3k+ Active Traders — candlesticks + gold coin -->
-        <div class="stat-card">
-          <div class="stat-icon" aria-hidden="true">
-            <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
-              <!-- axis -->
-              <path d="M6 36h30" stroke="#8a8a8a" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-              <path d="M6 8v28" stroke="#8a8a8a" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-              <!-- candle 1 (red) -->
-              <rect x="11" y="14" width="5" height="12" rx="1.2" fill="#e63946"/>
-              <path d="M13.5 10v4M13.5 26v4" stroke="#e63946" stroke-width="1.6" stroke-linecap="round"/>
-              <!-- candle 2 (green) -->
-              <rect x="19" y="10" width="5" height="14" rx="1.2" fill="#2ecc71"/>
-              <path d="M21.5 6v4M21.5 24v4" stroke="#2ecc71" stroke-width="1.6" stroke-linecap="round"/>
-              <!-- candle 3 (red) -->
-              <rect x="27" y="16" width="5" height="10" rx="1.2" fill="#e63946"/>
-              <path d="M29.5 12v4M29.5 26v4" stroke="#e63946" stroke-width="1.6" stroke-linecap="round"/>
-              <!-- gold coin -->
-              <circle cx="33" cy="33" r="7" fill="#f5b400" stroke="#c88a00" stroke-width="1.4"/>
-              <text x="33" y="36.2" font-family="Poppins, sans-serif" font-size="9" font-weight="800" fill="#ffffff" text-anchor="middle">$</text>
-            </svg>
-          </div>
-          <div class="stat-num" data-target="3" data-suffix="k+"><span>0</span>k+</div>
-          <div class="stat-label">Active Traders</div>
-        </div>
-
-        <!-- 1k+ Active Students — friendly cartoon person -->
-        <div class="stat-card">
-          <div class="stat-icon" aria-hidden="true">
-            <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
-              <!-- shirt -->
-              <path d="M12 38c0-6 4.5-9.5 10-9.5S32 32 32 38z" fill="#ffffff"/>
-              <!-- collar -->
-              <path d="M19 29.5l3 2.5 3-2.5" fill="none" stroke="#d0d0d0" stroke-width="1.4" stroke-linecap="round"/>
-              <!-- head -->
-              <circle cx="22" cy="19" r="8" fill="#f7c9a6"/>
-              <!-- hair -->
-              <path d="M14 18c0-5 3.5-8 8-8s8 3 8 8c0-1.6-1.2-3.2-3-3.8-1.6 1.4-6.6 1.6-9.6.6-1.6.8-3.4 1.8-3.4 3.2z" fill="#7a4a22"/>
-              <!-- eyes -->
-              <circle cx="19" cy="19" r="1" fill="#3a2418"/>
-              <circle cx="25" cy="19" r="1" fill="#3a2418"/>
-              <!-- smile -->
-              <path d="M19.5 22.5c1 1.2 4 1.2 5 0" fill="none" stroke="#3a2418" stroke-width="1.3" stroke-linecap="round"/>
-              <!-- teal check badge -->
-              <circle cx="33" cy="33" r="6.5" fill="#17b8a6" stroke="#0e8f81" stroke-width="1.2"/>
-              <path d="M30 33l2.2 2.2L36 31.5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="stat-num" data-target="1" data-suffix="k+"><span>0</span>k+</div>
-          <div class="stat-label">Active Students</div>
-        </div>
-
-        <!-- 4+ Years Experience — certificate with seal & ribbon -->
-        <div class="stat-card">
-          <div class="stat-icon" aria-hidden="true">
-            <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
-              <!-- certificate body -->
-              <rect x="7" y="6" width="30" height="22" rx="3" fill="#bfe3ff" stroke="#7cb8e8" stroke-width="1.2"/>
-              <!-- white lines -->
-              <path d="M12 13h20M12 17h14M12 21h18" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
-              <!-- gold seal -->
-              <circle cx="22" cy="24" r="5" fill="#f5b400" stroke="#c88a00" stroke-width="1.2"/>
-              <text x="22" y="27" font-family="Poppins, sans-serif" font-size="6.5" font-weight="800" fill="#ffffff" text-anchor="middle">$</text>
-              <!-- ribbon -->
-              <path d="M19 28.5l-3 8 6-3 6 3-3-8" fill="#e63946" stroke="#b62b38" stroke-width="1.1" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="stat-num" data-target="4" data-suffix="+"><span>0</span>+</div>
-          <div class="stat-label">Years Experience</div>
-        </div>
-
+        <div class="stat-num" data-target="3" data-suffix="k+"><span>0</span>k+</div>
+        <div class="stat-label">Active Traders</div>
       </div>
-    </section>
+      <div class="stat-card">
+        <div class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 38c0-6 4.5-9.5 10-9.5S32 32 32 38z" fill="#ffffff"/>
+            <path d="M19 29.5l3 2.5 3-2.5" fill="none" stroke="#d0d0d0" stroke-width="1.4" stroke-linecap="round"/>
+            <circle cx="22" cy="19" r="8" fill="#f7c9a6"/>
+            <path d="M14 18c0-5 3.5-8 8-8s8 3 8 8c0-1.6-1.2-3.2-3-3.8-1.6 1.4-6.6 1.6-9.6.6-1.6.8-3.4 1.8-3.4 3.2z" fill="#7a4a22"/>
+            <circle cx="19" cy="19" r="1" fill="#3a2418"/>
+            <circle cx="25" cy="19" r="1" fill="#3a2418"/>
+            <path d="M19.5 22.5c1 1.2 4 1.2 5 0" fill="none" stroke="#3a2418" stroke-width="1.3" stroke-linecap="round"/>
+            <circle cx="33" cy="33" r="6.5" fill="#17b8a6" stroke="#0e8f81" stroke-width="1.2"/>
+            <path d="M30 33l2.2 2.2L36 31.5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="stat-num" data-target="1" data-suffix="k+"><span>0</span>k+</div>
+        <div class="stat-label">Active Students</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+            <rect x="7" y="6" width="30" height="22" rx="3" fill="#bfe3ff" stroke="#7cb8e8" stroke-width="1.2"/>
+            <path d="M12 13h20M12 17h14M12 21h18" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="22" cy="24" r="5" fill="#f5b400" stroke="#c88a00" stroke-width="1.2"/>
+            <text x="22" y="27" font-family="Poppins, sans-serif" font-size="6.5" font-weight="800" fill="#ffffff" text-anchor="middle">$</text>
+            <path d="M19 28.5l-3 8 6-3 6 3-3-8" fill="#e63946" stroke="#b62b38" stroke-width="1.1" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="stat-num" data-target="4" data-suffix="+"><span>0</span>+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+    </div>
+  </section>
 
-    <span id="contact"></span>
-  </main>
+  <span id="contact"></span>
+</main>
 
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
-  <script>
-    /* ---------- Mobile menu toggle ---------- */
-    const b = document.getElementById('burger');
-    const m = document.getElementById('menu');
-    if (b && m) {
-      b.addEventListener('click', () => {
-        const o = m.classList.toggle('open');
-        b.setAttribute('aria-expanded', o);
-        b.textContent = o ? '✕' : '☰';
-      });
-      m.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-        m.classList.remove('open');
-        b.textContent = '☰';
-        b.setAttribute('aria-expanded', 'false');
-      }));
+<!-- =========================================================
+     MODAL — Download PDF
+     ========================================================= -->
+<div class="modal-backdrop" id="pdfModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle" aria-describedby="pdfModalDesc">
+    <!-- Sticky header -->
+    <div class="modal-head">
+      <div class="modal-brand" id="pdfModalTitle"><span>SA</span> TRADER</div>
+      <div class="modal-lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" class="active">EN</button>
+        <button type="button" data-lang="bn">বাংলা</button>
+      </div>
+      <button class="modal-close" id="closePdfModal" type="button" aria-label="Close">✕</button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="modal-tabs" role="tablist" aria-label="Sections">
+      <button class="modal-tab active" id="tab-curriculum" role="tab" aria-selected="true" aria-controls="panel-curriculum" data-tab="curriculum">Curriculum</button>
+      <button class="modal-tab" id="tab-terms" role="tab" aria-selected="false" aria-controls="panel-terms" data-tab="terms">Terms &amp; Conditions</button>
+    </div>
+
+    <!-- Body (scrolls internally) -->
+    <div class="modal-body" id="pdfModalDesc">
+      <div class="modal-panel active" id="panel-curriculum" role="tabpanel" aria-labelledby="tab-curriculum">
+        <div class="curr-list" id="currList"><!-- rendered by JS --></div>
+      </div>
+      <div class="modal-panel" id="panel-terms" role="tabpanel" aria-labelledby="tab-terms">
+        <div class="modal-warn" id="termWarn">
+          <svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+          <span>Trading involves substantial financial risk.</span>
+        </div>
+        <div class="terms-list" id="termsList"><!-- rendered by JS --></div>
+      </div>
+    </div>
+
+    <!-- Sticky footer -->
+    <div class="modal-foot">
+      <button class="btn" id="printPdf" type="button">⬇ Download PDF</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   CONTENT DATA — easy to edit
+   ========================================================= */
+const CONTENT = {
+  en: {
+    tabs: { curriculum: "Curriculum", terms: "Terms & Conditions" },
+    warn: "Trading involves substantial financial risk.",
+    curriculum: [
+      "Forex - Crypto - Futures Trading & Investing Core Basics to Advanced Complete Masterclass",
+      "Market Mechanics, Structure & Liquidity Understanding",
+      "Real Market Behavior & Live Trade Execution",
+      "Everyday Live Practical Chart Analysis & Professional Trading Insights",
+      "Price Action, SMC & ICT Concepts with Professional Market Experience",
+      "Master Technical & Fundamental Analysis with Smart Indicators That Actually Work",
+      "Entry, Exit & Holding Trades for Bigger Market Moves",
+      "Smart Risk, Capital & Psychological Management System with Live Market Execution",
+      "Build Your Own Trading Strategy, Backtest with Team Support & Improve Day by Day",
+      "Emotional Control, Trading Discipline & Daily Performance Growth"
+    ],
+    terms: [
+      "Trading Chart provides educational and informational content related to Forex, Cryptocurrency, Futures Trading, Technical Analysis, Risk Management, and Market Education only.",
+      "Trading Chart does not provide financial advice, investment advice, portfolio management, brokerage services, or guaranteed trading signals.",
+      "All trading activities involve substantial financial risk. Users may lose part or all of their capital.",
+      "Past performance, screenshots, testimonials, live trades, or trading examples do not guarantee future results.",
+      "All trading decisions are made solely at the user's own discretion and risk.",
+      "Live trading sessions, chart analysis, consultations, and copy-trading related content are strictly for educational demonstration purposes only.",
+      "Users maintain full control over their broker accounts at all times. Trading Chart does not directly manage user funds or trading accounts.",
+      "Trading Chart is not responsible for trading losses, broker issues, withdrawal problems, technical failures, slippage, spread variation, execution delays, or financial damages.",
+      "Course fees, memberships, and digital services are generally non-refundable after significant access, attendance, or content consumption.",
+      "Users are responsible for ensuring compliance with the laws and regulations applicable in their own country or jurisdiction.",
+      "All course materials, videos, charts, branding, and educational content are intellectual property of Trading Chart and may not be copied, redistributed, recorded, or resold without permission.",
+      "Trading Chart may suspend or terminate access to any user for violations, misuse, abuse, fraud, or harmful conduct.",
+      "Trading Chart may participate in affiliate partnerships with brokers or service providers and may receive referral commissions without additional cost to users.",
+      "By accessing or using any Trading Chart service, platform, website, social media page, community, or educational material, users acknowledge and agree to these Terms & Conditions."
+    ]
+  },
+  bn: {
+    tabs: { curriculum: "কোর্স কারিকুলাম", terms: "শর্তাবলী" },
+    warn: "ট্রেডিংয়ে উল্লেখযোগ্য আর্থিক ঝুঁকি রয়েছে।",
+    curriculum: [
+      "ফরেক্স – ক্রিপ্টো – ফিউচার্স ট্রেডিং ও ইনভেস্টিং: সম্পূর্ণ বেসিক থেকে অ্যাডভান্সড মাস্টারক্লাস",
+      "মার্কেট মেকানিক্স, স্ট্রাকচার ও লিকুইডিটি বোঝার কৌশল",
+      "বাস্তব মার্কেটের আচরণ ও লাইভ ট্রেড এক্সিকিউশন",
+      "প্রতিদিনের লাইভ প্র্যাকটিক্যাল চার্ট অ্যানালাইসিস ও প্রফেশনাল ট্রেডিং ইনসাইট",
+      "Price Action, SMC ও ICT কনসেপ্টস এবং প্রফেশনাল মার্কেট অভিজ্ঞতা",
+      "কার্যকর স্মার্ট ইন্ডিকেটরসহ মাস্টার টেকনিক্যাল ও ফান্ডামেন্টাল অ্যানালাইসিস",
+      "বড় মার্কেট মুভের জন্য এন্ট্রি, এক্সিট ও ট্রেড ধরে রাখার কৌশল",
+      "স্মার্ট রিস্ক, ক্যাপিটাল ও সাইকোলজিক্যাল ম্যানেজমেন্ট সিস্টেম এবং লাইভ মার্কেট এক্সিকিউশন",
+      "নিজের ট্রেডিং স্ট্র্যাটেজি তৈরি, টিম সাপোর্টে Backtest এবং প্রতিদিন উন্নতি",
+      "ইমোশনাল কন্ট্রোল, ট্রেডিং ডিসিপ্লিন ও দৈনিক পারফরম্যান্স গ্রোথ"
+    ],
+    terms: [
+      "Trading Chart শুধুমাত্র Forex, Cryptocurrency, Futures Trading, Technical Analysis, Risk Management এবং মার্কেট এডুকেশন সম্পর্কিত শিক্ষামূলক ও তথ্যমূলক কনটেন্ট প্রদান করে।",
+      "Trading Chart কোনো আর্থিক পরামর্শ, বিনিয়োগ পরামর্শ, পোর্টফোলিও ম্যানেজমেন্ট, ব্রোকারেজ সার্ভিস বা নিশ্চিত ট্রেডিং সিগন্যাল প্রদান করে না।",
+      "সকল ট্রেডিং কার্যক্রমে উল্লেখযোগ্য আর্থিক ঝুঁকি রয়েছে। ব্যবহারকারী তার সম্পদের আংশিক বা সম্পূর্ণ অংশ হারাতে পারেন।",
+      "অতীত পারফরম্যান্স, স্ক্রিনশট, প্রশংসাপত্র, লাইভ ট্রেড বা ট্রেডিং উদাহরণ ভবিষ্যতের ফলাফলের নিশ্চয়তা দেয় না।",
+      "সকল ট্রেডিং সিদ্ধান্ত সম্পূর্ণভাবে ব্যবহারকারীর নিজস্ব বিবেচনা ও ঝুঁকিতে নেওয়া হয়।",
+      "লাইভ ট্রেডিং সেশন, চার্ট অ্যানালাইসিস, পরামর্শ এবং কপি-ট্রেডিং সংক্রান্ত কনটেন্ট কেবল শিক্ষামূলক প্রদর্শনের উদ্দেশ্যে।",
+      "ব্যবহারকারী সব সময় তার ব্রোকার অ্যাকাউন্টের উপর সম্পূর্ণ নিয়ন্ত্রণ রাখেন। Trading Chart সরাসরি ব্যবহারকারীর ফান্ড বা ট্রেডিং অ্যাকাউন্ট পরিচালনা করে না।",
+      "ট্রেডিং লস, ব্রোকার সমস্যা, উইথড্রয়াল সমস্যা, টেকনিক্যাল ত্রুটি, স্লিপেজ, স্প্রেড পরিবর্তন, এক্সিকিউশন বিলম্ব বা আর্থিক ক্ষতির জন্য Trading Chart দায়ী নয়।",
+      "উল্লেখযোগ্য অ্যাক্সেস, উপস্থিতি বা কনটেন্ট ব্যবহারের পর কোর্স ফি, মেম্বারশিপ এবং ডিজিটাল সার্ভিস সাধারণত অ-ফেরতযোগ্য।",
+      "ব্যবহারকারী নিজ দেশ বা এখতিয়ারে প্রযোজ্য আইন ও বিধিমালা মেনে চলার জন্য দায়ী।",
+      "সকল কোর্স ম্যাটেরিয়াল, ভিডিও, চার্ট, ব্র্যান্ডিং এবং শিক্ষামূলক কনটেন্ট Trading Chart-এর বৌদ্ধিক সম্পত্তি এবং অনুমতি ছাড়া কপি, পুনর্বিতরণ, রেকর্ড বা পুনরায় বিক্রি করা যাবে না।",
+      "লঙ্ঘন, অপব্যবহার, জালিয়াতি বা ক্ষতিকর আচরণের জন্য Trading Chart যেকোনো ব্যবহারকারীর অ্যাক্সেস স্থগিত বা বাতিল করতে পারে।",
+      "Trading Chart ব্রোকার বা সার্ভিস প্রোভাইডারের সাথে অ্যাফিলিয়েট পার্টনারশিপে অংশ নিতে পারে এবং ব্যবহারকারীর অতিরিক্ত খরচ ছাড়াই রেফারেল কমিশন পেতে পারে।",
+      "যেকোনো Trading Chart সার্ভিস, প্ল্যাটফর্ম, ওয়েবসাইট, সোশ্যাল মিডিয়া পেজ, কমিউনিটি বা শিক্ষামূলক উপকরণ ব্যবহার বা অ্যাক্সেস করার মাধ্যমে ব্যবহারকারী এই শর্তাবলী স্বীকার ও সম্মত হন।"
+    ]
+  }
+};
+
+/* =========================================================
+   MODAL LOGIC
+   ========================================================= */
+(function(){
+  const backdrop  = document.getElementById('pdfModal');
+  const modal     = backdrop.querySelector('.modal');
+  const openBtn   = document.getElementById('openPdfModal');
+  const closeBtn  = document.getElementById('closePdfModal');
+  const printBtn  = document.getElementById('printPdf');
+  const tabs      = backdrop.querySelectorAll('.modal-tab');
+  const panels    = backdrop.querySelectorAll('.modal-panel');
+  const langBtns  = backdrop.querySelectorAll('.modal-lang button');
+  const currList  = document.getElementById('currList');
+  const termsList = document.getElementById('termsList');
+  const warnEl    = document.getElementById('termWarn').querySelector('span');
+
+  let currentLang = 'en';
+  let lastFocused = null;
+
+  /* ---------- Render content ---------- */
+  function render(){
+    const data = CONTENT[currentLang];
+
+    // tabs
+    tabs[0].textContent = data.tabs.curriculum;
+    tabs[1].textContent = data.tabs.terms;
+
+    // warning
+    warnEl.textContent = data.warn;
+
+    // curriculum
+    currList.innerHTML = data.curriculum.map((title, i) => `
+      <div class="curr-card">
+        <div class="curr-num">#${i+1}</div>
+        <div class="curr-title">${title}</div>
+      </div>
+    `).join('');
+
+    // terms
+    termsList.innerHTML = data.terms.map((text, i) => `
+      <div class="term-item">
+        <div class="term-num">${i+1}</div>
+        <div class="term-text">${text}</div>
+      </div>
+    `).join('');
+
+    // body class for Bengali font
+    document.body.classList.toggle('lang-bn', currentLang === 'bn');
+
+    // lang button active states
+    langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
+  }
+
+  /* ---------- Open / close ---------- */
+  function openModal(){
+    lastFocused = document.activeElement;
+    render();
+    backdrop.classList.add('open');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    // focus first focusable in modal
+    setTimeout(() => closeBtn.focus(), 50);
+  }
+
+  function closeModal(){
+    backdrop.classList.remove('open');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    document.body.classList.remove('lang-bn');
+    if (lastFocused) lastFocused.focus();
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+
+  // click backdrop to close (but not the modal itself)
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) closeModal();
+  });
+
+  // Esc to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && backdrop.classList.contains('open')) {
+      closeModal();
     }
+  });
 
-    /* ---------- Fade-up on scroll ---------- */
-    const fadeEls = document.querySelectorAll('.fade-up');
-    if ('IntersectionObserver' in window) {
-      const fadeObs = new IntersectionObserver((entries) => {
+  /* ---------- Focus trap ---------- */
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || !backdrop.classList.contains('open')) return;
+    const focusables = modal.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const list = Array.from(focusables).filter(el => !el.disabled && el.offsetParent !== null);
+    if (!list.length) return;
+    const first = list[0];
+    const last  = list[list.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  });
+
+  /* ---------- Tabs ---------- */
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach(t => {
+        const active = t.dataset.tab === target;
+        t.classList.toggle('active', active);
+        t.setAttribute('aria-selected', active);
+      });
+      panels.forEach(p => {
+        p.classList.toggle('active', p.id === 'panel-' + target);
+      });
+    });
+  });
+
+  /* ---------- Language toggle (inside modal) ---------- */
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentLang = btn.dataset.lang;
+      render();
+    });
+  });
+
+  /* ---------- Print / Download PDF ---------- */
+  printBtn.addEventListener('click', () => {
+    // Ensure both panels are rendered; the print stylesheet shows both.
+    // Small delay to allow any layout to settle.
+    setTimeout(() => window.print(), 60);
+  });
+})();
+
+/* =========================================================
+   EXISTING PAGE JS — mobile menu, fade-up, counters
+   ========================================================= */
+(function(){
+  // Mobile menu
+  const b = document.getElementById('burger');
+  const m = document.getElementById('menu');
+  if (b && m) {
+    b.addEventListener('click', () => {
+      const o = m.classList.toggle('open');
+      b.setAttribute('aria-expanded', o);
+      b.textContent = o ? '✕' : '☰';
+    });
+    m.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      m.classList.remove('open');
+      b.textContent = '☰';
+      b.setAttribute('aria-expanded', 'false');
+    }));
+  }
+
+  // Fade-up on scroll
+  const fadeEls = document.querySelectorAll('.fade-up');
+  if ('IntersectionObserver' in window) {
+    const fadeObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    fadeEls.forEach(el => fadeObs.observe(el));
+  } else {
+    fadeEls.forEach(el => el.classList.add('visible'));
+  }
+
+  // Animated counters
+  const counters = document.querySelectorAll('.stat-num[data-target]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function animateCounter(el){
+    const target = parseFloat(el.getAttribute('data-target'));
+    const suffix = el.getAttribute('data-suffix') || '';
+    const duration = 1400;
+    const start = performance.now();
+    function step(now){
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const current = Math.round(target * eased);
+      el.innerHTML = '<span>' + current + '</span>' + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if (counters.length) {
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      counters.forEach(el => {
+        const target = el.getAttribute('data-target');
+        const suffix = el.getAttribute('data-suffix') || '';
+        el.innerHTML = '<span>' + target + '</span>' + suffix;
+      });
+    } else {
+      const cObs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            fadeObs.unobserve(entry.target);
+            animateCounter(entry.target);
+            cObs.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.15 });
-      fadeEls.forEach(el => fadeObs.observe(el));
-    } else {
-      fadeEls.forEach(el => el.classList.add('visible'));
+      }, { threshold: 0.4 });
+      counters.forEach(el => cObs.observe(el));
     }
-
-    /* ---------- Animated counters ---------- */
-    const counters = document.querySelectorAll('.stat-num[data-target]');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    function animateCounter(el) {
-      const target = parseFloat(el.getAttribute('data-target'));
-      const suffix = el.getAttribute('data-suffix') || '';
-      const duration = 1400;
-      const start = performance.now();
-
-      function step(now) {
-        const t = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
-        const current = Math.round(target * eased);
-        el.innerHTML = '<span>' + current + '</span>' + suffix;
-        if (t < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-
-    if (counters.length) {
-      if (reduceMotion || !('IntersectionObserver' in window)) {
-        counters.forEach(el => {
-          const target = el.getAttribute('data-target');
-          const suffix = el.getAttribute('data-suffix') || '';
-          el.innerHTML = '<span>' + target + '</span>' + suffix;
-        });
-      } else {
-        const cObs = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              animateCounter(entry.target);
-              cObs.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.4 });
-        counters.forEach(el => cObs.observe(el));
-      }
-    }
-  </script>
+  }
+})();
+</script>
 </body>
 </html>
