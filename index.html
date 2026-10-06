@@ -49,9 +49,37 @@ html[lang="bn"] .svc-title{letter-spacing:.02em}
 .nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;
   background:rgba(22,22,22,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   border:1px solid var(--line);border-radius:999px;padding:8px 12px 8px 14px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
-.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;justify-self:start}
-.logo img{width:auto;height:42px;max-width:140px;object-fit:contain;object-position:center;display:block;border-radius:6px}
-.links{display:flex;gap:6px;justify-self:center;align-items:center;justify-content:center}
+
+/* CHANGED: logo now contains image + brand text side by side */
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font-weight:700;font-size:18px;justify-self:start;
+  white-space:nowrap;min-width:0;
+}
+.logo img{width:auto;height:42px;max-width:140px;object-fit:contain;object-position:center;display:block;border-radius:6px;flex:none}
+
+/* Brand text — "SA FOREX" white, "TRADER" in yellow→orange gradient */
+.logo-text{
+  font-family:'Poppins',system-ui,sans-serif;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.02em;
+  line-height:1.05;
+  font-size:clamp(15px,1.6vw,20px);
+  color:#fff;
+  white-space:nowrap;
+  display:inline-block;
+}
+.logo-text b{
+  background:linear-gradient(135deg,var(--yellow),var(--orange));
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  font-weight:800;
+}
+
+.links{display:flex;gap:6px;justify-self:center;align-items:center;justify-content:center;white-space:nowrap}
 .links a{position:relative;padding:9px 16px;border-radius:999px;font-size:14px;color:var(--muted);transition:.25s}
 .links a:hover{color:#fff;background:rgba(255,255,255,.06)}
 .links a.active{color:var(--yellow);background:rgba(255,194,26,.1)}
@@ -189,101 +217,34 @@ h1 span.hl{color:var(--yellow)}
 .stat-card .stat-num{font-size:clamp(26px,3vw,36px);font-weight:800;line-height:1;letter-spacing:-.02em;color:#fff;margin-bottom:8px;display:inline-block}
 .stat-card .stat-label{font-size:12.5px;color:var(--muted);font-weight:500;letter-spacing:.02em}
 
-/* =========================================================
-   OUR SERVICES SECTION
-   ========================================================= */
-.services{
-  position:relative;max-width:1240px;margin:0 auto 90px;padding:clamp(22px,3vw,40px) 0;
-}
-/* dotted pattern behind heading */
-.services-head{
-  position:relative;text-align:center;margin-bottom:clamp(26px,3.6vw,44px);
-  padding:clamp(20px,3vw,36px) 12px;
-}
-.services-head::before{
-  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
-  background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);
-  background-size:20px 20px;
-  mask-image:radial-gradient(ellipse at center,#000 25%,transparent 72%);
-  -webkit-mask-image:radial-gradient(ellipse at center,#000 25%,transparent 72%);
-}
-.services-head h2{
-  position:relative;z-index:1;
-  font-size:clamp(30px,4.4vw,52px);
-  font-weight:800;letter-spacing:-.02em;line-height:1.1;
-  text-transform:capitalize;
-}
+/* ============ OUR SERVICES ============ */
+.services{position:relative;max-width:1240px;margin:0 auto 90px;padding:clamp(22px,3vw,40px) 0}
+.services-head{position:relative;text-align:center;margin-bottom:clamp(26px,3.6vw,44px);padding:clamp(20px,3vw,36px) 12px}
+.services-head::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:20px 20px;
+  mask-image:radial-gradient(ellipse at center,#000 25%,transparent 72%);-webkit-mask-image:radial-gradient(ellipse at center,#000 25%,transparent 72%)}
+.services-head h2{position:relative;z-index:1;font-size:clamp(30px,4.4vw,52px);font-weight:800;letter-spacing:-.02em;line-height:1.1;text-transform:capitalize}
 .services-head h2 span{color:var(--yellow)}
-
-/* Grid — 3 cols desktop, 2 tablet, 1 mobile */
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:clamp(16px,2vw,24px);
-  align-items:stretch;
-}
-
-/* Service card */
-.svc-card{
-  display:flex;flex-direction:column;
-  background:linear-gradient(160deg,#1c1c1c,#111);
-  border:1px solid var(--line);
-  border-radius:28px;
-  padding:clamp(20px,2.2vw,28px);
-  transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
-  position:relative;
-}
-.svc-card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(255,194,26,.65);
-  box-shadow:0 22px 50px rgba(0,0,0,.6), 0 0 0 1px rgba(255,194,26,.3), 0 0 30px rgba(255,170,30,.16);
-}
-.svc-title{
-  font-size:16px;font-weight:800;line-height:1.35;letter-spacing:.02em;
-  text-transform:uppercase;color:#fff;margin-bottom:8px;
-}
-.svc-sub{
-  font-size:13px;color:var(--muted);line-height:1.55;font-weight:500;margin-bottom:16px;
-}
-.svc-divider{
-  height:1px;background:var(--line);margin:0 0 18px 0;
-}
-.svc-features{
-  list-style:none;padding:0;margin:0 0 22px 0;
-  display:flex;flex-direction:column;gap:11px;
-}
-.svc-features li{
-  position:relative;padding-left:20px;
-  font-size:13px;line-height:1.55;color:#e3e3e3;
-}
-.svc-features li::before{
-  content:"";position:absolute;left:0;top:.55em;
-  width:8px;height:8px;border-radius:50%;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));
-  box-shadow:0 0 8px rgba(255,180,30,.5);
-}
-/* Bottom row pinned */
-.svc-foot{
-  margin-top:auto;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding-top:16px;border-top:1px solid var(--line);
-}
-.svc-price{
-  font-size:22px;font-weight:800;line-height:1;letter-spacing:-.01em;
-}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px);align-items:stretch}
+.svc-card{display:flex;flex-direction:column;background:linear-gradient(160deg,#1c1c1c,#111);border:1px solid var(--line);border-radius:28px;
+  padding:clamp(20px,2.2vw,28px);transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;position:relative}
+.svc-card:hover{transform:translateY(-6px);border-color:rgba(255,194,26,.65);
+  box-shadow:0 22px 50px rgba(0,0,0,.6), 0 0 0 1px rgba(255,194,26,.3), 0 0 30px rgba(255,170,30,.16)}
+.svc-title{font-size:16px;font-weight:800;line-height:1.35;letter-spacing:.02em;text-transform:uppercase;color:#fff;margin-bottom:8px}
+.svc-sub{font-size:13px;color:var(--muted);line-height:1.55;font-weight:500;margin-bottom:16px}
+.svc-divider{height:1px;background:var(--line);margin:0 0 18px 0}
+.svc-features{list-style:none;padding:0;margin:0 0 22px 0;display:flex;flex-direction:column;gap:11px}
+.svc-features li{position:relative;padding-left:20px;font-size:13px;line-height:1.55;color:#e3e3e3}
+.svc-features li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;
+  background:linear-gradient(135deg,var(--yellow),var(--orange));box-shadow:0 0 8px rgba(255,180,30,.5)}
+.svc-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line)}
+.svc-price{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.01em}
 .svc-price.paid{color:var(--yellow)}
 .svc-price.free{color:var(--green)}
-.svc-price small{
-  display:block;font-size:10.5px;font-weight:600;color:var(--muted);
-  letter-spacing:.08em;text-transform:uppercase;margin-top:4px;
-}
-.svc-btn{
-  display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:700;
-  font-size:13px;border-radius:999px;padding:11px 20px;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;
-  box-shadow:0 8px 22px rgba(255,150,30,.3);
-  transition:transform .25s,box-shadow .25s;text-align:center;flex:none;
-}
+.svc-price small{display:block;font-size:10.5px;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
+.svc-btn{display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:700;font-size:13px;border-radius:999px;padding:11px 20px;
+  background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;box-shadow:0 8px 22px rgba(255,150,30,.3);
+  transition:transform .25s,box-shadow .25s;text-align:center;flex:none}
 .svc-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,150,30,.45)}
 
 /* ============ ANIMATIONS ============ */
@@ -294,9 +255,7 @@ h1 span.hl{color:var(--yellow)}
 .fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease}
 .fade-up.visible{opacity:1;transform:none}
 
-/* =========================================================
-   MODAL — Download PDF
-   ========================================================= */
+/* ============ MODAL ============ */
 .modal-backdrop{position:fixed;inset:0;z-index:200;background:rgba(5,5,5,.72);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   display:flex;align-items:center;justify-content:center;padding:20px;
@@ -411,6 +370,8 @@ body.modal-open{overflow:hidden}
   .featured{grid-area:featured}.side-left{grid-area:left}.side-right{grid-area:right}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
   .services-grid{grid-template-columns:repeat(2,1fr)}
+  /* Keep logo text visible on tablet */
+  .logo-text{font-size:clamp(14px,1.5vw,18px)}
 }
 @media(max-width:640px){
   .nav,.wrap{padding:0 14px}
@@ -418,6 +379,8 @@ body.modal-open{overflow:hidden}
   .count{padding:24px 16px;border-radius:22px}
   .boxes{gap:6px}.box{border-radius:12px;padding:12px 2px}.box small{font-size:9px}
   .logo img{height:32px;max-width:110px}
+  /* Smaller brand text on mobile */
+  .logo-text{font-size:14px;letter-spacing:.01em}
   .showcase{padding:12px;border-radius:22px;margin-bottom:40px}
   .showcase-main{grid-template-columns:1fr;grid-template-areas:"featured" "right" "left";gap:12px}
   .featured{grid-template-columns:1fr;min-height:auto}
@@ -439,7 +402,6 @@ body.modal-open{overflow:hidden}
   .stat-icon{width:64px;height:64px;border-radius:18px;margin-bottom:12px}
   .stat-icon svg{width:36px;height:36px}
   .stat-card .stat-label{font-size:11px}
-  /* Services mobile */
   .services{padding:14px 0}
   .services-grid{grid-template-columns:1fr;gap:14px}
   .svc-card{border-radius:22px;padding:18px}
@@ -448,7 +410,9 @@ body.modal-open{overflow:hidden}
   .svc-price{font-size:20px}
   .svc-btn{padding:10px 18px;font-size:12.5px}
 }
+/* Very small screens — hide brand text but keep logo image */
 @media(max-width:380px){
+  .logo-text{display:none}
   .stats-grid{grid-template-columns:1fr}
   .side-stats{flex-wrap:wrap}
   .video-row{grid-template-columns:repeat(2,1fr)}
@@ -468,12 +432,13 @@ body.modal-open{overflow:hidden}
 <!-- ============ NAVBAR ============ -->
 <header class="nav">
   <div class="nav-in">
-    <a class="logo" href="#home" aria-label="SA TRADER home">
+    <!-- CHANGED: aria-label added + brand text "SA FOREX TRADER" now sits next to the logo image -->
+    <a class="logo" href="#home" aria-label="SA FOREX TRADER – Home">
       <img src="IMG_20261007_001230_648.jpg" alt="SA TRADER logo" loading="eager">
+      <span class="logo-text">SA FOREX <b>TRADER</b></span>
     </a>
     <nav class="links" aria-label="Main">
       <a class="active" href="#home" data-i18n="nav_home">Home</a>
-      <!-- CHANGED: now points to #services -->
       <a href="#services" data-i18n="nav_courses">Courses &amp; Services</a>
       <a href="#contact" data-i18n="nav_contact">Contact Us</a>
     </nav>
@@ -705,12 +670,11 @@ body.modal-open{overflow:hidden}
     </div>
   </section>
 
-  <!-- ============ OUR SERVICES (NEW) ============ -->
+  <!-- ============ OUR SERVICES ============ -->
   <section class="services fade-up" id="services" aria-labelledby="servicesHeading">
     <div class="services-head">
       <h2 id="servicesHeading"><span data-i18n="services_a">Our</span> <span data-i18n="services_b">services</span></h2>
     </div>
-    <!-- Cards rendered from JS -->
     <div class="services-grid" id="servicesGrid"></div>
   </section>
 
@@ -757,12 +721,7 @@ body.modal-open{overflow:hidden}
 
 <script>
 /* =========================================================
-   SERVICES DATA — add more cards here
-   Each card: title, subtitle, features[], price, priceType,
-              buttonLabel, buttonLink
-   Also: i18n keys for title/subtitle/features/button, so the
-   language switcher can find them.
-   Set title to "" to skip rendering a card (placeholders).
+   SERVICES DATA
    ========================================================= */
 const SERVICES = [
   /* ---------- CARD 1 — REAL ---------- */
@@ -782,10 +741,9 @@ const SERVICES = [
       "Lifetime Analysis & Signals 🔥"
     ],
     price: "$32",
-    priceType: "paid",           // "paid" | "free"
+    priceType: "paid",
     buttonLabel: "Enroll Now",
     buttonLink: "#enroll",
-    /* Bengali overrides */
     bn: {
       title: "পার্সোনাল ১-টু-১ প্রিমিয়াম মেন্টরশিপ",
       subtitle: "ওয়ান-টু-ওয়ান ফরেক্স মেন্টরশিপ ও লাইফটাইম সাপোর্ট",
@@ -803,155 +761,77 @@ const SERVICES = [
       buttonLabel: "এখনই এনরোল করুন"
     }
   },
-
-  /* ---------- CARD 2 — PLACEHOLDER (fill in later) ---------- */
+  /* ---------- CARD 2 — PLACEHOLDER ---------- */
   {
-    key: "svc2",
-    title: "",                    // leave empty to skip rendering
-    subtitle: "",
-    features: [],
-    price: "",
-    priceType: "paid",
-    buttonLabel: "Enroll Now",
-    buttonLink: "#enroll",
+    key: "svc2", title: "", subtitle: "", features: [], price: "",
+    priceType: "paid", buttonLabel: "Enroll Now", buttonLink: "#enroll",
     bn: { title: "", subtitle: "", features: [], buttonLabel: "" }
   },
-
-  /* ---------- CARD 3 — PLACEHOLDER (fill in later) ---------- */
+  /* ---------- CARD 3 — PLACEHOLDER ---------- */
   {
-    key: "svc3",
-    title: "",                    // leave empty to skip rendering
-    subtitle: "",
-    features: [],
-    price: "",
-    priceType: "paid",
-    buttonLabel: "Enroll Now",
-    buttonLink: "#enroll",
+    key: "svc3", title: "", subtitle: "", features: [], price: "",
+    priceType: "paid", buttonLabel: "Enroll Now", buttonLink: "#enroll",
     bn: { title: "", subtitle: "", features: [], buttonLabel: "" }
   }
 ];
 
 /* =========================================================
-   TRANSLATION DICTIONARY — every key exists in en & bn
+   TRANSLATION DICTIONARY
    ========================================================= */
 const I18N = {
   en: {
-    /* Navbar */
-    nav_home:"Home",
-    nav_courses:"Courses & Services",
-    nav_contact:"Contact Us",
-    nav_enroll:"Enroll Now",
-    /* Hero */
-    hero_a:"bangladesh top 1",
-    hero_b:"professional trading education",
+    nav_home:"Home", nav_courses:"Courses & Services", nav_contact:"Contact Us", nav_enroll:"Enroll Now",
+    hero_a:"bangladesh top 1", hero_b:"professional trading education",
     hero_sub:"Learn forex trading with a trusted mentor. Manage risk and trade with confidence.",
     hero_cta:"Enroll Now",
-    /* Countdown */
-    next_batch:"Next Batch",
-    starting_on:"Starting on ★",
-    unit_days:"DAYS",
-    unit_hours:"HOURS",
-    unit_mins:"MINS",
-    unit_secs:"SECS",
-    /* PDF card */
-    pdf_label:"Premium Course",
-    pdf_title:"Full Curriculum",
-    pdf_btn:"⬇ Download PDF",
-    /* Mini course */
-    mini_tag:"09 · TRADING MINDSET",
-    mini_title:"Trading Mindset",
+    next_batch:"Next Batch", starting_on:"Starting on ★",
+    unit_days:"DAYS", unit_hours:"HOURS", unit_mins:"MINS", unit_secs:"SECS",
+    pdf_label:"Premium Course", pdf_title:"Full Curriculum", pdf_btn:"⬇ Download PDF",
+    mini_tag:"09 · TRADING MINDSET", mini_title:"Trading Mindset",
     mini_desc:"Master trading psychology, discipline and emotional control.",
-    /* Featured */
     feat_badge:"Featured",
     feat_title:"Master Professional Trading & Market Analysis",
     feat_desc:"A complete trading framework — from candlestick reading and market structure to risk control and disciplined execution in live markets.",
-    feat_lessons:"Lessons",
-    feat_hours:"Hours",
-    feat_level:"Beginner → Pro",
-    feat_join:"Join Course",
-    feat_learn:"Learn More",
-    tag_top:"Top Pick",
-    tag_pop:"Popular",
-    /* Right sidebar */
+    feat_lessons:"Lessons", feat_hours:"Hours", feat_level:"Beginner → Pro",
+    feat_join:"Join Course", feat_learn:"Learn More",
+    tag_top:"Top Pick", tag_pop:"Popular",
     side_title:"Professional Trading Education",
     side_desc:"Structured lessons built for real execution and risk-first decision making.",
-    side_lessons:"Lessons",
-    side_hours:"Hours",
-    l1:"Starting Your Trading Journey",
-    l2:"Mastering Trading Psychology",
-    l3:"Reading Market Structure",
-    l4:"Risk & Money Management",
-    /* Stats */
-    stat_subs:"Our Subscribers",
-    stat_traders:"Active Traders",
-    stat_students:"Active Students",
-    stat_years:"Years Experience",
-    /* Services section */
-    services_a:"Our",
-    services_b:"services",
-    /* Modal */
-    modal_tab_curr:"Curriculum",
-    modal_tab_terms:"Terms & Conditions",
+    side_lessons:"Lessons", side_hours:"Hours",
+    l1:"Starting Your Trading Journey", l2:"Mastering Trading Psychology",
+    l3:"Reading Market Structure", l4:"Risk & Money Management",
+    stat_subs:"Our Subscribers", stat_traders:"Active Traders",
+    stat_students:"Active Students", stat_years:"Years Experience",
+    services_a:"Our", services_b:"services",
+    modal_tab_curr:"Curriculum", modal_tab_terms:"Terms & Conditions",
     modal_warn:"Trading involves substantial financial risk.",
     modal_download:"⬇ Download PDF"
   },
   bn: {
-    /* Navbar */
-    nav_home:"হোম",
-    nav_courses:"কোর্স ও সার্ভিস",
-    nav_contact:"যোগাযোগ করুন",
-    nav_enroll:"এনরোল করুন",
-    /* Hero */
-    hero_a:"বাংলাদেশের ১ নম্বর",
-    hero_b:"প্রফেশনাল ট্রেডিং এডুকেশন",
+    nav_home:"হোম", nav_courses:"কোর্স ও সার্ভিস", nav_contact:"যোগাযোগ করুন", nav_enroll:"এনরোল করুন",
+    hero_a:"বাংলাদেশের ১ নম্বর", hero_b:"প্রফেশনাল ট্রেডিং এডুকেশন",
     hero_sub:"বিশ্বস্ত মেন্টরের সাথে Forex ট্রেডিং শিখুন। Risk ম্যানেজ করে আত্মবিশ্বাসের সাথে ট্রেড করুন।",
     hero_cta:"এনরোল করুন",
-    /* Countdown */
-    next_batch:"পরবর্তী ব্যাচ",
-    starting_on:"শুরু হবে ★",
-    unit_days:"দিন",
-    unit_hours:"ঘণ্টা",
-    unit_mins:"মিনিট",
-    unit_secs:"সেকেন্ড",
-    /* PDF card */
-    pdf_label:"প্রিমিয়াম কোর্স",
-    pdf_title:"সম্পূর্ণ কারিকুলাম",
-    pdf_btn:"⬇ PDF ডাউনলোড",
-    /* Mini course */
-    mini_tag:"০৯ · ট্রেডিং মাইন্ডসেট",
-    mini_title:"ট্রেডিং মাইন্ডসেট",
+    next_batch:"পরবর্তী ব্যাচ", starting_on:"শুরু হবে ★",
+    unit_days:"দিন", unit_hours:"ঘণ্টা", unit_mins:"মিনিট", unit_secs:"সেকেন্ড",
+    pdf_label:"প্রিমিয়াম কোর্স", pdf_title:"সম্পূর্ণ কারিকুলাম", pdf_btn:"⬇ PDF ডাউনলোড",
+    mini_tag:"০৯ · ট্রেডিং মাইন্ডসেট", mini_title:"ট্রেডিং মাইন্ডসেট",
     mini_desc:"ট্রেডিং সাইকোলজি, ডিসিপ্লিন ও ইমোশনাল কন্ট্রোল আয়ত্ত করুন।",
-    /* Featured */
     feat_badge:"ফিচার্ড",
     feat_title:"প্রফেশনাল ট্রেডিং ও মার্কেট অ্যানালাইসিস মাস্টার করুন",
     feat_desc:"ক্যান্ডেলস্টিক রিডিং ও মার্কেট স্ট্রাকচার থেকে শুরু করে Risk কন্ট্রোল ও লাইভ মার্কেটে ডিসিপ্লিনড এক্সিকিউশন — সম্পূর্ণ ট্রেডিং ফ্রেমওয়ার্ক।",
-    feat_lessons:"লেসন",
-    feat_hours:"ঘণ্টা",
-    feat_level:"বিগিনার → প্রো",
-    feat_join:"কোর্সে যোগ দিন",
-    feat_learn:"আরও জানুন",
-    tag_top:"টপ পিক",
-    tag_pop:"জনপ্রিয়",
-    /* Right sidebar */
+    feat_lessons:"লেসন", feat_hours:"ঘণ্টা", feat_level:"বিগিনার → প্রো",
+    feat_join:"কোর্সে যোগ দিন", feat_learn:"আরও জানুন",
+    tag_top:"টপ পিক", tag_pop:"জনপ্রিয়",
     side_title:"প্রফেশনাল ট্রেডিং এডুকেশন",
     side_desc:"বাস্তব এক্সিকিউশন ও Risk-ফার্স্ট সিদ্ধান্তের জন্য সাজানো স্ট্রাকচার্ড লেসন।",
-    side_lessons:"লেসন",
-    side_hours:"ঘণ্টা",
-    l1:"আপনার ট্রেডিং যাত্রা শুরু",
-    l2:"ট্রেডিং সাইকোলজি আয়ত্ত করা",
-    l3:"মার্কেট স্ট্রাকচার পড়া",
-    l4:"Risk ও মানি ম্যানেজমেন্ট",
-    /* Stats */
-    stat_subs:"আমাদের সাবস্ক্রাইবার",
-    stat_traders:"অ্যাক্টিভ ট্রেডার",
-    stat_students:"অ্যাক্টিভ স্টুডেন্ট",
-    stat_years:"বছরের অভিজ্ঞতা",
-    /* Services section */
-    services_a:"আমাদের",
-    services_b:"সার্ভিসসমূহ",
-    /* Modal */
-    modal_tab_curr:"কারিকুলাম",
-    modal_tab_terms:"শর্তাবলী",
+    side_lessons:"লেসন", side_hours:"ঘণ্টা",
+    l1:"আপনার ট্রেডিং যাত্রা শুরু", l2:"ট্রেডিং সাইকোলজি আয়ত্ত করা",
+    l3:"মার্কেট স্ট্রাকচার পড়া", l4:"Risk ও মানি ম্যানেজমেন্ট",
+    stat_subs:"আমাদের সাবস্ক্রাইবার", stat_traders:"অ্যাক্টিভ ট্রেডার",
+    stat_students:"অ্যাক্টিভ স্টুডেন্ট", stat_years:"বছরের অভিজ্ঞতা",
+    services_a:"আমাদের", services_b:"সার্ভিসসমূহ",
+    modal_tab_curr:"কারিকুলাম", modal_tab_terms:"শর্তাবলী",
     modal_warn:"ট্রেডিংয়ে উল্লেখযোগ্য আর্থিক ঝুঁকি রয়েছে।",
     modal_download:"⬇ PDF ডাউনলোড"
   }
@@ -1035,29 +915,19 @@ function renderServices(lang){
   const grid = document.getElementById('servicesGrid');
   if (!grid) return;
   grid.innerHTML = '';
-
   SERVICES.forEach((card, idx) => {
-    /* Skip placeholders with empty title */
-    if (!card.title) return;
-
-    /* Choose language-specific values (fall back to EN) */
+    if (!card.title) return; /* skip placeholder */
     const loc = (lang === 'bn' && card.bn) ? card.bn : {};
     const title    = loc.title    || card.title;
     const subtitle = loc.subtitle || card.subtitle;
     const features = (loc.features && loc.features.length) ? loc.features : card.features;
     const btnLabel = loc.buttonLabel || card.buttonLabel;
-
-    /* Price render */
     const priceClass = card.priceType === 'free' ? 'free' : 'paid';
-    const priceHTML  = card.priceType === 'free'
-      ? `Free`
-      : `${card.price}`;
+    const priceHTML  = card.priceType === 'free' ? `Free` : `${card.price}`;
 
-    /* Build card */
     const art = document.createElement('article');
     art.className = 'svc-card';
     art.setAttribute('aria-labelledby', 'svc-title-' + idx);
-
     art.innerHTML = `
       <h3 class="svc-title" id="svc-title-${idx}">${title}</h3>
       ${subtitle ? `<p class="svc-sub">${subtitle}</p>` : ''}
@@ -1066,7 +936,7 @@ function renderServices(lang){
         ${features.map(f => `<li>${f}</li>`).join('')}
       </ul>
       <div class="svc-foot">
-        <div class="svc-price ${priceClass}">${priceHTML}<small>${card.priceType === 'free' ? '' : ''}</small></div>
+        <div class="svc-price ${priceClass}">${priceHTML}</div>
         <a class="svc-btn" href="${card.buttonLink || '#enroll'}">${btnLabel}</a>
       </div>
     `;
@@ -1075,38 +945,31 @@ function renderServices(lang){
 }
 
 /* =========================================================
-   setLang(lang) — main switch function
+   setLang(lang)
    ========================================================= */
 function setLang(lang){
   if (lang !== 'en' && lang !== 'bn') lang = 'en';
   const dict = I18N[lang];
   const fallback = I18N.en;
 
-  /* 1. Text nodes */
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     let val = dict[key];
     if (val === undefined) { val = fallback[key]; console.warn('[i18n] missing key:', key); }
     if (val !== undefined) el.textContent = val;
   });
-
-  /* 2. innerHTML nodes */
   document.querySelectorAll('[data-i18n-html]').forEach(el => {
     const key = el.getAttribute('data-i18n-html');
     let val = dict[key];
     if (val === undefined) { val = fallback[key]; console.warn('[i18n] missing key:', key); }
     if (val !== undefined) el.innerHTML = val;
   });
-
-  /* 3. Placeholders */
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.getAttribute('data-i18n-placeholder');
     let val = dict[key];
     if (val === undefined) { val = fallback[key]; console.warn('[i18n] missing key:', key); }
     if (val !== undefined) el.setAttribute('placeholder', val);
   });
-
-  /* 4. Aria-labels */
   document.querySelectorAll('[data-i18n-aria]').forEach(el => {
     const key = el.getAttribute('data-i18n-aria');
     let val = dict[key];
@@ -1114,22 +977,18 @@ function setLang(lang){
     if (val !== undefined) el.setAttribute('aria-label', val);
   });
 
-  /* 5. html lang + document title */
   document.documentElement.lang = lang;
   document.title = PAGE_TITLE[lang] || PAGE_TITLE.en;
 
-  /* 6. Sync language selectors */
   const sel = document.getElementById('langSelect');
   if (sel) sel.value = lang;
   document.querySelectorAll('.menu-lang button').forEach(b => {
     b.classList.toggle('active', b.dataset.lang === lang);
   });
 
-  /* 7. Re-render services + modal content in the new language */
   renderServices(lang);
   if (typeof renderModal === 'function') renderModal(lang);
 
-  /* 8. Persist */
   try { localStorage.setItem('sa_lang', lang); } catch(e){ /* ignore */ }
 }
 
@@ -1157,16 +1016,14 @@ function renderModal(lang){
 }
 
 /* =========================================================
-   Wire up language selectors + restore saved choice
+   Language selectors + restore
    ========================================================= */
 (function(){
   const sel = document.getElementById('langSelect');
   if (sel) sel.addEventListener('change', e => setLang(e.target.value));
-
   document.querySelectorAll('.menu-lang button').forEach(b => {
     b.addEventListener('click', () => setLang(b.dataset.lang));
   });
-
   let saved = 'en';
   try { saved = localStorage.getItem('sa_lang') || 'en'; } catch(e){ /* ignore */ }
   setLang(saved);
@@ -1185,7 +1042,6 @@ function renderModal(lang){
   const tabs      = backdrop.querySelectorAll('.modal-tab');
   const panels    = backdrop.querySelectorAll('.modal-panel');
   const modalLangBtns = backdrop.querySelectorAll('.modal-lang button');
-
   let lastFocused = null;
 
   function openModal(){
@@ -1198,38 +1054,27 @@ function renderModal(lang){
     document.body.classList.add('modal-open');
     setTimeout(() => closeBtn.focus(), 50);
   }
-
   function closeModal(){
     backdrop.classList.remove('open');
     backdrop.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
     if (lastFocused) lastFocused.focus();
   }
-
   openBtn.addEventListener('click', openModal);
   closeBtn.addEventListener('click', closeModal);
-
-  backdrop.addEventListener('click', (e) => {
-    if (e.target === backdrop) closeModal();
-  });
-
+  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeModal(); });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && backdrop.classList.contains('open')) closeModal();
   });
-
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Tab' || !backdrop.classList.contains('open')) return;
-    const focusables = modal.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
+    const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
     const list = Array.from(focusables).filter(el => !el.disabled && el.offsetParent !== null);
     if (!list.length) return;
-    const first = list[0];
-    const last  = list[list.length - 1];
+    const first = list[0], last = list[list.length - 1];
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
-
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const target = tab.dataset.tab;
@@ -1238,12 +1083,9 @@ function renderModal(lang){
         t.classList.toggle('active', active);
         t.setAttribute('aria-selected', active);
       });
-      panels.forEach(p => {
-        p.classList.toggle('active', p.id === 'panel-' + target);
-      });
+      panels.forEach(p => { p.classList.toggle('active', p.id === 'panel-' + target); });
     });
   });
-
   modalLangBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const target = btn.dataset.modalLang;
@@ -1251,12 +1093,11 @@ function renderModal(lang){
       modalLangBtns.forEach(b => b.classList.toggle('active', b.dataset.modalLang === target));
     });
   });
-
   printBtn.addEventListener('click', () => setTimeout(() => window.print(), 60));
 })();
 
 /* =========================================================
-   EXISTING PAGE JS — mobile menu, fade-up, counters
+   EXISTING PAGE JS
    ========================================================= */
 (function(){
   const b = document.getElementById('burger');
@@ -1273,25 +1114,19 @@ function renderModal(lang){
       b.setAttribute('aria-expanded', 'false');
     }));
   }
-
   const fadeEls = document.querySelectorAll('.fade-up');
   if ('IntersectionObserver' in window) {
     const fadeObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          fadeObs.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); fadeObs.unobserve(entry.target); }
       });
     }, { threshold: 0.15 });
     fadeEls.forEach(el => fadeObs.observe(el));
   } else {
     fadeEls.forEach(el => el.classList.add('visible'));
   }
-
   const counters = document.querySelectorAll('.stat-num[data-target]');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   function animateCounter(el){
     const target = parseFloat(el.getAttribute('data-target'));
     const suffix = el.getAttribute('data-suffix') || '';
@@ -1306,7 +1141,6 @@ function renderModal(lang){
     }
     requestAnimationFrame(step);
   }
-
   if (counters.length) {
     if (reduceMotion || !('IntersectionObserver' in window)) {
       counters.forEach(el => {
@@ -1317,10 +1151,7 @@ function renderModal(lang){
     } else {
       const cObs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            cObs.unobserve(entry.target);
-          }
+          if (entry.isIntersecting) { animateCounter(entry.target); cObs.unobserve(entry.target); }
         });
       }, { threshold: 0.4 });
       counters.forEach(el => cObs.observe(el));
