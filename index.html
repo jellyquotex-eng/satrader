@@ -2921,12 +2921,282 @@
     }
     .rsvc-chat svg { width: 24px; height: 24px; }
 
+    /* ============ ADMIN PANEL STYLES ============ */
+    .admin-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      background: rgba(5, 5, 5, .85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease, visibility .3s ease;
+    }
+    .admin-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .admin-modal {
+      width: min(560px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      background: linear-gradient(160deg, #1a1a1a, #101010);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, .8), 0 0 0 1px rgba(255, 194, 26, .08);
+      padding: 28px 24px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 194, 26, .4) transparent;
+    }
+    .admin-modal::-webkit-scrollbar { width: 6px; }
+    .admin-modal::-webkit-scrollbar-thumb { background: rgba(255, 194, 26, .35); border-radius: 6px; }
+    .admin-modal h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: -.01em;
+    }
+    .admin-modal .admin-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .admin-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .admin-field label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #d8d8d8;
+      letter-spacing: .02em;
+    }
+    .admin-field input,
+    .admin-field select {
+      width: 100%;
+      padding: 11px 14px;
+      background: #101010;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-input);
+      color: var(--text);
+      font-size: 14px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .admin-field input:focus,
+    .admin-field select:focus {
+      border-color: var(--yellow);
+      box-shadow: 0 0 0 3px rgba(255, 193, 7, .18);
+    }
+    .admin-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .admin-status-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .admin-status-btn {
+      flex: 1;
+      min-width: 90px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #101010;
+      color: #aaa;
+      font-weight: 600;
+      font-size: 12.5px;
+      cursor: pointer;
+      transition: all .2s ease;
+      text-align: center;
+    }
+    .admin-status-btn:hover { border-color: rgba(255, 193, 7, .4); color: #fff; }
+    .admin-status-btn.active {
+      border-color: var(--yellow);
+      background: rgba(255, 193, 7, .12);
+      color: var(--yellow);
+      box-shadow: 0 0 0 1px rgba(255, 193, 7, .3);
+    }
+    .admin-status-btn.active[data-status="hold"] { border-color: #ff8a1f; background: rgba(255, 138, 31, .12); color: #ff8a1f; }
+    .admin-status-btn.active[data-status="stop"] { border-color: #ff5a5a; background: rgba(255, 90, 90, .12); color: #ff5a5a; }
+    .admin-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+      margin-bottom: 16px;
+    }
+    .admin-actions button {
+      flex: 1;
+      min-width: 120px;
+      padding: 12px 16px;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .02em;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .admin-actions .btn-save {
+      background: var(--yellow-grad);
+      color: #111;
+      box-shadow: 0 8px 22px rgba(255, 179, 0, .3);
+    }
+    .admin-actions .btn-save:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(255, 179, 0, .45); }
+    .admin-actions .btn-hold {
+      background: transparent;
+      border: 1px solid #ff8a1f;
+      color: #ff8a1f;
+    }
+    .admin-actions .btn-hold:hover { background: rgba(255, 138, 31, .1); transform: translateY(-2px); }
+    .admin-actions .btn-resume {
+      background: transparent;
+      border: 1px solid var(--success);
+      color: var(--success);
+    }
+    .admin-actions .btn-resume:hover { background: rgba(34, 197, 94, .1); transform: translateY(-2px); }
+    .admin-actions .btn-stop {
+      background: transparent;
+      border: 1px solid #ff5a5a;
+      color: #ff5a5a;
+    }
+    .admin-actions .btn-stop:hover { background: rgba(255, 90, 90, .1); transform: translateY(-2px); }
+    .admin-actions .btn-lock {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .admin-actions .btn-lock:hover { border-color: #fff; color: #fff; }
+    .admin-preview {
+      background: #0d0d0d;
+      border: 1px dashed var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      margin-top: 8px;
+      text-align: center;
+    }
+    .admin-preview .preview-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 10px;
+    }
+    .admin-preview .preview-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--yellow);
+      margin-bottom: 10px;
+    }
+    .admin-preview .preview-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+    .admin-preview .preview-box {
+      background: linear-gradient(160deg, var(--yellow), var(--orange));
+      color: #111;
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-weight: 800;
+      font-size: 16px;
+      min-width: 48px;
+      text-align: center;
+    }
+    .admin-preview .preview-box small {
+      display: block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      margin-top: 2px;
+    }
+    .admin-error {
+      color: var(--danger);
+      font-size: 12.5px;
+      min-height: 18px;
+      margin-top: 6px;
+      font-weight: 500;
+    }
+    .admin-toast {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1a1a1a;
+      color: #fff;
+      border: 1px solid rgba(34, 197, 94, .5);
+      border-radius: 12px;
+      padding: 12px 24px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .6);
+      opacity: 0;
+      transition: opacity .3s ease, transform .3s ease;
+      z-index: 1000;
+      pointer-events: none;
+    }
+    .admin-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .password-shake {
+      animation: shake .4s ease-in-out;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-10px); }
+      40% { transform: translateX(10px); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(6px); }
+    }
+    /* number change animation */
+    .countdown-digit {
+      transition: transform .3s ease, opacity .3s ease;
+      display: inline-block;
+    }
+    .countdown-digit.flip {
+      animation: digitFlip .45s ease;
+    }
+    @keyframes digitFlip {
+      0% { transform: rotateX(0deg); opacity: 1; }
+      50% { transform: rotateX(90deg); opacity: .4; }
+      100% { transform: rotateX(0deg); opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .countdown-digit.flip { animation: none; }
+      .count { animation: none; }
+    }
+
+    /* services highlight pulse */
+    @keyframes servicesPulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 193, 7, .6); }
+      50% { box-shadow: 0 0 30px 12px rgba(255, 193, 7, .35); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
+    }
+    .services-highlight {
+      animation: servicesPulse 1.2s ease;
+    }
+
     /* ============ PRINT ============ */
     @media print {
       body { background: #fff !important; color: #000 !important; }
       body::before, .nav, .hero, .showcase, .stats-wrap, .rsvc, .cw, .rsvc-floats,
       .modal-head, .modal-tabs, .modal-foot, .modal-close, .modal-lang,
-      .rv-overlay, .ft-footer, .ct-overlay { display: none !important; }
+      .rv-overlay, .ft-footer, .ct-overlay, .admin-overlay { display: none !important; }
       .modal-backdrop {
         position: static;
         background: #fff;
@@ -3196,6 +3466,8 @@
       .ct-icon { width: 50px; height: 50px; margin-bottom: 14px; }
       .ct-icon svg { width: 22px; height: 22px; }
       .ct-card-title { font-size: 16.5px; }
+      .admin-modal { padding: 22px 16px; }
+      .admin-row { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
       .cw-grid { grid-template-columns: 1fr; }
@@ -3230,6 +3502,9 @@
       .v-badge { animation: none; }
       .rv-ring .rv-fill { transition: none; }
       .ct-overlay { transition: none; }
+      .admin-overlay { transition: none; }
+      .countdown-digit.flip { animation: none; }
+      .services-highlight { animation: none; }
     }
   </style>
 </head>
@@ -3252,7 +3527,7 @@
         <option value="en">EN</option>
         <option value="bn">বাংলা</option>
       </select>
-      <a class="btn" href="#our-services" data-i18n="nav_enroll">Enroll Now</a>
+      <a class="btn enroll-trigger" href="#services" data-i18n="nav_enroll">Enroll Now</a>
     </div>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
   </div>
@@ -3260,6 +3535,7 @@
     <a class="active" href="#home" data-i18n="nav_home">Home</a>
     <a href="#our-services" data-i18n="nav_courses">Courses &amp; Services</a>
     <a href="#contact" data-i18n="nav_contact">Contact Us</a>
+    <a href="#services" class="enroll-trigger" data-i18n="nav_enroll">Enroll Now</a>
     <div class="menu-lang" role="group" aria-label="Language">
       <button type="button" data-lang="en">EN</button>
       <button type="button" data-lang="bn">বাংলা</button>
@@ -3277,16 +3553,16 @@
         <span class="hl" data-i18n="hero_b">professional trading education</span>
       </h1>
       <p class="sub in d1" data-i18n="hero_sub">Learn forex trading with a trusted mentor. Manage risk and trade with confidence.</p>
-      <a class="btn lg in d2" id="enroll" href="#our-services" data-i18n="hero_cta">Enroll Now</a>
+      <a class="btn lg in d2 enroll-trigger" id="enroll" href="#services" data-i18n="hero_cta">Enroll Now</a>
     </div>
     <aside class="count in d2" aria-label="Next batch">
       <h3 data-i18n="next_batch">Next Batch</h3>
-      <p data-i18n="starting_on">Starting on ★</p>
-      <div class="boxes">
-        <div class="box"><b>00</b><small data-i18n="unit_days">DAYS</small></div>
-        <div class="box"><b>00</b><small data-i18n="unit_hours">HOURS</small></div>
-        <div class="box"><b>00</b><small data-i18n="unit_mins">MINS</small></div>
-        <div class="box"><b>00</b><small data-i18n="unit_secs">SECS</small></div>
+      <p id="batchTitle" data-i18n="starting_on">Starting on ★</p>
+      <div class="boxes" id="countdownBoxes">
+        <div class="box"><b id="cdDays">00</b><small data-i18n="unit_days">DAYS</small></div>
+        <div class="box"><b id="cdHours">00</b><small data-i18n="unit_hours">HOURS</small></div>
+        <div class="box"><b id="cdMins">00</b><small data-i18n="unit_mins">MINS</small></div>
+        <div class="box"><b id="cdSecs">00</b><small data-i18n="unit_secs">SECS</small></div>
       </div>
     </aside>
   </section>
@@ -3329,7 +3605,7 @@
             <span><span class="dot"></span><span data-i18n="feat_level">Beginner → Pro</span></span>
           </div>
           <div class="featured-cta">
-            <a class="btn" href="#join" data-i18n="feat_join">Join Course</a>
+            <a class="btn enroll-trigger" href="#services" data-i18n="feat_join">Join Course</a>
             <a class="btn ghost" href="#learn-more" data-i18n="feat_learn">Learn More</a>
             <button class="featured-plus" type="button" aria-label="Add to list">+</button>
           </div>
@@ -3453,11 +3729,11 @@
 
   <!-- ============ SERVICES CARDS (enroll grid) ============ -->
   <section class="svc-section" id="services-cards">
-    <div class="svc-header">
+    <div class="svc-header" id="services">
       <h2>Our services</h2>
       <p>Choose the package that fits your trading journey. All plans include lifetime mentorship.</p>
     </div>
-    <div class="svc-grid">
+    <div class="svc-grid" id="servicesGrid">
       <!-- CARD 1 — REAL CONTENT -->
       <article class="svc-card">
         <h3 class="svc-title">Personal 1 to 1</h3>
@@ -4051,6 +4327,78 @@
   </div>
 </div>
 
+<!-- =========================================================
+     ADMIN PANEL (hidden, opens via "aa" shortcut)
+     ========================================================= -->
+<div class="admin-overlay" id="adminOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Admin panel">
+  <div class="admin-modal" id="adminModal">
+    <h2>Admin Panel</h2>
+    <p class="admin-sub">Manage the "Next Batch" countdown. Changes are saved to Firebase and appear to all visitors instantly.</p>
+
+    <!-- Password gate -->
+    <div id="adminPasswordGate">
+      <div class="admin-field">
+        <label for="adminPass">Password</label>
+        <input type="password" id="adminPass" placeholder="Enter admin password" autocomplete="off">
+      </div>
+      <div class="admin-error" id="adminPassError"></div>
+      <button class="btn-submit" id="adminLoginBtn" type="button" style="margin-top:4px;">Unlock</button>
+    </div>
+
+    <!-- Main panel (hidden until logged in) -->
+    <div id="adminPanel" style="display:none;">
+      <div class="admin-field">
+        <label for="adminTitle">Batch title</label>
+        <input type="text" id="adminTitle" placeholder="e.g. October batch starting" maxlength="80">
+      </div>
+
+      <div class="admin-row">
+        <div class="admin-field">
+          <label for="adminDate">Start date</label>
+          <input type="date" id="adminDate">
+        </div>
+        <div class="admin-field">
+          <label for="adminTime">Start time (Dhaka)</label>
+          <input type="time" id="adminTime" value="00:00">
+        </div>
+      </div>
+
+      <div class="admin-field">
+        <label>Status</label>
+        <div class="admin-status-group" id="adminStatusGroup">
+          <button class="admin-status-btn active" data-status="running" type="button">RUNNING</button>
+          <button class="admin-status-btn" data-status="hold" type="button">HOLD</button>
+          <button class="admin-status-btn" data-status="stop" type="button">STOP</button>
+        </div>
+      </div>
+
+      <div class="admin-actions">
+        <button class="btn-save" id="adminSaveBtn" type="button">Save &amp; Start</button>
+        <button class="btn-hold" id="adminHoldBtn" type="button">Hold</button>
+        <button class="btn-resume" id="adminResumeBtn" type="button">Resume</button>
+        <button class="btn-stop" id="adminStopBtn" type="button">Stop / Reset</button>
+        <button class="btn-lock" id="adminLockBtn" type="button">Lock / Logout</button>
+      </div>
+
+      <div class="admin-preview">
+        <div class="preview-label">Live Preview</div>
+        <div class="preview-title" id="adminPreviewTitle">Starting on ★</div>
+        <div class="preview-boxes">
+          <div class="preview-box" id="adminPreviewDays">00<small>DAYS</small></div>
+          <div class="preview-box" id="adminPreviewHours">00<small>HOURS</small></div>
+          <div class="preview-box" id="adminPreviewMins">00<small>MINS</small></div>
+          <div class="preview-box" id="adminPreviewSecs">00<small>SECS</small></div>
+        </div>
+      </div>
+
+      <div class="admin-error" id="adminError" style="margin-top:12px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="admin-toast" id="adminToast">Saved ✓</div>
+
 <script>
 /* =========================================================
    TRANSLATION DICTIONARY
@@ -4081,7 +4429,8 @@ const I18N = {
     stat_students: "Active Students", stat_years: "Years Experience",
     modal_tab_curr: "Curriculum", modal_tab_terms: "Terms & Conditions",
     modal_warn: "Trading involves substantial financial risk.",
-    modal_download: "⬇ Download PDF"
+    modal_download: "⬇ Download PDF",
+    batch_started: "Batch Started 🚀"
   },
   bn: {
     nav_home: "হোম", nav_courses: "কোর্স ও সার্ভিস", nav_contact: "যোগাযোগ করুন", nav_enroll: "এনরোল করুন",
@@ -4108,7 +4457,8 @@ const I18N = {
     stat_students: "অ্যাক্টিভ স্টুডেন্ট", stat_years: "বছরের অভিজ্ঞতা",
     modal_tab_curr: "কারিকুলাম", modal_tab_terms: "শর্তাবলী",
     modal_warn: "ট্রেডিংয়ে উল্লেখযোগ্য আর্থিক ঝুঁকি রয়েছে।",
-    modal_download: "⬇ PDF ডাউনলোড"
+    modal_download: "⬇ PDF ডাউনলোড",
+    batch_started: "ব্যাচ শুরু হয়েছে 🚀"
   }
 };
 
@@ -4247,6 +4597,12 @@ function setLang(lang) {
   });
   if (typeof renderModal === 'function') renderModal(lang);
   try { localStorage.setItem('sa_lang', lang); } catch (e) { /* ignore */ }
+
+  // Update batch title if it was showing the default translation
+  const batchTitle = document.getElementById('batchTitle');
+  if (batchTitle && batchTitle.dataset.i18n === 'starting_on' && !batchTitle.dataset.customTitle) {
+    batchTitle.textContent = dict.starting_on || fallback.starting_on;
+  }
 }
 
 /* =========================================================
@@ -5082,7 +5438,7 @@ Status: ${o.status}`;
     }));
   }
   // Close mobile menu on enroll clicks
-  document.querySelectorAll('a[data-i18n="nav_enroll"], a[data-i18n="hero_cta"]').forEach(link => {
+  document.querySelectorAll('.enroll-trigger').forEach(link => {
     link.addEventListener('click', () => {
       if (m && m.classList.contains('open')) {
         m.classList.remove('open');
@@ -5215,6 +5571,516 @@ Status: ${o.status}`;
   video.addEventListener('click', (e) => e.preventDefault());
   video.addEventListener('contextmenu', (e) => e.preventDefault());
 })();
+
+/* =========================================================
+   FEATURE 2: ENROLL NOW SCROLLS TO SERVICES SECTION
+   ========================================================= */
+(function () {
+  // Ensure #services exists; if not, assign it to the services grid header
+  if (!document.getElementById('services')) {
+    const svcHeader = document.querySelector('.svc-header');
+    if (svcHeader) svcHeader.id = 'services';
+  }
+
+  const servicesEl = document.getElementById('services');
+  if (!servicesEl) return;
+
+  // Add scroll-margin-top for sticky navbar
+  servicesEl.style.scrollMarginTop = '100px';
+
+  // Highlight pulse on services cards
+  function highlightServices() {
+    const grid = document.getElementById('servicesGrid');
+    if (!grid) return;
+    grid.classList.add('services-highlight');
+    setTimeout(() => grid.classList.remove('services-highlight'), 1300);
+  }
+
+  // Smooth scroll for all enroll triggers
+  document.querySelectorAll('.enroll-trigger').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // Close mobile menu if open
+      const m = document.getElementById('menu');
+      const b = document.getElementById('burger');
+      if (m && m.classList.contains('open')) {
+        m.classList.remove('open');
+        if (b) { b.textContent = '☰'; b.setAttribute('aria-expanded', 'false'); }
+      }
+
+      // Smooth scroll
+      servicesEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Highlight after scroll
+      setTimeout(highlightServices, 500);
+    });
+  });
+})();
+
+/* =========================================================
+   FEATURE 1: HIDDEN ADMIN PANEL + LIVE COUNTDOWN (Firebase)
+   ========================================================= */
+</script>
+
+<!-- Firebase SDK (modular) -->
+<script type="module">
+  /* =========================================================
+     1. FIREBASE CONFIG & INIT
+     ========================================================= */
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getDatabase, ref, onValue, set, update } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCKYglTOd1lrWqFvbnhB3MSlSurPvVN7RI",
+    authDomain: "saaa-95919.firebaseapp.com",
+    databaseURL: "https://saaa-95919-default-rtdb.firebaseio.com",
+    projectId: "saaa-95919",
+    storageBucket: "saaa-95919.firebasestorage.app",
+    messagingSenderId: "788862513737",
+    appId: "1:788862513737:web:da9d8c1e757fce9529c598",
+    measurementId: "G-DZ2MXSBQ79"
+  };
+
+  let app, db;
+  try {
+    app = initializeApp(firebaseConfig);
+    db = getDatabase(app);
+  } catch (e) {
+    console.warn('[Firebase] Init failed, falling back to offline mode.', e);
+    db = null;
+  }
+
+  const countdownRef = db ? ref(db, 'countdown') : null;
+
+  /* =========================================================
+     2. ADMIN PANEL UI & PASSWORD GATE
+     ========================================================= */
+  const ADMIN_PASSWORD_HASH = '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4'; // SHA-256 of "4321"
+  const USE_FIREBASE_AUTH = false; // Set to true after enabling Firebase Auth (see SECURITY NOTES)
+
+  const overlay = document.getElementById('adminOverlay');
+  const passwordGate = document.getElementById('adminPasswordGate');
+  const adminPanel = document.getElementById('adminPanel');
+  const adminPass = document.getElementById('adminPass');
+  const adminPassError = document.getElementById('adminPassError');
+  const adminLoginBtn = document.getElementById('adminLoginBtn');
+  const adminTitle = document.getElementById('adminTitle');
+  const adminDate = document.getElementById('adminDate');
+  const adminTime = document.getElementById('adminTime');
+  const adminStatusGroup = document.getElementById('adminStatusGroup');
+  const adminSaveBtn = document.getElementById('adminSaveBtn');
+  const adminHoldBtn = document.getElementById('adminHoldBtn');
+  const adminResumeBtn = document.getElementById('adminResumeBtn');
+  const adminStopBtn = document.getElementById('adminStopBtn');
+  const adminLockBtn = document.getElementById('adminLockBtn');
+  const adminError = document.getElementById('adminError');
+  const adminPreviewTitle = document.getElementById('adminPreviewTitle');
+  const adminPreviewDays = document.getElementById('adminPreviewDays');
+  const adminPreviewHours = document.getElementById('adminPreviewHours');
+  const adminPreviewMins = document.getElementById('adminPreviewMins');
+  const adminPreviewSecs = document.getElementById('adminPreviewSecs');
+  const adminToast = document.getElementById('adminToast');
+
+  let isAdminUnlocked = false;
+  let wrongAttempts = 0;
+  let lockUntil = 0;
+  let lastKeyPress = 0;
+  let previewInterval = null;
+  let currentAdminStatus = 'running';
+
+  // Restore session
+  try {
+    if (sessionStorage.getItem('sa_admin_unlocked') === 'true') {
+      isAdminUnlocked = true;
+    }
+  } catch (e) { /* ignore */ }
+
+  function showToast(msg) {
+    adminToast.textContent = msg;
+    adminToast.classList.add('show');
+    setTimeout(() => adminToast.classList.remove('show'), 2000);
+  }
+
+  function openAdmin() {
+    if (isAdminUnlocked) {
+      passwordGate.style.display = 'none';
+      adminPanel.style.display = '';
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      loadAdminData();
+    } else {
+      passwordGate.style.display = '';
+      adminPanel.style.display = 'none';
+      adminPass.value = '';
+      adminPassError.textContent = '';
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      setTimeout(() => adminPass.focus(), 100);
+    }
+  }
+
+  function closeAdmin() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    if (previewInterval) { clearInterval(previewInterval); previewInterval = null; }
+  }
+
+  function lockAdmin() {
+    isAdminUnlocked = false;
+    try { sessionStorage.removeItem('sa_admin_unlocked'); } catch (e) { /* ignore */ }
+    closeAdmin();
+  }
+
+  // Password check with SHA-256
+  async function sha256(text) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(text);
+    const hash = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  adminLoginBtn.addEventListener('click', async () => {
+    if (Date.now() < lockUntil) {
+      adminPassError.textContent = 'Too many attempts. Please wait.';
+      return;
+    }
+    const input = adminPass.value;
+    const hash = await sha256(input);
+    if (hash === ADMIN_PASSWORD_HASH) {
+      isAdminUnlocked = true;
+      wrongAttempts = 0;
+      try { sessionStorage.setItem('sa_admin_unlocked', 'true'); } catch (e) { /* ignore */ }
+      passwordGate.style.display = 'none';
+      adminPanel.style.display = '';
+      loadAdminData();
+    } else {
+      wrongAttempts++;
+      adminPassError.textContent = 'Wrong password.';
+      adminPass.classList.add('password-shake');
+      setTimeout(() => adminPass.classList.remove('password-shake'), 500);
+      if (wrongAttempts >= 5) {
+        lockUntil = Date.now() + 30000;
+        adminPassError.textContent = 'Locked for 30 seconds.';
+        wrongAttempts = 0;
+      }
+    }
+  });
+
+  adminPass.addEventListener('keydown', (e) => { if (e.key === 'Enter') adminLoginBtn.click(); });
+
+  // Double "A" key shortcut
+  document.addEventListener('keydown', (e) => {
+    const tag = document.activeElement.tagName.toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'select' || document.activeElement.isContentEditable) return;
+    if (e.key.toLowerCase() === 'a') {
+      const now = Date.now();
+      if (now - lastKeyPress < 500) {
+        openAdmin();
+        lastKeyPress = 0;
+      } else {
+        lastKeyPress = now;
+      }
+    }
+  });
+
+  // Close on Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeAdmin();
+  });
+
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeAdmin(); });
+
+  adminLockBtn.addEventListener('click', lockAdmin);
+
+  /* =========================================================
+     3. ADMIN DATA & PREVIEW
+     ========================================================= */
+  function loadAdminData() {
+    if (!countdownRef) { adminError.textContent = 'Firebase not available.'; return; }
+    onValue(countdownRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        adminTitle.value = data.title || '';
+        if (data.targetTime) {
+          const d = new Date(data.targetTime + 6 * 3600000); // Display in Dhaka time
+          adminDate.value = d.toISOString().slice(0, 10);
+          adminTime.value = d.toISOString().slice(11, 16);
+        }
+        currentAdminStatus = data.status || 'running';
+        updateStatusButtons(currentAdminStatus);
+        updatePreview(data.title || '', data.targetTime, data.status);
+      } else {
+        adminTitle.value = '';
+        adminDate.value = '';
+        adminTime.value = '00:00';
+        currentAdminStatus = 'stop';
+        updateStatusButtons('stop');
+        updatePreview('Starting on ★', null, 'stop');
+      }
+    }, (error) => {
+      console.warn('[Firebase] Read error:', error);
+      adminError.textContent = 'Could not load data. Check connection.';
+    });
+  }
+
+  function updateStatusButtons(status) {
+    adminStatusGroup.querySelectorAll('.admin-status-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.status === status);
+    });
+  }
+
+  adminStatusGroup.querySelectorAll('.admin-status-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentAdminStatus = btn.dataset.status;
+      updateStatusButtons(currentAdminStatus);
+      updatePreview(adminTitle.value, getTargetTime(), currentAdminStatus);
+    });
+  });
+
+  function getTargetTime() {
+    if (!adminDate.value) return null;
+    const timeStr = adminTime.value || '00:00';
+    // Combine date + time as Dhaka time (UTC+6)
+    const dateTimeStr = adminDate.value + 'T' + timeStr + ':00+06:00';
+    const ts = Date.parse(dateTimeStr);
+    return isNaN(ts) ? null : ts;
+  }
+
+  function updatePreview(title, targetTime, status) {
+    adminPreviewTitle.textContent = title || 'Starting on ★';
+    if (status === 'running' && targetTime) {
+      const now = Date.now();
+      const diff = Math.max(0, targetTime - now);
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const mins = Math.floor((diff % 3600000) / 60000);
+      const secs = Math.floor((diff % 60000) / 1000);
+      adminPreviewDays.innerHTML = String(days).padStart(2, '0') + '<small>DAYS</small>';
+      adminPreviewHours.innerHTML = String(hours).padStart(2, '0') + '<small>HOURS</small>';
+      adminPreviewMins.innerHTML = String(mins).padStart(2, '0') + '<small>MINS</small>';
+      adminPreviewSecs.innerHTML = String(secs).padStart(2, '0') + '<small>SECS</small>';
+    } else {
+      adminPreviewDays.innerHTML = '00<small>DAYS</small>';
+      adminPreviewHours.innerHTML = '00<small>HOURS</small>';
+      adminPreviewMins.innerHTML = '00<small>MINS</small>';
+      adminPreviewSecs.innerHTML = '00<small>SECS</small>';
+    }
+  }
+
+  // Live preview interval
+  function startPreviewInterval() {
+    if (previewInterval) clearInterval(previewInterval);
+    previewInterval = setInterval(() => {
+      if (!overlay.classList.contains('open')) return;
+      const ts = getTargetTime();
+      updatePreview(adminTitle.value, ts, currentAdminStatus);
+    }, 1000);
+  }
+  startPreviewInterval();
+
+  // Update preview when inputs change
+  adminTitle.addEventListener('input', () => updatePreview(adminTitle.value, getTargetTime(), currentAdminStatus));
+  adminDate.addEventListener('change', () => updatePreview(adminTitle.value, getTargetTime(), currentAdminStatus));
+  adminTime.addEventListener('change', () => updatePreview(adminTitle.value, getTargetTime(), currentAdminStatus));
+
+  /* =========================================================
+     4. ADMIN ACTIONS
+     ========================================================= */
+  adminSaveBtn.addEventListener('click', () => {
+    const title = adminTitle.value.trim() || 'Starting on ★';
+    const targetTime = getTargetTime();
+    if (!targetTime) { adminError.textContent = 'Please select a valid date and time.'; return; }
+    if (targetTime <= Date.now()) { adminError.textContent = 'Date must be in the future.'; return; }
+    adminError.textContent = '';
+    if (!countdownRef) { adminError.textContent = 'Firebase not available.'; return; }
+    set(countdownRef, {
+      title: title,
+      targetTime: targetTime,
+      status: 'running',
+      updatedAt: Date.now()
+    }).then(() => {
+      showToast('Saved ✓');
+      currentAdminStatus = 'running';
+      updateStatusButtons('running');
+    }).catch(err => {
+      console.error(err);
+      adminError.textContent = 'Save failed. Check Firebase rules.';
+    });
+  });
+
+  adminHoldBtn.addEventListener('click', () => {
+    if (!countdownRef) return;
+    update(countdownRef, {
+      status: 'hold',
+      updatedAt: Date.now()
+    }).then(() => {
+      showToast('Held ✓');
+      currentAdminStatus = 'hold';
+      updateStatusButtons('hold');
+    }).catch(err => {
+      console.error(err);
+      adminError.textContent = 'Update failed.';
+    });
+  });
+
+  adminResumeBtn.addEventListener('click', () => {
+    if (!countdownRef) return;
+    // Resume means set status back to running with existing targetTime
+    const ts = getTargetTime();
+    if (!ts) { adminError.textContent = 'Set a date first.'; return; }
+    update(countdownRef, {
+      status: 'running',
+      targetTime: ts,
+      updatedAt: Date.now()
+    }).then(() => {
+      showToast('Resumed ✓');
+      currentAdminStatus = 'running';
+      updateStatusButtons('running');
+    }).catch(err => {
+      console.error(err);
+      adminError.textContent = 'Resume failed.';
+    });
+  });
+
+  adminStopBtn.addEventListener('click', () => {
+    if (!countdownRef) return;
+    set(countdownRef, {
+      title: 'Starting on ★',
+      targetTime: null,
+      status: 'stop',
+      updatedAt: Date.now()
+    }).then(() => {
+      showToast('Stopped ✓');
+      adminTitle.value = '';
+      adminDate.value = '';
+      adminTime.value = '00:00';
+      currentAdminStatus = 'stop';
+      updateStatusButtons('stop');
+    }).catch(err => {
+      console.error(err);
+      adminError.textContent = 'Stop failed.';
+    });
+  });
+
+  /* =========================================================
+     5. VISITOR-FACING COUNTDOWN RENDER
+     ========================================================= */
+  const cdDays = document.getElementById('cdDays');
+  const cdHours = document.getElementById('cdHours');
+  const cdMins = document.getElementById('cdMins');
+  const cdSecs = document.getElementById('cdSecs');
+  const batchTitle = document.getElementById('batchTitle');
+
+  let countdownInterval = null;
+  let serverTimeOffset = 0;
+  let currentData = null;
+
+  // Server time offset
+  if (db) {
+    onValue(ref(db, '.info/serverTimeOffset'), (snap) => {
+      serverTimeOffset = snap.val() || 0;
+    });
+  }
+
+  function getNow() {
+    return Date.now() + serverTimeOffset;
+  }
+
+  function animateDigit(el, newVal) {
+    const oldVal = el.textContent;
+    if (oldVal === newVal) return;
+    el.textContent = newVal;
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.classList.add('flip');
+      setTimeout(() => el.classList.remove('flip'), 450);
+    }
+  }
+
+  function updateCountdownDisplay(data) {
+    if (!data) {
+      batchTitle.textContent = I18N[document.documentElement.lang]?.starting_on || 'Starting on ★';
+      batchTitle.dataset.customTitle = '';
+      animateDigit(cdDays, '00');
+      animateDigit(cdHours, '00');
+      animateDigit(cdMins, '00');
+      animateDigit(cdSecs, '00');
+      return;
+    }
+
+    const { title, targetTime, status } = data;
+
+    if (status === 'running' && targetTime) {
+      const now = getNow();
+      const diff = targetTime - now;
+      if (diff <= 0) {
+        batchTitle.textContent = I18N[document.documentElement.lang]?.batch_started || 'Batch Started 🚀';
+        batchTitle.dataset.customTitle = 'started';
+        animateDigit(cdDays, '00');
+        animateDigit(cdHours, '00');
+        animateDigit(cdMins, '00');
+        animateDigit(cdSecs, '00');
+      } else {
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins = Math.floor((diff % 3600000) / 60000);
+        const secs = Math.floor((diff % 60000) / 1000);
+        batchTitle.textContent = title || 'Starting on ★';
+        batchTitle.dataset.customTitle = 'yes';
+        animateDigit(cdDays, String(days).padStart(2, '0'));
+        animateDigit(cdHours, String(hours).padStart(2, '0'));
+        animateDigit(cdMins, String(mins).padStart(2, '0'));
+        animateDigit(cdSecs, String(secs).padStart(2, '0'));
+      }
+    } else {
+      // hold or stop
+      batchTitle.textContent = title || (I18N[document.documentElement.lang]?.starting_on || 'Starting on ★');
+      batchTitle.dataset.customTitle = title ? 'yes' : '';
+      animateDigit(cdDays, '00');
+      animateDigit(cdHours, '00');
+      animateDigit(cdMins, '00');
+      animateDigit(cdSecs, '00');
+    }
+  }
+
+  function startCountdown(data) {
+    currentData = data;
+    if (countdownInterval) clearInterval(countdownInterval);
+    updateCountdownDisplay(data);
+    countdownInterval = setInterval(() => {
+      updateCountdownDisplay(currentData);
+    }, 1000);
+  }
+
+  // Firebase real-time listener
+  if (countdownRef) {
+    onValue(countdownRef, (snapshot) => {
+      const data = snapshot.val();
+      startCountdown(data);
+    }, (error) => {
+      console.warn('[Firebase] Countdown read error, falling back to default.', error);
+      startCountdown(null);
+    });
+  } else {
+    // Offline fallback
+    startCountdown(null);
+  }
+
+  /* =========================================================
+     6. OPTIONAL FIREBASE AUTH (commented, switch on later)
+     ========================================================= */
+  if (USE_FIREBASE_AUTH) {
+    // Uncomment and use the following imports + code after enabling Email/Password auth
+    // and setting the database rules to require auth.uid === 'OWNER_UID_HERE'.
+    /*
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+    const auth = getAuth(app);
+    // Example: sign in with email/password
+    // signInWithEmailAndPassword(auth, 'owner@example.com', 'password')
+    //   .then(() => { isAdminUnlocked = true; ... })
+    //   .catch(err => console.error(err));
+    */
+  }
 </script>
 </body>
 </html>
