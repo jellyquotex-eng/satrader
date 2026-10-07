@@ -42,7 +42,6 @@ html[lang="bn"] .menu a{white-space:normal;line-height:1.35}
 html[lang="bn"] .links a{padding:9px 14px}
 html[lang="bn"] .box small,
 html[lang="bn"] .stat small{letter-spacing:0}
-html[lang="bn"] .svc-title{letter-spacing:.02em}
 
 /* ============ NAVBAR ============ */
 .nav{position:sticky;top:14px;z-index:50;margin:14px auto 0;max-width:1240px;padding:0 20px}
@@ -192,213 +191,227 @@ h1 span.hl{color:var(--yellow)}
 .stat-card .stat-label{font-size:12.5px;color:var(--muted);font-weight:500;letter-spacing:.02em}
 
 /* =========================================================
-   OUR SERVICES — NEW DESIGN (2-column: profile card | content)
+   OUR SERVICES — pixel-faithful replica of reference
+   Scoped with .rsvc- prefix to avoid clashes.
    ========================================================= */
-.services{position:relative;max-width:1240px;margin:0 auto 90px;padding:clamp(22px,3vw,40px) 0}
-.services-grid{
+.rsvc{
+  background:#0d0d0d;
+  padding:clamp(40px,6vw,90px) 0;
+  margin:0 auto 60px;
+  max-width:1240px;
+}
+.rsvc-inner{
   display:grid;
-  grid-template-columns:minmax(280px,380px) 1fr;
-  gap:clamp(20px,3vw,44px);
+  grid-template-columns:385px 1fr;
+  gap:150px;
   align-items:center;
 }
 
 /* ---------- LEFT: profile card ---------- */
-.profile-card{
-  position:relative;
-  background:linear-gradient(160deg,#1c1c1c,#111);
-  border:1px solid var(--line);
-  border-radius:28px;
+.rsvc-card{
+  background:#161616;
   overflow:hidden;
-  box-shadow:0 24px 60px rgba(0,0,0,.55);
-  transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
-  animation:floatSoft 7s ease-in-out infinite;
+  width:100%;
 }
-.profile-card:hover{
-  transform:translateY(-8px);
-  border-color:rgba(255,194,26,.5);
-  box-shadow:0 32px 80px rgba(0,0,0,.7), 0 0 0 1px rgba(255,194,26,.35), 0 0 40px rgba(255,170,30,.2);
-}
-.profile-photo-wrap{
-  position:relative;
-  background:#0d0d0d;
-  padding:0;
-}
-.profile-photo{
+.rsvc-photo{
   width:100%;
   aspect-ratio:4/5;
   object-fit:cover;
   object-position:center top;
   display:block;
-  border-radius:0;
-  filter:saturate(1.05) contrast(1.02);
+  background:#0d0d0d;
 }
-/* subtle gradient overlay at bottom of photo for depth */
-.profile-photo-wrap::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;height:38%;
-  background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(10,10,10,.55) 100%);
-  pointer-events:none;
+.rsvc-info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  background:#161616;
+  border-top:1px solid rgba(255,255,255,.08);
+  min-height:74px;
 }
-/* dark info bar directly below photo */
-.profile-info{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:16px 18px;
-  background:rgba(15,15,15,.96);
-  border-top:1px solid var(--line);
+.rsvc-info-left{
+  padding:14px 18px;
+  border-right:1px solid rgba(255,255,255,.08);
+  min-width:0;
 }
-.profile-info .who{min-width:0}
-.profile-info .name{
-  font-size:18px;font-weight:800;color:#fff;line-height:1.15;letter-spacing:-.01em;
+.rsvc-name{
+  font-family:'Poppins',sans-serif;
+  font-weight:700;
+  font-size:22px;
+  line-height:1.15;
+  color:#ffffff;
+  margin-bottom:6px;
 }
-.profile-info .verified{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:12px;font-weight:600;color:var(--muted);margin-top:5px;
-  line-height:1.3;
+.rsvc-verified{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-family:'Poppins',sans-serif;
+  font-weight:400;
+  font-size:12px;
+  line-height:1.2;
+  color:#ffffff;
 }
-.profile-info .verified .check{
-  width:15px;height:15px;border-radius:50%;flex:none;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));
-  display:grid;place-items:center;color:#111;
-  box-shadow:0 2px 8px rgba(255,150,30,.4);
+.rsvc-verified svg{
+  width:14px;height:14px;flex:none;display:block;
 }
-.profile-info .verified .check svg{width:9px;height:9px;stroke:#111;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.profile-info .tag{
-  flex:none;
-  font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  background:rgba(56,132,255,.18);
-  color:#8fc4ff;
-  border:1px solid rgba(56,132,255,.35);
-  padding:5px 11px;border-radius:999px;
+.rsvc-info-right{
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.rsvc-tag{
+  font-family:'Poppins',sans-serif;
+  font-weight:700;
+  font-size:11px;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  color:#6ea8ff;
+  background:#1e3a8a;
+  padding:4px 14px;
+  border-radius:4px;
   white-space:nowrap;
+  line-height:1.4;
 }
 
 /* ---------- RIGHT: content ---------- */
-.services-content{min-width:0}
-.services-content .eyebrow{
-  display:inline-flex;align-items:center;gap:10px;
-  font-size:11.5px;font-weight:700;letter-spacing:.16em;
-  color:var(--yellow);text-transform:uppercase;margin-bottom:14px;
+.rsvc-content{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  min-width:0;
 }
-.services-content .eyebrow::before{
-  content:"";width:24px;height:1.5px;background:var(--yellow);display:block;
-}
-.services-content h2{
-  font-size:clamp(28px,3.6vw,44px);
-  font-weight:800;line-height:1.12;letter-spacing:-.02em;
-  color:#fff;margin-bottom:22px;
-}
-.services-content h2 em{
-  font-style:normal;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent;
+.rsvc-heading{
+  font-family:'Poppins',sans-serif;
+  font-weight:700;
+  font-size:36px;
+  line-height:1.2;
+  color:#ffffff;
+  letter-spacing:-.01em;
+  margin:0;
 }
 
-/* quote block */
-.quote-block{
-  position:relative;
-  background:rgba(255,255,255,.025);
-  border:1px solid var(--line);
-  border-left:3px solid var(--yellow);
-  border-radius:16px;
-  padding:18px 20px 16px 52px;
-  margin-bottom:20px;
+/* Quote block — no box, no bg, no border */
+.rsvc-quote{
+  margin-top:40px;
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  max-width:520px;
 }
-.quote-block .qmark{
-  position:absolute;left:16px;top:16px;
-  width:22px;height:22px;color:var(--yellow);
+.rsvc-quote-mark{
+  font-family:Georgia, 'Times New Roman', serif;
+  font-size:34px;
+  line-height:.8;
+  color:#7a7a7a;
+  flex:none;
+  margin-top:2px;
+  user-select:none;
 }
-.quote-block .qmark svg{width:100%;height:100%;fill:currentColor}
-.quote-block blockquote{
+.rsvc-quote-text{
+  font-family:'Poppins',sans-serif;
   font-style:italic;
-  font-size:14.5px;line-height:1.6;color:#e3e3e3;font-weight:500;
-  margin-bottom:12px;
+  font-weight:600;
+  font-size:17px;
+  line-height:1.55;
+  color:#ffffff;
 }
-.quote-block .attribution{
-  display:flex;align-items:center;gap:10px;
-  font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.02em;
+.rsvc-quote-attr{
+  margin-top:12px;
+  margin-left:46px;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
-.quote-block .attribution::before{
-  content:"";width:22px;height:1px;background:var(--line);display:block;
+.rsvc-quote-line{
+  display:block;
+  width:35px;
+  height:1px;
+  background:rgba(255,255,255,.25);
+  flex:none;
 }
-.quote-block .attribution span{color:var(--yellow)}
-
-.services-content .lede{
-  font-size:15px;line-height:1.65;color:var(--muted);
-  margin-bottom:24px;max-width:560px;
-}
-
-/* highlight bullets */
-.highlights{
-  list-style:none;padding:0;margin:0 0 28px 0;
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 22px;
-  max-width:620px;
-}
-.highlights li{
-  position:relative;padding-left:26px;
-  font-size:13.5px;line-height:1.55;color:#dcdcdc;font-weight:500;
-}
-.highlights li::before{
-  content:"";position:absolute;left:0;top:6px;
-  width:14px;height:14px;border-radius:50%;
-  background:rgba(255,194,26,.15);
-  border:1px solid rgba(255,194,26,.5);
-  box-shadow:0 0 8px rgba(255,180,30,.35);
-}
-.highlights li::after{
-  content:"";position:absolute;left:4px;top:10px;
-  width:6px;height:6px;border-radius:50%;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));
+.rsvc-quote-label{
+  font-family:'Poppins',sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:13px;
+  color:#ffffff;
+  line-height:1.2;
 }
 
-/* CTA row */
-.services-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.cta-primary{
-  display:inline-flex;align-items:center;gap:9px;
-  border:0;cursor:pointer;font:inherit;font-weight:700;font-size:15px;
-  border-radius:999px;padding:14px 30px;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;
-  box-shadow:0 12px 30px rgba(255,150,30,.35);
-  transition:transform .25s, box-shadow .25s;
+/* Paragraph */
+.rsvc-para{
+  margin-top:50px;
+  font-family:'Poppins',sans-serif;
+  font-weight:400;
+  font-size:16px;
+  line-height:1.6;
+  color:#ffffff;
+  max-width:520px;
 }
-.cta-primary:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(255,150,30,.55)}
-.cta-primary svg{width:16px;height:16px;stroke:#111;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.cta-secondary{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:14px;font-weight:600;color:#fff;
-  border:1px solid var(--line);border-radius:999px;padding:13px 24px;
-  background:transparent;transition:background .25s, border-color .25s;
-}
-.cta-secondary:hover{background:rgba(255,255,255,.05);border-color:rgba(255,194,26,.4)}
-
-@keyframes floatSoft{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 
 /* =========================================================
-   FLOATING BUTTONS — chat + scroll to top
+   FLOATING ELEMENTS — chat + scroll-to-top
    ========================================================= */
-.float-actions{
+.rsvc-floats{
   position:fixed;
-  right:22px;
-  bottom:22px;
+  right:26px;
+  bottom:26px;
   z-index:60;
   display:flex;
   flex-direction:column;
-  gap:12px;
-  align-items:flex-end;
+  align-items:center;
+  gap:16px;
+  pointer-events:none;
 }
-.float-btn{
-  width:54px;height:54px;border-radius:50%;
-  display:grid;place-items:center;
-  border:0;cursor:pointer;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));
-  color:#111;
-  box-shadow:0 14px 34px rgba(255,150,30,.45), 0 0 0 1px rgba(255,194,26,.35);
-  transition:transform .25s, box-shadow .25s, opacity .3s, visibility .3s;
+.rsvc-floats > *{pointer-events:auto}
+
+/* Scroll-to-top: bare yellow chevron, no circle */
+.rsvc-top{
+  background:transparent;
+  border:0;
+  padding:6px;
+  cursor:pointer;
+  color:#f5c518;
+  line-height:0;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(6px);
+  transition:opacity .3s ease, visibility .3s ease, transform .3s ease;
 }
-.float-btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 18px 42px rgba(255,150,30,.6), 0 0 0 1px rgba(255,194,26,.5)}
-.float-btn svg{width:24px;height:24px;stroke:#111;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
-/* scroll-to-top hidden until scrolled */
-#scrollTop{opacity:0;visibility:hidden;transform:translateY(6px)}
-#scrollTop.show{opacity:1;visibility:visible;transform:translateY(0)}
+.rsvc-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+.rsvc-top svg{
+  width:22px;height:22px;
+  display:block;
+  stroke:#f5c518;
+  stroke-width:2.4;
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* Chat button: 60px yellow circle, dark bubble, soft glow ring */
+.rsvc-chat{
+  width:60px;height:60px;
+  border-radius:50%;
+  border:0;
+  cursor:pointer;
+  background:#f5c518;
+  display:grid;
+  place-items:center;
+  box-shadow:0 0 0 6px rgba(245,197,24,.18), 0 10px 30px rgba(245,197,24,.35);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.rsvc-chat:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 0 8px rgba(245,197,24,.22), 0 14px 38px rgba(245,197,24,.5);
+}
+.rsvc-chat svg{
+  width:26px;height:26px;
+  display:block;
+  fill:#111111;
+}
 
 /* ============ ANIMATIONS ============ */
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
@@ -468,7 +481,7 @@ body.modal-open{overflow:hidden}
 /* Print */
 @media print{
   body{background:#fff !important;color:#000 !important}
-  body::before,.nav,.hero,.showcase,.stats-wrap,.services,.float-actions,.modal-head,.modal-tabs,.modal-foot,
+  body::before,.nav,.hero,.showcase,.stats-wrap,.rsvc,.rsvc-floats,.modal-head,.modal-tabs,.modal-foot,
   .modal-close,.modal-lang{display:none !important}
   .modal-backdrop{position:static;background:#fff;padding:0;opacity:1;visibility:visible;display:block;backdrop-filter:none;-webkit-backdrop-filter:none}
   .modal{max-height:none;width:100%;box-shadow:none;border:0;background:#fff;transform:none;opacity:1;display:block;border-radius:0;overflow:visible}
@@ -505,7 +518,7 @@ body.modal-open{overflow:hidden}
 /* ============ MAIN RESPONSIVE ============ */
 @media(max-width:1100px){
   .showcase-main{grid-template-columns:230px 1fr 260px}
-  .services-grid{grid-template-columns:minmax(260px,340px) 1fr;gap:28px}
+  .rsvc-inner{grid-template-columns:340px 1fr;gap:100px}
 }
 @media(max-width:1000px){
   .nav-in{display:flex}
@@ -522,11 +535,27 @@ body.modal-open{overflow:hidden}
   .showcase-main{grid-template-columns:1fr 1fr;grid-template-areas:"featured featured" "left right"}
   .featured{grid-area:featured}.side-left{grid-area:left}.side-right{grid-area:right}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
-  /* Services stacks on tablet */
-  .services-grid{grid-template-columns:1fr;gap:28px}
-  .profile-card{max-width:420px;margin:0 auto}
   .logo-text{font-size:clamp(14px,1.5vw,18px)}
 }
+
+@media(max-width:768px){
+  /* rsvc — stack, card on top, content below */
+  .rsvc{padding:32px 0;margin-bottom:40px}
+  .rsvc-inner{grid-template-columns:1fr;gap:36px;justify-items:center}
+  .rsvc-card{max-width:360px;width:100%}
+  .rsvc-content{width:100%;max-width:520px;align-items:flex-start;text-align:left}
+  .rsvc-heading{font-size:28px}
+  .rsvc-quote{margin-top:28px;gap:10px}
+  .rsvc-quote-mark{font-size:28px}
+  .rsvc-quote-text{font-size:15.5px}
+  .rsvc-quote-attr{margin-top:10px;margin-left:38px}
+  .rsvc-para{margin-top:32px;font-size:15px}
+  .rsvc-floats{right:18px;bottom:18px;gap:12px}
+  .rsvc-chat{width:54px;height:54px}
+  .rsvc-chat svg{width:22px;height:22px}
+  .rsvc-top svg{width:20px;height:20px}
+}
+
 @media(max-width:640px){
   .nav,.wrap{padding:0 14px}
   .nav-in{padding:6px 8px 6px 10px}
@@ -556,41 +585,29 @@ body.modal-open{overflow:hidden}
   .stat-icon svg{width:36px;height:36px}
   .stat-card .stat-label{font-size:11px}
 
-  /* Services mobile */
-  .services{padding:14px 0;margin-bottom:60px}
-  .services-grid{grid-template-columns:1fr;gap:22px}
-  .profile-card{max-width:none;border-radius:22px}
-  .profile-info{padding:14px 16px}
-  .profile-info .name{font-size:16px}
-  .profile-info .verified{font-size:11px}
-  .services-content h2{font-size:clamp(24px,7vw,30px);margin-bottom:18px}
-  .quote-block{padding:16px 16px 14px 46px;border-radius:14px}
-  .quote-block .qmark{left:14px;top:14px;width:18px;height:18px}
-  .quote-block blockquote{font-size:13.5px}
-  .highlights{grid-template-columns:1fr;gap:10px;margin-bottom:22px}
-  .highlights li{font-size:13px}
-  .services-cta{gap:10px}
-  .cta-primary{padding:13px 24px;font-size:14px}
-  .cta-secondary{padding:12px 20px;font-size:13px}
-
-  .float-actions{right:16px;bottom:16px;gap:10px}
-  .float-btn{width:48px;height:48px}
-  .float-btn svg{width:20px;height:20px}
+  /* rsvc mobile tweaks */
+  .rsvc-card{max-width:100%}
+  .rsvc-info-left{padding:12px 14px}
+  .rsvc-info-right{padding:12px 14px}
+  .rsvc-name{font-size:19px}
+  .rsvc-verified{font-size:11.5px}
+  .rsvc-heading{font-size:24px}
+  .rsvc-quote-text{font-size:15px}
+  .rsvc-para{font-size:14.5px}
 }
 @media(max-width:380px){
   .logo-text{display:none}
   .stats-grid{grid-template-columns:1fr}
   .side-stats{flex-wrap:wrap}
   .video-row{grid-template-columns:repeat(2,1fr)}
-  .profile-info{flex-direction:column;align-items:flex-start;gap:8px}
-  .profile-info .tag{align-self:flex-start}
+  .rsvc-heading{font-size:22px}
+  .rsvc-quote-text{font-size:14.5px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
   .fade-up{opacity:1;transform:none}
   .modal,.modal-backdrop{transition:none}
-  .profile-card{animation:none}
 }
 </style>
 </head>
@@ -834,60 +851,47 @@ body.modal-open{overflow:hidden}
   </section>
 
   <!-- =========================================================
-       OUR SERVICES — NEW DESIGN
-       2-column layout: profile card (left) | content (right)
+       OUR SERVICES — pixel-faithful replica of reference
        ========================================================= -->
-  <section class="services fade-up" id="services" aria-labelledby="servicesHeading">
-    <div class="services-grid">
+  <section class="rsvc fade-up" id="services" aria-labelledby="rsvcHeading">
+    <div class="rsvc-inner">
 
-      <!-- ---------- LEFT: profile card ---------- -->
-      <article class="profile-card" aria-label="Sakil – profile">
-        <div class="profile-photo-wrap">
-          <img class="profile-photo" src="IMG_20261007_001230_648.jpg" alt="Sakil">
-        </div>
-        <div class="profile-info">
-          <div class="who">
-            <div class="name">Sakil</div>
-            <div class="verified">
-              <span class="check" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
-              </span>
+      <!-- LEFT: profile card -->
+      <article class="rsvc-card" aria-label="Sakil – profile">
+        <img class="rsvc-photo" src="IMG_20261007_001230_648.jpg" alt="Sakil">
+        <div class="rsvc-info">
+          <div class="rsvc-info-left">
+            <div class="rsvc-name">Sakil</div>
+            <div class="rsvc-verified">
+              <!-- small yellow circular check icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" fill="#f5c518"/>
+                <path d="M7.5 12.3l3 3 6-6" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
               5m+ Verified Profits
             </div>
           </div>
-          <span class="tag">FOREX</span>
+          <div class="rsvc-info-right">
+            <span class="rsvc-tag">FOREX</span>
+          </div>
         </div>
       </article>
 
-      <!-- ---------- RIGHT: content ---------- -->
-      <div class="services-content">
-        <div class="eyebrow"></div>
-        <h2 id="servicesHeading">Build a <em>Successful Trading Career</em></h2>
+      <!-- RIGHT: content -->
+      <div class="rsvc-content">
+        <h2 class="rsvc-heading" id="rsvcHeading">Build a Successful Trading Career</h2>
 
-        <div class="quote-block">
-          <span class="qmark" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M7.2 10.4c-.5-.4-1.2-.6-1.9-.6-1.7 0-3 1.3-3 3s1.3 3 3 3c1.6 0 2.9-1.2 3-2.7v-.3c0-2.5-.9-4.6-2.6-6.2l-1.4 1.4c1.2 1.2 1.8 2.5 1.9 4.4zm9 0c-.5-.4-1.2-.6-1.9-.6-1.7 0-3 1.3-3 3s1.3 3 3 3c1.6 0 2.9-1.2 3-2.7v-.3c0-2.5-.9-4.6-2.6-6.2l-1.4 1.4c1.2 1.2 1.8 2.5 1.9 4.4z"/></svg>
-          </span>
-          <blockquote>Consistency is the key to success in trading. Stay disciplined — results will follow.</blockquote>
-          <div class="attribution">— <span>Trading chart</span></div>
+        <!-- Quote — no box, no bg, no border -->
+        <div class="rsvc-quote">
+          <span class="rsvc-quote-mark" aria-hidden="true">&ldquo;</span>
+          <span class="rsvc-quote-text">Consistency is the key to success in trading. Stay disciplined — results will follow.&rdquo;</span>
+        </div>
+        <div class="rsvc-quote-attr">
+          <span class="rsvc-quote-line" aria-hidden="true"></span>
+          <span class="rsvc-quote-label">Trading chart</span>
         </div>
 
-        <p class="lede">Start your journey to becoming a professional trader today.</p>
-
-        <ul class="highlights">
-          <li>Forex Trading Signals</li>
-          <li>Live Market Analysis</li>
-          <li>Risk Management Training</li>
-          <li>1-on-1 Mentorship</li>
-        </ul>
-
-        <div class="services-cta">
-          <a class="cta-primary" href="#enroll">
-            Get Started
-            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="cta-secondary" href="#contact">Talk to Mentor</a>
-        </div>
+        <p class="rsvc-para">Start your journey to becoming a professional trader today.</p>
       </div>
 
     </div>
@@ -897,14 +901,16 @@ body.modal-open{overflow:hidden}
 </main>
 
 <!-- =========================================================
-     FLOATING ACTIONS — chat + scroll-to-top
+     FLOATING ELEMENTS — scroll-to-top + chat button
      ========================================================= -->
-<div class="float-actions">
-  <button class="float-btn" id="chatBtn" type="button" aria-label="Open chat">
-    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+<div class="rsvc-floats">
+  <button class="rsvc-top" id="rsvcTop" type="button" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg>
   </button>
-  <button class="float-btn" id="scrollTop" type="button" aria-label="Scroll to top">
-    <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  <button class="rsvc-chat" id="rsvcChat" type="button" aria-label="Open chat">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+    </svg>
   </button>
 </div>
 
@@ -1062,7 +1068,7 @@ const MODAL_CONTENT = {
       "ট্রেডিং লস, ব্রোকার সমস্যা, উইথড্রয়াল সমস্যা, টেকনিক্যাল ত্রুটি, স্লিপেজ, স্প্রেড পরিবর্তন, এক্সিকিউশন বিলম্ব বা আর্থিক ক্ষতির জন্য Trading Chart দায়ী নয়।",
       "উল্লেখযোগ্য অ্যাক্সেস, উপস্থিতি বা কনটেন্ট ব্যবহারের পর কোর্স ফি, মেম্বারশিপ এবং ডিজিটাল সার্ভিস সাধারণত অ-ফেরতযোগ্য।",
       "ব্যবহারকারী নিজ দেশ বা এখতিয়ারে প্রযোজ্য আইন ও বিধিমালা মেনে চলার জন্য দায়ী।",
-      "সকল কোর্স ম্যাটেরিয়াল, ভিডিও, চার্ট, ব্র্যান্ডিং এবং শিক্ষামূলক কনটেন্ট Trading Chart-এর বৌদ্ধিক সম্পত্তি এবং অনুমতি ছাড়া কপি, পুনর্বিতরণ, রেকর্ড বা পুনরায় বিক্রি করা যাবে না।",
+      "সকল কোর্স ম্যাটেরিয়াল, ভিডিও, চার্ট, ব্র্যান্ডিং এবং শিক্ষামূলক কনটেন্ট Trading Chart-এর বৌদ্ধিক সম্পত্তি এবং অনুমতি ছাড়া কপি, পুনর্বিবরণ, রেকর্ড বা পুনরায় বিক্রি করা যাবে না।",
       "লঙ্ঘন, অপব্যবহার, জালিয়াতি বা ক্ষতিকর আচরণের জন্য Trading Chart যেকোনো ব্যবহারকারীর অ্যাক্সেস স্থগিত বা বাতিল করতে পারে।",
       "Trading Chart ব্রোকার বা সার্ভিস প্রোভাইডারের সাথে অ্যাফিলিয়েট পার্টনারশিপে অংশ নিতে পারে এবং ব্যবহারকারীর অতিরিক্ত খরচ ছাড়াই রেফারেল কমিশন পেতে পারে।",
       "যেকোনো Trading Chart সার্ভিস, প্ল্যাটফর্ম, ওয়েবসাইট, সোশ্যাল মিডিয়া পেজ, কমিউনিটি বা শিক্ষামূলক উপকরণ ব্যবহার বা অ্যাক্সেস করার মাধ্যমে ব্যবহারকারী এই শর্তাবলী স্বীকার ও সম্মত হন।"
@@ -1225,13 +1231,13 @@ function renderModal(lang){
 })();
 
 /* =========================================================
-   FLOATING BUTTONS — chat + scroll to top
+   FLOATING ELEMENTS — scroll-to-top + chat
    ========================================================= */
 (function(){
-  const chatBtn = document.getElementById('chatBtn');
-  const topBtn  = document.getElementById('scrollTop');
+  const topBtn  = document.getElementById('rsvcTop');
+  const chatBtn = document.getElementById('rsvcChat');
+  if (!topBtn || !chatBtn) return;
 
-  /* Scroll-to-top button: show after 400px scroll */
   function onScroll(){
     if (window.scrollY > 400) topBtn.classList.add('show');
     else topBtn.classList.remove('show');
@@ -1242,8 +1248,6 @@ function renderModal(lang){
   topBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-
-  /* Chat button: placeholder action — opens contact section for now */
   chatBtn.addEventListener('click', () => {
     const c = document.getElementById('contact');
     if (c) c.scrollIntoView({ behavior: 'smooth' });
