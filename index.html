@@ -49,36 +49,10 @@ html[lang="bn"] .svc-title{letter-spacing:.02em}
 .nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;
   background:rgba(22,22,22,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   border:1px solid var(--line);border-radius:999px;padding:8px 12px 8px 14px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
-
-/* CHANGED: logo now contains image + brand text side by side */
-.logo{
-  display:flex;align-items:center;gap:10px;
-  font-weight:700;font-size:18px;justify-self:start;
-  white-space:nowrap;min-width:0;
-}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;justify-self:start;white-space:nowrap;min-width:0}
 .logo img{width:auto;height:42px;max-width:140px;object-fit:contain;object-position:center;display:block;border-radius:6px;flex:none}
-
-/* Brand text — "SA FOREX" white, "TRADER" in yellow→orange gradient */
-.logo-text{
-  font-family:'Poppins',system-ui,sans-serif;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.02em;
-  line-height:1.05;
-  font-size:clamp(15px,1.6vw,20px);
-  color:#fff;
-  white-space:nowrap;
-  display:inline-block;
-}
-.logo-text b{
-  background:linear-gradient(135deg,var(--yellow),var(--orange));
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-  color:transparent;
-  font-weight:800;
-}
-
+.logo-text{font-family:'Poppins',system-ui,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.05;font-size:clamp(15px,1.6vw,20px);color:#fff;white-space:nowrap;display:inline-block}
+.logo-text b{background:linear-gradient(135deg,var(--yellow),var(--orange));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;font-weight:800}
 .links{display:flex;gap:6px;justify-self:center;align-items:center;justify-content:center;white-space:nowrap}
 .links a{position:relative;padding:9px 16px;border-radius:999px;font-size:14px;color:var(--muted);transition:.25s}
 .links a:hover{color:#fff;background:rgba(255,255,255,.06)}
@@ -217,35 +191,214 @@ h1 span.hl{color:var(--yellow)}
 .stat-card .stat-num{font-size:clamp(26px,3vw,36px);font-weight:800;line-height:1;letter-spacing:-.02em;color:#fff;margin-bottom:8px;display:inline-block}
 .stat-card .stat-label{font-size:12.5px;color:var(--muted);font-weight:500;letter-spacing:.02em}
 
-/* ============ OUR SERVICES ============ */
+/* =========================================================
+   OUR SERVICES — NEW DESIGN (2-column: profile card | content)
+   ========================================================= */
 .services{position:relative;max-width:1240px;margin:0 auto 90px;padding:clamp(22px,3vw,40px) 0}
-.services-head{position:relative;text-align:center;margin-bottom:clamp(26px,3.6vw,44px);padding:clamp(20px,3vw,36px) 12px}
-.services-head::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
-  background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:20px 20px;
-  mask-image:radial-gradient(ellipse at center,#000 25%,transparent 72%);-webkit-mask-image:radial-gradient(ellipse at center,#000 25%,transparent 72%)}
-.services-head h2{position:relative;z-index:1;font-size:clamp(30px,4.4vw,52px);font-weight:800;letter-spacing:-.02em;line-height:1.1;text-transform:capitalize}
-.services-head h2 span{color:var(--yellow)}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px);align-items:stretch}
-.svc-card{display:flex;flex-direction:column;background:linear-gradient(160deg,#1c1c1c,#111);border:1px solid var(--line);border-radius:28px;
-  padding:clamp(20px,2.2vw,28px);transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;position:relative}
-.svc-card:hover{transform:translateY(-6px);border-color:rgba(255,194,26,.65);
-  box-shadow:0 22px 50px rgba(0,0,0,.6), 0 0 0 1px rgba(255,194,26,.3), 0 0 30px rgba(255,170,30,.16)}
-.svc-title{font-size:16px;font-weight:800;line-height:1.35;letter-spacing:.02em;text-transform:uppercase;color:#fff;margin-bottom:8px}
-.svc-sub{font-size:13px;color:var(--muted);line-height:1.55;font-weight:500;margin-bottom:16px}
-.svc-divider{height:1px;background:var(--line);margin:0 0 18px 0}
-.svc-features{list-style:none;padding:0;margin:0 0 22px 0;display:flex;flex-direction:column;gap:11px}
-.svc-features li{position:relative;padding-left:20px;font-size:13px;line-height:1.55;color:#e3e3e3}
-.svc-features li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));box-shadow:0 0 8px rgba(255,180,30,.5)}
-.svc-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line)}
-.svc-price{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.01em}
-.svc-price.paid{color:var(--yellow)}
-.svc-price.free{color:var(--green)}
-.svc-price small{display:block;font-size:10.5px;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
-.svc-btn{display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:700;font-size:13px;border-radius:999px;padding:11px 20px;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;box-shadow:0 8px 22px rgba(255,150,30,.3);
-  transition:transform .25s,box-shadow .25s;text-align:center;flex:none}
-.svc-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,150,30,.45)}
+.services-grid{
+  display:grid;
+  grid-template-columns:minmax(280px,380px) 1fr;
+  gap:clamp(20px,3vw,44px);
+  align-items:center;
+}
+
+/* ---------- LEFT: profile card ---------- */
+.profile-card{
+  position:relative;
+  background:linear-gradient(160deg,#1c1c1c,#111);
+  border:1px solid var(--line);
+  border-radius:28px;
+  overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,.55);
+  transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+  animation:floatSoft 7s ease-in-out infinite;
+}
+.profile-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(255,194,26,.5);
+  box-shadow:0 32px 80px rgba(0,0,0,.7), 0 0 0 1px rgba(255,194,26,.35), 0 0 40px rgba(255,170,30,.2);
+}
+.profile-photo-wrap{
+  position:relative;
+  background:#0d0d0d;
+  padding:0;
+}
+.profile-photo{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+  border-radius:0;
+  filter:saturate(1.05) contrast(1.02);
+}
+/* subtle gradient overlay at bottom of photo for depth */
+.profile-photo-wrap::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:38%;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(10,10,10,.55) 100%);
+  pointer-events:none;
+}
+/* dark info bar directly below photo */
+.profile-info{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:16px 18px;
+  background:rgba(15,15,15,.96);
+  border-top:1px solid var(--line);
+}
+.profile-info .who{min-width:0}
+.profile-info .name{
+  font-size:18px;font-weight:800;color:#fff;line-height:1.15;letter-spacing:-.01em;
+}
+.profile-info .verified{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:600;color:var(--muted);margin-top:5px;
+  line-height:1.3;
+}
+.profile-info .verified .check{
+  width:15px;height:15px;border-radius:50%;flex:none;
+  background:linear-gradient(135deg,var(--yellow),var(--orange));
+  display:grid;place-items:center;color:#111;
+  box-shadow:0 2px 8px rgba(255,150,30,.4);
+}
+.profile-info .verified .check svg{width:9px;height:9px;stroke:#111;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.profile-info .tag{
+  flex:none;
+  font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(56,132,255,.18);
+  color:#8fc4ff;
+  border:1px solid rgba(56,132,255,.35);
+  padding:5px 11px;border-radius:999px;
+  white-space:nowrap;
+}
+
+/* ---------- RIGHT: content ---------- */
+.services-content{min-width:0}
+.services-content .eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11.5px;font-weight:700;letter-spacing:.16em;
+  color:var(--yellow);text-transform:uppercase;margin-bottom:14px;
+}
+.services-content .eyebrow::before{
+  content:"";width:24px;height:1.5px;background:var(--yellow);display:block;
+}
+.services-content h2{
+  font-size:clamp(28px,3.6vw,44px);
+  font-weight:800;line-height:1.12;letter-spacing:-.02em;
+  color:#fff;margin-bottom:22px;
+}
+.services-content h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--yellow),var(--orange));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+
+/* quote block */
+.quote-block{
+  position:relative;
+  background:rgba(255,255,255,.025);
+  border:1px solid var(--line);
+  border-left:3px solid var(--yellow);
+  border-radius:16px;
+  padding:18px 20px 16px 52px;
+  margin-bottom:20px;
+}
+.quote-block .qmark{
+  position:absolute;left:16px;top:16px;
+  width:22px;height:22px;color:var(--yellow);
+}
+.quote-block .qmark svg{width:100%;height:100%;fill:currentColor}
+.quote-block blockquote{
+  font-style:italic;
+  font-size:14.5px;line-height:1.6;color:#e3e3e3;font-weight:500;
+  margin-bottom:12px;
+}
+.quote-block .attribution{
+  display:flex;align-items:center;gap:10px;
+  font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.02em;
+}
+.quote-block .attribution::before{
+  content:"";width:22px;height:1px;background:var(--line);display:block;
+}
+.quote-block .attribution span{color:var(--yellow)}
+
+.services-content .lede{
+  font-size:15px;line-height:1.65;color:var(--muted);
+  margin-bottom:24px;max-width:560px;
+}
+
+/* highlight bullets */
+.highlights{
+  list-style:none;padding:0;margin:0 0 28px 0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 22px;
+  max-width:620px;
+}
+.highlights li{
+  position:relative;padding-left:26px;
+  font-size:13.5px;line-height:1.55;color:#dcdcdc;font-weight:500;
+}
+.highlights li::before{
+  content:"";position:absolute;left:0;top:6px;
+  width:14px;height:14px;border-radius:50%;
+  background:rgba(255,194,26,.15);
+  border:1px solid rgba(255,194,26,.5);
+  box-shadow:0 0 8px rgba(255,180,30,.35);
+}
+.highlights li::after{
+  content:"";position:absolute;left:4px;top:10px;
+  width:6px;height:6px;border-radius:50%;
+  background:linear-gradient(135deg,var(--yellow),var(--orange));
+}
+
+/* CTA row */
+.services-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.cta-primary{
+  display:inline-flex;align-items:center;gap:9px;
+  border:0;cursor:pointer;font:inherit;font-weight:700;font-size:15px;
+  border-radius:999px;padding:14px 30px;
+  background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;
+  box-shadow:0 12px 30px rgba(255,150,30,.35);
+  transition:transform .25s, box-shadow .25s;
+}
+.cta-primary:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(255,150,30,.55)}
+.cta-primary svg{width:16px;height:16px;stroke:#111;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.cta-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:600;color:#fff;
+  border:1px solid var(--line);border-radius:999px;padding:13px 24px;
+  background:transparent;transition:background .25s, border-color .25s;
+}
+.cta-secondary:hover{background:rgba(255,255,255,.05);border-color:rgba(255,194,26,.4)}
+
+@keyframes floatSoft{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* =========================================================
+   FLOATING BUTTONS — chat + scroll to top
+   ========================================================= */
+.float-actions{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:60;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  align-items:flex-end;
+}
+.float-btn{
+  width:54px;height:54px;border-radius:50%;
+  display:grid;place-items:center;
+  border:0;cursor:pointer;
+  background:linear-gradient(135deg,var(--yellow),var(--orange));
+  color:#111;
+  box-shadow:0 14px 34px rgba(255,150,30,.45), 0 0 0 1px rgba(255,194,26,.35);
+  transition:transform .25s, box-shadow .25s, opacity .3s, visibility .3s;
+}
+.float-btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 18px 42px rgba(255,150,30,.6), 0 0 0 1px rgba(255,194,26,.5)}
+.float-btn svg{width:24px;height:24px;stroke:#111;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+/* scroll-to-top hidden until scrolled */
+#scrollTop{opacity:0;visibility:hidden;transform:translateY(6px)}
+#scrollTop.show{opacity:1;visibility:visible;transform:translateY(0)}
 
 /* ============ ANIMATIONS ============ */
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
@@ -315,7 +468,7 @@ body.modal-open{overflow:hidden}
 /* Print */
 @media print{
   body{background:#fff !important;color:#000 !important}
-  body::before,.nav,.hero,.showcase,.stats-wrap,.services,.modal-head,.modal-tabs,.modal-foot,
+  body::before,.nav,.hero,.showcase,.stats-wrap,.services,.float-actions,.modal-head,.modal-tabs,.modal-foot,
   .modal-close,.modal-lang{display:none !important}
   .modal-backdrop{position:static;background:#fff;padding:0;opacity:1;visibility:visible;display:block;backdrop-filter:none;-webkit-backdrop-filter:none}
   .modal{max-height:none;width:100%;box-shadow:none;border:0;background:#fff;transform:none;opacity:1;display:block;border-radius:0;overflow:visible}
@@ -352,7 +505,7 @@ body.modal-open{overflow:hidden}
 /* ============ MAIN RESPONSIVE ============ */
 @media(max-width:1100px){
   .showcase-main{grid-template-columns:230px 1fr 260px}
-  .services-grid{grid-template-columns:repeat(3,1fr)}
+  .services-grid{grid-template-columns:minmax(260px,340px) 1fr;gap:28px}
 }
 @media(max-width:1000px){
   .nav-in{display:flex}
@@ -369,8 +522,9 @@ body.modal-open{overflow:hidden}
   .showcase-main{grid-template-columns:1fr 1fr;grid-template-areas:"featured featured" "left right"}
   .featured{grid-area:featured}.side-left{grid-area:left}.side-right{grid-area:right}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .services-grid{grid-template-columns:repeat(2,1fr)}
-  /* Keep logo text visible on tablet */
+  /* Services stacks on tablet */
+  .services-grid{grid-template-columns:1fr;gap:28px}
+  .profile-card{max-width:420px;margin:0 auto}
   .logo-text{font-size:clamp(14px,1.5vw,18px)}
 }
 @media(max-width:640px){
@@ -379,7 +533,6 @@ body.modal-open{overflow:hidden}
   .count{padding:24px 16px;border-radius:22px}
   .boxes{gap:6px}.box{border-radius:12px;padding:12px 2px}.box small{font-size:9px}
   .logo img{height:32px;max-width:110px}
-  /* Smaller brand text on mobile */
   .logo-text{font-size:14px;letter-spacing:.01em}
   .showcase{padding:12px;border-radius:22px;margin-bottom:40px}
   .showcase-main{grid-template-columns:1fr;grid-template-areas:"featured" "right" "left";gap:12px}
@@ -402,28 +555,42 @@ body.modal-open{overflow:hidden}
   .stat-icon{width:64px;height:64px;border-radius:18px;margin-bottom:12px}
   .stat-icon svg{width:36px;height:36px}
   .stat-card .stat-label{font-size:11px}
-  .services{padding:14px 0}
-  .services-grid{grid-template-columns:1fr;gap:14px}
-  .svc-card{border-radius:22px;padding:18px}
-  .svc-title{font-size:14.5px}
-  .svc-foot{flex-wrap:wrap}
-  .svc-price{font-size:20px}
-  .svc-btn{padding:10px 18px;font-size:12.5px}
+
+  /* Services mobile */
+  .services{padding:14px 0;margin-bottom:60px}
+  .services-grid{grid-template-columns:1fr;gap:22px}
+  .profile-card{max-width:none;border-radius:22px}
+  .profile-info{padding:14px 16px}
+  .profile-info .name{font-size:16px}
+  .profile-info .verified{font-size:11px}
+  .services-content h2{font-size:clamp(24px,7vw,30px);margin-bottom:18px}
+  .quote-block{padding:16px 16px 14px 46px;border-radius:14px}
+  .quote-block .qmark{left:14px;top:14px;width:18px;height:18px}
+  .quote-block blockquote{font-size:13.5px}
+  .highlights{grid-template-columns:1fr;gap:10px;margin-bottom:22px}
+  .highlights li{font-size:13px}
+  .services-cta{gap:10px}
+  .cta-primary{padding:13px 24px;font-size:14px}
+  .cta-secondary{padding:12px 20px;font-size:13px}
+
+  .float-actions{right:16px;bottom:16px;gap:10px}
+  .float-btn{width:48px;height:48px}
+  .float-btn svg{width:20px;height:20px}
 }
-/* Very small screens — hide brand text but keep logo image */
 @media(max-width:380px){
   .logo-text{display:none}
   .stats-grid{grid-template-columns:1fr}
   .side-stats{flex-wrap:wrap}
   .video-row{grid-template-columns:repeat(2,1fr)}
-  .svc-foot{flex-direction:column;align-items:stretch}
-  .svc-btn{width:100%}
+  .profile-info{flex-direction:column;align-items:flex-start;gap:8px}
+  .profile-info .tag{align-self:flex-start}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
   .fade-up{opacity:1;transform:none}
   .modal,.modal-backdrop{transition:none}
+  .profile-card{animation:none}
 }
 </style>
 </head>
@@ -432,7 +599,6 @@ body.modal-open{overflow:hidden}
 <!-- ============ NAVBAR ============ -->
 <header class="nav">
   <div class="nav-in">
-    <!-- CHANGED: aria-label added + brand text "SA FOREX TRADER" now sits next to the logo image -->
     <a class="logo" href="#home" aria-label="SA FOREX TRADER – Home">
       <img src="IMG_20261007_001230_648.jpg" alt="SA TRADER logo" loading="eager">
       <span class="logo-text">SA FOREX <b>TRADER</b></span>
@@ -489,7 +655,6 @@ body.modal-open{overflow:hidden}
   <!-- ============ SHOWCASE ============ -->
   <section class="showcase in d3" id="courses" aria-label="SA TRADER course showcase">
     <div class="showcase-main">
-
       <aside class="side-left">
         <article class="pdf-card">
           <div class="pdf-head">
@@ -501,7 +666,6 @@ body.modal-open{overflow:hidden}
           </div>
           <button class="btn" id="openPdfModal" type="button" data-i18n="pdf_btn">⬇ Download PDF</button>
         </article>
-
         <article class="mini-course">
           <div class="thumb">
             <img src="download (6).png" alt="Trading Mindset course thumbnail" loading="lazy">
@@ -602,7 +766,6 @@ body.modal-open{overflow:hidden}
           <span class="lm-num">04</span>
         </div>
       </aside>
-
     </div>
   </section>
 
@@ -670,16 +833,80 @@ body.modal-open{overflow:hidden}
     </div>
   </section>
 
-  <!-- ============ OUR SERVICES ============ -->
+  <!-- =========================================================
+       OUR SERVICES — NEW DESIGN
+       2-column layout: profile card (left) | content (right)
+       ========================================================= -->
   <section class="services fade-up" id="services" aria-labelledby="servicesHeading">
-    <div class="services-head">
-      <h2 id="servicesHeading"><span data-i18n="services_a">Our</span> <span data-i18n="services_b">services</span></h2>
+    <div class="services-grid">
+
+      <!-- ---------- LEFT: profile card ---------- -->
+      <article class="profile-card" aria-label="Sakil – profile">
+        <div class="profile-photo-wrap">
+          <img class="profile-photo" src="IMG_20261007_001230_648.jpg" alt="Sakil">
+        </div>
+        <div class="profile-info">
+          <div class="who">
+            <div class="name">Sakil</div>
+            <div class="verified">
+              <span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+              </span>
+              5m+ Verified Profits
+            </div>
+          </div>
+          <span class="tag">FOREX</span>
+        </div>
+      </article>
+
+      <!-- ---------- RIGHT: content ---------- -->
+      <div class="services-content">
+        <div class="eyebrow">Our Services</div>
+        <h2 id="servicesHeading">Build a <em>Successful Trading Career</em></h2>
+
+        <div class="quote-block">
+          <span class="qmark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M7.2 10.4c-.5-.4-1.2-.6-1.9-.6-1.7 0-3 1.3-3 3s1.3 3 3 3c1.6 0 2.9-1.2 3-2.7v-.3c0-2.5-.9-4.6-2.6-6.2l-1.4 1.4c1.2 1.2 1.8 2.5 1.9 4.4zm9 0c-.5-.4-1.2-.6-1.9-.6-1.7 0-3 1.3-3 3s1.3 3 3 3c1.6 0 2.9-1.2 3-2.7v-.3c0-2.5-.9-4.6-2.6-6.2l-1.4 1.4c1.2 1.2 1.8 2.5 1.9 4.4z"/></svg>
+          </span>
+          <blockquote>Consistency is the key to success in trading. Stay disciplined — results will follow.</blockquote>
+          <div class="attribution">— <span>Trading chart</span></div>
+        </div>
+
+        <p class="lede">Start your journey to becoming a professional trader today.</p>
+
+        <ul class="highlights">
+          <li>Forex Trading Signals</li>
+          <li>Live Market Analysis</li>
+          <li>Risk Management Training</li>
+          <li>1-on-1 Mentorship</li>
+        </ul>
+
+        <div class="services-cta">
+          <a class="cta-primary" href="#enroll">
+            Get Started
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="cta-secondary" href="#contact">Talk to Mentor</a>
+        </div>
+      </div>
+
     </div>
-    <div class="services-grid" id="servicesGrid"></div>
   </section>
 
   <span id="contact"></span>
 </main>
+
+<!-- =========================================================
+     FLOATING ACTIONS — chat + scroll-to-top
+     ========================================================= -->
+<div class="float-actions">
+  <button class="float-btn" id="chatBtn" type="button" aria-label="Open chat">
+    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+  </button>
+  <button class="float-btn" id="scrollTop" type="button" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+</div>
 
 <!-- =========================================================
      MODAL — Download PDF
@@ -721,61 +948,6 @@ body.modal-open{overflow:hidden}
 
 <script>
 /* =========================================================
-   SERVICES DATA
-   ========================================================= */
-const SERVICES = [
-  /* ---------- CARD 1 — REAL ---------- */
-  {
-    key: "svc1",
-    title: "PERSONAL 1 TO 1 PREMIUM MENTORSHIP",
-    subtitle: "One-on-One Forex Mentorship & Lifetime Support",
-    features: [
-      "Complete Forex Basics",
-      "Technical & Fundamental Analysis",
-      "SMC (Basic to Advanced)",
-      "ICT (Basic to Advanced)",
-      "Price Action (Basic to Advanced)",
-      "Gold Secret Strategy",
-      "My Personal Strategy",
-      "Live Classes with Recordings",
-      "Lifetime Analysis & Signals 🔥"
-    ],
-    price: "$32",
-    priceType: "paid",
-    buttonLabel: "Enroll Now",
-    buttonLink: "#enroll",
-    bn: {
-      title: "পার্সোনাল ১-টু-১ প্রিমিয়াম মেন্টরশিপ",
-      subtitle: "ওয়ান-টু-ওয়ান ফরেক্স মেন্টরশিপ ও লাইফটাইম সাপোর্ট",
-      features: [
-        "ফরেক্স বেসিক সবকিছু",
-        "টেকনিক্যাল ও ফান্ডামেন্টাল অ্যানালাইসিস",
-        "SMC (বেসিক থেকে অ্যাডভান্স)",
-        "ICT (বেসিক থেকে অ্যাডভান্স)",
-        "Price Action (বেসিক থেকে অ্যাডভান্স)",
-        "গোল্ড সিক্রেট স্ট্র্যাটেজি",
-        "আমার পার্সোনাল স্ট্র্যাটেজি",
-        "রেকর্ডসহ লাইভ ক্লাস",
-        "লাইফটাইম অ্যানালাইসিস ও সিগন্যাল 🔥"
-      ],
-      buttonLabel: "এখনই এনরোল করুন"
-    }
-  },
-  /* ---------- CARD 2 — PLACEHOLDER ---------- */
-  {
-    key: "svc2", title: "", subtitle: "", features: [], price: "",
-    priceType: "paid", buttonLabel: "Enroll Now", buttonLink: "#enroll",
-    bn: { title: "", subtitle: "", features: [], buttonLabel: "" }
-  },
-  /* ---------- CARD 3 — PLACEHOLDER ---------- */
-  {
-    key: "svc3", title: "", subtitle: "", features: [], price: "",
-    priceType: "paid", buttonLabel: "Enroll Now", buttonLink: "#enroll",
-    bn: { title: "", subtitle: "", features: [], buttonLabel: "" }
-  }
-];
-
-/* =========================================================
    TRANSLATION DICTIONARY
    ========================================================= */
 const I18N = {
@@ -802,7 +974,6 @@ const I18N = {
     l3:"Reading Market Structure", l4:"Risk & Money Management",
     stat_subs:"Our Subscribers", stat_traders:"Active Traders",
     stat_students:"Active Students", stat_years:"Years Experience",
-    services_a:"Our", services_b:"services",
     modal_tab_curr:"Curriculum", modal_tab_terms:"Terms & Conditions",
     modal_warn:"Trading involves substantial financial risk.",
     modal_download:"⬇ Download PDF"
@@ -830,16 +1001,12 @@ const I18N = {
     l3:"মার্কেট স্ট্রাকচার পড়া", l4:"Risk ও মানি ম্যানেজমেন্ট",
     stat_subs:"আমাদের সাবস্ক্রাইবার", stat_traders:"অ্যাক্টিভ ট্রেডার",
     stat_students:"অ্যাক্টিভ স্টুডেন্ট", stat_years:"বছরের অভিজ্ঞতা",
-    services_a:"আমাদের", services_b:"সার্ভিসসমূহ",
     modal_tab_curr:"কারিকুলাম", modal_tab_terms:"শর্তাবলী",
     modal_warn:"ট্রেডিংয়ে উল্লেখযোগ্য আর্থিক ঝুঁকি রয়েছে।",
     modal_download:"⬇ PDF ডাউনলোড"
   }
 };
 
-/* =========================================================
-   MODAL CONTENT
-   ========================================================= */
 const MODAL_CONTENT = {
   en: {
     curriculum: [
@@ -909,42 +1076,6 @@ const PAGE_TITLE = {
 };
 
 /* =========================================================
-   SERVICES RENDERER
-   ========================================================= */
-function renderServices(lang){
-  const grid = document.getElementById('servicesGrid');
-  if (!grid) return;
-  grid.innerHTML = '';
-  SERVICES.forEach((card, idx) => {
-    if (!card.title) return; /* skip placeholder */
-    const loc = (lang === 'bn' && card.bn) ? card.bn : {};
-    const title    = loc.title    || card.title;
-    const subtitle = loc.subtitle || card.subtitle;
-    const features = (loc.features && loc.features.length) ? loc.features : card.features;
-    const btnLabel = loc.buttonLabel || card.buttonLabel;
-    const priceClass = card.priceType === 'free' ? 'free' : 'paid';
-    const priceHTML  = card.priceType === 'free' ? `Free` : `${card.price}`;
-
-    const art = document.createElement('article');
-    art.className = 'svc-card';
-    art.setAttribute('aria-labelledby', 'svc-title-' + idx);
-    art.innerHTML = `
-      <h3 class="svc-title" id="svc-title-${idx}">${title}</h3>
-      ${subtitle ? `<p class="svc-sub">${subtitle}</p>` : ''}
-      <div class="svc-divider" role="separator"></div>
-      <ul class="svc-features">
-        ${features.map(f => `<li>${f}</li>`).join('')}
-      </ul>
-      <div class="svc-foot">
-        <div class="svc-price ${priceClass}">${priceHTML}</div>
-        <a class="svc-btn" href="${card.buttonLink || '#enroll'}">${btnLabel}</a>
-      </div>
-    `;
-    grid.appendChild(art);
-  });
-}
-
-/* =========================================================
    setLang(lang)
    ========================================================= */
 function setLang(lang){
@@ -985,10 +1116,7 @@ function setLang(lang){
   document.querySelectorAll('.menu-lang button').forEach(b => {
     b.classList.toggle('active', b.dataset.lang === lang);
   });
-
-  renderServices(lang);
   if (typeof renderModal === 'function') renderModal(lang);
-
   try { localStorage.setItem('sa_lang', lang); } catch(e){ /* ignore */ }
 }
 
@@ -1094,6 +1222,32 @@ function renderModal(lang){
     });
   });
   printBtn.addEventListener('click', () => setTimeout(() => window.print(), 60));
+})();
+
+/* =========================================================
+   FLOATING BUTTONS — chat + scroll to top
+   ========================================================= */
+(function(){
+  const chatBtn = document.getElementById('chatBtn');
+  const topBtn  = document.getElementById('scrollTop');
+
+  /* Scroll-to-top button: show after 400px scroll */
+  function onScroll(){
+    if (window.scrollY > 400) topBtn.classList.add('show');
+    else topBtn.classList.remove('show');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  topBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* Chat button: placeholder action — opens contact section for now */
+  chatBtn.addEventListener('click', () => {
+    const c = document.getElementById('contact');
+    if (c) c.scrollIntoView({ behavior: 'smooth' });
+  });
 })();
 
 /* =========================================================
