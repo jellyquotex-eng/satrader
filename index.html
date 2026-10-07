@@ -2786,7 +2786,6 @@
       background: var(--yellow-grad);
       box-shadow: 0 0 8px var(--yellow-glow), 0 0 2px var(--yellow);
     }
-    /* CHANGE 1 — highlighted feature line */
     .svc-features li.feat-hl {
       color: #ffc21a;
       font-weight: 700;
@@ -2815,7 +2814,6 @@
       box-shadow: 0 2px 8px rgba(255, 179, 0, .45);
       white-space: nowrap;
     }
-    /* CHANGE 1 — master class suffix */
     .feat-master {
       color: var(--yellow);
       font-weight: 600;
@@ -3305,6 +3303,84 @@
       font-size: 10.5px;
     }
 
+    /* =========================================================
+       PAYMENT FIX — payment info box styles
+       ========================================================= */
+    .pay-info-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: linear-gradient(160deg, #1c1c1c, #121212);
+      border: 1px solid rgba(255, 193, 7, .22);
+      margin-bottom: 16px;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .pay-info-box.pay-info-fade {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    .pay-info-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .pay-info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .pay-info-number {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--yellow);
+      line-height: 1.1;
+      letter-spacing: -.01em;
+      word-break: break-all;
+    }
+    .pay-info-copy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      min-height: 40px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 193, 7, .55);
+      background: transparent;
+      color: var(--yellow);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .02em;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+      white-space: nowrap;
+      flex: none;
+    }
+    .pay-info-copy:hover {
+      background: rgba(255, 193, 7, .12);
+    }
+    .pay-info-copy.pay-copied {
+      background: rgba(34, 197, 94, .12);
+      border-color: rgba(34, 197, 94, .55);
+      color: var(--success);
+    }
+    .pay-info-note {
+      font-size: 11.5px;
+      color: var(--muted-2);
+      line-height: 1.5;
+    }
+    @media (max-width: 380px) {
+      .pay-info-number { font-size: 18px; }
+      .pay-info-copy { padding: 8px 10px; font-size: 11px; }
+    }
+
     /* ============ PRINT ============ */
     @media print {
       body { background: #fff !important; color: #000 !important; }
@@ -3625,6 +3701,7 @@
       .countdown-digit.flip { animation: none; }
       .services-highlight { animation: none; }
       .join-popup, .join-popup-backdrop { transition: none; }
+      .pay-info-box { transition: none; }
     }
   </style>
 </head>
@@ -3860,17 +3937,13 @@
         <p class="svc-sub">Personal One-to-One Mentorship</p>
         <div class="svc-divider"></div>
         <ul class="svc-features">
-          <!-- CHANGE 1: new first line with highlight + FREE badge -->
           <li class="feat-hl"><span data-i18n="feat_free_signal">Free Live Signal</span><span class="feat-badge" data-i18n="feat_free_badge">FREE</span></li>
           <li>Complete Forex Basics</li>
-          <!-- CHANGE 1: Master Class suffix -->
           <li><span data-i18n="feat_tech_fund">Technical &amp; Fundamental Analysis</span> <span class="feat-master">(Master Class)</span></li>
           <li>SMC (Basic to Advanced)</li>
           <li>ICT (Basic to Advanced)</li>
           <li>Price Action (Basic to Advanced)</li>
-          <!-- CHANGE 1: Master Class suffix -->
           <li><span data-i18n="feat_gold_secret">Gold Secret Strategy</span> <span class="feat-master">(Master Class)</span></li>
-          <!-- CHANGE 1: Master Class suffix -->
           <li><span data-i18n="feat_my_strategy">My Personal Strategy</span> <span class="feat-master">(Master Class)</span></li>
           <li>Live Classes with Recordings</li>
           <li>Lifetime Analysis &amp; Signals 🔥</li>
@@ -4297,7 +4370,7 @@
 </div>
 
 <!-- =========================================================
-     CHANGE 2 — JOIN COURSE POPUP
+     JOIN COURSE POPUP
      ========================================================= -->
 <div class="join-popup-backdrop" id="joinPopupBackdrop" aria-hidden="true">
   <div class="join-popup" role="dialog" aria-modal="true" aria-labelledby="joinPopupTitle">
@@ -4373,7 +4446,7 @@
 </div>
 
 <!-- =========================================================
-     ENROLL MODAL
+     ENROLL MODAL (PAYMENT FIX applied)
      ========================================================= -->
 <div class="modal-backdrop enroll-modal" id="enrollModal" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -4398,7 +4471,7 @@
         <div class="pay-title">Payment Method <span class="req">*</span></div>
         <div class="pay-grid" role="radiogroup" aria-label="Payment method">
           <label class="pay-opt" data-method="bKash">
-            <input type="radio" name="method" value="bKash">
+            <input type="radio" name="method" value="bKash" checked>
             <span>bKash</span>
           </label>
           <label class="pay-opt" data-method="Nagad">
@@ -4411,6 +4484,17 @@
           </label>
         </div>
         <span class="field-error" id="errMethod" style="display:block;margin:-8px 0 14px"></span>
+
+        <!-- PAYMENT FIX: payment info box -->
+        <div class="pay-info-box" id="payInfoBox" aria-live="polite">
+          <div class="pay-info-label" id="payInfoLabel">bKash Number (Send Money Only)</div>
+          <div class="pay-info-row">
+            <span class="pay-info-number" id="payInfoNumber">01949613857</span>
+            <button class="pay-info-copy" id="payInfoCopy" type="button">Copy</button>
+          </div>
+          <div class="pay-info-note" id="payInfoNote">Use Send Money only. Do not use Cash Out, Payment or Recharge.</div>
+        </div>
+
         <div class="field" id="fieldTx" style="display:none">
           <label for="inpTx" id="lblTx">Transaction ID <span class="req">*</span></label>
           <input type="text" id="inpTx" name="tx" placeholder="Enter your Transaction ID" autocomplete="off">
@@ -4461,7 +4545,6 @@
     <h2>Admin Panel</h2>
     <p class="admin-sub">Manage the "Next Batch" countdown. Changes are saved to Firebase and appear to all visitors instantly.</p>
 
-    <!-- Main panel (no password gate) -->
     <div id="adminPanel">
       <div class="admin-field">
         <label for="adminTitle">Batch title</label>
@@ -4516,25 +4599,21 @@
 
 <script>
 /* =========================================================
-   CHANGE 2 — ALWAYS START FROM THE TOP ON REFRESH
+   ALWAYS START FROM THE TOP ON REFRESH
    ========================================================= */
 (function () {
-  // 1) Disable browser scroll restoration before anything else runs
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
 
-  // Helper: scroll to top without smooth animation, then restore scrollBehavior
   function hardScrollTop() {
     const root = document.documentElement;
     const prev = root.style.scrollBehavior;
     root.style.scrollBehavior = 'auto';
     window.scrollTo(0, 0);
-    // restore after the scroll has been applied
     setTimeout(() => { root.style.scrollBehavior = prev || ''; }, 0);
   }
 
-  // 2) On page load: remove hash without adding a history entry, then scroll to top
   function clearHashAndScrollTop() {
     if (location.hash) {
       history.replaceState(null, '', location.pathname + location.search);
@@ -4542,13 +4621,10 @@
     hardScrollTop();
   }
 
-  // Run immediately (if script is late, still helps)
   clearHashAndScrollTop();
 
-  // 3) Handle later restorations: DOMContentLoaded, load, pageshow (incl. bfcache)
   function scheduleScrollTop() {
     hardScrollTop();
-    // re-run after layout/paint to defeat late-loading images & fonts
     requestAnimationFrame(() => {
       hardScrollTop();
       setTimeout(hardScrollTop, 0);
@@ -4567,19 +4643,16 @@
   window.addEventListener('load', () => {
     clearHashAndScrollTop();
     scheduleScrollTop();
-    // one more pass after fonts/images settle
     setTimeout(hardScrollTop, 50);
     setTimeout(hardScrollTop, 250);
   });
 
   window.addEventListener('pageshow', (e) => {
-    // e.persisted === true when restored from back/forward cache
     clearHashAndScrollTop();
     scheduleScrollTop();
     setTimeout(hardScrollTop, 0);
   });
 
-  // 5) Ensure Home nav link is active on initial load
   document.querySelectorAll('.links a, .menu a').forEach(a => {
     const href = a.getAttribute('href');
     if (href === '#home') a.classList.add('active');
@@ -4618,16 +4691,31 @@ const I18N = {
     modal_warn: "Trading involves substantial financial risk.",
     modal_download: "⬇ Download PDF",
     batch_started: "Batch Started 🚀",
-    // CHANGE 2 — new popup i18n
     join_popup_title: "SA TRADER #01 COURSE",
     join_popup_subtitle: "Professional Trading & Market Analysis",
     join_popup_enroll: "Enroll Now",
-    // CHANGE 1 — Personal 1 to 1 feature list i18n
     feat_free_signal: "Free Live Signal",
     feat_free_badge: "FREE",
     feat_tech_fund: "Technical & Fundamental Analysis",
     feat_gold_secret: "Gold Secret Strategy",
-    feat_my_strategy: "My Personal Strategy"
+    feat_my_strategy: "My Personal Strategy",
+    // PAYMENT FIX — i18n keys
+    pay_label_bkash: "bKash Number (Send Money Only)",
+    pay_label_nagad: "Nagad Number (Send Money Only)",
+    pay_label_binance: "Binance ID / UID (Binance Pay Only)",
+    pay_note_sendmoney: "Use Send Money only. Do not use Cash Out, Payment or Recharge.",
+    pay_note_binance: "Send via Binance Pay using this UID.",
+    pay_copy: "Copy",
+    pay_copied: "Copied ✓",
+    pay_tx_label_bkash: "Transaction ID (TrxID)",
+    pay_tx_label_binance: "Binance Pay Order ID / Transaction ID",
+    pay_tx_ph_bkash: "Enter your TrxID",
+    pay_tx_ph_binance: "Enter your Binance Pay Order ID",
+    pay_amount_bkash: "Paying via bKash · Send Money $AMOUNT equivalent in BDT to the number above",
+    pay_amount_nagad: "Paying via Nagad · Send Money $AMOUNT equivalent in BDT to the number above",
+    pay_amount_binance: "Paying via Binance Pay · send $AMOUNT to the Binance ID above",
+    pay_err_phone: "Phone number must be 11 digits starting with 01.",
+    pay_err_tx_min: "Transaction ID must be at least 6 characters."
   },
   bn: {
     nav_home: "হোম", nav_courses: "কোর্স ও সার্ভিস", nav_contact: "যোগাযোগ করুন", nav_enroll: "এনরোল করুন",
@@ -4656,16 +4744,31 @@ const I18N = {
     modal_warn: "ট্রেডিংয়ে উল্লেখযোগ্য আর্থিক ঝুঁকি রয়েছে।",
     modal_download: "⬇ PDF ডাউনলোড",
     batch_started: "ব্যাচ শুরু হয়েছে 🚀",
-    // CHANGE 2 — new popup i18n (Bengali)
     join_popup_title: "SA ট্রেডার #০১ কোর্স",
     join_popup_subtitle: "প্রফেশনাল ট্রেডিং ও মার্কেট অ্যানালাইসিস",
     join_popup_enroll: "এখনই এনরোল করুন",
-    // CHANGE 1 — Personal 1 to 1 feature list i18n (Bengali)
     feat_free_signal: "ফ্রি লাইভ সিগন্যাল",
     feat_free_badge: "ফ্রি",
     feat_tech_fund: "টেকনিক্যাল ও ফান্ডামেন্টাল অ্যানালাইসিস",
     feat_gold_secret: "গোল্ড সিক্রেট স্ট্র্যাটেজি",
-    feat_my_strategy: "আমার পার্সোনাল স্ট্র্যাটেজি"
+    feat_my_strategy: "আমার পার্সোনাল স্ট্র্যাটেজি",
+    // PAYMENT FIX — Bengali i18n keys
+    pay_label_bkash: "বিকাশ নাম্বার (শুধু সেন্ড মানি)",
+    pay_label_nagad: "নগদ নাম্বার (শুধু সেন্ড মানি)",
+    pay_label_binance: "বাইনান্স আইডি / UID (শুধু বাইনান্স পে)",
+    pay_note_sendmoney: "শুধু সেন্ড মানি করুন। ক্যাশ আউট, পেমেন্ট বা রিচার্জ করবেন না।",
+    pay_note_binance: "এই UID-তে বাইনান্স পের মাধ্যমে পাঠান।",
+    pay_copy: "কপি",
+    pay_copied: "কপি হয়েছে ✓",
+    pay_tx_label_bkash: "ট্রানজেকশন আইডি (TrxID)",
+    pay_tx_label_binance: "বাইনান্স পে অর্ডার আইডি / ট্রানজেকশন আইডি",
+    pay_tx_ph_bkash: "আপনার TrxID লিখুন",
+    pay_tx_ph_binance: "আপনার বাইনান্স পে অর্ডার আইডি লিখুন",
+    pay_amount_bkash: "বিকাশে পেমেন্ট · উপরের নাম্বারে $AMOUNT সমপরিমাণ BDT সেন্ড মানি করুন",
+    pay_amount_nagad: "নগদে পেমেন্ট · উপরের নাম্বারে $AMOUNT সমপরিমাণ BDT সেন্ড মানি করুন",
+    pay_amount_binance: "বাইনান্স পে-তে পেমেন্ট · উপরের আইডিতে $AMOUNT পাঠান",
+    pay_err_phone: "ফোন নাম্বার ০১ দিয়ে শুরু হওয়া ১১ ডিজিটের হতে হবে।",
+    pay_err_tx_min: "ট্রানজেকশন আইডি কমপক্ষে ৬ অক্ষরের হতে হবে।"
   }
 };
 
@@ -4803,6 +4906,8 @@ function setLang(lang) {
     b.classList.toggle('active', b.dataset.lang === lang);
   });
   if (typeof renderModal === 'function') renderModal(lang);
+  // PAYMENT FIX: refresh the payment info box when language changes
+  if (typeof window.__refreshPaymentUI === 'function') window.__refreshPaymentUI();
   try { localStorage.setItem('sa_lang', lang); } catch (e) { /* ignore */ }
 
   const batchTitle = document.getElementById('batchTitle');
@@ -4916,9 +5021,16 @@ function renderModal(lang) {
 })();
 
 /* =========================================================
-   ENROLL MODAL LOGIC
+   ENROLL MODAL LOGIC — PAYMENT FIX
    ========================================================= */
 (function () {
+  // PAYMENT FIX: single source of truth for payment details
+  const PAYMENT = {
+    bkash:   { label: "bKash",   number: "01949613857", type: "Send Money" },
+    nagad:   { label: "Nagad",   number: "01949613857", type: "Send Money" },
+    binance: { label: "Binance", number: "771963398",   type: "Binance Pay" }
+  };
+
   const modal = document.getElementById('enrollModal');
   const modalTitle = document.getElementById('modalTitle');
   const modalSub = document.getElementById('modalSubtitle');
@@ -4944,9 +5056,154 @@ function renderModal(lang) {
   const methodNote = document.getElementById('methodNote');
   const amountVal = document.getElementById('amountVal');
 
+  // PAYMENT FIX: payment info box elements
+  const payInfoBox = document.getElementById('payInfoBox');
+  const payInfoLabel = document.getElementById('payInfoLabel');
+  const payInfoNumber = document.getElementById('payInfoNumber');
+  const payInfoNote = document.getElementById('payInfoNote');
+  const payInfoCopy = document.getElementById('payInfoCopy');
+
   let currentPackage = { name: 'Personal 1 to 1', price: '$100' };
   let lastOrderData = null;
   let lastFocusedEl = null;
+
+  // PAYMENT FIX: get the payment key from a radio value ("bKash" → "bkash")
+  function methodKeyFromValue(v) {
+    if (!v) return null;
+    const lower = String(v).toLowerCase();
+    if (lower === 'bkash') return 'bkash';
+    if (lower === 'nagad') return 'nagad';
+    if (lower === 'binance') return 'binance';
+    return null;
+  }
+
+  // PAYMENT FIX: replace $AMOUNT placeholder inside i18n strings
+  function withAmount(template, price) {
+    return String(template).replace('$AMOUNT', price);
+  }
+
+  // PAYMENT FIX: update the payment info box, amount text, and tx field label/placeholder
+  function refreshPaymentUI(animate) {
+    const lang = document.documentElement.lang === 'bn' ? 'bn' : 'en';
+    const dict = I18N[lang] || I18N.en;
+    const selected = document.querySelector('.pay-opt input:checked');
+    const value = selected ? selected.value : '';
+    const key = methodKeyFromValue(value);
+    const cfg = key ? PAYMENT[key] : null;
+    const price = currentPackage.price;
+
+    // active-state styling on the payment buttons
+    document.querySelectorAll('.pay-opt').forEach(opt => {
+      const r = opt.querySelector('input');
+      opt.classList.toggle('selected', r.checked);
+    });
+
+    // PAYMENT FIX: fade/slide animation on content change (respect reduced motion)
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const applyContent = () => {
+      if (cfg) {
+        if (key === 'binance') {
+          payInfoLabel.textContent = dict.pay_label_binance || PAYMENT.binance.label;
+          payInfoNumber.textContent = PAYMENT.binance.number;
+          payInfoNote.textContent = dict.pay_note_binance || 'Send via Binance Pay using this UID.';
+        } else {
+          payInfoLabel.textContent = (key === 'bkash' ? dict.pay_label_bkash : dict.pay_label_nagad) || cfg.label;
+          payInfoNumber.textContent = cfg.number;
+          payInfoNote.textContent = dict.pay_note_sendmoney || 'Use Send Money only. Do not use Cash Out, Payment or Recharge.';
+        }
+        // Transaction ID label/placeholder per method
+        if (key === 'binance') {
+          lblTx.innerHTML = (dict.pay_tx_label_binance || 'Binance Pay Order ID / Transaction ID') + ' <span class="req">*</span>';
+          inpTx.placeholder = dict.pay_tx_ph_binance || 'Enter your Binance Pay Order ID';
+        } else {
+          lblTx.innerHTML = (dict.pay_tx_label_bkash || 'Transaction ID (TrxID)') + ' <span class="req">*</span>';
+          inpTx.placeholder = dict.pay_tx_ph_bkash || 'Enter your TrxID';
+        }
+        // Amount box note per method
+        if (key === 'binance') {
+          methodNote.textContent = withAmount(dict.pay_amount_binance || 'Paying via Binance Pay · send $AMOUNT to the Binance ID above', price);
+        } else if (key === 'nagad') {
+          methodNote.textContent = withAmount(dict.pay_amount_nagad || 'Paying via Nagad · Send Money $AMOUNT equivalent in BDT to the number above', price);
+        } else {
+          methodNote.textContent = withAmount(dict.pay_amount_bkash || 'Paying via bKash · Send Money $AMOUNT equivalent in BDT to the number above', price);
+        }
+      } else {
+        payInfoLabel.textContent = dict.pay_label_bkash || 'bKash Number (Send Money Only)';
+        payInfoNumber.textContent = PAYMENT.bkash.number;
+        payInfoNote.textContent = dict.pay_note_sendmoney || 'Use Send Money only. Do not use Cash Out, Payment or Recharge.';
+        lblTx.innerHTML = (dict.pay_tx_label_bkash || 'Transaction ID (TrxID)') + ' <span class="req">*</span>';
+        inpTx.placeholder = dict.pay_tx_ph_bkash || 'Enter your TrxID';
+        methodNote.textContent = withAmount(dict.pay_amount_bkash || 'Paying via bKash · Send Money $AMOUNT equivalent in BDT to the number above', price);
+      }
+    };
+
+    if (animate && !reduce) {
+      payInfoBox.classList.add('pay-info-fade');
+      setTimeout(() => {
+        applyContent();
+        payInfoBox.classList.remove('pay-info-fade');
+      }, 140);
+    } else {
+      applyContent();
+    }
+
+    if (value) errMethod.textContent = '';
+  }
+
+  // Expose for language switcher
+  window.__refreshPaymentUI = () => refreshPaymentUI(false);
+
+  // PAYMENT FIX: copy number button
+  payInfoCopy.addEventListener('click', () => {
+    const text = payInfoNumber.textContent.trim();
+    if (!text) return;
+    const lang = document.documentElement.lang === 'bn' ? 'bn' : 'en';
+    const dict = I18N[lang] || I18N.en;
+    const done = () => {
+      payInfoCopy.textContent = dict.pay_copied || 'Copied ✓';
+      payInfoCopy.classList.add('pay-copied');
+      setTimeout(() => {
+        payInfoCopy.textContent = dict.pay_copy || 'Copy';
+        payInfoCopy.classList.remove('pay-copied');
+      }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => {
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          done();
+        } catch (e) { /* ignore */ }
+      });
+    } else {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        done();
+      } catch (e) { /* ignore */ }
+    }
+  });
+
+  function resetForm() {
+    form.reset();
+    clearErrors();
+    // PAYMENT FIX: default method = bKash
+    const bkashRadio = document.querySelector('.pay-opt[data-method="bKash"] input');
+    if (bkashRadio) bkashRadio.checked = true;
+    refreshPaymentUI(false);
+  }
 
   function openModal(pkg) {
     currentPackage = pkg || currentPackage;
@@ -4956,9 +5213,7 @@ function renderModal(lang) {
 
     formBody.style.display = '';
     orderBody.style.display = 'none';
-    form.reset();
-    clearErrors();
-    updateMethodUI();
+    resetForm();
 
     lastFocusedEl = document.activeElement;
     modal.classList.add('open');
@@ -4989,40 +5244,14 @@ function renderModal(lang) {
     if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
   });
 
+  // Payment method selection
   document.querySelectorAll('.pay-opt').forEach(opt => {
     opt.addEventListener('click', () => {
       const radio = opt.querySelector('input[type="radio"]');
       radio.checked = true;
-      updateMethodUI();
+      refreshPaymentUI(true);
     });
   });
-
-  function updateMethodUI() {
-    const selected = document.querySelector('.pay-opt input:checked');
-    const value = selected ? selected.value : '';
-
-    document.querySelectorAll('.pay-opt').forEach(opt => {
-      const r = opt.querySelector('input');
-      opt.classList.toggle('selected', r.checked);
-    });
-
-    if (value === 'bKash' || value === 'Nagad') {
-      fieldTx.style.display = '';
-      lblTx.innerHTML = 'Transaction ID <span class="req">*</span>';
-      inpTx.placeholder = 'Enter your Transaction ID';
-      methodNote.textContent = 'Paying via ' + value + ' · send ' + currentPackage.price + ' to our ' + value + ' number';
-    } else if (value === 'Binance') {
-      fieldTx.style.display = '';
-      lblTx.innerHTML = 'Order ID <span class="req">*</span>';
-      inpTx.placeholder = 'Enter your Binance Order ID';
-      methodNote.textContent = 'Paying via Binance · send ' + currentPackage.price + ' USDT to our Binance wallet';
-    } else {
-      fieldTx.style.display = 'none';
-      methodNote.textContent = 'Select a payment method';
-    }
-
-    if (value) errMethod.textContent = '';
-  }
 
   function clearErrors() {
     [errName, errPhone, errTx, errMethod].forEach(el => el.textContent = '');
@@ -5032,6 +5261,8 @@ function renderModal(lang) {
   function validateForm() {
     clearErrors();
     let ok = true;
+    const lang = document.documentElement.lang === 'bn' ? 'bn' : 'en';
+    const dict = I18N[lang] || I18N.en;
 
     const name = inpName.value.trim();
     if (!name) {
@@ -5044,18 +5275,15 @@ function renderModal(lang) {
       ok = false;
     }
 
+    // PAYMENT FIX: Bangladeshi phone format (11 digits starting with 01)
     const phoneRaw = inpPhone.value.trim();
     const phoneDigits = phoneRaw.replace(/\D/g, '');
     if (!phoneRaw) {
       errPhone.textContent = 'Please enter your phone number.';
       fieldPhone.classList.add('invalid');
       ok = false;
-    } else if (phoneDigits.length < 10) {
-      errPhone.textContent = 'Phone number must be at least 10 digits.';
-      fieldPhone.classList.add('invalid');
-      ok = false;
-    } else if (/\D/.test(phoneRaw.replace(/[\s\-+()]/g, ''))) {
-      errPhone.textContent = 'Phone number can only contain digits.';
+    } else if (!/^01\d{9}$/.test(phoneDigits)) {
+      errPhone.textContent = dict.pay_err_phone || 'Phone number must be 11 digits starting with 01.';
       fieldPhone.classList.add('invalid');
       ok = false;
     }
@@ -5067,10 +5295,15 @@ function renderModal(lang) {
     }
 
     if (method) {
+      // PAYMENT FIX: Transaction ID min 6 characters (trimmed)
       const tx = inpTx.value.trim();
-      const label = method.value === 'Binance' ? 'Order ID' : 'Transaction ID';
+      const label = method.value === 'Binance' ? 'Binance Pay Order ID / Transaction ID' : 'Transaction ID (TrxID)';
       if (!tx) {
         errTx.textContent = 'Please enter your ' + label + '.';
+        fieldTx.classList.add('invalid');
+        ok = false;
+      } else if (tx.length < 6) {
+        errTx.textContent = dict.pay_err_tx_min || 'Transaction ID must be at least 6 characters.';
         fieldTx.classList.add('invalid');
         ok = false;
       }
@@ -5084,11 +5317,16 @@ function renderModal(lang) {
     if (!validateForm()) return;
 
     const method = document.querySelector('.pay-opt input:checked').value;
-    const txLabel = method === 'Binance' ? 'Order ID' : 'Transaction ID';
+    const key = methodKeyFromValue(method);
+    const cfg = key ? PAYMENT[key] : null;
+    const txLabel = method === 'Binance' ? 'Binance Pay Order ID / Transaction ID' : 'Transaction ID (TrxID)';
     const order = {
       name: inpName.value.trim(),
       phone: inpPhone.value.trim(),
       method: method,
+      // PAYMENT FIX: include the number shown to the user in the submitted data
+      payNumber: cfg ? cfg.number : '',
+      payType: cfg ? cfg.type : '',
       txLabel: txLabel,
       txValue: inpTx.value.trim(),
       package: currentPackage.name,
@@ -5109,6 +5347,7 @@ function renderModal(lang) {
       <div class="order-row"><span class="k">Name</span><span class="v">${escapeHTML(order.name)}</span></div>
       <div class="order-row"><span class="k">Phone Number</span><span class="v">${escapeHTML(order.phone)}</span></div>
       <div class="order-row"><span class="k">Payment Method</span><span class="v">${escapeHTML(order.method)}</span></div>
+      <div class="order-row"><span class="k">Pay To (${escapeHTML(order.payType)})</span><span class="v">${escapeHTML(order.payNumber)}</span></div>
       <div class="order-row"><span class="k">${escapeHTML(order.txLabel)}</span><span class="v">${escapeHTML(order.txValue)}</span></div>
       <div class="order-row"><span class="k">Date &amp; Time</span><span class="v">${escapeHTML(order.datetime)}</span></div>
       <div class="order-row"><span class="k">Package</span><span class="v">${escapeHTML(order.package)}</span></div>
@@ -5145,6 +5384,7 @@ function renderModal(lang) {
 Name: ${o.name}
 Phone Number: ${o.phone}
 Payment Method: ${o.method}
+Pay To (${o.payType}): ${o.payNumber}
 ${o.txLabel}: ${o.txValue}
 Date & Time: ${o.datetime}
 Package: ${o.package}
@@ -5196,9 +5436,10 @@ Status: ${o.status}`;
   inpPhone.addEventListener('input', () => { if (errPhone.textContent) { errPhone.textContent = ''; fieldPhone.classList.remove('invalid'); } });
   inpTx.addEventListener('input', () => { if (errTx.textContent) { errTx.textContent = ''; fieldTx.classList.remove('invalid'); } });
 
-  updateMethodUI();
+  // initial paint
+  refreshPaymentUI(false);
 
-  // Expose openModal for CHANGE 2 popup
+  // Expose openModal for the Join Course popup
   window.__openEnrollModal = openModal;
 })();
 
@@ -5737,7 +5978,7 @@ Status: ${o.status}`;
 })();
 
 /* =========================================================
-   FEATURE 2: ENROLL NOW SCROLLS TO SERVICES SECTION
+   ENROLL NOW SCROLLS TO SERVICES SECTION
    ========================================================= */
 (function () {
   if (!document.getElementById('services')) {
@@ -5775,7 +6016,7 @@ Status: ${o.status}`;
 })();
 
 /* =========================================================
-   CHANGE 2 — JOIN COURSE POPUP
+   JOIN COURSE POPUP
    ========================================================= */
 (function () {
   const JOIN_COURSE = {
