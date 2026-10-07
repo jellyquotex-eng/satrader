@@ -2786,6 +2786,41 @@
       background: var(--yellow-grad);
       box-shadow: 0 0 8px var(--yellow-glow), 0 0 2px var(--yellow);
     }
+    /* CHANGE 1 — highlighted feature line */
+    .svc-features li.feat-hl {
+      color: #ffc21a;
+      font-weight: 700;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+    .svc-features li.feat-hl::before {
+      box-shadow: 0 0 12px rgba(255, 194, 26, .9), 0 0 4px var(--yellow);
+      background: linear-gradient(135deg, #ffd54f, #ffb300);
+    }
+    .feat-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #111;
+      background: var(--yellow-grad);
+      border-radius: 999px;
+      padding: 2px 8px;
+      line-height: 1.3;
+      box-shadow: 0 2px 8px rgba(255, 179, 0, .45);
+      white-space: nowrap;
+    }
+    /* CHANGE 1 — master class suffix */
+    .feat-master {
+      color: var(--yellow);
+      font-weight: 600;
+      opacity: .9;
+    }
     .svc-foot {
       margin-top: auto;
       display: flex;
@@ -3819,19 +3854,24 @@
       <p>Choose the package that fits your trading journey. All plans include lifetime mentorship.</p>
     </div>
     <div class="svc-grid" id="servicesGrid">
-      <!-- CARD 1 — REAL CONTENT -->
+      <!-- CARD 1 — REAL CONTENT (CHANGE 1 applied) -->
       <article class="svc-card">
         <h3 class="svc-title">Personal 1 to 1</h3>
         <p class="svc-sub">Personal One-to-One Mentorship</p>
         <div class="svc-divider"></div>
         <ul class="svc-features">
+          <!-- CHANGE 1: new first line with highlight + FREE badge -->
+          <li class="feat-hl"><span data-i18n="feat_free_signal">Free Live Signal</span><span class="feat-badge" data-i18n="feat_free_badge">FREE</span></li>
           <li>Complete Forex Basics</li>
-          <li>Technical &amp; Fundamental Analysis</li>
+          <!-- CHANGE 1: Master Class suffix -->
+          <li><span data-i18n="feat_tech_fund">Technical &amp; Fundamental Analysis</span> <span class="feat-master">(Master Class)</span></li>
           <li>SMC (Basic to Advanced)</li>
           <li>ICT (Basic to Advanced)</li>
           <li>Price Action (Basic to Advanced)</li>
-          <li>Gold Secret Strategy</li>
-          <li>My Personal Strategy</li>
+          <!-- CHANGE 1: Master Class suffix -->
+          <li><span data-i18n="feat_gold_secret">Gold Secret Strategy</span> <span class="feat-master">(Master Class)</span></li>
+          <!-- CHANGE 1: Master Class suffix -->
+          <li><span data-i18n="feat_my_strategy">My Personal Strategy</span> <span class="feat-master">(Master Class)</span></li>
           <li>Live Classes with Recordings</li>
           <li>Lifetime Analysis &amp; Signals 🔥</li>
         </ul>
@@ -4414,7 +4454,7 @@
 </div>
 
 <!-- =========================================================
-     ADMIN PANEL (hidden, opens via "aa" shortcut) — CHANGE 1: no password
+     ADMIN PANEL (hidden, opens via "aa" shortcut)
      ========================================================= -->
 <div class="admin-overlay" id="adminOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Admin panel">
   <div class="admin-modal" id="adminModal">
@@ -4476,6 +4516,78 @@
 
 <script>
 /* =========================================================
+   CHANGE 2 — ALWAYS START FROM THE TOP ON REFRESH
+   ========================================================= */
+(function () {
+  // 1) Disable browser scroll restoration before anything else runs
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  // Helper: scroll to top without smooth animation, then restore scrollBehavior
+  function hardScrollTop() {
+    const root = document.documentElement;
+    const prev = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    // restore after the scroll has been applied
+    setTimeout(() => { root.style.scrollBehavior = prev || ''; }, 0);
+  }
+
+  // 2) On page load: remove hash without adding a history entry, then scroll to top
+  function clearHashAndScrollTop() {
+    if (location.hash) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+    hardScrollTop();
+  }
+
+  // Run immediately (if script is late, still helps)
+  clearHashAndScrollTop();
+
+  // 3) Handle later restorations: DOMContentLoaded, load, pageshow (incl. bfcache)
+  function scheduleScrollTop() {
+    hardScrollTop();
+    // re-run after layout/paint to defeat late-loading images & fonts
+    requestAnimationFrame(() => {
+      hardScrollTop();
+      setTimeout(hardScrollTop, 0);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      clearHashAndScrollTop();
+      scheduleScrollTop();
+    });
+  } else {
+    scheduleScrollTop();
+  }
+
+  window.addEventListener('load', () => {
+    clearHashAndScrollTop();
+    scheduleScrollTop();
+    // one more pass after fonts/images settle
+    setTimeout(hardScrollTop, 50);
+    setTimeout(hardScrollTop, 250);
+  });
+
+  window.addEventListener('pageshow', (e) => {
+    // e.persisted === true when restored from back/forward cache
+    clearHashAndScrollTop();
+    scheduleScrollTop();
+    setTimeout(hardScrollTop, 0);
+  });
+
+  // 5) Ensure Home nav link is active on initial load
+  document.querySelectorAll('.links a, .menu a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href === '#home') a.classList.add('active');
+    else if (href && href.startsWith('#')) a.classList.remove('active');
+  });
+})();
+
+/* =========================================================
    TRANSLATION DICTIONARY
    ========================================================= */
 const I18N = {
@@ -4509,7 +4621,13 @@ const I18N = {
     // CHANGE 2 — new popup i18n
     join_popup_title: "SA TRADER #01 COURSE",
     join_popup_subtitle: "Professional Trading & Market Analysis",
-    join_popup_enroll: "Enroll Now"
+    join_popup_enroll: "Enroll Now",
+    // CHANGE 1 — Personal 1 to 1 feature list i18n
+    feat_free_signal: "Free Live Signal",
+    feat_free_badge: "FREE",
+    feat_tech_fund: "Technical & Fundamental Analysis",
+    feat_gold_secret: "Gold Secret Strategy",
+    feat_my_strategy: "My Personal Strategy"
   },
   bn: {
     nav_home: "হোম", nav_courses: "কোর্স ও সার্ভিস", nav_contact: "যোগাযোগ করুন", nav_enroll: "এনরোল করুন",
@@ -4541,7 +4659,13 @@ const I18N = {
     // CHANGE 2 — new popup i18n (Bengali)
     join_popup_title: "SA ট্রেডার #০১ কোর্স",
     join_popup_subtitle: "প্রফেশনাল ট্রেডিং ও মার্কেট অ্যানালাইসিস",
-    join_popup_enroll: "এখনই এনরোল করুন"
+    join_popup_enroll: "এখনই এনরোল করুন",
+    // CHANGE 1 — Personal 1 to 1 feature list i18n (Bengali)
+    feat_free_signal: "ফ্রি লাইভ সিগন্যাল",
+    feat_free_badge: "ফ্রি",
+    feat_tech_fund: "টেকনিক্যাল ও ফান্ডামেন্টাল অ্যানালাইসিস",
+    feat_gold_secret: "গোল্ড সিক্রেট স্ট্র্যাটেজি",
+    feat_my_strategy: "আমার পার্সোনাল স্ট্র্যাটেজি"
   }
 };
 
@@ -5654,7 +5778,6 @@ Status: ${o.status}`;
    CHANGE 2 — JOIN COURSE POPUP
    ========================================================= */
 (function () {
-  // One small JS object for the course data
   const JOIN_COURSE = {
     title: 'SA TRADER #01 COURSE',
     subtitle: 'Professional Trading & Market Analysis',
@@ -5683,7 +5806,6 @@ Status: ${o.status}`;
 
   if (!backdrop || !popup || !trigger) return;
 
-  // Fill popup content from JOIN_COURSE object
   function renderPopupContent() {
     const lang = document.documentElement.lang === 'bn' ? 'bn' : 'en';
     const dict = I18N[lang] || I18N.en;
@@ -5704,7 +5826,6 @@ Status: ${o.status}`;
   function openPopup() {
     renderPopupContent();
 
-    // Scroll to services section and glow the cards
     if (servicesEl) {
       servicesEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setTimeout(() => {
@@ -5716,7 +5837,6 @@ Status: ${o.status}`;
       }, 500);
     }
 
-    // Open popup after a short delay so scroll starts first
     setTimeout(() => {
       lastFocused = document.activeElement;
       backdrop.classList.add('open');
@@ -5745,7 +5865,6 @@ Status: ${o.status}`;
     if (e.key === 'Escape' && backdrop.classList.contains('open')) closePopup();
   });
 
-  // Trap focus inside popup
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Tab' || !backdrop.classList.contains('open')) return;
     const focusables = popup.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
@@ -5756,10 +5875,8 @@ Status: ${o.status}`;
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
 
-  // Enroll button — runs the SAME action as the $100 card enroll button
   enrollBtn.addEventListener('click', () => {
     closePopup();
-    // Reuse the existing enroll modal handler with the $32 package
     if (window.__openEnrollModal) {
       window.__openEnrollModal({
         name: JOIN_COURSE.title,
@@ -5770,16 +5887,12 @@ Status: ${o.status}`;
 })();
 
 /* =========================================================
-   FEATURE 1: HIDDEN ADMIN PANEL + LIVE COUNTDOWN (Firebase)
-   — CHANGE 1: password gate removed; "aa" opens panel directly.
+   HIDDEN ADMIN PANEL + LIVE COUNTDOWN (Firebase)
    ========================================================= */
 </script>
 
 <!-- Firebase SDK (modular) -->
 <script type="module">
-  /* =========================================================
-     1. FIREBASE CONFIG & INIT
-     ========================================================= */
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
   import { getDatabase, ref, onValue, set, update } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
@@ -5805,9 +5918,6 @@ Status: ${o.status}`;
 
   const countdownRef = db ? ref(db, 'countdown') : null;
 
-  /* =========================================================
-     2. ADMIN PANEL UI (no password, no lock button)
-     ========================================================= */
   const overlay = document.getElementById('adminOverlay');
   const adminPanel = document.getElementById('adminPanel');
   const adminTitle = document.getElementById('adminTitle');
@@ -5836,7 +5946,6 @@ Status: ${o.status}`;
     setTimeout(() => adminToast.classList.remove('show'), 2000);
   }
 
-  // CHANGE 1: open admin panel directly — no password gate
   function openAdmin() {
     overlay.classList.add('open');
     overlay.setAttribute('aria-hidden', 'false');
@@ -5849,7 +5958,6 @@ Status: ${o.status}`;
     if (previewInterval) { clearInterval(previewInterval); previewInterval = null; }
   }
 
-  // Double "A" key shortcut (ignores when typing in inputs / textareas / selects / contentEditable)
   document.addEventListener('keydown', (e) => {
     const tag = document.activeElement.tagName.toLowerCase();
     if (tag === 'input' || tag === 'textarea' || tag === 'select' || document.activeElement.isContentEditable) return;
@@ -5864,16 +5972,12 @@ Status: ${o.status}`;
     }
   });
 
-  // Close on Esc
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && overlay.classList.contains('open')) closeAdmin();
   });
 
   overlay.addEventListener('click', (e) => { if (e.target === overlay) closeAdmin(); });
 
-  /* =========================================================
-     3. ADMIN DATA & PREVIEW
-     ========================================================= */
   function loadAdminData() {
     if (!countdownRef) { adminError.textContent = 'Firebase not available.'; return; }
     onValue(countdownRef, (snapshot) => {
@@ -5959,9 +6063,6 @@ Status: ${o.status}`;
   adminDate.addEventListener('change', () => updatePreview(adminTitle.value, getTargetTime(), currentAdminStatus));
   adminTime.addEventListener('change', () => updatePreview(adminTitle.value, getTargetTime(), currentAdminStatus));
 
-  /* =========================================================
-     4. ADMIN ACTIONS
-     ========================================================= */
   adminSaveBtn.addEventListener('click', () => {
     const title = adminTitle.value.trim() || 'Starting on ★';
     const targetTime = getTargetTime();
@@ -6037,9 +6138,6 @@ Status: ${o.status}`;
     });
   });
 
-  /* =========================================================
-     5. VISITOR-FACING COUNTDOWN RENDER
-     ========================================================= */
   const cdDays = document.getElementById('cdDays');
   const cdHours = document.getElementById('cdHours');
   const cdMins = document.getElementById('cdMins');
