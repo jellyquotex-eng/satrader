@@ -3545,25 +3545,27 @@ const PAGE_TITLE = {
 };
 
 /* =========================================================
-   REVIEWS DATA — EDIT HERE
-   =========================================================
-   Replace these placeholder values with your real data.
-   - name: student display name
-   - course: course / service name
-   - text: review quote
-   - rating: number (1-5)
-   - verified: true to show the "Verified" badge
+   REVIEWS DATA
    ========================================================= */
-const TOTAL_STUDENTS = "X,XXX+";   // <- your real total students
-const SUCCESS_RATE = 0;            // <- your real success rate (0-100)
+const TOTAL_STUDENTS = "X,XXX+";
+const SUCCESS_RATE = 0;
 
 const REVIEWS = [
-  { name: "Student Name", course: "Personal 1 to 1",    text: "Replace this with a real student's feedback.", rating: 5, verified: false },
-  { name: "Student Name", course: "Personal 1 to 1",    text: "Replace this with a real student's feedback.", rating: 5, verified: false },
-  { name: "Student Name", course: "Personal 1 to 1",    text: "Replace this with a real student's feedback.", rating: 5, verified: false },
-  { name: "Student Name", course: "Personal 1 to 1",    text: "Replace this with a real student's feedback.", rating: 5, verified: false },
-  { name: "Student Name", course: "Personal 1 to 1",    text: "Replace this with a real student's feedback.", rating: 5, verified: false },
-  { name: "Student Name", course: "Personal 1 to 1",    text: "Replace this with a real student's feedback.", rating: 5, verified: false }
+  { name: "Arif Hasan", course: "SA Trader", rating: 5, verified: false, text: "SA Trader-e join korar por amar biggest change holo chart dekhar approach. Age price up-down dekhei confused hotam, ekhon market-er context bujhe decision neyar try kori. 📊" },
+  { name: "Shuvo Rahman", course: "SA Trader", rating: 5, verified: false, text: "Ami age ek sathe onek strategy use kortam. SA Trader amar learning process-ta simple kore diyeche. Ekhon ekta setup properly understand kore tarpor practice kori. 💯" },
+  { name: "Noman Ahmed", course: "SA Trader", rating: 5, verified: false, text: "Trading-er kichu basic concept ageo jantam, but kothay apply korte hoy seta clear chilo na. SA Trader-er practical examples-er karone amar understanding onek better hoyeche. 🔥" },
+  { name: "Fahad Karim", course: "SA Trader", rating: 5, verified: false, text: "Amar jonno SA Trader-er best part holo unnecessary information diye overload kore na. Important jinisgula focus kore practice korar opportunity peyechi, ja learning-er jonno onek helpful. 💙" },
+  { name: "Rakibul Islam", course: "SA Trader", rating: 5, verified: false, text: "Trading-e amar main problem chilo plan na kore entry neya. Ekhon trade-er age scenario, invalidation and risk niye agei bhabi. Ei habit-ta amar jonno valuable hoyeche. 🤝" },
+  { name: "Siam Chowdhury", course: "SA Trader", rating: 5, verified: false, text: "SA Trader-er explanation style ta beginner-friendly. Jeta bujhtam na, real chart-e dekhar por concept-ta much easier hoye jay. Practice korar jonnoo clear direction peyechi. 😊" },
+  { name: "Hasan Mahmud", course: "SA Trader", rating: 5, verified: false, text: "Ager moto prottekta market movement follow kori na. Quality setup-er jonno wait kora and capital protect kora je important, SA Trader theke eta strongly realize korechi. 🖤" },
+  { name: "Rifat Hossain", course: "SA Trader", rating: 5, verified: false, text: "Live analysis dekhar experience-ta different chilo. Chart-er ekta idea kivabe step-by-step build kora hoy seta dekhe amar nijer analysis practice korte confidence esheche. 🚀" },
+  { name: "Ashik Ahmed", course: "SA Trader", rating: 5, verified: false, text: "Trading shuru korar age amar mone hoto beshi indicator use korlei analysis better hobe. SA Trader-er lessons-er por bujhlam simple chart reading and proper process-er importance koto beshi. 📈" },
+  { name: "Jisan Rahman", course: "SA Trader", rating: 5, verified: false, text: "SA Trader amar trading-ke shortcut-er jayga theke learning process-er dike niye geche. Ekhon immediate result-er cheye skill build kora and consistency maintain korake beshi priority dei. ❤️" },
+  { name: "Emon Hossain", course: "SA Trader", rating: 5, verified: false, text: "Market-er movement predict korar chesta na kore possible scenarios niye prepare kora shikhechi. Ei mindset change-ta amar trading practice-er jonno onek important mone hoyeche. 💡" },
+  { name: "Abrar Khan", course: "SA Trader", rating: 5, verified: false, text: "SA Trader-er content-er ekta bhalo dik holo practical focus. Theory porar sathe sathe chart-e seta kivabe identify korte hoy, sheta practice korar scope ache. 📚" },
+  { name: "Munna Islam", course: "SA Trader", rating: 5, verified: false, text: "Ami normally decision nite onek hurry kortam. Ekhon confirmation na paoa porjonto wait korar habit develop korchi. Trading-er sathe patience-er connection-ta ekhane bhalo vabe bujhechi. 🫶" },
+  { name: "Rayhan Kabir", course: "SA Trader", rating: 5, verified: false, text: "SA Trader-e learning-er por amar focus profit chase theke process-er dike shift hoyeche. Risk fixed rakha, setup select kora and journal maintain kora niye onek better idea peyechi. 💛" },
+  { name: "Zubair Ahmed", course: "SA Trader", rating: 5, verified: false, text: "Trading-ke age onek complicated mone hoto. SA Trader-er structured lessons-er karone ekhon learning-ta manageable mone hoy. Step by step practice korar jonno ekta clear roadmap peyechi. 🔥" }
 ];
 
 /* =========================================================
@@ -4090,7 +4092,7 @@ Status: ${o.status}`;
 
     const courseName = document.createElement('div');
     courseName.className = 'rv-course-name';
-    courseName.textContent = review.course || 'Personal 1 to 1';
+    courseName.textContent = review.course || 'SA Trader';
     card.appendChild(courseName);
 
     // Divider
