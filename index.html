@@ -2888,13 +2888,13 @@
     }
 
     /* =========================================================
-       FREE COURSE VIDEOS (Box 2)
+       FREE COURSE VIDEOS (Box 2) — tighter grid
        ========================================================= */
     .svc-free-videos {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-bottom: 18px;
+      gap: 8px;
+      margin-bottom: 14px;
     }
     .svc-free-videos a {
       position: relative;
@@ -2973,19 +2973,19 @@
     .svc-free-videos a.img-failed .vid-fallback { display: grid; }
 
     /* =========================================================
-       SMC & LIQUIDITY COURSE (Box 3)
+       SMC & LIQUIDITY COURSE (Box 3) — tighter grid
        ========================================================= */
     .svc-smc-groups {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      margin-bottom: 18px;
+      gap: 12px;
+      margin-bottom: 14px;
     }
     .svc-smc-group-label {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .svc-smc-group-label .svc-smc-group-name {
       font-size: 11px;
@@ -3006,7 +3006,7 @@
     .svc-smc-videos {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 8px;
     }
     .svc-smc-videos a {
       position: relative;
@@ -3084,6 +3084,80 @@
     .svc-smc-videos a .smc-vid-fallback svg polygon {
       fill: var(--yellow);
     }
+
+    /* =========================================================
+       MAY BATCH / MEMBER FEEDBACK (Box 4) — featured video
+       ========================================================= */
+    .svc-featured-video {
+      display: block;
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #0d0d0d;
+      aspect-ratio: 16 / 9;
+      margin-bottom: 16px;
+      position: relative;
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+    .svc-featured-video:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 193, 7, .6);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 193, 7, .3), 0 0 30px rgba(255, 179, 0, .15);
+    }
+    .svc-featured-video img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease, filter .4s ease;
+    }
+    .svc-featured-video:hover img {
+      transform: scale(1.05);
+      filter: brightness(1.08);
+    }
+    .svc-featured-video .featured-play {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+    }
+    .svc-featured-video .featured-play svg {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, .6);
+      padding: 14px;
+      box-sizing: border-box;
+      backdrop-filter: blur(4px);
+      display: block;
+      transition: transform .3s ease, background .3s ease;
+    }
+    .svc-featured-video:hover .featured-play svg {
+      transform: scale(1.1);
+      background: rgba(0, 0, 0, .75);
+    }
+    .svc-featured-video .featured-play svg polygon {
+      fill: var(--yellow);
+    }
+    .svc-featured-video .featured-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      place-items: center;
+      background: #111;
+    }
+    .svc-featured-video .featured-fallback svg {
+      width: 64px;
+      height: 64px;
+      display: block;
+    }
+    .svc-featured-video .featured-fallback svg polygon {
+      fill: var(--yellow);
+    }
+    .svc-featured-video.img-failed img { display: none; }
+    .svc-featured-video.img-failed .featured-fallback { display: grid; }
 
     /* ============ FLOATING ELEMENTS ============ */
     .rsvc-floats {
@@ -4162,19 +4236,18 @@
         </div>
       </article>
 
-      <!-- CARD 2 — OUR FREE COURSE (unchanged) -->
+      <!-- CARD 2 — OUR FREE COURSE (updated) -->
       <article class="svc-card" id="freeCourseCard">
         <h3 class="svc-title" data-i18n="free_course_title">OUR FREE COURSE</h3>
         <p class="svc-sub" data-i18n="free_course_sub">Learn Forex Trading for Free: Watch Our YouTube Lessons</p>
         <div class="svc-divider"></div>
         <div class="svc-free-videos" id="freeVideosGrid"></div>
         <div class="svc-foot">
-          <div class="svc-price free-price"><span data-i18n="free_course_price">Free</span><small data-i18n="free_course_access">FREE ACCESS</small></div>
-          <a class="btn-enroll" id="ytChannelBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="free_course_btn" style="display:none;">Visit YouTube Channel</a>
+          <a class="btn-enroll" id="ytChannelBtn" href="https://youtube.com/@satrader10" target="_blank" rel="noopener noreferrer" data-i18n="free_course_btn">Visit YouTube Channel</a>
         </div>
       </article>
 
-      <!-- CARD 3 — SMC & LIQUIDITY COURSE (UPDATED) -->
+      <!-- CARD 3 — SMC & LIQUIDITY COURSE -->
       <article class="svc-card" id="smcLiquidityCard">
         <h3 class="svc-title">SMC &amp; LIQUIDITY COURSE</h3>
         <p class="svc-sub">Master SMC &amp; Liquidity concepts with practical trading lessons.</p>
@@ -4206,12 +4279,20 @@
         </div>
       </article>
 
-      <!-- CARD 4 — PLACEHOLDER -->
-      <article class="svc-card is-placeholder">
-        <h3 class="svc-title">Coming soon</h3>
-        <p class="svc-sub">Add subtitle here</p>
+      <!-- CARD 4 — MAY BATCH / MEMBER FEEDBACK -->
+      <article class="svc-card" id="mayBatchCard">
+        <h3 class="svc-title">MAY BATCH</h3>
+        <p class="svc-sub">MEMBER FEEDBACK</p>
         <div class="svc-divider"></div>
-        <div class="svc-body">Card 4 — content coming soon</div>
+        <a class="svc-featured-video" href="https://youtu.be/XiCzMFKVNO8?si=uq3qxC9l5Q2v4y1N" target="_blank" rel="noopener noreferrer" aria-label="Watch May Batch member feedback video on YouTube">
+          <img src="https://i.ytimg.com/vi/XiCzMFKVNO8/maxresdefault.jpg" alt="May Batch member feedback video thumbnail" loading="lazy" referrerpolicy="no-referrer">
+          <span class="featured-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><polygon points="9,7 9,17 17,12"/></svg>
+          </span>
+          <span class="featured-fallback" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><polygon points="9,7 9,17 17,12"/></svg>
+          </span>
+        </a>
       </article>
     </div>
   </section>
@@ -4958,8 +5039,6 @@ const I18N = {
     pay_err_tx_min: "Transaction ID must be at least 6 characters.",
     free_course_title: "OUR FREE COURSE",
     free_course_sub: "Learn Forex Trading for Free: Watch Our YouTube Lessons",
-    free_course_price: "Free",
-    free_course_access: "FREE ACCESS",
     free_course_btn: "Visit YouTube Channel",
     free_video_aria: "Watch video {n} on YouTube",
     free_video_alt: "Free forex lesson {n}"
@@ -5017,8 +5096,6 @@ const I18N = {
     pay_err_tx_min: "ট্রানজেকশন আইডি কমপক্ষে ৬ অক্ষরের হতে হবে।",
     free_course_title: "আমাদের ফ্রি কোর্স",
     free_course_sub: "ফ্রিতে ফরেক্স ট্রেডিং শিখুন: আমাদের ইউটিউব ক্লাসগুলো দেখুন",
-    free_course_price: "ফ্রি",
-    free_course_access: "ফ্রি অ্যাক্সেস",
     free_course_btn: "ইউটিউব চ্যানেলে যান",
     free_video_aria: "ইউটিউবে ভিডিও {n} দেখুন",
     free_video_alt: "ফ্রি ফরেক্স লেসন {n}"
@@ -5199,17 +5276,6 @@ function renderFreeVideos() {
 
     grid.appendChild(a);
   });
-}
-
-function setupYouTubeChannelButton() {
-  const btn = document.getElementById('ytChannelBtn');
-  if (!btn) return;
-  if (YT_CHANNEL_URL && YT_CHANNEL_URL.trim() !== '') {
-    btn.href = YT_CHANNEL_URL;
-    btn.style.display = '';
-  } else {
-    btn.style.display = 'none';
-  }
 }
 
 /* =========================================================
@@ -6532,7 +6598,6 @@ Status: ${o.status}`;
    ========================================================= */
 (function () {
   renderFreeVideos();
-  setupYouTubeChannelButton();
 })();
 
 /* =========================================================
