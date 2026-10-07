@@ -16,6 +16,7 @@
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
 html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+#our-services{scroll-margin-top:90px}
 *,*::before,*::after{box-sizing:border-box;margin:0}
 body{
   background:var(--bg);color:var(--text);font-family:'Poppins',system-ui,-apple-system,Segoe UI,sans-serif;
@@ -216,6 +217,33 @@ h1 span.hl{color:var(--yellow)}
 .rsvc-info-right{padding:14px 18px;display:flex;align-items:center;justify-content:center}
 .rsvc-tag{font-family:'Poppins',sans-serif;font-weight:700;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:#6ea8ff;background:#1e3a8a;padding:4px 14px;border-radius:4px;white-space:nowrap;line-height:1.4}
 .rsvc-content{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+
+/* OUR SERVICES label — small yellow eyebrow above the heading */
+.rsvc-label{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+  font-family:'Poppins',sans-serif;
+}
+.rsvc-label-line{
+  display:block;
+  width:30px;
+  height:2px;
+  background:#f5c518;
+  border-radius:2px;
+  flex:none;
+}
+.rsvc-label-text{
+  font-family:'Poppins',sans-serif;
+  font-weight:600;
+  font-size:13px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#f5c518;
+  line-height:1;
+}
+
 .rsvc-heading{font-family:'Poppins',sans-serif;font-weight:700;font-size:36px;line-height:1.2;color:#ffffff;letter-spacing:-.01em;margin:0}
 .rsvc-quote{margin-top:40px;display:flex;align-items:flex-start;gap:12px;max-width:520px}
 .rsvc-quote-mark{font-family:Georgia, 'Times New Roman', serif;font-size:34px;line-height:.8;color:#7a7a7a;flex:none;margin-top:2px;user-select:none}
@@ -593,7 +621,7 @@ body.modal-open{overflow:hidden}
     </a>
     <nav class="links" aria-label="Main">
       <a class="active" href="#home" data-i18n="nav_home">Home</a>
-      <a href="#services" data-i18n="nav_courses">Courses &amp; Services</a>
+      <a href="#our-services" data-i18n="nav_courses">Courses &amp; Services</a>
       <a href="#contact" data-i18n="nav_contact">Contact Us</a>
     </nav>
     <div class="actions">
@@ -601,13 +629,13 @@ body.modal-open{overflow:hidden}
         <option value="en">EN</option>
         <option value="bn">বাংলা</option>
       </select>
-      <a class="btn" href="#enroll" data-i18n="nav_enroll">Enroll Now</a>
+      <a class="btn" href="#our-services" data-i18n="nav_enroll">Enroll Now</a>
     </div>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
   </div>
   <nav class="menu" id="menu" aria-label="Mobile">
     <a class="active" href="#home" data-i18n="nav_home">Home</a>
-    <a href="#services" data-i18n="nav_courses">Courses &amp; Services</a>
+    <a href="#our-services" data-i18n="nav_courses">Courses &amp; Services</a>
     <a href="#contact" data-i18n="nav_contact">Contact Us</a>
     <div class="menu-lang" role="group" aria-label="Language">
       <button type="button" data-lang="en">EN</button>
@@ -626,7 +654,7 @@ body.modal-open{overflow:hidden}
         <span class="hl" data-i18n="hero_b">professional trading education</span>
       </h1>
       <p class="sub in d1" data-i18n="hero_sub">Learn forex trading with a trusted mentor. Manage risk and trade with confidence.</p>
-      <a class="btn lg in d2" id="enroll" href="#enroll" data-i18n="hero_cta">Enroll Now</a>
+      <a class="btn lg in d2" id="enroll" href="#our-services" data-i18n="hero_cta">Enroll Now</a>
     </div>
     <aside class="count in d2" aria-label="Next batch">
       <h3 data-i18n="next_batch">Next Batch</h3>
@@ -822,7 +850,7 @@ body.modal-open{overflow:hidden}
   </section>
 
   <!-- ============ OUR SERVICES ============ -->
-  <section class="rsvc fade-up" id="services" aria-labelledby="rsvcHeading">
+  <section class="rsvc fade-up" id="our-services" aria-labelledby="rsvcHeading">
     <div class="rsvc-inner">
       <article class="rsvc-card" aria-label="Sakil – profile">
         <img class="rsvc-photo" src="IMG_20261007_001230_648.jpg" alt="Sakil">
@@ -844,6 +872,10 @@ body.modal-open{overflow:hidden}
       </article>
 
       <div class="rsvc-content">
+        <div class="rsvc-label">
+          <span class="rsvc-label-line" aria-hidden="true"></span>
+          <span class="rsvc-label-text">Our Services</span>
+        </div>
         <h2 class="rsvc-heading" id="rsvcHeading">Build a Successful Trading Career</h2>
 
         <div class="rsvc-quote">
@@ -861,7 +893,7 @@ body.modal-open{overflow:hidden}
   </section>
 
   <!-- =========================================================
-       CONNECT WITH US — new section (below Our Services)
+       CONNECT WITH US
        ========================================================= -->
   <section class="cw fade-up" id="connect" aria-labelledby="cwHeading">
     <div class="cw-head">
@@ -1294,6 +1326,23 @@ function renderModal(lang){
   chatBtn.addEventListener('click', () => {
     const c = document.getElementById('contact');
     if (c) c.scrollIntoView({ behavior: 'smooth' });
+  });
+})();
+
+/* =========================================================
+   ENROLL NOW — close mobile menu when clicked
+   (smooth scroll is handled natively via href + scroll-behavior)
+   ========================================================= */
+(function(){
+  const b = document.getElementById('burger');
+  const m = document.getElementById('menu');
+  document.querySelectorAll('a[data-i18n="nav_enroll"], a[data-i18n="hero_cta"]').forEach(link => {
+    link.addEventListener('click', () => {
+      if (m && m.classList.contains('open')) {
+        m.classList.remove('open');
+        if (b) { b.textContent = '☰'; b.setAttribute('aria-expanded', 'false'); }
+      }
+    });
   });
 })();
 
