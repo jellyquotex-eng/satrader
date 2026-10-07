@@ -2844,6 +2844,10 @@
       text-transform: uppercase;
       margin-top: 4px;
     }
+    /* CHANGE 2 — Free price variant */
+    .svc-price.free-price {
+      color: #22c55e;
+    }
     .btn-enroll {
       display: inline-flex;
       align-items: center;
@@ -2882,6 +2886,92 @@
       font-weight: 600;
       margin-top: 6px;
     }
+
+    /* CHANGE 2 — Free videos thumbnail grid inside Card 2 */
+    .svc-free-videos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .svc-free-videos a {
+      position: relative;
+      display: block;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #0d0d0d;
+      aspect-ratio: 16 / 9;
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+    .svc-free-videos a:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 193, 7, .6);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255, 193, 7, .3);
+    }
+    .svc-free-videos a img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .45s ease;
+    }
+    .svc-free-videos a:hover img { transform: scale(1.07); }
+    /* small centered play icon overlay */
+    .svc-free-videos a .play-icon {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+    }
+    .svc-free-videos a .play-icon svg {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, .55);
+      padding: 5px;
+      box-sizing: border-box;
+      backdrop-filter: blur(2px);
+      display: block;
+    }
+    .svc-free-videos a .play-icon svg polygon {
+      fill: var(--yellow);
+    }
+    /* number badge top-left */
+    .svc-free-videos a .vid-num {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      z-index: 2;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      color: #111;
+      background: var(--yellow-grad);
+      border-radius: 999px;
+      padding: 2px 7px;
+      line-height: 1.25;
+      box-shadow: 0 2px 8px rgba(255, 179, 0, .4);
+    }
+    /* dark placeholder if image fails */
+    .svc-free-videos a .vid-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      place-items: center;
+      background: #111;
+    }
+    .svc-free-videos a .vid-fallback svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+    }
+    .svc-free-videos a .vid-fallback svg polygon {
+      fill: var(--yellow);
+    }
+    .svc-free-videos a.img-failed img { display: none; }
+    .svc-free-videos a.img-failed .vid-fallback { display: grid; }
 
     /* ============ FLOATING ELEMENTS ============ */
     .rsvc-floats {
@@ -3688,6 +3778,8 @@
       .rv-heading { font-size: 20px; }
       .rv-ring { width: 96px; height: 96px; }
       .rv-ring .rv-val { font-size: 18px; }
+      /* CHANGE 2 — keep 2 columns even under 360px */
+      .svc-free-videos { grid-template-columns: repeat(2, 1fr); }
     }
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; }
@@ -3953,12 +4045,17 @@
           <button class="btn-enroll" type="button" data-package="Personal 1 to 1" data-price="$100">Enroll Now</button>
         </div>
       </article>
-      <!-- CARD 2 — PLACEHOLDER -->
-      <article class="svc-card is-placeholder">
-        <h3 class="svc-title">Coming soon</h3>
-        <p class="svc-sub">Add subtitle here</p>
+      <!-- CARD 2 — CHANGE 2: OUR FREE COURSE with 10 YouTube thumbnails -->
+      <article class="svc-card" id="freeCourseCard">
+        <h3 class="svc-title" data-i18n="free_course_title">OUR FREE COURSE</h3>
+        <p class="svc-sub" data-i18n="free_course_sub">Learn Forex Trading for Free: Watch Our YouTube Lessons</p>
         <div class="svc-divider"></div>
-        <div class="svc-body">Card 2 — content coming soon</div>
+        <!-- thumbnail grid will be rendered by JS (CHANGE 2) -->
+        <div class="svc-free-videos" id="freeVideosGrid"></div>
+        <div class="svc-foot">
+          <div class="svc-price free-price"><span data-i18n="free_course_price">Free</span><small data-i18n="free_course_access">FREE ACCESS</small></div>
+          <a class="btn-enroll" id="ytChannelBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="free_course_btn" style="display:none;">Visit YouTube Channel</a>
+        </div>
       </article>
       <!-- CARD 3 — PLACEHOLDER -->
       <article class="svc-card is-placeholder">
@@ -4495,11 +4592,13 @@
           <div class="pay-info-note" id="payInfoNote">Use Send Money only. Do not use Cash Out, Payment or Recharge.</div>
         </div>
 
-        <div class="field" id="fieldTx" style="display:none">
+        <!-- CHANGE 1: TRANSACTION ID FIELD RESTORED (below pay info box, above amount) -->
+        <div class="field" id="fieldTx">
           <label for="inpTx" id="lblTx">Transaction ID <span class="req">*</span></label>
           <input type="text" id="inpTx" name="tx" placeholder="Enter your Transaction ID" autocomplete="off">
           <span class="field-error" id="errTx"></span>
         </div>
+
         <div class="amount-box" id="amountBox">
           <div class="amount-left">
             <span class="lbl">Amount to pay</span>
@@ -4715,7 +4814,15 @@ const I18N = {
     pay_amount_nagad: "Paying via Nagad · Send Money $AMOUNT equivalent in BDT to the number above",
     pay_amount_binance: "Paying via Binance Pay · send $AMOUNT to the Binance ID above",
     pay_err_phone: "Phone number must be 11 digits starting with 01.",
-    pay_err_tx_min: "Transaction ID must be at least 6 characters."
+    pay_err_tx_min: "Transaction ID must be at least 6 characters.",
+    // CHANGE 2 — Free course i18n
+    free_course_title: "OUR FREE COURSE",
+    free_course_sub: "Learn Forex Trading for Free: Watch Our YouTube Lessons",
+    free_course_price: "Free",
+    free_course_access: "FREE ACCESS",
+    free_course_btn: "Visit YouTube Channel",
+    free_video_aria: "Watch video {n} on YouTube",
+    free_video_alt: "Free forex lesson {n}"
   },
   bn: {
     nav_home: "হোম", nav_courses: "কোর্স ও সার্ভিস", nav_contact: "যোগাযোগ করুন", nav_enroll: "এনরোল করুন",
@@ -4768,7 +4875,15 @@ const I18N = {
     pay_amount_nagad: "নগদে পেমেন্ট · উপরের নাম্বারে $AMOUNT সমপরিমাণ BDT সেন্ড মানি করুন",
     pay_amount_binance: "বাইনান্স পে-তে পেমেন্ট · উপরের আইডিতে $AMOUNT পাঠান",
     pay_err_phone: "ফোন নাম্বার ০১ দিয়ে শুরু হওয়া ১১ ডিজিটের হতে হবে।",
-    pay_err_tx_min: "ট্রানজেকশন আইডি কমপক্ষে ৬ অক্ষরের হতে হবে।"
+    pay_err_tx_min: "ট্রানজেকশন আইডি কমপক্ষে ৬ অক্ষরের হতে হবে।",
+    // CHANGE 2 — Free course i18n (Bengali)
+    free_course_title: "আমাদের ফ্রি কোর্স",
+    free_course_sub: "ফ্রিতে ফরেক্স ট্রেডিং শিখুন: আমাদের ইউটিউব ক্লাসগুলো দেখুন",
+    free_course_price: "ফ্রি",
+    free_course_access: "ফ্রি অ্যাক্সেস",
+    free_course_btn: "ইউটিউব চ্যানেলে যান",
+    free_video_aria: "ইউটিউবে ভিডিও {n} দেখুন",
+    free_video_alt: "ফ্রি ফরেক্স লেসন {n}"
   }
 };
 
@@ -4865,6 +4980,110 @@ const REVIEWS = [
 ];
 
 /* =========================================================
+   CHANGE 2: FREE COURSE VIDEOS DATA + RENDERER
+   ========================================================= */
+// CHANGE 2: YouTube channel URL — set to "" to hide the "Visit YouTube Channel" button
+const YT_CHANNEL_URL = "https://youtube.com/@satrader10";
+
+// CHANGE 2: video list — edit here to add/remove free lessons
+const FREE_VIDEOS = [
+  { n: 1,  video: "https://youtu.be/3smyej2iMJk", thumb: "https://cdn.corenexis.com/f/py5tJmzScLx.avif" },
+  { n: 2,  video: "https://youtu.be/y9xY-kdfOAc", thumb: "https://i.ytimg.com/vi/y9xY-kdfOAc/sddefault.jpg" },
+  { n: 3,  video: "https://youtu.be/juiPNuO_wQM", thumb: "https://i.ytimg.com/vi/juiPNuO_wQM/maxresdefault.jpg" },
+  { n: 4,  video: "https://youtu.be/UxO6gltYjo0", thumb: "https://i.ytimg.com/vi/UxO6gltYjo0/maxresdefault.jpg" },
+  { n: 5,  video: "https://youtu.be/LsyLllSZKUE", thumb: "https://i.ytimg.com/vi/LsyLllSZKUE/maxresdefault.jpg" },
+  { n: 6,  video: "https://youtu.be/n6uK1VBsf2o", thumb: "https://i.ytimg.com/vi/n6uK1VBsf2o/maxresdefault.jpg" },
+  { n: 7,  video: "https://youtu.be/I88mB3RVdCA", thumb: "https://i.ytimg.com/vi/I88mB3RVdCA/maxresdefault.jpg" },
+  { n: 8,  video: "https://youtu.be/fyF7e785Pxw", thumb: "https://i.ytimg.com/vi/fyF7e785Pxw/maxresdefault.jpg" },
+  { n: 9,  video: "https://youtu.be/6_uYM7Xsy7c", thumb: "https://i.ytimg.com/vi/6_uYM7Xsy7c/maxresdefault.jpg" },
+  { n: 10, video: "https://youtu.be/sPYdqR3sAOA", thumb: "https://i.ytimg.com/vi/sPYdqR3sAOA/maxresdefault.jpg" }
+];
+
+// CHANGE 2: extract the 11-char YouTube video ID from any youtube/youtu.be URL
+function getYouTubeId(url) {
+  if (!url) return '';
+  const m = String(url).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/))([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : '';
+}
+
+// CHANGE 2: build the thumbnail grid from FREE_VIDEOS (2 per row, 5 rows)
+function renderFreeVideos() {
+  const grid = document.getElementById('freeVideosGrid');
+  if (!grid) return;
+  const lang = document.documentElement.lang === 'bn' ? 'bn' : 'en';
+  const dict = I18N[lang] || I18N.en;
+  grid.innerHTML = '';
+
+  FREE_VIDEOS.forEach(v => {
+    const vid = getYouTubeId(v.video);
+    const hqFallback = vid
+      ? 'https://i.ytimg.com/vi/' + vid + '/hqdefault.jpg'
+      : '';
+
+    const a = document.createElement('a');
+    a.href = v.video;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.setAttribute('aria-label', (dict.free_video_aria || 'Watch video {n} on YouTube').replace('{n}', String(v.n).padStart(2, '0')));
+
+    // number badge
+    const num = document.createElement('span');
+    num.className = 'vid-num';
+    num.textContent = String(v.n).padStart(2, '0');
+    a.appendChild(num);
+
+    // thumbnail image with two-step fallback
+    const img = document.createElement('img');
+    img.src = v.thumb || hqFallback;
+    img.alt = (dict.free_video_alt || 'Free forex lesson {n}').replace('{n}', String(v.n));
+    img.loading = 'lazy';
+    img.referrerPolicy = 'no-referrer';
+    let stage = 0;
+    img.addEventListener('error', () => {
+      stage += 1;
+      if (stage === 1 && hqFallback && img.src !== hqFallback) {
+        img.src = hqFallback;
+      } else {
+        a.classList.add('img-failed');
+      }
+    });
+    a.appendChild(img);
+
+    // play icon overlay (pure CSS + inline SVG)
+    const play = document.createElement('span');
+    play.className = 'play-icon';
+    play.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+        '<polygon points="9,7 9,17 17,12"/>' +
+      '</svg>';
+    a.appendChild(play);
+
+    // dark fallback box (shown only if the image fails completely)
+    const fb = document.createElement('span');
+    fb.className = 'vid-fallback';
+    fb.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+        '<polygon points="9,7 9,17 17,12"/>' +
+      '</svg>';
+    a.appendChild(fb);
+
+    grid.appendChild(a);
+  });
+}
+
+// CHANGE 2: show/hide the channel button based on YT_CHANNEL_URL
+function setupYouTubeChannelButton() {
+  const btn = document.getElementById('ytChannelBtn');
+  if (!btn) return;
+  if (YT_CHANNEL_URL && YT_CHANNEL_URL.trim() !== '') {
+    btn.href = YT_CHANNEL_URL;
+    btn.style.display = '';
+  } else {
+    btn.style.display = 'none';
+  }
+}
+
+/* =========================================================
    setLang(lang)
    ========================================================= */
 function setLang(lang) {
@@ -4908,6 +5127,8 @@ function setLang(lang) {
   if (typeof renderModal === 'function') renderModal(lang);
   // PAYMENT FIX: refresh the payment info box when language changes
   if (typeof window.__refreshPaymentUI === 'function') window.__refreshPaymentUI();
+  // CHANGE 2: re-render free videos so aria-labels / alt text switch language too
+  if (typeof renderFreeVideos === 'function') renderFreeVideos();
   try { localStorage.setItem('sa_lang', lang); } catch (e) { /* ignore */ }
 
   const batchTitle = document.getElementById('batchTitle');
@@ -5111,7 +5332,7 @@ function renderModal(lang) {
           payInfoNumber.textContent = cfg.number;
           payInfoNote.textContent = dict.pay_note_sendmoney || 'Use Send Money only. Do not use Cash Out, Payment or Recharge.';
         }
-        // Transaction ID label/placeholder per method
+        // Transaction ID label/placeholder per method — CHANGE 1: restored
         if (key === 'binance') {
           lblTx.innerHTML = (dict.pay_tx_label_binance || 'Binance Pay Order ID / Transaction ID') + ' <span class="req">*</span>';
           inpTx.placeholder = dict.pay_tx_ph_binance || 'Enter your Binance Pay Order ID';
@@ -5202,6 +5423,8 @@ function renderModal(lang) {
     // PAYMENT FIX: default method = bKash
     const bkashRadio = document.querySelector('.pay-opt[data-method="bKash"] input');
     if (bkashRadio) bkashRadio.checked = true;
+    // CHANGE 1: reset the Transaction ID field when the popup is closed and reopened
+    inpTx.value = '';
     refreshPaymentUI(false);
   }
 
@@ -5294,8 +5517,8 @@ function renderModal(lang) {
       ok = false;
     }
 
+    // CHANGE 1: Transaction ID is required again — trimmed, min 6 characters
     if (method) {
-      // PAYMENT FIX: Transaction ID min 6 characters (trimmed)
       const tx = inpTx.value.trim();
       const label = method.value === 'Binance' ? 'Binance Pay Order ID / Transaction ID' : 'Transaction ID (TrxID)';
       if (!tx) {
@@ -5328,6 +5551,7 @@ function renderModal(lang) {
       payNumber: cfg ? cfg.number : '',
       payType: cfg ? cfg.type : '',
       txLabel: txLabel,
+      // CHANGE 1: include the Transaction ID in the submitted data
       txValue: inpTx.value.trim(),
       package: currentPackage.name,
       price: currentPackage.price,
@@ -6125,6 +6349,14 @@ Status: ${o.status}`;
       });
     }
   });
+})();
+
+/* =========================================================
+   CHANGE 2: INITIALISE FREE VIDEOS + YOUTUBE BUTTON
+   ========================================================= */
+(function () {
+  renderFreeVideos();
+  setupYouTubeChannelButton();
 })();
 
 /* =========================================================
