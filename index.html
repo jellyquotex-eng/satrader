@@ -51,7 +51,6 @@
     #our-services { scroll-margin-top: 90px; }
     #video { scroll-margin-top: 90px; }
     #reviews { scroll-margin-top: 90px; }
-    #batch { scroll-margin-top: 90px; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -2922,408 +2921,12 @@
     }
     .rsvc-chat svg { width: 24px; height: 24px; }
 
-    /* =========================================================
-       BATCH COUNTDOWN SECTION (public)
-       ========================================================= */
-    .cd-section {
-      max-width: 1240px;
-      margin: 0 auto 60px;
-      padding: clamp(28px, 4vw, 50px) 20px;
-      background: #0f0f0f;
-      border: 1px solid var(--line);
-      border-radius: 32px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-    .cd-section .cd-label {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--yellow);
-      background: rgba(255, 193, 7, .1);
-      border: 1px solid rgba(255, 193, 7, .3);
-      border-radius: 999px;
-      padding: 5px 16px;
-      margin-bottom: 14px;
-    }
-    .cd-section .cd-heading {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 800;
-      font-size: clamp(24px, 3.6vw, 40px);
-      color: #fff;
-      letter-spacing: -.01em;
-      line-height: 1.15;
-      margin: 0 0 6px;
-    }
-    .cd-section .cd-subtitle {
-      font-size: 13.5px;
-      color: var(--muted);
-      margin-bottom: 28px;
-      line-height: 1.5;
-    }
-    .cd-boxes {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-    .cd-box {
-      background: #141414;
-      border: 1px solid #222;
-      border-radius: 18px;
-      padding: 18px 10px 14px;
-      min-width: 100px;
-      flex: 1 1 100px;
-      max-width: 140px;
-      text-align: center;
-      transition: border-color .3s ease, box-shadow .3s ease;
-    }
-    .cd-box.cd-pulse {
-      animation: cd-pulse-anim 1.2s ease-in-out infinite;
-    }
-    @keyframes cd-pulse-anim {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
-      50% { box-shadow: 0 0 18px 2px rgba(255, 193, 7, .15); }
-    }
-    .cd-num {
-      display: block;
-      font-size: clamp(30px, 4.5vw, 48px);
-      font-weight: 800;
-      color: var(--yellow);
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: .02em;
-      transition: opacity .15s ease, transform .15s ease;
-    }
-    .cd-num.cd-flip {
-      opacity: .35;
-      transform: translateY(-4px);
-    }
-    .cd-unit {
-      display: block;
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: .14em;
-      color: var(--muted-2);
-      text-transform: uppercase;
-      margin-top: 8px;
-    }
-    .cd-note {
-      font-size: 13px;
-      color: var(--muted-2);
-      margin-top: 6px;
-      line-height: 1.5;
-    }
-    .cd-started {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      margin-top: 10px;
-    }
-    .cd-started.cd-show { display: flex; }
-    .cd-started .cd-started-msg {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--yellow);
-      line-height: 1.4;
-    }
-    .cd-started .cd-started-btn {
-      display: inline-block;
-      padding: 13px 34px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--yellow), var(--orange));
-      color: #111;
-      font-weight: 700;
-      font-size: 15px;
-      text-decoration: none;
-      box-shadow: 0 8px 24px rgba(255, 150, 30, .35);
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-    .cd-started .cd-started-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(255, 150, 30, .5);
-    }
-
-    /* =========================================================
-       ADMIN PANEL
-       ========================================================= */
-    .cd-admin-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 500;
-      background: rgba(5, 5, 5, .82);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity .3s ease, visibility .3s ease;
-    }
-    .cd-admin-overlay.cd-open {
-      opacity: 1;
-      visibility: visible;
-    }
-    .cd-admin-modal {
-      width: min(760px, 100%);
-      max-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      background: linear-gradient(160deg, #1a1a1a, #101010);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: 0 40px 100px rgba(0, 0, 0, .75), 0 0 0 1px rgba(255, 194, 26, .08);
-      overflow: hidden;
-      transform: scale(.94);
-      opacity: 0;
-      transition: transform .35s cubic-bezier(.2, .7, .2, 1), opacity .35s ease;
-    }
-    .cd-admin-overlay.cd-open .cd-admin-modal {
-      transform: scale(1);
-      opacity: 1;
-    }
-    .cd-admin-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 16px 20px;
-      background: rgba(20, 20, 20, .92);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-    }
-    .cd-admin-title {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 800;
-      font-size: 16px;
-      letter-spacing: .02em;
-      color: #fff;
-    }
-    .cd-admin-title span { color: var(--yellow); }
-    .cd-admin-close {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, .04);
-      color: #fff;
-      font-size: 17px;
-      cursor: pointer;
-      display: grid;
-      place-items: center;
-      transition: background .2s, transform .2s;
-    }
-    .cd-admin-close:hover { background: rgba(255, 255, 255, .1); transform: rotate(90deg); }
-    .cd-admin-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 22px 20px 26px;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255, 194, 26, .4) transparent;
-    }
-    .cd-admin-body::-webkit-scrollbar { width: 8px; }
-    .cd-admin-body::-webkit-scrollbar-track { background: transparent; }
-    .cd-admin-body::-webkit-scrollbar-thumb { background: rgba(255, 194, 26, .35); border-radius: 8px; }
-
-    .cd-status-card {
-      background: rgba(255, 255, 255, .03);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 22px;
-    }
-    .cd-status-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, .05);
-      font-size: 13.5px;
-    }
-    .cd-status-row:last-child { border-bottom: 0; }
-    .cd-status-row .cd-k { color: var(--muted); font-weight: 500; }
-    .cd-status-row .cd-v { color: #f0f0f0; font-weight: 600; text-align: right; }
-    .cd-status-row .cd-v.cd-running { color: var(--success); }
-    .cd-status-row .cd-v.cd-hold { color: var(--yellow); }
-    .cd-preview {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      margin-top: 14px;
-      flex-wrap: wrap;
-    }
-    .cd-preview .cd-pbox {
-      background: #141414;
-      border: 1px solid #222;
-      border-radius: 12px;
-      padding: 10px 6px;
-      min-width: 60px;
-      flex: 1 1 60px;
-      max-width: 80px;
-      text-align: center;
-    }
-    .cd-preview .cd-pnum {
-      display: block;
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--yellow);
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-    .cd-preview .cd-punit {
-      display: block;
-      font-size: 8px;
-      font-weight: 600;
-      letter-spacing: .1em;
-      color: var(--muted-2);
-      text-transform: uppercase;
-      margin-top: 5px;
-    }
-
-    .cd-form-group {
-      margin-bottom: 16px;
-    }
-    .cd-form-group label {
-      display: block;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: #d8d8d8;
-      letter-spacing: .02em;
-      margin-bottom: 6px;
-    }
-    .cd-form-group label .cd-req { color: var(--yellow); margin-left: 2px; }
-    .cd-row-3 {
-      display: grid;
-      grid-template-columns: 1fr 2fr 1.5fr;
-      gap: 10px;
-    }
-    .cd-row-3 select,
-    .cd-row-3 input,
-    .cd-row-time select,
-    .cd-row-time input {
-      width: 100%;
-      padding: 11px 12px;
-      background: #101010;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      color: var(--text);
-      font-size: 14px;
-      outline: none;
-      transition: border-color .2s ease, box-shadow .2s ease;
-    }
-    .cd-row-3 select:focus,
-    .cd-row-3 input:focus,
-    .cd-row-time select:focus,
-    .cd-row-time input:focus {
-      border-color: var(--yellow);
-      box-shadow: 0 0 0 3px rgba(255, 193, 7, .18);
-    }
-    .cd-row-time {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-    }
-    .cd-admin-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-    }
-    .cd-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 11px 20px;
-      border-radius: 999px;
-      border: 0;
-      cursor: pointer;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: .02em;
-      transition: transform .25s ease, box-shadow .25s ease, opacity .25s ease;
-      white-space: nowrap;
-    }
-    .cd-btn:disabled {
-      opacity: .45;
-      cursor: not-allowed;
-      transform: none !important;
-    }
-    .cd-btn-primary {
-      background: linear-gradient(135deg, var(--yellow), var(--orange));
-      color: #111;
-      box-shadow: 0 8px 22px rgba(255, 179, 0, .32);
-    }
-    .cd-btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(255, 179, 0, .5); }
-    .cd-btn-hold {
-      background: rgba(255, 255, 255, .06);
-      border: 1px solid var(--line);
-      color: #fff;
-    }
-    .cd-btn-hold:hover:not(:disabled) { background: rgba(255, 255, 255, .12); transform: translateY(-2px); }
-    .cd-btn-resume {
-      background: rgba(34, 197, 94, .15);
-      border: 1px solid rgba(34, 197, 94, .4);
-      color: var(--success);
-    }
-    .cd-btn-resume:hover:not(:disabled) { background: rgba(34, 197, 94, .25); transform: translateY(-2px); }
-    .cd-btn-reset {
-      background: rgba(255, 90, 90, .1);
-      border: 1px solid rgba(255, 90, 90, .35);
-      color: var(--danger);
-    }
-    .cd-btn-reset:hover:not(:disabled) { background: rgba(255, 90, 90, .2); transform: translateY(-2px); }
-
-    .cd-toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: #1a1a1a;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 12px 24px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: #fff;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, .6);
-      z-index: 700;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity .3s ease, transform .3s ease, visibility .3s ease;
-      pointer-events: none;
-      max-width: 90vw;
-      text-align: center;
-    }
-    .cd-toast.cd-toast-show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) translateY(0);
-    }
-    .cd-toast.cd-toast-success { border-color: rgba(34, 197, 94, .5); color: var(--success); }
-    .cd-toast.cd-toast-error { border-color: rgba(255, 90, 90, .5); color: var(--danger); }
-    .cd-toast.cd-toast-info { border-color: rgba(255, 193, 7, .5); color: var(--yellow); }
-
-    body.cd-lock { overflow: hidden; }
-
     /* ============ PRINT ============ */
     @media print {
       body { background: #fff !important; color: #000 !important; }
       body::before, .nav, .hero, .showcase, .stats-wrap, .rsvc, .cw, .rsvc-floats,
       .modal-head, .modal-tabs, .modal-foot, .modal-close, .modal-lang,
-      .rv-overlay, .ft-footer, .ct-overlay, .cd-section { display: none !important; }
+      .rv-overlay, .ft-footer, .ct-overlay { display: none !important; }
       .modal-backdrop {
         position: static;
         background: #fff;
@@ -3508,11 +3111,6 @@
       .rv-grid { grid-template-columns: 1fr; max-width: 440px; }
       .ft-top { flex-direction: column; align-items: center; }
       .ft-social { justify-content: center; }
-      .cd-section { border-radius: 24px; padding: 24px 16px; margin-bottom: 40px; }
-      .cd-boxes { gap: 10px; }
-      .cd-box { min-width: 70px; padding: 14px 6px 10px; border-radius: 14px; }
-      .cd-num { font-size: clamp(26px, 8vw, 36px); }
-      .cd-unit { font-size: 8.5px; margin-top: 6px; }
     }
     @media (max-width: 640px) {
       .nav, .wrap { padding: 0 14px; }
@@ -3598,19 +3196,6 @@
       .ct-icon { width: 50px; height: 50px; margin-bottom: 14px; }
       .ct-icon svg { width: 22px; height: 22px; }
       .ct-card-title { font-size: 16.5px; }
-      .cd-section { border-radius: 20px; padding: 20px 14px; margin-bottom: 36px; }
-      .cd-heading { font-size: 22px; }
-      .cd-subtitle { font-size: 12.5px; margin-bottom: 20px; }
-      .cd-boxes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-      .cd-box { min-width: 0; max-width: none; padding: 14px 4px 10px; }
-      .cd-num { font-size: clamp(28px, 10vw, 40px); }
-      .cd-admin-modal { max-height: 100vh; height: 100vh; width: 100%; border-radius: 0; border: 0; }
-      .cd-admin-head { padding: 14px; }
-      .cd-admin-body { padding: 18px 14px 24px; }
-      .cd-row-3 { grid-template-columns: 1fr 1.5fr 1.5fr; gap: 8px; }
-      .cd-row-time { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-      .cd-admin-actions { gap: 8px; }
-      .cd-btn { flex: 1 1 auto; padding: 10px 14px; font-size: 12px; }
     }
     @media (max-width: 600px) {
       .cw-grid { grid-template-columns: 1fr; }
@@ -3636,8 +3221,6 @@
       .rv-heading { font-size: 20px; }
       .rv-ring { width: 96px; height: 96px; }
       .rv-ring .rv-val { font-size: 18px; }
-      .cd-boxes { grid-template-columns: repeat(2, 1fr); }
-      .cd-num { font-size: 24px; }
     }
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; }
@@ -3647,8 +3230,6 @@
       .v-badge { animation: none; }
       .rv-ring .rv-fill { transition: none; }
       .ct-overlay { transition: none; }
-      .cd-box.cd-pulse { animation: none; }
-      .cd-num { transition: none; }
     }
   </style>
 </head>
@@ -3664,7 +3245,6 @@
     <nav class="links" aria-label="Main">
       <a class="active" href="#home" data-i18n="nav_home">Home</a>
       <a href="#our-services" data-i18n="nav_courses">Courses &amp; Services</a>
-      <a href="#batch" data-i18n="nav_batch">Batch</a>
       <a href="#contact" id="navContactLink" data-i18n="nav_contact">Contact Us</a>
     </nav>
     <div class="actions">
@@ -3679,7 +3259,6 @@
   <nav class="menu" id="menu" aria-label="Mobile">
     <a class="active" href="#home" data-i18n="nav_home">Home</a>
     <a href="#our-services" data-i18n="nav_courses">Courses &amp; Services</a>
-    <a href="#batch" data-i18n="nav_batch">Batch</a>
     <a href="#contact" data-i18n="nav_contact">Contact Us</a>
     <div class="menu-lang" role="group" aria-label="Language">
       <button type="button" data-lang="en">EN</button>
@@ -3710,38 +3289,6 @@
         <div class="box"><b>00</b><small data-i18n="unit_secs">SECS</small></div>
       </div>
     </aside>
-  </section>
-
-  <!-- =========================================================
-       BATCH COUNTDOWN SECTION
-       ========================================================= -->
-  <section class="cd-section" id="batch" aria-labelledby="cdHeading">
-    <span class="cd-label" id="cdLabel">NEW BATCH</span>
-    <h2 class="cd-heading" id="cdHeading">New Batch Starting In</h2>
-    <p class="cd-subtitle" id="cdSubtitle"></p>
-    <div class="cd-boxes" id="cdBoxes">
-      <div class="cd-box" id="cdBoxDays">
-        <span class="cd-num" id="cdDays">00</span>
-        <span class="cd-unit" data-i18n="unit_days">DAYS</span>
-      </div>
-      <div class="cd-box" id="cdBoxHours">
-        <span class="cd-num" id="cdHours">00</span>
-        <span class="cd-unit" data-i18n="unit_hours">HOURS</span>
-      </div>
-      <div class="cd-box" id="cdBoxMins">
-        <span class="cd-num" id="cdMins">00</span>
-        <span class="cd-unit" data-i18n="unit_mins">MINS</span>
-      </div>
-      <div class="cd-box cd-pulse" id="cdBoxSecs">
-        <span class="cd-num" id="cdSecs">00</span>
-        <span class="cd-unit" data-i18n="unit_secs">SECS</span>
-      </div>
-    </div>
-    <p class="cd-note" id="cdNote">Next batch date will be announced soon.</p>
-    <div class="cd-started" id="cdStarted">
-      <p class="cd-started-msg">The new batch has started! Enroll now.</p>
-      <a class="cd-started-btn" href="#our-services" id="cdEnrollBtn">Enroll Now</a>
-    </div>
   </section>
 
   <!-- ============ SHOWCASE ============ -->
@@ -4361,117 +3908,148 @@
 </div>
 
 <!-- =========================================================
-     ADMIN PANEL (hidden)
+     FLOATING ELEMENTS — scroll-to-top + chat button
      ========================================================= -->
-<div class="cd-admin-overlay" id="cdAdminOverlay" role="dialog" aria-modal="true" aria-labelledby="cdAdminTitle" aria-hidden="true">
-  <div class="cd-admin-modal">
-    <div class="cd-admin-head">
-      <div class="cd-admin-title" id="cdAdminTitle"><span>Admin</span> Panel — Batch Countdown</div>
-      <button class="cd-admin-close" id="cdAdminClose" type="button" aria-label="Close admin panel">✕</button>
+<div class="rsvc-floats">
+  <button class="rsvc-top" id="rsvcTop" type="button" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg>
+  </button>
+  <button class="rsvc-chat" id="rsvcChat" type="button" aria-label="Open chat">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+    </svg>
+  </button>
+</div>
+
+<!-- =========================================================
+     MODAL — Download PDF
+     ========================================================= -->
+<div class="modal-backdrop" id="pdfModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle" aria-describedby="pdfModalDesc">
+    <div class="modal-head">
+      <div class="modal-brand" id="pdfModalTitle"><span>SA</span> TRADER</div>
+      <div class="modal-lang" role="group" aria-label="Language">
+        <button type="button" data-modal-lang="en" class="active">EN</button>
+        <button type="button" data-modal-lang="bn">বাংলা</button>
+      </div>
+      <button class="modal-close" id="closePdfModal" type="button" aria-label="Close">✕</button>
     </div>
-    <div class="cd-admin-body">
-      <!-- Live status card -->
-      <div class="cd-status-card">
-        <div class="cd-status-row">
-          <span class="cd-k">Current Status</span>
-          <span class="cd-v" id="cdAdminStatus">—</span>
-        </div>
-        <div class="cd-status-row">
-          <span class="cd-k">Target Date &amp; Time</span>
-          <span class="cd-v" id="cdAdminTarget">—</span>
-        </div>
-        <div class="cd-status-row">
-          <span class="cd-k">Label</span>
-          <span class="cd-v" id="cdAdminLabel">—</span>
-        </div>
-        <div class="cd-preview" id="cdAdminPreview">
-          <div class="cd-pbox"><span class="cd-pnum" id="cdAdminDays">00</span><span class="cd-punit">Days</span></div>
-          <div class="cd-pbox"><span class="cd-pnum" id="cdAdminHours">00</span><span class="cd-punit">Hours</span></div>
-          <div class="cd-pbox"><span class="cd-pnum" id="cdAdminMins">00</span><span class="cd-punit">Mins</span></div>
-          <div class="cd-pbox"><span class="cd-pnum" id="cdAdminSecs">00</span><span class="cd-punit">Secs</span></div>
-        </div>
-      </div>
 
-      <!-- Date inputs -->
-      <div class="cd-form-group">
-        <label>Start Date (Bangladesh Time) <span class="cd-req">*</span></label>
-        <div class="cd-row-3">
-          <input type="number" id="cdAdminDay" placeholder="Day" min="1" max="31" value="1">
-          <select id="cdAdminMonth">
-            <option value="0">January</option>
-            <option value="1">February</option>
-            <option value="2">March</option>
-            <option value="3">April</option>
-            <option value="4">May</option>
-            <option value="5">June</option>
-            <option value="6">July</option>
-            <option value="7">August</option>
-            <option value="8">September</option>
-            <option value="9">October</option>
-            <option value="10">November</option>
-            <option value="11">December</option>
-          </select>
-          <input type="number" id="cdAdminYear" placeholder="Year" min="2026" max="2031" value="2026">
+    <div class="modal-tabs" role="tablist" aria-label="Sections">
+      <button class="modal-tab active" id="tab-curriculum" role="tab" aria-selected="true" aria-controls="panel-curriculum" data-tab="curriculum" data-i18n="modal_tab_curr">Curriculum</button>
+      <button class="modal-tab" id="tab-terms" role="tab" aria-selected="false" aria-controls="panel-terms" data-tab="terms" data-i18n="modal_tab_terms">Terms &amp; Conditions</button>
+    </div>
+
+    <div class="modal-body" id="pdfModalDesc">
+      <div class="modal-panel active" id="panel-curriculum" role="tabpanel" aria-labelledby="tab-curriculum">
+        <div class="curr-list" id="currList"></div>
+      </div>
+      <div class="modal-panel" id="panel-terms" role="tabpanel" aria-labelledby="tab-terms">
+        <div class="modal-warn">
+          <svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+          <span data-i18n="modal_warn">Trading involves substantial financial risk.</span>
         </div>
+        <div class="terms-list" id="termsList"></div>
       </div>
+    </div>
 
-      <div class="cd-form-group">
-        <label>Start Time (Bangladesh Time) <span class="cd-req">*</span></label>
-        <div class="cd-row-time">
-          <input type="number" id="cdAdminHour" placeholder="Hour" min="1" max="12" value="8">
-          <input type="number" id="cdAdminMin" placeholder="Min" min="0" max="59" value="0">
-          <select id="cdAdminAmPm">
-            <option value="PM" selected>PM</option>
-            <option value="AM">AM</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="cd-form-group">
-        <label for="cdAdminLabelInput">Label (max 30 chars)</label>
-        <input type="text" id="cdAdminLabelInput" maxlength="30" placeholder="NEW BATCH" value="NEW BATCH" style="width:100%;padding:11px 12px;background:#101010;border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:14px;outline:none;">
-      </div>
-
-      <!-- Actions -->
-      <div class="cd-admin-actions">
-        <button class="cd-btn cd-btn-primary" id="cdAdminStart" type="button">Start Countdown</button>
-        <button class="cd-btn cd-btn-hold" id="cdAdminHold" type="button">Stop / Hold</button>
-        <button class="cd-btn cd-btn-resume" id="cdAdminResume" type="button" style="display:none;">Resume</button>
-        <button class="cd-btn cd-btn-reset" id="cdAdminReset" type="button">Reset (Clear Date)</button>
-      </div>
+    <div class="modal-foot">
+      <button class="btn" id="printPdf" type="button" data-i18n="modal_download">⬇ Download PDF</button>
     </div>
   </div>
 </div>
 
 <!-- =========================================================
-     LOGIN MODAL (hidden)
+     ENROLL MODAL
      ========================================================= -->
-<div class="cd-admin-overlay" id="cdLoginOverlay" role="dialog" aria-modal="true" aria-labelledby="cdLoginTitle" aria-hidden="true">
-  <div class="cd-admin-modal" style="width:min(380px,100%);max-height:auto;">
-    <div class="cd-admin-head">
-      <div class="cd-admin-title" id="cdLoginTitle"><span>Admin</span> Login</div>
-      <button class="cd-admin-close" id="cdLoginClose" type="button" aria-label="Close login">✕</button>
+<div class="modal-backdrop enroll-modal" id="enrollModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <!-- Header -->
+    <div class="modal-head">
+      <h3 id="modalTitle">Enroll — Personal 1 to 1</h3>
+      <p id="modalSubtitle" style="font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.5;">Fill in your details and complete the payment to confirm your order.</p>
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close">✕</button>
     </div>
-    <div class="cd-admin-body" style="padding:24px 20px 26px;">
-      <form id="cdLoginForm">
-        <div class="cd-form-group">
-          <label for="cdLoginPassword">Password</label>
-          <input type="password" id="cdLoginPassword" placeholder="Enter admin password" autocomplete="off" style="width:100%;padding:12px 14px;background:#101010;border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:14px;outline:none;">
+
+    <!-- Body: form (Step A) -->
+    <div class="modal-body" id="modalBodyForm">
+      <form id="enrollForm" novalidate>
+        <!-- Full Name -->
+        <div class="field" id="fieldName">
+          <label for="inpName">Full Name / Username <span class="req">*</span></label>
+          <input type="text" id="inpName" name="name" placeholder="e.g. Rakib Hasan" autocomplete="name" required>
+          <span class="field-error" id="errName"></span>
         </div>
-        <p id="cdLoginError" style="color:var(--danger);font-size:12.5px;min-height:16px;margin-bottom:8px;"></p>
-        <div style="display:flex;gap:10px;">
-          <button class="cd-btn cd-btn-primary" type="submit" style="flex:1;">Login</button>
-          <button class="cd-btn cd-btn-hold" type="button" id="cdLoginCancel" style="flex:1;">Cancel</button>
+        <!-- Phone -->
+        <div class="field" id="fieldPhone">
+          <label for="inpPhone">Phone Number <span class="req">*</span></label>
+          <input type="tel" id="inpPhone" name="phone" placeholder="e.g. 01712345678" autocomplete="tel" inputmode="numeric" required>
+          <span class="field-error" id="errPhone"></span>
         </div>
+        <!-- Payment method -->
+        <div class="pay-title">Payment Method <span class="req">*</span></div>
+        <div class="pay-grid" role="radiogroup" aria-label="Payment method">
+          <label class="pay-opt" data-method="bKash">
+            <input type="radio" name="method" value="bKash">
+            <span>bKash</span>
+          </label>
+          <label class="pay-opt" data-method="Nagad">
+            <input type="radio" name="method" value="Nagad">
+            <span>Nagad</span>
+          </label>
+          <label class="pay-opt" data-method="Binance">
+            <input type="radio" name="method" value="Binance">
+            <span>Binance</span>
+          </label>
+        </div>
+        <span class="field-error" id="errMethod" style="display:block;margin:-8px 0 14px"></span>
+        <!-- Dynamic input: Transaction ID / Order ID -->
+        <div class="field" id="fieldTx" style="display:none">
+          <label for="inpTx" id="lblTx">Transaction ID <span class="req">*</span></label>
+          <input type="text" id="inpTx" name="tx" placeholder="Enter your Transaction ID" autocomplete="off">
+          <span class="field-error" id="errTx"></span>
+        </div>
+        <!-- Amount + method note -->
+        <div class="amount-box" id="amountBox">
+          <div class="amount-left">
+            <span class="lbl">Amount to pay</span>
+            <span class="method-note" id="methodNote">Select a payment method</span>
+          </div>
+          <span class="val" id="amountVal">$100</span>
+        </div>
+        <!-- Submit -->
+        <button class="btn-submit" type="submit">Submit Order</button>
       </form>
     </div>
+
+    <!-- Body: order confirmation (Step B) -->
+    <div class="modal-body" id="modalBodyOrder" style="display:none">
+      <div class="order-box">
+        <div class="order-rows" id="orderRows"></div>
+        <!-- Bangla note -->
+        <div class="bn-note">
+          আপনার অর্ডারটি কনফার্ম করার জন্য নিচে যোগাযোগ করুন। অর্ডার ডিটেইলস ও পেমেন্টের স্ক্রিনশটটি এখনই আমাদের সাপোর্টে পাঠান।
+        </div>
+        <!-- Actions -->
+        <div class="order-actions">
+          <a class="btn-telegram" href="https://t.me/sa_doller5" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9.04 15.47l-.38 5.36c.54 0 .78-.24 1.06-.52l2.55-2.44 5.28 3.86c.97.53 1.66.25 1.92-.9L22.94 5.1c.31-1.43-.52-1.99-1.47-1.63L2.7 10.6c-1.4.55-1.38 1.34-.24 1.69l4.8 1.5 11.13-7.02c.52-.35 1-.16.61.19L9.04 15.47z"/>
+            </svg>
+            Contact on Telegram: @sa_doller5
+          </a>
+          <button class="btn-copy" id="btnCopy" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="9" y="9" width="12" height="12" rx="2"/>
+              <path d="M5 15V5a2 2 0 0 1 2-2h10"/>
+            </svg>
+            <span id="btnCopyLabel">Copy Order Details</span>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-<!-- =========================================================
-     TOAST
-     ========================================================= -->
-<div class="cd-toast" id="cdToast" role="status" aria-live="polite"></div>
 
 <script>
 /* =========================================================
@@ -4480,7 +4058,6 @@
 const I18N = {
   en: {
     nav_home: "Home", nav_courses: "Courses & Services", nav_contact: "Contact Us", nav_enroll: "Enroll Now",
-    nav_batch: "Batch",
     hero_a: "bangladesh top 1", hero_b: "professional trading education",
     hero_sub: "Learn forex trading with a trusted mentor. Manage risk and trade with confidence.",
     hero_cta: "Enroll Now",
@@ -4508,7 +4085,6 @@ const I18N = {
   },
   bn: {
     nav_home: "হোম", nav_courses: "কোর্স ও সার্ভিস", nav_contact: "যোগাযোগ করুন", nav_enroll: "এনরোল করুন",
-    nav_batch: "ব্যাচ",
     hero_a: "বাংলাদেশের ১ নম্বর", hero_b: "প্রফেশনাল ট্রেডিং এডুকেশন",
     hero_sub: "বিশ্বস্ত মেন্টরের সাথে Forex ট্রেডিং শিখুন। Risk ম্যানেজ করে আত্মবিশ্বাসের সাথে ট্রেড করুন।",
     hero_cta: "এনরোল করুন",
@@ -5639,594 +5215,6 @@ Status: ${o.status}`;
   video.addEventListener('click', (e) => e.preventDefault());
   video.addEventListener('contextmenu', (e) => e.preventDefault());
 })();
-</script>
-
-<!-- =========================================================
-     FIREBASE MODULE
-     ========================================================= -->
-<script type="module">
-// =========================================================
-// FIREBASE MODULE — Batch Countdown (real-time)
-// =========================================================
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAD-VLPWD1dPdt6jquYSVJ-AzO68FzxRAQ",
-  authDomain: "jelly-notify.firebaseapp.com",
-  databaseURL: "https://jelly-notify-default-rtdb.firebaseio.com",
-  projectId: "jelly-notify",
-  storageBucket: "jelly-notify.firebasestorage.app",
-  messagingSenderId: "901828999016",
-  appId: "1:901828999016:web:184a52e6315cd3263ac8dd",
-  measurementId: "G-VVQXDR9RL4"
-};
-
-// ---- DOM refs (public countdown) ----
-const cdSection      = document.getElementById('batch');
-const cdLabel        = document.getElementById('cdLabel');
-const cdSubtitle     = document.getElementById('cdSubtitle');
-const cdDaysEl       = document.getElementById('cdDays');
-const cdHoursEl      = document.getElementById('cdHours');
-const cdMinsEl       = document.getElementById('cdMins');
-const cdSecsEl       = document.getElementById('cdSecs');
-const cdNote         = document.getElementById('cdNote');
-const cdStarted      = document.getElementById('cdStarted');
-const cdEnrollBtn    = document.getElementById('cdEnrollBtn');
-
-// ---- DOM refs (admin) ----
-const adminOverlay   = document.getElementById('cdAdminOverlay');
-const adminClose     = document.getElementById('cdAdminClose');
-const adminStatus    = document.getElementById('cdAdminStatus');
-const adminTarget    = document.getElementById('cdAdminTarget');
-const adminLabelEl   = document.getElementById('cdAdminLabel');
-const adminPreview   = document.getElementById('cdAdminPreview');
-const adminDays      = document.getElementById('cdAdminDays');
-const adminHours     = document.getElementById('cdAdminHours');
-const adminMins      = document.getElementById('cdAdminMins');
-const adminSecs      = document.getElementById('cdAdminSecs');
-const adminDayInput  = document.getElementById('cdAdminDay');
-const adminMonthSel  = document.getElementById('cdAdminMonth');
-const adminYearInput = document.getElementById('cdAdminYear');
-const adminHourInput = document.getElementById('cdAdminHour');
-const adminMinInput  = document.getElementById('cdAdminMin');
-const adminAmPmSel   = document.getElementById('cdAdminAmPm');
-const adminLabelInput= document.getElementById('cdAdminLabelInput');
-const adminStart     = document.getElementById('cdAdminStart');
-const adminHold      = document.getElementById('cdAdminHold');
-const adminResume    = document.getElementById('cdAdminResume');
-const adminReset     = document.getElementById('cdAdminReset');
-
-// ---- Login modal ----
-const loginOverlay   = document.getElementById('cdLoginOverlay');
-const loginClose     = document.getElementById('cdLoginClose');
-const loginForm      = document.getElementById('cdLoginForm');
-const loginPassword  = document.getElementById('cdLoginPassword');
-const loginError     = document.getElementById('cdLoginError');
-const loginCancel    = document.getElementById('cdLoginCancel');
-
-// ---- Toast ----
-const toastEl        = document.getElementById('cdToast');
-
-// ---- Admin password (in memory only) ----
-const ADMIN_PASSWORD = '4321';
-let adminAuthed = false;
-
-// ---- Firebase state ----
-let db = null;
-let serverTimeOffset = 0;
-let currentData = null;           // last known data from DB
-let countdownInterval = null;     // public ticking
-let adminPreviewInterval = null;  // admin preview ticking
-let lastRenderedSeconds = null;
-
-// ---- Helpers ----
-function pad(n, len) {
-  return String(n).padStart(len, '0');
-}
-
-function showToast(msg, type) {
-  if (!toastEl) return;
-  toastEl.textContent = msg;
-  toastEl.className = 'cd-toast';
-  if (type === 'success') toastEl.classList.add('cd-toast-success');
-  else if (type === 'error') toastEl.classList.add('cd-toast-error');
-  else toastEl.classList.add('cd-toast-info');
-  toastEl.classList.add('cd-toast-show');
-  clearTimeout(showToast._t);
-  showToast._t = setTimeout(() => {
-    toastEl.classList.remove('cd-toast-show');
-  }, 2600);
-}
-
-// Bangladesh time formatting for subtitle
-function formatBDTime(ts) {
-  if (!ts) return '';
-  const d = new Date(ts);
-  // Use Intl with Asia/Dhaka timezone
-  const dateStr = new Intl.DateTimeFormat('en-GB', {
-    day: 'numeric', month: 'long', year: 'numeric',
-    timeZone: 'Asia/Dhaka'
-  }).format(d);
-  const timeStr = new Intl.DateTimeFormat('en-US', {
-    hour: '2-digit', minute: '2-digit', hour12: true,
-    timeZone: 'Asia/Dhaka'
-  }).format(d);
-  return dateStr + ', ' + timeStr + ' (Bangladesh Time)';
-}
-
-// Set countdown boxes (public)
-function setPublicCountdown(days, hours, mins, secs) {
-  if (cdDaysEl) cdDaysEl.textContent = pad(days, 2);
-  if (cdHoursEl) cdHoursEl.textContent = pad(hours, 2);
-  if (cdMinsEl) cdMinsEl.textContent = pad(mins, 2);
-  if (cdSecsEl) cdSecsEl.textContent = pad(secs, 2);
-}
-
-// Reset public to zero state
-function showPublicZero(noteText) {
-  setPublicCountdown(0, 0, 0, 0);
-  if (cdNote) {
-    cdNote.textContent = noteText || 'Next batch date will be announced soon.';
-    cdNote.style.display = '';
-  }
-  if (cdStarted) cdStarted.classList.remove('cd-show');
-  if (cdSubtitle) cdSubtitle.textContent = '';
-}
-
-// Start public ticking based on currentData
-function startPublicTicker() {
-  if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
-
-  if (!currentData) {
-    showPublicZero('Next batch date will be announced soon.');
-    return;
-  }
-
-  const { status, targetTime, label } = currentData;
-
-  if (cdLabel) cdLabel.textContent = label || 'NEW BATCH';
-
-  if (status !== 'running' || !targetTime) {
-    showPublicZero('Next batch date will be announced soon.');
-    return;
-  }
-
-  // Show subtitle with date
-  if (cdSubtitle) {
-    cdSubtitle.textContent = 'Starts on ' + formatBDTime(targetTime);
-  }
-
-  // Tick
-  function tick() {
-    const now = Date.now() + serverTimeOffset;
-    let diff = targetTime - now;
-
-    if (diff <= 0) {
-      // Countdown reached zero
-      setPublicCountdown(0, 0, 0, 0);
-      if (cdNote) {
-        cdNote.textContent = 'The new batch has started! Enroll now.';
-        cdNote.style.display = 'none';
-      }
-      if (cdStarted) cdStarted.classList.add('cd-show');
-      if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
-      return;
-    }
-
-    if (cdNote) cdNote.style.display = 'none';
-    if (cdStarted) cdStarted.classList.remove('cd-show');
-
-    const totalSecs = Math.floor(diff / 1000);
-    const days = Math.floor(totalSecs / 86400);
-    const hours = Math.floor((totalSecs % 86400) / 3600);
-    const mins = Math.floor((totalSecs % 3600) / 60);
-    const secs = totalSecs % 60;
-
-    // Flip animation on seconds change
-    if (lastRenderedSeconds !== secs && cdSecsEl) {
-      cdSecsEl.classList.add('cd-flip');
-      setTimeout(() => cdSecsEl.classList.remove('cd-flip'), 120);
-    }
-    lastRenderedSeconds = secs;
-
-    setPublicCountdown(days, hours, mins, secs);
-  }
-
-  tick();
-  countdownInterval = setInterval(tick, 1000);
-}
-
-// Update admin preview
-function updateAdminPreview() {
-  if (!currentData) {
-    if (adminDays) adminDays.textContent = '00';
-    if (adminHours) adminHours.textContent = '00';
-    if (adminMins) adminMins.textContent = '00';
-    if (adminSecs) adminSecs.textContent = '00';
-    return;
-  }
-  const { status, targetTime } = currentData;
-  if (status !== 'running' || !targetTime) {
-    if (adminDays) adminDays.textContent = '00';
-    if (adminHours) adminHours.textContent = '00';
-    if (adminMins) adminMins.textContent = '00';
-    if (adminSecs) adminSecs.textContent = '00';
-    return;
-  }
-  const now = Date.now() + serverTimeOffset;
-  let diff = targetTime - now;
-  if (diff <= 0) {
-    if (adminDays) adminDays.textContent = '00';
-    if (adminHours) adminHours.textContent = '00';
-    if (adminMins) adminMins.textContent = '00';
-    if (adminSecs) adminSecs.textContent = '00';
-    return;
-  }
-  const totalSecs = Math.floor(diff / 1000);
-  const days = Math.floor(totalSecs / 86400);
-  const hours = Math.floor((totalSecs % 86400) / 3600);
-  const mins = Math.floor((totalSecs % 3600) / 60);
-  const secs = totalSecs % 60;
-  if (adminDays) adminDays.textContent = pad(days, 2);
-  if (adminHours) adminHours.textContent = pad(hours, 2);
-  if (adminMins) adminMins.textContent = pad(mins, 2);
-  if (adminSecs) adminSecs.textContent = pad(secs, 2);
-}
-
-function startAdminPreviewTicker() {
-  if (adminPreviewInterval) { clearInterval(adminPreviewInterval); adminPreviewInterval = null; }
-  updateAdminPreview();
-  adminPreviewInterval = setInterval(updateAdminPreview, 1000);
-}
-
-function stopAdminPreviewTicker() {
-  if (adminPreviewInterval) { clearInterval(adminPreviewInterval); adminPreviewInterval = null; }
-}
-
-// Update admin status card from currentData
-function updateAdminStatusCard() {
-  if (!adminStatus || !adminTarget || !adminLabelEl) return;
-
-  if (!currentData) {
-    adminStatus.textContent = '—';
-    adminStatus.className = 'cd-v';
-    adminTarget.textContent = '—';
-    adminLabelEl.textContent = '—';
-    return;
-  }
-
-  const { status, targetTime, label } = currentData;
-  adminStatus.textContent = status === 'running' ? 'RUNNING' : 'HOLD';
-  adminStatus.className = 'cd-v ' + (status === 'running' ? 'cd-running' : 'cd-hold');
-  adminTarget.textContent = targetTime ? formatBDTime(targetTime) : '—';
-  adminLabelEl.textContent = label || '—';
-}
-
-// Fill admin form from currentData (if future date exists)
-function fillAdminForm() {
-  if (!currentData) return;
-  const { status, targetTime, label } = currentData;
-  if (adminLabelInput) adminLabelInput.value = label || 'NEW BATCH';
-
-  if (targetTime) {
-    // Convert UTC ms to Bangladesh time components
-    const d = new Date(targetTime);
-    // Get parts in Asia/Dhaka
-    const parts = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Asia/Dhaka',
-      day: 'numeric', month: 'numeric', year: 'numeric',
-      hour: 'numeric', minute: 'numeric', hour12: false
-    }).formatToParts(d);
-    const get = (type) => parts.find(p => p.type === type)?.value;
-    const day = parseInt(get('day'), 10);
-    const month = parseInt(get('month'), 10) - 1; // 0-based
-    const year = parseInt(get('year'), 10);
-    let hour24 = parseInt(get('hour'), 10);
-    const minute = parseInt(get('minute'), 10);
-    const ampm = hour24 >= 12 ? 'PM' : 'AM';
-    let hour12 = hour24 % 12;
-    if (hour12 === 0) hour12 = 12;
-
-    if (adminDayInput) adminDayInput.value = day;
-    if (adminMonthSel) adminMonthSel.value = month;
-    if (adminYearInput) adminYearInput.value = year;
-    if (adminHourInput) adminHourInput.value = hour12;
-    if (adminMinInput) adminMinInput.value = minute;
-    if (adminAmPmSel) adminAmPmSel.value = ampm;
-  }
-}
-
-// Show/hide Resume button
-function updateResumeButton() {
-  if (!adminResume) return;
-  if (currentData && currentData.status === 'hold' && currentData.targetTime && currentData.targetTime > Date.now() + serverTimeOffset) {
-    adminResume.style.display = '';
-  } else {
-    adminResume.style.display = 'none';
-  }
-}
-
-// Disable/enable admin buttons
-function setAdminButtonsDisabled(disabled) {
-  [adminStart, adminHold, adminResume, adminReset].forEach(btn => {
-    if (btn) btn.disabled = disabled;
-  });
-}
-
-// Open admin panel
-function openAdminPanel() {
-  if (!adminOverlay) return;
-  adminOverlay.classList.add('cd-open');
-  adminOverlay.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('cd-lock');
-  fillAdminForm();
-  updateAdminStatusCard();
-  updateResumeButton();
-  startAdminPreviewTicker();
-}
-
-// Close admin panel
-function closeAdminPanel() {
-  if (!adminOverlay) return;
-  adminOverlay.classList.remove('cd-open');
-  adminOverlay.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('cd-lock');
-  stopAdminPreviewTicker();
-  // Reset admin session
-  adminAuthed = false;
-}
-
-// Open login
-function openLogin() {
-  if (!loginOverlay) return;
-  if (loginError) loginError.textContent = '';
-  if (loginPassword) loginPassword.value = '';
-  loginOverlay.classList.add('cd-open');
-  loginOverlay.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('cd-lock');
-  setTimeout(() => { if (loginPassword) loginPassword.focus(); }, 80);
-}
-
-// Close login
-function closeLogin() {
-  if (!loginOverlay) return;
-  loginOverlay.classList.remove('cd-open');
-  loginOverlay.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('cd-lock');
-}
-
-// ---- Keyboard shortcut: "A" twice within 500ms ----
-let lastA = 0;
-document.addEventListener('keydown', (e) => {
-  if (e.key !== 'a' && e.key !== 'A') return;
-  const tag = (e.target.tagName || '').toLowerCase();
-  if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
-  // Ignore if any modal/overlay is open
-  if (document.body.classList.contains('modal-open') ||
-      document.body.classList.contains('ct-lock') ||
-      document.body.classList.contains('rv-lock') ||
-      document.body.classList.contains('cd-lock')) return;
-
-  const now = Date.now();
-  if (now - lastA < 500) {
-    lastA = 0;
-    if (adminAuthed) openAdminPanel();
-    else openLogin();
-  } else {
-    lastA = now;
-  }
-});
-
-// ---- Mobile double-tap on footer logo ----
-let lastTap = 0;
-const ftLogo = document.querySelector('.ft-logo');
-if (ftLogo) {
-  ftLogo.addEventListener('touchend', (e) => {
-    const now = Date.now();
-    if (now - lastTap < 400) {
-      lastTap = 0;
-      e.preventDefault();
-      if (adminAuthed) openAdminPanel();
-      else openLogin();
-    } else {
-      lastTap = now;
-    }
-  });
-}
-
-// ---- Login form ----
-if (loginForm) {
-  loginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const val = loginPassword ? loginPassword.value : '';
-    if (val === ADMIN_PASSWORD) {
-      adminAuthed = true;
-      closeLogin();
-      openAdminPanel();
-      showToast('Welcome, admin', 'success');
-    } else {
-      if (loginError) loginError.textContent = 'Wrong password';
-      if (loginPassword) { loginPassword.value = ''; loginPassword.focus(); }
-    }
-  });
-}
-if (loginCancel) loginCancel.addEventListener('click', closeLogin);
-if (loginClose) loginClose.addEventListener('click', closeLogin);
-if (loginOverlay) {
-  loginOverlay.addEventListener('click', (e) => { if (e.target === loginOverlay) closeLogin(); });
-}
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && loginOverlay && loginOverlay.classList.contains('cd-open')) {
-    closeLogin();
-  }
-});
-
-// ---- Admin panel close ----
-if (adminClose) adminClose.addEventListener('click', closeAdminPanel);
-if (adminOverlay) {
-  adminOverlay.addEventListener('click', (e) => { if (e.target === adminOverlay) closeAdminPanel(); });
-}
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && adminOverlay && adminOverlay.classList.contains('cd-open')) {
-    closeAdminPanel();
-  }
-});
-
-// ---- Admin actions ----
-async function saveCountdown(data) {
-  if (!db) {
-    showToast('Firebase not connected', 'error');
-    return false;
-  }
-  setAdminButtonsDisabled(true);
-  try {
-    await set(ref(db, 'batchCountdown'), data);
-    showToast('Saved', 'success');
-    return true;
-  } catch (err) {
-    console.error('Save failed:', err);
-    showToast('Failed to save, check your connection', 'error');
-    return false;
-  } finally {
-    setAdminButtonsDisabled(false);
-  }
-}
-
-if (adminStart) {
-  adminStart.addEventListener('click', async () => {
-    const day = parseInt(adminDayInput.value, 10);
-    const month = parseInt(adminMonthSel.value, 10);
-    const year = parseInt(adminYearInput.value, 10);
-    let hour12 = parseInt(adminHourInput.value, 10);
-    const minute = parseInt(adminMinInput.value, 10);
-    const ampm = adminAmPmSel.value;
-    const label = (adminLabelInput.value || 'NEW BATCH').slice(0, 30);
-
-    // Validate
-    if (!day || day < 1 || day > 31) { showToast('Invalid day', 'error'); return; }
-    if (!year || year < 2026 || year > 2031) { showToast('Invalid year', 'error'); return; }
-    if (!hour12 || hour12 < 1 || hour12 > 12) { showToast('Invalid hour', 'error'); return; }
-    if (isNaN(minute) || minute < 0 || minute > 59) { showToast('Invalid minute', 'error'); return; }
-
-    // Convert to 24h
-    let hour24 = hour12 % 12;
-    if (ampm === 'PM') hour24 += 12;
-
-    // Build UTC ms from Bangladesh time (UTC+6)
-    // Date.UTC(year, month, day, hour24 - 6, minute)
-    const targetTime = Date.UTC(year, month, day, hour24 - 6, minute);
-
-    // Validate real calendar date
-    const check = new Date(targetTime);
-    const checkParts = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Asia/Dhaka',
-      day: 'numeric', month: 'numeric', year: 'numeric'
-    }).formatToParts(check);
-    const cDay = parseInt(checkParts.find(p => p.type === 'day')?.value, 10);
-    const cMonth = parseInt(checkParts.find(p => p.type === 'month')?.value, 10) - 1;
-    const cYear = parseInt(checkParts.find(p => p.type === 'year')?.value, 10);
-
-    if (cDay !== day || cMonth !== month || cYear !== year) {
-      showToast('Invalid date (e.g. 31 February does not exist)', 'error');
-      return;
-    }
-
-    // Must be in the future
-    if (targetTime <= Date.now() + serverTimeOffset) {
-      showToast('Date must be in the future', 'error');
-      return;
-    }
-
-    const ok = await saveCountdown({
-      status: 'running',
-      targetTime,
-      label,
-      updatedAt: Date.now()
-    });
-    if (ok) showToast('Countdown started', 'success');
-  });
-}
-
-if (adminHold) {
-  adminHold.addEventListener('click', async () => {
-    const keepTime = currentData && currentData.targetTime ? currentData.targetTime : null;
-    const keepLabel = currentData && currentData.label ? currentData.label : 'NEW BATCH';
-    const ok = await saveCountdown({
-      status: 'hold',
-      targetTime: keepTime,
-      label: keepLabel,
-      updatedAt: Date.now()
-    });
-    if (ok) showToast('Countdown on hold', 'success');
-  });
-}
-
-if (adminResume) {
-  adminResume.addEventListener('click', async () => {
-    if (!currentData || !currentData.targetTime) return;
-    if (currentData.targetTime <= Date.now() + serverTimeOffset) {
-      showToast('Saved date is in the past', 'error');
-      return;
-    }
-    const ok = await saveCountdown({
-      status: 'running',
-      targetTime: currentData.targetTime,
-      label: currentData.label || 'NEW BATCH',
-      updatedAt: Date.now()
-    });
-    if (ok) showToast('Countdown resumed', 'success');
-  });
-}
-
-if (adminReset) {
-  adminReset.addEventListener('click', async () => {
-    if (!confirm('Reset countdown? This will clear the saved date.')) return;
-    const ok = await saveCountdown({
-      status: 'hold',
-      targetTime: null,
-      label: currentData && currentData.label ? currentData.label : 'NEW BATCH',
-      updatedAt: Date.now()
-    });
-    if (ok) showToast('Countdown reset', 'success');
-  });
-}
-
-// ---- Firebase init ----
-try {
-  const app = initializeApp(firebaseConfig);
-  db = getDatabase(app);
-
-  // Server time offset
-  const offsetRef = ref(db, '.info/serverTimeOffset');
-  onValue(offsetRef, (snap) => {
-    serverTimeOffset = snap.val() || 0;
-  });
-
-  // Listen to batchCountdown
-  const countdownRef = ref(db, 'batchCountdown');
-  onValue(countdownRef, (snap) => {
-    currentData = snap.val();
-    startPublicTicker();
-    updateAdminStatusCard();
-    updateResumeButton();
-  }, (err) => {
-    console.warn('Firebase read error:', err);
-    // Show zeros if DB unreachable
-    showPublicZero('Next batch date will be announced soon.');
-  });
-
-} catch (err) {
-  console.warn('Firebase init failed:', err);
-  // Graceful fallback: show zeros, keep site working
-  showPublicZero('Next batch date will be announced soon.');
-}
-
-// ---- Cleanup on page unload ----
-window.addEventListener('beforeunload', () => {
-  if (countdownInterval) clearInterval(countdownInterval);
-  if (adminPreviewInterval) clearInterval(adminPreviewInterval);
-});
 </script>
 </body>
 </html>
