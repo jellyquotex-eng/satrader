@@ -3,384 +3,603 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SA TRADER — Professional Trading Education</title>
+<title>Our Services — Enroll</title>
+
+<!-- Poppins from Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
+/* =========================================================
+   ROOT TOKENS / CSS VARIABLES
+   ========================================================= */
 :root{
-  --bg:#0a0a0a;--bg2:#141414;--card:#1a1a1a;--line:rgba(255,255,255,.08);
-  --yellow:#ffc21a;--orange:#ff8a1f;--text:#fff;--muted:#a3a3a3;
-  --green:#22c55e;
-  --radius-lg:28px;--radius-md:20px;--radius-sm:14px;
-  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#0f0f0f;
+  --card:#1a1a1a;
+  --card-hover:#1e1e1e;
+  --border:#2a2a2a;
+  --border-hover:rgba(255,193,7,.55);
+  --text:#ffffff;
+  --muted:#9a9a9a;
+  --muted-2:#7a7a7a;
+  --yellow:#ffc107;
+  --yellow-2:#ffb300;
+  --yellow-grad:linear-gradient(135deg,#ffc107 0%,#ffb300 100%);
+  --yellow-glow:rgba(255,193,7,.35);
+  --danger:#ff5a5a;
+  --success:#22c55e;
+  --telegram:#229ED9;
+  --radius-card:20px;
+  --radius-input:12px;
+  --radius-pill:999px;
+  --shadow-card:0 10px 30px rgba(0,0,0,.45);
+  --shadow-card-hover:0 22px 45px rgba(0,0,0,.6), 0 0 0 1px rgba(255,193,7,.25), 0 0 30px rgba(255,179,0,.16);
+  --font:'Poppins',system-ui,-apple-system,Segoe UI,sans-serif;
 }
-html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
-#our-services{scroll-margin-top:90px}
-*,*::before,*::after{box-sizing:border-box;margin:0}
+
+/* =========================================================
+   GLOBAL RESET
+   ========================================================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{
-  background:var(--bg);color:var(--text);font-family:'Poppins',system-ui,-apple-system,Segoe UI,sans-serif;
-  overflow-x:hidden;min-height:100%;
-  background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:26px 26px;
-}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(600px 400px at 85% 10%,rgba(255,170,30,.12),transparent 70%),
-             radial-gradient(500px 380px at 5% 40%,rgba(255,194,26,.07),transparent 70%)}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 20px}
-
-/* ============ BENGALI MODE ============ */
-html[lang="bn"] body{font-family:'Hind Siliguri','Poppins',system-ui,sans-serif;line-height:1.6}
-html[lang="bn"] h1,
-html[lang="bn"] .featured-brand,
-html[lang="bn"] .featured-title,
-html[lang="bn"] .featured-desc,
-html[lang="bn"] .sub{line-height:1.55}
-html[lang="bn"] .btn,
-html[lang="bn"] .links a,
-html[lang="bn"] .menu a{white-space:normal;line-height:1.35}
-html[lang="bn"] .links a{padding:9px 14px}
-html[lang="bn"] .box small,
-html[lang="bn"] .stat small{letter-spacing:0}
-
-/* ============ NAVBAR ============ */
-.nav{position:sticky;top:14px;z-index:50;margin:14px auto 0;max-width:1240px;padding:0 20px}
-.nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;
-  background:rgba(22,22,22,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border:1px solid var(--line);border-radius:999px;padding:8px 12px 8px 14px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
-.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;justify-self:start;white-space:nowrap;min-width:0}
-.logo img{width:auto;height:42px;max-width:140px;object-fit:contain;object-position:center;display:block;border-radius:6px;flex:none}
-.logo-text{font-family:'Poppins',system-ui,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.05;font-size:clamp(15px,1.6vw,20px);color:#fff;white-space:nowrap;display:inline-block}
-.logo-text b{background:linear-gradient(135deg,var(--yellow),var(--orange));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;font-weight:800}
-.links{display:flex;gap:6px;justify-self:center;align-items:center;justify-content:center;white-space:nowrap}
-.links a{position:relative;padding:9px 16px;border-radius:999px;font-size:14px;color:var(--muted);transition:.25s}
-.links a:hover{color:#fff;background:rgba(255,255,255,.06)}
-.links a.active{color:var(--yellow);background:rgba(255,194,26,.1)}
-.links a.active::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:4px;width:18px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--yellow),var(--orange))}
-.actions{display:flex;align-items:center;gap:8px;justify-self:end}
-.lang{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:999px;padding:8px 12px;font:inherit;font-size:13px;cursor:pointer}
-.lang option{background:#111}
-.btn{display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:600;font-size:14px;border-radius:999px;padding:11px 22px;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;box-shadow:0 8px 24px rgba(255,150,30,.3);transition:transform .25s,box-shadow .25s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,150,30,.45)}
-.btn.ghost{background:transparent;color:#fff;box-shadow:none;border:1px solid var(--line)}
-.btn.ghost:hover{background:rgba(255,255,255,.06);box-shadow:none}
-.btn.lg{padding:15px 34px;font-size:16px}
-.burger{display:none;background:none;border:1px solid var(--line);color:#fff;border-radius:50%;width:42px;height:42px;font-size:18px;cursor:pointer;justify-self:end}
-.menu{display:none}
-
-/* ============ HERO ============ */
-.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center;padding:70px 0 40px}
-h1{font-size:clamp(34px,5vw,62px);line-height:1.1;font-weight:800;letter-spacing:-.02em;text-transform:capitalize}
-h1 span.hl{color:var(--yellow)}
-.sub{margin:22px 0 34px;color:var(--muted);font-size:clamp(15px,1.6vw,18px);max-width:520px;line-height:1.7}
-.count{background:linear-gradient(160deg,#1c1c1c,#121212);border:1px solid var(--line);border-radius:var(--radius-lg);padding:34px;
-  box-shadow:0 24px 70px rgba(0,0,0,.6),0 0 0 1px rgba(255,194,26,.06) inset;text-align:center;animation:float 6s ease-in-out infinite}
-.count h3{font-size:26px;font-weight:700;color:var(--yellow)}
-.count p{color:var(--muted);margin:6px 0 24px;font-size:15px}
-.boxes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.box{border-radius:16px;padding:16px 4px;background:linear-gradient(160deg,var(--yellow),var(--orange));color:#111;box-shadow:0 8px 20px rgba(255,150,30,.25)}
-.box b{display:block;font-size:clamp(24px,3.2vw,36px);font-weight:800;line-height:1}
-.box small{display:block;margin-top:6px;font-size:11px;font-weight:600;letter-spacing:.06em}
-
-/* ============ SHOWCASE ============ */
-.showcase{position:relative;max-width:1240px;margin:10px auto 60px;padding:clamp(16px,2vw,24px);border-radius:36px;
-  background:linear-gradient(160deg,#181818,#0f0f0f);border:1px solid var(--line);box-shadow:0 30px 90px rgba(0,0,0,.6)}
-.showcase-main{display:grid;grid-template-columns:260px 1fr 280px;gap:clamp(14px,1.6vw,20px);align-items:stretch}
-.side-left{display:flex;flex-direction:column;gap:14px;min-width:0}
-.pdf-card{position:relative;overflow:hidden;background:linear-gradient(160deg,#1c1c1c,#121212);border:1px solid var(--line);border-radius:var(--radius-md);
-  padding:20px 16px;display:flex;flex-direction:column;gap:14px;transition:border-color .3s ease,transform .3s ease}
-.pdf-card::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
-  background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:14px 14px}
-.pdf-card:hover{border-color:rgba(255,194,26,.35);transform:translateY(-2px)}
-.pdf-card > *{position:relative;z-index:1}
-.pdf-head{display:flex;align-items:center;gap:12px}
-.pdf-icon{width:44px;height:54px;flex:none;position:relative;background:linear-gradient(160deg,#2a2a2a,#1a1a1a);border:1px solid var(--line);border-radius:8px;display:grid;place-items:center}
-.pdf-icon::before{content:"";position:absolute;top:-1px;right:-1px;width:14px;height:14px;background:var(--yellow);clip-path:polygon(0 0,100% 0,100% 100%);border-top-right-radius:8px}
-.pdf-icon span{font-size:10px;font-weight:800;color:var(--yellow);letter-spacing:.05em}
-.pdf-card .pdf-label{font-size:10.5px;font-weight:700;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
-.pdf-card h5{font-size:15px;font-weight:700;line-height:1.3}
-.pdf-card .btn{width:100%;text-align:center;padding:12px 16px;font-size:13px;margin-top:auto}
-.mini-course{background:linear-gradient(160deg,#1c1c1c,#121212);border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;transition:transform .3s ease,border-color .3s ease}
-.mini-course:hover{transform:translateY(-3px);border-color:rgba(255,194,26,.35)}
-.mini-course .thumb{aspect-ratio:16/10;overflow:hidden;background:#0d0d0d;position:relative}
-.mini-course .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
-.mini-course:hover .thumb img{transform:scale(1.05)}
-.mini-course .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.55) 100%);pointer-events:none}
-.mini-course .body{padding:14px}
-.mini-course .num{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--yellow);margin-bottom:6px}
-.mini-course h4{font-size:14px;font-weight:700;line-height:1.3;margin-bottom:6px;text-transform:uppercase;letter-spacing:.02em}
-.mini-course p{font-size:12px;color:var(--muted);line-height:1.55}
-.featured{position:relative;border-radius:24px;overflow:hidden;min-height:460px;background:#0d0d0d;border:1px solid var(--line);
-  display:grid;grid-template-columns:1.15fr 1fr;isolation:isolate}
-.featured::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--yellow),var(--orange));z-index:3}
-.featured-text{position:relative;z-index:2;padding:clamp(22px,2.6vw,36px);display:flex;flex-direction:column;justify-content:center;background:linear-gradient(120deg,#121212 40%,rgba(18,18,18,.4) 100%)}
-.featured-badge{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:700;letter-spacing:.15em;color:var(--yellow);text-transform:uppercase;margin-bottom:14px}
-.featured-badge::before{content:"";width:18px;height:1.5px;background:var(--yellow);display:block}
-.featured-brand{font-size:clamp(22px,2.6vw,30px);font-weight:800;line-height:1.05;letter-spacing:-.01em;margin-bottom:10px}
-.featured-brand span{color:var(--yellow)}
-.featured-title{font-size:clamp(14px,1.3vw,16px);font-weight:600;color:#e8e8e8;line-height:1.45;margin-bottom:12px;max-width:420px}
-.featured-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:22px;max-width:420px}
-.featured-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:22px}
-.featured-meta span{display:inline-flex;align-items:center;gap:7px}
-.featured-meta .dot{width:5px;height:5px;border-radius:50%;background:var(--yellow);flex:none}
-.featured-meta b{color:#fff;font-weight:600}
-.featured-cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.featured-plus{margin-left:auto;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,194,26,.1);border:1px solid rgba(255,194,26,.35);
-  color:var(--yellow);font-size:20px;font-weight:300;line-height:1;transition:background .25s,transform .25s;cursor:pointer;flex:none}
-.featured-plus:hover{background:rgba(255,194,26,.2);transform:rotate(90deg)}
-.featured-media{position:relative;overflow:hidden;min-height:300px;background:#0a0a0a}
-.featured-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s ease, filter .5s ease}
-.featured:hover .featured-media img{transform:scale(1.05);filter:brightness(1.05)}
-.featured-media::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(90deg,#121212 0%,rgba(18,18,18,.85) 18%,rgba(18,18,18,0) 55%),
-             linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.5) 100%)}
-.video-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
-.video-card{position:relative;border-radius:14px;overflow:hidden;background:#151515;border:1px solid var(--line);min-height:78px;isolation:isolate;transition:transform .3s ease, border-color .3s ease}
-.video-card:hover{transform:translateY(-3px);border-color:rgba(255,194,26,.4)}
-.video-card .big-num{position:absolute;top:-12px;right:-4px;font-size:64px;font-weight:900;line-height:.85;letter-spacing:-.05em;color:rgba(255,194,26,.12);z-index:0;pointer-events:none;user-select:none;transition:color .35s ease}
-.video-card:hover .big-num{color:rgba(255,194,26,.22)}
-.video-card .vc-img{position:absolute;inset:0;z-index:1}
-.video-card .vc-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease, filter .4s ease}
-.video-card:hover .vc-img img{transform:scale(1.08);filter:brightness(1.08)}
-.video-card .vc-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.7) 100%);pointer-events:none}
-.video-card .vc-tag{position:absolute;top:6px;left:6px;z-index:2;font-size:8.5px;font-weight:700;letter-spacing:.1em;color:var(--yellow);background:rgba(10,10,10,.85);
-  border:1px solid rgba(255,194,26,.35);padding:2px 6px;border-radius:999px;backdrop-filter:blur(6px)}
-.video-card .vc-tag.pop{color:#fff;border-color:var(--line)}
-.side-right{display:flex;flex-direction:column;gap:12px;min-width:0;background:linear-gradient(160deg,#1c1c1c,#121212);border:1px solid var(--line);border-radius:22px;padding:18px 16px}
-.side-right-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--line)}
-.side-right-head .brand-name{font-size:15px;font-weight:800;letter-spacing:.02em}
-.side-right-head .brand-name span{color:var(--yellow)}
-.progress-ring{position:relative;width:56px;height:56px;flex:none}
-.progress-ring svg{transform:rotate(-90deg);display:block}
-.progress-ring .bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:4}
-.progress-ring .fg{fill:none;stroke:url(#goldGrad);stroke-width:4;stroke-linecap:round;stroke-dasharray:150.8;stroke-dashoffset:15.08}
-.progress-ring .val{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff}
-.side-right h6{font-size:14px;font-weight:700;line-height:1.3;margin-bottom:4px}
-.side-right .side-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:6px}
-.side-stats{display:flex;gap:10px;margin-bottom:6px}
-.stat{flex:1;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:10px 8px;text-align:center}
-.stat b{display:block;font-size:15px;font-weight:800;color:var(--yellow);line-height:1}
-.stat small{display:block;font-size:9.5px;color:var(--muted);letter-spacing:.08em;margin-top:4px;text-transform:uppercase}
-.lesson-mini{position:relative;display:flex;gap:10px;align-items:center;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:14px;padding:9px;
-  transition:border-color .25s ease, background .25s ease, transform .25s ease;cursor:pointer}
-.lesson-mini:hover{border-color:rgba(255,194,26,.4);background:rgba(255,194,26,.05);transform:translateX(2px)}
-.lesson-mini .lm-thumb{width:62px;height:46px;border-radius:10px;overflow:hidden;flex:none;background:#0d0d0d}
-.lesson-mini .lm-thumb img{width:100%;height:100%;object-fit:cover}
-.lesson-mini .lm-body{min-width:0;flex:1;padding-right:26px}
-.lesson-mini .lm-title{font-size:12.5px;font-weight:600;color:#e8e8e8;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.lesson-mini .lm-num{position:absolute;right:8px;bottom:8px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;font-size:10.5px;font-weight:800;box-shadow:0 4px 12px rgba(255,150,30,.35)}
-
-/* ============ STATS ============ */
-.stats-wrap{position:relative;max-width:1240px;margin:0 auto 60px;padding:clamp(22px,3vw,40px);border-radius:36px;
-  background:linear-gradient(160deg,#141414,#0e0e0e);border:1px solid var(--line);overflow:hidden}
-.stats-wrap::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:22px 22px;
-  mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%)}
-.stats-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.6vw,18px)}
-.stat-card{background:linear-gradient(160deg,#1c1c1c,#121212);border:1px solid var(--line);border-radius:28px;padding:26px 20px;text-align:center;
-  transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease}
-.stat-card:hover{transform:translateY(-6px);border-color:rgba(255,194,26,.65);
-  box-shadow:0 18px 45px rgba(0,0,0,.6), 0 0 0 1px rgba(255,194,26,.35), 0 0 30px rgba(255,170,30,.18)}
-.stat-icon{width:80px;height:80px;border-radius:22px;margin:0 auto 18px;display:grid;place-items:center;background:rgba(255,194,26,.22);
-  border:1px solid rgba(255,194,26,.28);box-shadow:0 0 40px rgba(255,170,30,.25);transition:transform .3s ease, box-shadow .3s ease, background .3s ease}
-.stat-card:hover .stat-icon{transform:scale(1.06);background:rgba(255,194,26,.28);box-shadow:0 0 50px rgba(255,170,30,.35)}
-.stat-icon svg{width:44px;height:44px;display:block}
-.stat-card .stat-num{font-size:clamp(26px,3vw,36px);font-weight:800;line-height:1;letter-spacing:-.02em;color:#fff;margin-bottom:8px;display:inline-block}
-.stat-card .stat-label{font-size:12.5px;color:var(--muted);font-weight:500;letter-spacing:.02em}
-
-/* =========================================================
-   OUR SERVICES — pixel-faithful replica of reference
-   Scoped with .rsvc- prefix to avoid clashes.
-   ========================================================= */
-.rsvc{
-  background:#0d0d0d;
-  padding:clamp(40px,6vw,90px) 0;
-  margin:0 auto 60px;
-  max-width:1240px;
-}
-.rsvc-inner{
-  display:grid;
-  grid-template-columns:385px 1fr;
-  gap:150px;
-  align-items:center;
-}
-.rsvc-card{background:#161616;overflow:hidden;width:100%}
-.rsvc-photo{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;display:block;background:#0d0d0d}
-.rsvc-info{display:grid;grid-template-columns:1fr 1fr;align-items:center;background:#161616;border-top:1px solid rgba(255,255,255,.08);min-height:74px}
-.rsvc-info-left{padding:14px 18px;border-right:1px solid rgba(255,255,255,.08);min-width:0}
-.rsvc-name{font-family:'Poppins',sans-serif;font-weight:700;font-size:22px;line-height:1.15;color:#ffffff;margin-bottom:6px}
-.rsvc-verified{display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-weight:400;font-size:12px;line-height:1.2;color:#ffffff}
-.rsvc-verified svg{width:14px;height:14px;flex:none;display:block}
-.rsvc-info-right{padding:14px 18px;display:flex;align-items:center;justify-content:center}
-.rsvc-tag{font-family:'Poppins',sans-serif;font-weight:700;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:#6ea8ff;background:#1e3a8a;padding:4px 14px;border-radius:4px;white-space:nowrap;line-height:1.4}
-.rsvc-content{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
-
-/* OUR SERVICES label — small yellow eyebrow above the heading */
-.rsvc-label{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:12px;
-  font-family:'Poppins',sans-serif;
-}
-.rsvc-label-line{
-  display:block;
-  width:30px;
-  height:2px;
-  background:#f5c518;
-  border-radius:2px;
-  flex:none;
-}
-.rsvc-label-text{
-  font-family:'Poppins',sans-serif;
-  font-weight:600;
-  font-size:13px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:#f5c518;
-  line-height:1;
-}
-
-.rsvc-heading{font-family:'Poppins',sans-serif;font-weight:700;font-size:36px;line-height:1.2;color:#ffffff;letter-spacing:-.01em;margin:0}
-.rsvc-quote{margin-top:40px;display:flex;align-items:flex-start;gap:12px;max-width:520px}
-.rsvc-quote-mark{font-family:Georgia, 'Times New Roman', serif;font-size:34px;line-height:.8;color:#7a7a7a;flex:none;margin-top:2px;user-select:none}
-.rsvc-quote-text{font-family:'Poppins',sans-serif;font-style:italic;font-weight:600;font-size:17px;line-height:1.55;color:#ffffff}
-.rsvc-quote-attr{margin-top:12px;margin-left:46px;display:flex;align-items:center;gap:12px}
-.rsvc-quote-line{display:block;width:35px;height:1px;background:rgba(255,255,255,.25);flex:none}
-.rsvc-quote-label{font-family:'Poppins',sans-serif;font-weight:400;font-style:normal;font-size:13px;color:#ffffff;line-height:1.2}
-.rsvc-para{margin-top:50px;font-family:'Poppins',sans-serif;font-weight:400;font-size:16px;line-height:1.6;color:#ffffff;max-width:520px}
-
-/* =========================================================
-   CONNECT WITH US — new section (scoped .cw- prefix)
-   ========================================================= */
-.cw{
-  background:#0d0d0d;
-  max-width:1240px;
-  margin:0 auto 90px;
-  padding:clamp(20px,3vw,40px) 0;
-}
-.cw-head{
-  text-align:center;
-  margin-bottom:50px;
-}
-.cw-head h2{
-  font-family:'Poppins',sans-serif;
-  font-weight:700;
-  font-size:36px;
-  line-height:1.2;
-  color:#ffffff;
-  letter-spacing:-.01em;
-  margin:0 0 10px;
-}
-.cw-head p{
-  font-family:'Poppins',sans-serif;
-  font-weight:400;
-  font-size:14.5px;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  font-size:15px;
   line-height:1.55;
-  color:#9a9a9a;
-  max-width:520px;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+a{color:inherit;text-decoration:none}
+input{font:inherit}
+
+/* =========================================================
+   SECTION WRAPPER
+   ========================================================= */
+.svc-section{
+  max-width:1280px;
+  margin:0 auto;
+  padding:clamp(40px,7vw,90px) clamp(16px,3vw,28px);
+}
+
+/* Section header */
+.svc-header{
+  text-align:center;
+  margin-bottom:clamp(28px,4vw,50px);
+}
+.svc-header h2{
+  font-weight:800;
+  font-size:clamp(28px,4.4vw,46px);
+  letter-spacing:-.01em;
+  color:var(--text);
+  line-height:1.15;
+  margin-bottom:10px;
+}
+.svc-header p{
+  color:var(--muted);
+  font-size:clamp(13.5px,1.4vw,15.5px);
+  max-width:560px;
   margin:0 auto;
 }
-.cw-grid{
+
+/* =========================================================
+   CARD GRID
+   ========================================================= */
+.svc-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:25px;
-  max-width:1200px;
-  margin:0 auto;
+  grid-template-columns:repeat(4,1fr);
+  gap:clamp(16px,2vw,24px);
+  align-items:stretch;
 }
-.cw-card{
+
+/* =========================================================
+   CARD
+   ========================================================= */
+.svc-card{
+  position:relative;
   display:flex;
   flex-direction:column;
-  background:#181818;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:20px;
-  padding:16px;
-  transition:transform .3s ease, border-color .3s ease;
-  color:inherit;
-  text-decoration:none;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-card);
+  padding:clamp(20px,2vw,26px);
+  box-shadow:var(--shadow-card);
+  transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease, background .3s ease;
 }
-.cw-card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(245,197,24,.4);
+.svc-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--border-hover);
+  background:var(--card-hover);
+  box-shadow:var(--shadow-card-hover);
 }
-.cw-top{
+
+/* Card title (uppercase bold white) */
+.svc-title{
+  font-size:16px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  color:var(--text);
+  line-height:1.35;
+  margin-bottom:6px;
+}
+
+/* Card subtitle (grey) */
+.svc-sub{
+  font-size:13px;
+  font-weight:500;
+  color:var(--muted);
+  line-height:1.5;
+  margin-bottom:14px;
+}
+
+/* Thin divider */
+.svc-divider{
+  height:1px;
+  background:var(--border);
+  margin:0 0 16px;
+}
+
+/* Feature list */
+.svc-features{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+  margin-bottom:22px;
+}
+.svc-features li{
+  position:relative;
+  padding-left:20px;
+  font-size:13.5px;
+  line-height:1.5;
+  color:#e3e3e3;
+}
+/* glowing yellow bullet dot */
+.svc-features li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.55em;
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--yellow-grad);
+  box-shadow:0 0 8px var(--yellow-glow), 0 0 2px var(--yellow);
+}
+
+/* Footer: price + button */
+.svc-foot{
+  margin-top:auto;
   display:flex;
   align-items:center;
-  gap:14px;
-  padding-bottom:14px;
+  justify-content:space-between;
+  gap:12px;
+  padding-top:16px;
+  border-top:1px solid var(--border);
 }
-.cw-icon{
-  width:55px;height:55px;
-  flex:none;
-  background:#1f1f1f;
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:12px;
-  display:grid;
-  place-items:center;
+.svc-price{
+  font-size:22px;
+  font-weight:800;
+  color:var(--yellow);
+  line-height:1;
+  letter-spacing:-.01em;
 }
-.cw-icon svg{width:32px;height:32px;display:block}
-.cw-id{min-width:0;flex:1}
-.cw-name{
-  font-family:'Poppins',sans-serif;
-  font-weight:700;
-  font-size:18px;
-  line-height:1.2;
-  letter-spacing:.02em;
+.svc-price small{
+  display:block;
+  font-size:10.5px;
+  font-weight:600;
+  color:var(--muted-2);
+  letter-spacing:.1em;
   text-transform:uppercase;
-  color:#ffffff;
-  margin-bottom:4px;
+  margin-top:4px;
 }
-.cw-link{
-  font-family:'Poppins',sans-serif;
-  font-weight:500;
+
+/* Yellow gradient pill button */
+.btn-enroll{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:11px 20px;
+  border-radius:var(--radius-pill);
+  background:var(--yellow-grad);
+  color:#111;
+  font-weight:700;
   font-size:13px;
-  line-height:1.3;
-  color:#f5c518;
+  letter-spacing:.02em;
+  box-shadow:0 8px 22px rgba(255,179,0,.32);
+  transition:transform .25s ease, box-shadow .25s ease;
   white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
 }
-.cw-divider{
-  height:1px;
-  background:rgba(255,255,255,.08);
-  margin:0 0 14px;
+.btn-enroll:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(255,179,0,.5);
 }
-.cw-desc{
-  font-family:'Poppins',sans-serif;
-  font-weight:400;
-  font-size:14px;
-  line-height:1.55;
-  color:#8a8a8a;
-  margin-bottom:18px;
+.btn-enroll:active{transform:translateY(0)}
+
+/* =========================================================
+   PLACEHOLDER CARD
+   ========================================================= */
+.svc-card.is-placeholder{
+  opacity:.72;
 }
-.cw-btn{
+.svc-card.is-placeholder .svc-title{color:var(--muted-2)}
+.svc-card.is-placeholder .svc-body{
+  flex:1;
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:8px;
-  width:100%;
-  background:#0f0f0f;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:10px;
-  padding:10px 12px;
-  font-family:'Poppins',sans-serif;
-  font-weight:500;
-  font-size:13px;
+  min-height:180px;
+  border:1px dashed var(--border);
+  border-radius:14px;
+  color:var(--muted-2);
+  font-size:12.5px;
   letter-spacing:.06em;
   text-transform:uppercase;
-  color:#ffffff;
-  transition:background .25s ease, color .25s ease, border-color .25s ease;
+  font-weight:600;
+  margin-top:6px;
 }
-.cw-card:hover .cw-btn{
-  background:#f5c518;
-  color:#000000;
-  border-color:#f5c518;
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(5,5,5,.72);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .3s ease, visibility .3s ease;
 }
-.cw-btn svg{
-  width:14px;height:14px;
+.modal-backdrop.open{opacity:1;visibility:visible}
+
+.modal{
+  width:min(520px, 100%);
+  max-height:92vh;
+  display:flex;
+  flex-direction:column;
+  background:linear-gradient(180deg,#181818,#121212);
+  border:1px solid var(--border);
+  border-radius:22px;
+  box-shadow:0 40px 100px rgba(0,0,0,.75), 0 0 0 1px rgba(255,193,7,.06);
+  overflow:hidden;
+  transform:scale(.94) translateY(8px);
+  opacity:0;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1), opacity .35s ease;
+}
+.modal-backdrop.open .modal{
+  transform:scale(1) translateY(0);
+  opacity:1;
+}
+
+/* Modal header */
+.modal-head{
+  position:relative;
+  padding:20px 56px 18px 22px;
+  border-bottom:1px solid var(--border);
+  background:rgba(20,20,20,.92);
+}
+.modal-head h3{
+  font-size:17px;
+  font-weight:800;
+  letter-spacing:.01em;
+  color:var(--text);
+  line-height:1.3;
+}
+.modal-head p{
+  font-size:12.5px;
+  color:var(--muted);
+  margin-top:4px;
+  line-height:1.5;
+}
+.modal-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:36px;height:36px;
+  border-radius:50%;
+  display:grid;place-items:center;
+  color:#fff;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border);
+  font-size:18px;
+  transition:background .2s ease, transform .2s ease;
+}
+.modal-close:hover{background:rgba(255,255,255,.12);transform:rotate(90deg)}
+
+/* Modal body (scrolls) */
+.modal-body{
+  flex:1;
+  overflow-y:auto;
+  padding:22px;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,193,7,.4) transparent;
+}
+.modal-body::-webkit-scrollbar{width:8px}
+.modal-body::-webkit-scrollbar-track{background:transparent}
+.modal-body::-webkit-scrollbar-thumb{background:rgba(255,193,7,.35);border-radius:8px}
+
+/* Form fields */
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  margin-bottom:16px;
+}
+.field label{
+  font-size:12.5px;
+  font-weight:600;
+  color:#d8d8d8;
+  letter-spacing:.02em;
+}
+.field label .req{color:var(--yellow);margin-left:2px}
+.field input{
+  width:100%;
+  padding:12px 14px;
+  background:#101010;
+  border:1px solid var(--border);
+  border-radius:var(--radius-input);
+  color:var(--text);
+  font-size:14px;
+  outline:none;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.field input::placeholder{color:#555}
+.field input:focus{
+  border-color:var(--yellow);
+  box-shadow:0 0 0 3px rgba(255,193,7,.18);
+}
+.field.invalid input{
+  border-color:var(--danger);
+  box-shadow:0 0 0 3px rgba(255,90,90,.15);
+}
+.field-error{
+  font-size:11.5px;
+  color:var(--danger);
+  min-height:14px;
+  line-height:1.3;
+}
+
+/* Payment method section */
+.pay-title{
+  font-size:12.5px;
+  font-weight:600;
+  color:#d8d8d8;
+  letter-spacing:.02em;
+  margin-bottom:10px;
+}
+.pay-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:16px;
+}
+.pay-opt{
+  position:relative;
+  cursor:pointer;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:#101010;
+  padding:14px 8px;
+  text-align:center;
+  transition:border-color .2s ease, background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.pay-opt input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+.pay-opt span{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  color:#d8d8d8;
+  letter-spacing:.02em;
+}
+.pay-opt:hover{border-color:rgba(255,193,7,.35)}
+.pay-opt.selected{
+  border-color:var(--yellow);
+  background:rgba(255,193,7,.08);
+  box-shadow:0 0 0 1px rgba(255,193,7,.4), 0 0 20px rgba(255,179,0,.15);
+  transform:translateY(-1px);
+}
+.pay-opt.selected span{color:var(--yellow)}
+
+/* Amount to pay box */
+.amount-box{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 16px;
+  border-radius:14px;
+  background:rgba(255,193,7,.06);
+  border:1px solid rgba(255,193,7,.22);
+  margin-bottom:18px;
+}
+.amount-box .lbl{
+  font-size:12px;
+  font-weight:600;
+  color:var(--muted);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.amount-box .val{
+  font-size:22px;
+  font-weight:800;
+  color:var(--yellow);
+  line-height:1;
+}
+.amount-box .method-note{
+  display:block;
+  font-size:11.5px;
+  color:var(--muted-2);
+  margin-top:6px;
+  letter-spacing:.02em;
+}
+.amount-box .amount-left{display:flex;flex-direction:column;align-items:flex-start}
+
+/* Submit button */
+.btn-submit{
+  width:100%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:14px 20px;
+  border-radius:var(--radius-pill);
+  background:var(--yellow-grad);
+  color:#111;
+  font-weight:800;
+  font-size:14.5px;
+  letter-spacing:.03em;
+  box-shadow:0 10px 26px rgba(255,179,0,.35);
+  transition:transform .25s ease, box-shadow .25s ease;
+  margin-top:6px;
+}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(255,179,0,.5)}
+
+/* =========================================================
+   ORDER CONFIRMATION SCREEN
+   ========================================================= */
+.order-box{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.order-rows{
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:#121212;
+  overflow:hidden;
+}
+.order-row{
+  display:grid;
+  grid-template-columns:140px 1fr;
+  gap:12px;
+  padding:11px 14px;
+  border-bottom:1px solid var(--border);
+  font-size:13px;
+  align-items:center;
+}
+.order-row:last-child{border-bottom:0}
+.order-row .k{
+  color:var(--muted);
+  font-weight:500;
+  letter-spacing:.02em;
+}
+.order-row .v{
+  color:#f0f0f0;
+  font-weight:600;
+  word-break:break-word;
+}
+.order-row .v.badge-pending{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:rgba(255,193,7,.14);
+  color:var(--yellow);
+  border:1px solid rgba(255,193,7,.4);
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:11.5px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  width:max-content;
+}
+.order-row .v.badge-pending::before{
+  content:"";
+  width:6px;height:6px;border-radius:50%;
+  background:var(--yellow);
+  box-shadow:0 0 8px var(--yellow);
+}
+
+/* Bangla note block */
+.bn-note{
+  padding:16px;
+  border-radius:14px;
+  background:rgba(255,193,7,.06);
+  border:1px solid rgba(255,193,7,.22);
+  font-size:14px;
+  line-height:1.75;
+  color:#f0e0b0;
+  font-weight:500;
+}
+
+/* Action buttons */
+.order-actions{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:4px;
+}
+
+/* Telegram button */
+.btn-telegram{
+  width:100%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:14px 20px;
+  border-radius:var(--radius-pill);
+  background:var(--telegram);
+  color:#fff;
+  font-weight:800;
+  font-size:14px;
+  letter-spacing:.02em;
+  box-shadow:0 10px 26px rgba(34,158,217,.35);
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.btn-telegram:hover{
+  transform:translateY(-2px);
+  background:#1e8ec4;
+  box-shadow:0 14px 34px rgba(34,158,217,.5);
+}
+.btn-telegram svg{
+  width:20px;height:20px;
+  flex:none;
+  display:block;
+  fill:#fff;
+}
+
+/* Copy button */
+.btn-copy{
+  width:100%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:13px 20px;
+  border-radius:var(--radius-pill);
+  background:transparent;
+  color:#fff;
+  font-weight:700;
+  font-size:13.5px;
+  letter-spacing:.02em;
+  border:1px solid var(--border);
+  transition:background .25s ease, border-color .25s ease, transform .25s ease;
+}
+.btn-copy:hover{
+  background:rgba(255,255,255,.05);
+  border-color:rgba(255,193,7,.5);
+  transform:translateY(-2px);
+}
+.btn-copy svg{
+  width:16px;height:16px;
   flex:none;
   display:block;
   stroke:currentColor;
@@ -389,1025 +608,543 @@ h1 span.hl{color:var(--yellow)}
   stroke-linecap:round;
   stroke-linejoin:round;
 }
-
-/* ============ ANIMATIONS ============ */
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-.in{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
-.in.d1{animation-delay:.12s}.in.d2{animation-delay:.24s}.in.d3{animation-delay:.36s}
-.fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease}
-.fade-up.visible{opacity:1;transform:none}
-
-/* ============ MODAL ============ */
-.modal-backdrop{position:fixed;inset:0;z-index:200;background:rgba(5,5,5,.72);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  display:flex;align-items:center;justify-content:center;padding:20px;
-  opacity:0;visibility:hidden;transition:opacity .3s ease, visibility .3s ease}
-.modal-backdrop.open{opacity:1;visibility:visible}
-.modal{width:min(880px, 100%);max-height:92vh;display:flex;flex-direction:column;
-  background:linear-gradient(160deg,#1a1a1a,#101010);border:1px solid var(--line);border-radius:24px;
-  box-shadow:0 40px 100px rgba(0,0,0,.75), 0 0 0 1px rgba(255,194,26,.08);overflow:hidden;
-  transform:scale(.94);opacity:0;transition:transform .35s cubic-bezier(.2,.7,.2,1), opacity .35s ease}
-.modal-backdrop.open .modal{transform:scale(1);opacity:1}
-.modal-head{position:sticky;top:0;z-index:3;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;
-  padding:16px 18px;background:rgba(20,20,20,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.modal-brand{display:flex;align-items:center;gap:10px;justify-self:start;font-size:15px;font-weight:800;letter-spacing:.02em}
-.modal-brand span{color:var(--yellow)}
-.modal-lang{display:flex;justify-self:center;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}
-.modal-lang button{border:0;background:transparent;color:var(--muted);font:inherit;font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
-.modal-lang button.active{background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111}
-.modal-close{justify-self:end;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;font-size:18px;cursor:pointer;display:grid;place-items:center;transition:background .2s, transform .2s}
-.modal-close:hover{background:rgba(255,255,255,.1);transform:rotate(90deg)}
-.modal-tabs{display:flex;gap:6px;padding:12px 18px 0;border-bottom:1px solid var(--line);background:rgba(20,20,20,.6)}
-.modal-tab{border:0;background:transparent;color:var(--muted);font:inherit;font-size:13.5px;font-weight:600;padding:11px 16px;border-radius:12px 12px 0 0;cursor:pointer;position:relative;transition:color .2s, background .2s}
-.modal-tab:hover{color:#fff;background:rgba(255,255,255,.04)}
-.modal-tab.active{color:var(--yellow);background:rgba(255,194,26,.08)}
-.modal-tab.active::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--yellow),var(--orange))}
-.modal-body{flex:1;overflow-y:auto;padding:22px 22px 26px;scrollbar-width:thin;scrollbar-color:rgba(255,194,26,.4) transparent}
-.modal-body::-webkit-scrollbar{width:8px}
-.modal-body::-webkit-scrollbar-track{background:transparent}
-.modal-body::-webkit-scrollbar-thumb{background:rgba(255,194,26,.35);border-radius:8px}
-.modal-panel{display:none;animation:panelIn .35s ease}
-.modal-panel.active{display:block}
-@keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-html[lang="bn"] .modal-body,
-html[lang="bn"] .modal-tab,
-html[lang="bn"] .modal-brand{font-family:'Hind Siliguri','Poppins',system-ui,sans-serif}
-.modal-warn{display:flex;align-items:flex-start;gap:12px;background:rgba(255,138,31,.09);border:1px solid rgba(255,138,31,.35);border-left:3px solid var(--orange);
-  border-radius:14px;padding:14px 16px;font-size:13px;line-height:1.6;color:#ffd9a8;margin-bottom:18px}
-.modal-warn svg{flex:none;width:20px;height:20px;margin-top:2px;stroke:#ff8a1f;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.curr-list{display:flex;flex-direction:column;gap:10px}
-.curr-card{display:flex;align-items:center;gap:14px;background:linear-gradient(160deg,#1e1e1e,#141414);border:1px solid var(--line);border-radius:16px;padding:14px 16px;
-  transition:border-color .25s ease, box-shadow .25s ease, transform .25s ease}
-.curr-card:hover{border-color:rgba(255,194,26,.45);box-shadow:0 10px 30px rgba(0,0,0,.5), 0 0 0 1px rgba(255,194,26,.25);transform:translateX(3px)}
-.curr-num{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;font-weight:800;font-size:15px;box-shadow:0 8px 20px rgba(255,150,30,.3)}
-.curr-title{font-size:13.5px;font-weight:500;line-height:1.55;color:#e8e8e8}
-.terms-list{display:flex;flex-direction:column;gap:12px;counter-reset:term}
-.term-item{display:flex;align-items:flex-start;gap:12px;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:14px;padding:14px 16px;
-  transition:border-color .25s ease, background .25s ease}
-.term-item:hover{border-color:rgba(255,194,26,.35);background:rgba(255,194,26,.04)}
-.term-num{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;font-size:12px;font-weight:800;
-  box-shadow:0 4px 12px rgba(255,150,30,.3);margin-top:1px}
-.term-text{font-size:13px;line-height:1.7;color:#d5d5d5}
-.modal-foot{position:sticky;bottom:0;z-index:3;display:flex;justify-content:flex-end;gap:10px;padding:14px 18px;
-  background:rgba(20,20,20,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line)}
-body.modal-open{overflow:hidden}
-
-/* Print */
-@media print{
-  body{background:#fff !important;color:#000 !important}
-  body::before,.nav,.hero,.showcase,.stats-wrap,.rsvc,.cw,.rsvc-floats,.modal-head,.modal-tabs,.modal-foot,
-  .modal-close,.modal-lang{display:none !important}
-  .modal-backdrop{position:static;background:#fff;padding:0;opacity:1;visibility:visible;display:block;backdrop-filter:none;-webkit-backdrop-filter:none}
-  .modal{max-height:none;width:100%;box-shadow:none;border:0;background:#fff;transform:none;opacity:1;display:block;border-radius:0;overflow:visible}
-  .modal-body{overflow:visible;padding:0;max-height:none;flex:none}
-  .modal-panel{display:block !important;page-break-after:always}
-  .modal-panel:last-child{page-break-after:auto}
-  .modal-body::before{content:"SA TRADER — Professional Trading Education";display:block;font-size:16pt;font-weight:800;color:#111;border-bottom:3px solid #ffc21a;padding-bottom:10px;margin-bottom:20px}
-  .modal-panel::before{display:block;font-size:13pt;font-weight:700;color:#111;margin:18px 0 12px}
-  #panel-curriculum::before{content:"Curriculum"}
-  #panel-terms::before{content:"Terms & Conditions"}
-  .curr-card,.term-item{background:#fff !important;border:1px solid #ddd !important;color:#000 !important;box-shadow:none !important;page-break-inside:avoid;transform:none !important;border-radius:8px;padding:10px 12px}
-  .curr-num,.term-num{background:#ffc21a !important;color:#111 !important;box-shadow:none !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .curr-title,.term-text{color:#000 !important;font-size:10.5pt;line-height:1.5}
-  .modal-warn{background:#fff7e6 !important;border:1px solid #f0c674 !important;color:#7a4a00 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.btn-copy.copied{
+  border-color:var(--success);
+  color:var(--success);
 }
 
-/* Modal responsive */
-@media(max-width:640px){
-  .modal-backdrop{padding:0}
-  .modal{max-height:100vh;height:100vh;width:100%;border-radius:0;border:0}
-  .modal-head{padding:14px;gap:8px}
-  .modal-lang button{padding:6px 10px;font-size:12px}
-  .modal-close{width:34px;height:34px;font-size:16px}
-  .modal-tabs{padding:10px 14px 0;overflow-x:auto}
-  .modal-tab{padding:10px 12px;font-size:12.5px;white-space:nowrap}
-  .modal-body{padding:18px 14px 22px}
-  .curr-num{width:40px;height:40px;font-size:13px;border-radius:12px}
-  .curr-title{font-size:12.5px}
-  .term-num{width:24px;height:24px;font-size:11px}
-  .term-text{font-size:12.5px}
-  .modal-foot{padding:12px 14px}
-}
-
-/* ============ MAIN RESPONSIVE ============ */
-@media(max-width:1100px){
-  .showcase-main{grid-template-columns:230px 1fr 260px}
-  .rsvc-inner{grid-template-columns:340px 1fr;gap:100px}
-}
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 @media(max-width:1000px){
-  .nav-in{display:flex}
-  .links,.actions .lang{display:none}
-  .actions{margin-left:auto}
-  .burger{display:block;margin-left:0}
-  .menu.open{display:flex;flex-direction:column;gap:4px;margin-top:10px;background:rgba(22,22,22,.97);border:1px solid var(--line);border-radius:24px;padding:14px;box-shadow:0 20px 50px rgba(0,0,0,.6)}
-  .menu a{padding:13px 16px;border-radius:14px;color:var(--muted)}
-  .menu a.active{color:var(--yellow);background:rgba(255,194,26,.1)}
-  .menu-lang{margin-top:6px;display:flex;gap:8px;padding:6px 4px 2px;border-top:1px solid var(--line)}
-  .menu-lang button{flex:1;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:12px;padding:10px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
-  .menu-lang button.active{background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;border-color:transparent}
-  .hero{grid-template-columns:1fr;padding:50px 0 30px;gap:28px}
-  .showcase-main{grid-template-columns:1fr 1fr;grid-template-areas:"featured featured" "left right"}
-  .featured{grid-area:featured}.side-left{grid-area:left}.side-right{grid-area:right}
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .logo-text{font-size:clamp(14px,1.5vw,18px)}
-}
-
-@media(max-width:992px){
-  .cw-grid{grid-template-columns:repeat(2,1fr)}
-}
-
-@media(max-width:768px){
-  .rsvc{padding:32px 0;margin-bottom:40px}
-  .rsvc-inner{grid-template-columns:1fr;gap:36px;justify-items:center}
-  .rsvc-card{max-width:360px;width:100%}
-  .rsvc-content{width:100%;max-width:520px;align-items:flex-start;text-align:left}
-  .rsvc-heading{font-size:28px}
-  .rsvc-quote{margin-top:28px;gap:10px}
-  .rsvc-quote-mark{font-size:28px}
-  .rsvc-quote-text{font-size:15.5px}
-  .rsvc-quote-attr{margin-top:10px;margin-left:38px}
-  .rsvc-para{margin-top:32px;font-size:15px}
-  .rsvc-floats{right:18px;bottom:18px;gap:12px}
-  .rsvc-chat{width:54px;height:54px}
-  .rsvc-chat svg{width:22px;height:22px}
-  .rsvc-top svg{width:20px;height:20px}
-
-  .cw{padding:20px 0;margin-bottom:60px}
-  .cw-head{margin-bottom:36px}
-  .cw-head h2{font-size:28px}
-  .cw-head p{font-size:13.5px}
-  .cw-grid{gap:18px}
-}
-
-@media(max-width:640px){
-  .nav,.wrap{padding:0 14px}
-  .nav-in{padding:6px 8px 6px 10px}
-  .count{padding:24px 16px;border-radius:22px}
-  .boxes{gap:6px}.box{border-radius:12px;padding:12px 2px}.box small{font-size:9px}
-  .logo img{height:32px;max-width:110px}
-  .logo-text{font-size:14px;letter-spacing:.01em}
-  .showcase{padding:12px;border-radius:22px;margin-bottom:40px}
-  .showcase-main{grid-template-columns:1fr;grid-template-areas:"featured" "right" "left";gap:12px}
-  .featured{grid-template-columns:1fr;min-height:auto}
-  .featured-media{min-height:210px;order:-1}
-  .featured-media::after{background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.55) 100%)}
-  .featured::before{display:none}
-  .featured-text{padding:18px 16px}
-  .featured-brand{font-size:22px}
-  .featured-cta{gap:8px}.featured-plus{width:38px;height:38px;font-size:18px}
-  .video-row{grid-template-columns:repeat(4,1fr);gap:8px}
-  .video-card{min-height:64px;border-radius:12px}
-  .video-card .big-num{font-size:48px;top:-8px}
-  .video-card .vc-tag{font-size:7.5px;padding:2px 5px}
-  .side-right{padding:14px}.mini-course .body{padding:11px}.mini-course h4{font-size:13px}
-  .pdf-card{padding:16px 14px}
-  .stats-wrap{padding:22px 14px;border-radius:22px;margin-bottom:40px}
-  .stats-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .stat-card{padding:18px 12px;border-radius:20px}
-  .stat-icon{width:64px;height:64px;border-radius:18px;margin-bottom:12px}
-  .stat-icon svg{width:36px;height:36px}
-  .stat-card .stat-label{font-size:11px}
-
-  .rsvc-card{max-width:100%}
-  .rsvc-info-left{padding:12px 14px}
-  .rsvc-info-right{padding:12px 14px}
-  .rsvc-name{font-size:19px}
-  .rsvc-verified{font-size:11.5px}
-  .rsvc-heading{font-size:24px}
-  .rsvc-quote-text{font-size:15px}
-  .rsvc-para{font-size:14.5px}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
 }
 
 @media(max-width:600px){
-  .cw-grid{grid-template-columns:1fr}
-  .cw-head h2{font-size:26px}
-  .cw-card{padding:14px}
-  .cw-icon{width:50px;height:50px}
-  .cw-icon svg{width:28px;height:28px}
-  .cw-name{font-size:17px}
-  .cw-link{font-size:12.5px}
-  .cw-desc{font-size:13.5px}
-  .cw-btn{font-size:12.5px;padding:10px}
+  .svc-grid{grid-template-columns:1fr}
+  .svc-foot{flex-wrap:wrap}
+  .btn-enroll{flex:1;justify-content:center}
+  .modal-backdrop{padding:0}
+  .modal{width:100%;max-height:100vh;height:100vh;border-radius:0;border:0}
+  .order-row{grid-template-columns:1fr;gap:4px;padding:11px 14px}
+  .order-row .k{font-size:11.5px}
+  .pay-grid{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .pay-opt{padding:12px 6px}
+  .pay-opt span{font-size:12px}
 }
 
-@media(max-width:380px){
-  .logo-text{display:none}
-  .stats-grid{grid-template-columns:1fr}
-  .side-stats{flex-wrap:wrap}
-  .video-row{grid-template-columns:repeat(2,1fr)}
-  .rsvc-heading{font-size:22px}
-  .rsvc-quote-text{font-size:14.5px}
-  .cw-head h2{font-size:22px}
-}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
-  .fade-up{opacity:1;transform:none}
-  .modal,.modal-backdrop{transition:none}
 }
 </style>
 </head>
 <body>
 
-<!-- ============ NAVBAR ============ -->
-<header class="nav">
-  <div class="nav-in">
-    <a class="logo" href="#home" aria-label="SA FOREX TRADER – Home">
-      <img src="IMG_20261007_001230_648.jpg" alt="SA TRADER logo" loading="eager">
-      <span class="logo-text">SA FOREX <b>TRADER</b></span>
-    </a>
-    <nav class="links" aria-label="Main">
-      <a class="active" href="#home" data-i18n="nav_home">Home</a>
-      <a href="#our-services" data-i18n="nav_courses">Courses &amp; Services</a>
-      <a href="#contact" data-i18n="nav_contact">Contact Us</a>
-    </nav>
-    <div class="actions">
-      <select class="lang" id="langSelect" aria-label="Language">
-        <option value="en">EN</option>
-        <option value="bn">বাংলা</option>
-      </select>
-      <a class="btn" href="#our-services" data-i18n="nav_enroll">Enroll Now</a>
-    </div>
-    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
+<!-- =========================================================
+     OUR SERVICES SECTION
+     ========================================================= -->
+<section class="svc-section" id="our-services">
+  <div class="svc-header">
+    <h2>Our services</h2>
+    <p>Choose the package that fits your trading journey. All plans include lifetime mentorship.</p>
   </div>
-  <nav class="menu" id="menu" aria-label="Mobile">
-    <a class="active" href="#home" data-i18n="nav_home">Home</a>
-    <a href="#our-services" data-i18n="nav_courses">Courses &amp; Services</a>
-    <a href="#contact" data-i18n="nav_contact">Contact Us</a>
-    <div class="menu-lang" role="group" aria-label="Language">
-      <button type="button" data-lang="en">EN</button>
-      <button type="button" data-lang="bn">বাংলা</button>
-    </div>
-  </nav>
-</header>
 
-<main class="wrap" id="home">
+  <div class="svc-grid">
 
-  <!-- ============ HERO ============ -->
-  <section class="hero">
-    <div>
-      <h1 class="in">
-        <span data-i18n="hero_a">bangladesh top 1</span>
-        <span class="hl" data-i18n="hero_b">professional trading education</span>
-      </h1>
-      <p class="sub in d1" data-i18n="hero_sub">Learn forex trading with a trusted mentor. Manage risk and trade with confidence.</p>
-      <a class="btn lg in d2" id="enroll" href="#our-services" data-i18n="hero_cta">Enroll Now</a>
-    </div>
-    <aside class="count in d2" aria-label="Next batch">
-      <h3 data-i18n="next_batch">Next Batch</h3>
-      <p data-i18n="starting_on">Starting on ★</p>
-      <div class="boxes">
-        <div class="box"><b>00</b><small data-i18n="unit_days">DAYS</small></div>
-        <div class="box"><b>00</b><small data-i18n="unit_hours">HOURS</small></div>
-        <div class="box"><b>00</b><small data-i18n="unit_mins">MINS</small></div>
-        <div class="box"><b>00</b><small data-i18n="unit_secs">SECS</small></div>
+    <!-- ================================================================
+         CARD 1 — REAL CONTENT
+         ================================================================ -->
+    <article class="svc-card">
+      <h3 class="svc-title">Personal 1 to 1</h3>
+      <p class="svc-sub">Personal One-to-One Mentorship</p>
+      <div class="svc-divider"></div>
+
+      <ul class="svc-features">
+        <li>Complete Forex Basics</li>
+        <li>Technical &amp; Fundamental Analysis</li>
+        <li>SMC (Basic to Advanced)</li>
+        <li>ICT (Basic to Advanced)</li>
+        <li>Price Action (Basic to Advanced)</li>
+        <li>Gold Secret Strategy</li>
+        <li>My Personal Strategy</li>
+        <li>Live Classes with Recordings</li>
+        <li>Lifetime Analysis &amp; Signals 🔥</li>
+      </ul>
+
+      <div class="svc-foot">
+        <div class="svc-price">$100<small>one-time</small></div>
+        <button class="btn-enroll" type="button" data-package="Personal 1 to 1" data-price="$100">Enroll Now</button>
       </div>
-    </aside>
-  </section>
+    </article>
 
-  <!-- ============ SHOWCASE ============ -->
-  <section class="showcase in d3" id="courses" aria-label="SA TRADER course showcase">
-    <div class="showcase-main">
-      <aside class="side-left">
-        <article class="pdf-card">
-          <div class="pdf-head">
-            <div class="pdf-icon" aria-hidden="true"><span>PDF</span></div>
-            <div>
-              <div class="pdf-label" data-i18n="pdf_label">Premium Course</div>
-              <h5 data-i18n="pdf_title">Full Curriculum</h5>
-            </div>
-          </div>
-          <button class="btn" id="openPdfModal" type="button" data-i18n="pdf_btn">⬇ Download PDF</button>
-        </article>
-        <article class="mini-course">
-          <div class="thumb">
-            <img src="download (6).png" alt="Trading Mindset course thumbnail" loading="lazy">
-          </div>
-          <div class="body">
-            <div class="num" data-i18n="mini_tag">09 · TRADING MINDSET</div>
-            <h4 data-i18n="mini_title">Trading Mindset</h4>
-            <p data-i18n="mini_desc">Master trading psychology, discipline and emotional control.</p>
-          </div>
-        </article>
-      </aside>
+    <!-- ================================================================
+         CARD 2: ADD CONTENT HERE
+         Placeholder — replace the .svc-body content when ready.
+         ================================================================ -->
+    <article class="svc-card is-placeholder">
+      <h3 class="svc-title">Coming soon</h3>
+      <p class="svc-sub">Add subtitle here</p>
+      <div class="svc-divider"></div>
+      <!-- CARD 2: ADD CONTENT HERE -->
+      <div class="svc-body">Card 2 — content coming soon</div>
+    </article>
 
-      <article class="featured" id="featured">
-        <div class="featured-text">
-          <div class="featured-badge" data-i18n="feat_badge">Featured</div>
-          <div class="featured-brand"><span>SA</span> TRADER <span>#01</span></div>
-          <div class="featured-title" data-i18n="feat_title">Master Professional Trading &amp; Market Analysis</div>
-          <p class="featured-desc" data-i18n="feat_desc">A complete trading framework — from candlestick reading and market structure to risk control and disciplined execution in live markets.</p>
-          <div class="featured-meta">
-            <span><span class="dot"></span><b>10</b>&nbsp;<span data-i18n="feat_lessons">Lessons</span></span>
-            <span><span class="dot"></span><b>1.5</b>&nbsp;<span data-i18n="feat_hours">Hours</span></span>
-            <span><span class="dot"></span><span data-i18n="feat_level">Beginner → Pro</span></span>
-          </div>
-          <div class="featured-cta">
-            <a class="btn" href="#join" data-i18n="feat_join">Join Course</a>
-            <a class="btn ghost" href="#learn-more" data-i18n="feat_learn">Learn More</a>
-            <button class="featured-plus" type="button" aria-label="Add to list">+</button>
-          </div>
-          <div class="video-row" aria-label="Course previews">
-            <a class="video-card" href="#video-1" aria-label="Preview 1">
-              <span class="big-num" aria-hidden="true">1</span>
-              <span class="vc-img"><img src="download (1).png" alt="Course preview 1" loading="lazy"></span>
-              <span class="vc-tag" data-i18n="tag_top">Top Pick</span>
-            </a>
-            <a class="video-card" href="#video-2" aria-label="Preview 2">
-              <span class="big-num" aria-hidden="true">2</span>
-              <span class="vc-img"><img src="download (2).png" alt="Course preview 2" loading="lazy"></span>
-              <span class="vc-tag pop" data-i18n="tag_pop">Popular</span>
-            </a>
-            <a class="video-card" href="#video-3" aria-label="Preview 3">
-              <span class="big-num" aria-hidden="true">3</span>
-              <span class="vc-img"><img src="download (3).png" alt="Course preview 3" loading="lazy"></span>
-              <span class="vc-tag" data-i18n="tag_top">Top Pick</span>
-            </a>
-            <a class="video-card" href="#video-4" aria-label="Preview 4">
-              <span class="big-num" aria-hidden="true">4</span>
-              <span class="vc-img"><img src="download (4).png" alt="Course preview 4" loading="lazy"></span>
-              <span class="vc-tag pop" data-i18n="tag_pop">Popular</span>
-            </a>
-          </div>
-        </div>
-        <div class="featured-media">
-          <img src="download (5).png" alt="SA TRADER featured course" loading="eager">
-        </div>
-      </article>
+    <!-- ================================================================
+         CARD 3: ADD CONTENT HERE
+         Placeholder — replace the .svc-body content when ready.
+         ================================================================ -->
+    <article class="svc-card is-placeholder">
+      <h3 class="svc-title">Coming soon</h3>
+      <p class="svc-sub">Add subtitle here</p>
+      <div class="svc-divider"></div>
+      <!-- CARD 3: ADD CONTENT HERE -->
+      <div class="svc-body">Card 3 — content coming soon</div>
+    </article>
 
-      <aside class="side-right">
-        <div class="side-right-head">
-          <div class="brand-name"><span>SA</span> TRADER</div>
-          <div class="progress-ring" aria-label="Course progress 90 percent">
-            <svg width="56" height="56" viewBox="0 0 56 56">
-              <defs>
-                <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#ffc21a"/>
-                  <stop offset="1" stop-color="#ff8a1f"/>
-                </linearGradient>
-              </defs>
-              <circle class="bg" cx="28" cy="28" r="24"/>
-              <circle class="fg" cx="28" cy="28" r="24"/>
-            </svg>
-            <span class="val">90%</span>
-          </div>
-        </div>
-        <h6 data-i18n="side_title">Professional Trading Education</h6>
-        <p class="side-desc" data-i18n="side_desc">Structured lessons built for real execution and risk-first decision making.</p>
-        <div class="side-stats">
-          <div class="stat"><b>10</b><small data-i18n="side_lessons">Lessons</small></div>
-          <div class="stat"><b>1.5</b><small data-i18n="side_hours">Hours</small></div>
-        </div>
-        <div class="lesson-mini">
-          <div class="lm-thumb"><img src="download (2).png" alt="Lesson 01 thumbnail" loading="lazy"></div>
-          <div class="lm-body"><div class="lm-title" data-i18n="l1">Starting Your Trading Journey</div></div>
-          <span class="lm-num">01</span>
-        </div>
-        <div class="lesson-mini">
-          <div class="lm-thumb"><img src="download (3).png" alt="Lesson 02 thumbnail" loading="lazy"></div>
-          <div class="lm-body"><div class="lm-title" data-i18n="l2">Mastering Trading Psychology</div></div>
-          <span class="lm-num">02</span>
-        </div>
-        <div class="lesson-mini">
-          <div class="lm-thumb"><img src="download (4).png" alt="Lesson 03 thumbnail" loading="lazy"></div>
-          <div class="lm-body"><div class="lm-title" data-i18n="l3">Reading Market Structure</div></div>
-          <span class="lm-num">03</span>
-        </div>
-        <div class="lesson-mini">
-          <div class="lm-thumb"><img src="download (1).png" alt="Lesson 04 thumbnail" loading="lazy"></div>
-          <div class="lm-body"><div class="lm-title" data-i18n="l4">Risk &amp; Money Management</div></div>
-          <span class="lm-num">04</span>
-        </div>
-      </aside>
-    </div>
-  </section>
+    <!-- ================================================================
+         CARD 4: ADD CONTENT HERE
+         Placeholder — replace the .svc-body content when ready.
+         ================================================================ -->
+    <article class="svc-card is-placeholder">
+      <h3 class="svc-title">Coming soon</h3>
+      <p class="svc-sub">Add subtitle here</p>
+      <div class="svc-divider"></div>
+      <!-- CARD 4: ADD CONTENT HERE -->
+      <div class="svc-body">Card 4 — content coming soon</div>
+    </article>
 
-  <!-- ============ STATS ============ -->
-  <section class="stats-wrap fade-up" id="stats" aria-label="SA TRADER stats">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-icon" aria-hidden="true">
-          <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
-            <rect x="4" y="10" width="36" height="24" rx="7" fill="#ff0000"/>
-            <path d="M19 17.5l8.5 4.5-8.5 4.5z" fill="#ffffff"/>
-          </svg>
-        </div>
-        <div class="stat-num" data-target="5" data-suffix="k+"><span>0</span>k+</div>
-        <div class="stat-label" data-i18n="stat_subs">Our Subscribers</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon" aria-hidden="true">
-          <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 36h30" stroke="#8a8a8a" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-            <path d="M6 8v28" stroke="#8a8a8a" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-            <rect x="11" y="14" width="5" height="12" rx="1.2" fill="#e63946"/>
-            <path d="M13.5 10v4M13.5 26v4" stroke="#e63946" stroke-width="1.6" stroke-linecap="round"/>
-            <rect x="19" y="10" width="5" height="14" rx="1.2" fill="#2ecc71"/>
-            <path d="M21.5 6v4M21.5 24v4" stroke="#2ecc71" stroke-width="1.6" stroke-linecap="round"/>
-            <rect x="27" y="16" width="5" height="10" rx="1.2" fill="#e63946"/>
-            <path d="M29.5 12v4M29.5 26v4" stroke="#e63946" stroke-width="1.6" stroke-linecap="round"/>
-            <circle cx="33" cy="33" r="7" fill="#f5b400" stroke="#c88a00" stroke-width="1.4"/>
-            <text x="33" y="36.2" font-family="Poppins, sans-serif" font-size="9" font-weight="800" fill="#ffffff" text-anchor="middle">$</text>
-          </svg>
-        </div>
-        <div class="stat-num" data-target="3" data-suffix="k+"><span>0</span>k+</div>
-        <div class="stat-label" data-i18n="stat_traders">Active Traders</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon" aria-hidden="true">
-          <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 38c0-6 4.5-9.5 10-9.5S32 32 32 38z" fill="#ffffff"/>
-            <path d="M19 29.5l3 2.5 3-2.5" fill="none" stroke="#d0d0d0" stroke-width="1.4" stroke-linecap="round"/>
-            <circle cx="22" cy="19" r="8" fill="#f7c9a6"/>
-            <path d="M14 18c0-5 3.5-8 8-8s8 3 8 8c0-1.6-1.2-3.2-3-3.8-1.6 1.4-6.6 1.6-9.6.6-1.6.8-3.4 1.8-3.4 3.2z" fill="#7a4a22"/>
-            <circle cx="19" cy="19" r="1" fill="#3a2418"/>
-            <circle cx="25" cy="19" r="1" fill="#3a2418"/>
-            <path d="M19.5 22.5c1 1.2 4 1.2 5 0" fill="none" stroke="#3a2418" stroke-width="1.3" stroke-linecap="round"/>
-            <circle cx="33" cy="33" r="6.5" fill="#17b8a6" stroke="#0e8f81" stroke-width="1.2"/>
-            <path d="M30 33l2.2 2.2L36 31.5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="stat-num" data-target="1" data-suffix="k+"><span>0</span>k+</div>
-        <div class="stat-label" data-i18n="stat_students">Active Students</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon" aria-hidden="true">
-          <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
-            <rect x="7" y="6" width="30" height="22" rx="3" fill="#bfe3ff" stroke="#7cb8e8" stroke-width="1.2"/>
-            <path d="M12 13h20M12 17h14M12 21h18" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
-            <circle cx="22" cy="24" r="5" fill="#f5b400" stroke="#c88a00" stroke-width="1.2"/>
-            <text x="22" y="27" font-family="Poppins, sans-serif" font-size="6.5" font-weight="800" fill="#ffffff" text-anchor="middle">$</text>
-            <path d="M19 28.5l-3 8 6-3 6 3-3-8" fill="#e63946" stroke="#b62b38" stroke-width="1.1" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="stat-num" data-target="4" data-suffix="+"><span>0</span>+</div>
-        <div class="stat-label" data-i18n="stat_years">Years Experience</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ OUR SERVICES ============ -->
-  <section class="rsvc fade-up" id="our-services" aria-labelledby="rsvcHeading">
-    <div class="rsvc-inner">
-      <article class="rsvc-card" aria-label="Sakil – profile">
-        <img class="rsvc-photo" src="IMG_20261007_001230_648.jpg" alt="Sakil">
-        <div class="rsvc-info">
-          <div class="rsvc-info-left">
-            <div class="rsvc-name">Sakil</div>
-            <div class="rsvc-verified">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="12" cy="12" r="10" fill="#f5c518"/>
-                <path d="M7.5 12.3l3 3 6-6" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              5m+ Verified Profits
-            </div>
-          </div>
-          <div class="rsvc-info-right">
-            <span class="rsvc-tag">FOREX</span>
-          </div>
-        </div>
-      </article>
-
-      <div class="rsvc-content">
-        <div class="rsvc-label">
-          <span class="rsvc-label-line" aria-hidden="true"></span>
-          <span class="rsvc-label-text">Our Services</span>
-        </div>
-        <h2 class="rsvc-heading" id="rsvcHeading">Build a Successful Trading Career</h2>
-
-        <div class="rsvc-quote">
-          <span class="rsvc-quote-mark" aria-hidden="true">&ldquo;</span>
-          <span class="rsvc-quote-text">Consistency is the key to success in trading. Stay disciplined — results will follow.&rdquo;</span>
-        </div>
-        <div class="rsvc-quote-attr">
-          <span class="rsvc-quote-line" aria-hidden="true"></span>
-          <span class="rsvc-quote-label">Trading chart</span>
-        </div>
-
-        <p class="rsvc-para">Start your journey to becoming a professional trader today.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       CONNECT WITH US
-       ========================================================= -->
-  <section class="cw fade-up" id="connect" aria-labelledby="cwHeading">
-    <div class="cw-head">
-      <h2 id="cwHeading">Connect With Us</h2>
-      <p>Join our community and stay updated on all platforms.</p>
-    </div>
-
-    <div class="cw-grid">
-
-      <!-- CARD 1: TELEGRAM -->
-      <a class="cw-card" href="https://t.me/satrader1992" target="_blank" rel="noopener noreferrer" aria-label="Telegram – t.me/satrader1992">
-        <div class="cw-top">
-          <div class="cw-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="24" cy="24" r="22" fill="#29b6f6"/>
-              <path d="M10 24l24-9.5-4.5 22-6.5-6.5-4.5 4.5-1-6.5 11-10.5-13.5 7.5L10 24z" fill="#ffffff"/>
-            </svg>
-          </div>
-          <div class="cw-id">
-            <div class="cw-name">Telegram</div>
-            <div class="cw-link">t.me/satrader1992</div>
-          </div>
-        </div>
-        <div class="cw-divider"></div>
-        <div class="cw-desc">Join our community</div>
-        <span class="cw-btn">
-          JOIN
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
-      </a>
-
-      <!-- CARD 2: YOUTUBE -->
-      <a class="cw-card" href="https://youtube.com/@satrader10?si=gj69U_lFkXYlSZg5" target="_blank" rel="noopener noreferrer" aria-label="YouTube – youtube.com/@satrader10">
-        <div class="cw-top">
-          <div class="cw-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <rect x="4" y="12" width="40" height="24" rx="6" fill="#ff0000"/>
-              <path d="M20 18.5l10 5.5-10 5.5z" fill="#ffffff"/>
-            </svg>
-          </div>
-          <div class="cw-id">
-            <div class="cw-name">YouTube</div>
-            <div class="cw-link">youtube.com/@satrader10</div>
-          </div>
-        </div>
-        <div class="cw-divider"></div>
-        <div class="cw-desc">Subscribe to our official channel</div>
-        <span class="cw-btn">
-          SUBSCRIBE
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
-      </a>
-
-      <!-- CARD 3: FACEBOOK -->
-      <a class="cw-card" href="https://www.facebook.com/profile.php?id=61591068602740" target="_blank" rel="noopener noreferrer" aria-label="Facebook – facebook.com/satrader">
-        <div class="cw-top">
-          <div class="cw-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="24" cy="24" r="22" fill="#1877f2"/>
-              <path d="M28 26h4l1-5h-5v-3.2c0-1.4.4-2.3 2.4-2.3H33V11c-.5-.1-2.2-.2-4.2-.2-4.1 0-7 2.5-7 7.1V21h-4v5h4v11h6V26z" fill="#ffffff"/>
-            </svg>
-          </div>
-          <div class="cw-id">
-            <div class="cw-name">Facebook</div>
-            <div class="cw-link">facebook.com/satrader</div>
-          </div>
-        </div>
-        <div class="cw-divider"></div>
-        <div class="cw-desc">Follow us on Facebook</div>
-        <span class="cw-btn">
-          FOLLOW
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
-      </a>
-
-    </div>
-  </section>
-
-  <span id="contact"></span>
-</main>
+  </div>
+</section>
 
 <!-- =========================================================
-     FLOATING ELEMENTS — scroll-to-top + chat button
+     ENROLL MODAL
      ========================================================= -->
-<div class="rsvc-floats">
-  <button class="rsvc-top" id="rsvcTop" type="button" aria-label="Scroll to top">
-    <svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg>
-  </button>
-  <button class="rsvc-chat" id="rsvcChat" type="button" aria-label="Open chat">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
-    </svg>
-  </button>
-</div>
-
-<!-- =========================================================
-     MODAL — Download PDF
-     ========================================================= -->
-<div class="modal-backdrop" id="pdfModal" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle" aria-describedby="pdfModalDesc">
+<div class="modal-backdrop" id="enrollModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <!-- Header -->
     <div class="modal-head">
-      <div class="modal-brand" id="pdfModalTitle"><span>SA</span> TRADER</div>
-      <div class="modal-lang" role="group" aria-label="Language">
-        <button type="button" data-modal-lang="en" class="active">EN</button>
-        <button type="button" data-modal-lang="bn">বাংলা</button>
-      </div>
-      <button class="modal-close" id="closePdfModal" type="button" aria-label="Close">✕</button>
+      <h3 id="modalTitle">Enroll — Personal 1 to 1</h3>
+      <p id="modalSubtitle">Fill in your details and complete the payment to confirm your order.</p>
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close">✕</button>
     </div>
 
-    <div class="modal-tabs" role="tablist" aria-label="Sections">
-      <button class="modal-tab active" id="tab-curriculum" role="tab" aria-selected="true" aria-controls="panel-curriculum" data-tab="curriculum" data-i18n="modal_tab_curr">Curriculum</button>
-      <button class="modal-tab" id="tab-terms" role="tab" aria-selected="false" aria-controls="panel-terms" data-tab="terms" data-i18n="modal_tab_terms">Terms &amp; Conditions</button>
-    </div>
+    <!-- Body: form (Step A) -->
+    <div class="modal-body" id="modalBodyForm">
+      <form id="enrollForm" novalidate>
 
-    <div class="modal-body" id="pdfModalDesc">
-      <div class="modal-panel active" id="panel-curriculum" role="tabpanel" aria-labelledby="tab-curriculum">
-        <div class="curr-list" id="currList"></div>
-      </div>
-      <div class="modal-panel" id="panel-terms" role="tabpanel" aria-labelledby="tab-terms">
-        <div class="modal-warn">
-          <svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
-          <span data-i18n="modal_warn">Trading involves substantial financial risk.</span>
+        <!-- Full Name -->
+        <div class="field" id="fieldName">
+          <label for="inpName">Full Name / Username <span class="req">*</span></label>
+          <input type="text" id="inpName" name="name" placeholder="e.g. Rakib Hasan" autocomplete="name" required>
+          <span class="field-error" id="errName"></span>
         </div>
-        <div class="terms-list" id="termsList"></div>
-      </div>
+
+        <!-- Phone -->
+        <div class="field" id="fieldPhone">
+          <label for="inpPhone">Phone Number <span class="req">*</span></label>
+          <input type="tel" id="inpPhone" name="phone" placeholder="e.g. 01712345678" autocomplete="tel" inputmode="numeric" required>
+          <span class="field-error" id="errPhone"></span>
+        </div>
+
+        <!-- Payment method -->
+        <div class="pay-title">Payment Method <span class="req">*</span></div>
+        <div class="pay-grid" role="radiogroup" aria-label="Payment method">
+          <label class="pay-opt" data-method="bKash">
+            <input type="radio" name="method" value="bKash">
+            <span>bKash</span>
+          </label>
+          <label class="pay-opt" data-method="Nagad">
+            <input type="radio" name="method" value="Nagad">
+            <span>Nagad</span>
+          </label>
+          <label class="pay-opt" data-method="Binance">
+            <input type="radio" name="method" value="Binance">
+            <span>Binance</span>
+          </label>
+        </div>
+        <span class="field-error" id="errMethod" style="display:block;margin:-8px 0 14px"></span>
+
+        <!-- Dynamic input: Transaction ID / Order ID -->
+        <div class="field" id="fieldTx" style="display:none">
+          <label for="inpTx" id="lblTx">Transaction ID <span class="req">*</span></label>
+          <input type="text" id="inpTx" name="tx" placeholder="Enter your Transaction ID" autocomplete="off">
+          <span class="field-error" id="errTx"></span>
+        </div>
+
+        <!-- Amount + method note -->
+        <div class="amount-box" id="amountBox">
+          <div class="amount-left">
+            <span class="lbl">Amount to pay</span>
+            <span class="method-note" id="methodNote">Select a payment method</span>
+          </div>
+          <span class="val" id="amountVal">$100</span>
+        </div>
+
+        <!-- Submit -->
+        <button class="btn-submit" type="submit">Submit Order</button>
+      </form>
     </div>
 
-    <div class="modal-foot">
-      <button class="btn" id="printPdf" type="button" data-i18n="modal_download">⬇ Download PDF</button>
+    <!-- Body: order confirmation (Step B) -->
+    <div class="modal-body" id="modalBodyOrder" style="display:none">
+      <div class="order-box">
+        <div class="order-rows" id="orderRows">
+          <!-- Filled by JS -->
+        </div>
+
+        <!-- Bangla note -->
+        <div class="bn-note">
+          আপনার অর্ডারটি কনফার্ম করার জন্য নিচে যোগাযোগ করুন। অর্ডার ডিটেইলস ও পেমেন্টের স্ক্রিনশটটি এখনই আমাদের সাপোর্টে পাঠান।
+        </div>
+
+        <!-- Actions -->
+        <div class="order-actions">
+          <a class="btn-telegram" href="https://t.me/sa_doller5" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9.04 15.47l-.38 5.36c.54 0 .78-.24 1.06-.52l2.55-2.44 5.28 3.86c.97.53 1.66.25 1.92-.9L22.94 5.1c.31-1.43-.52-1.99-1.47-1.63L2.7 10.6c-1.4.55-1.38 1.34-.24 1.69l4.8 1.5 11.13-7.02c.52-.35 1-.16.61.19L9.04 15.47z"/>
+            </svg>
+            Contact on Telegram: @sa_doller5
+          </a>
+          <button class="btn-copy" id="btnCopy" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="9" y="9" width="12" height="12" rx="2"/>
+              <path d="M5 15V5a2 2 0 0 1 2-2h10"/>
+            </svg>
+            <span id="btnCopyLabel">Copy Order Details</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
 /* =========================================================
-   TRANSLATION DICTIONARY
+   ELEMENT REFERENCES
    ========================================================= */
-const I18N = {
-  en: {
-    nav_home:"Home", nav_courses:"Courses & Services", nav_contact:"Contact Us", nav_enroll:"Enroll Now",
-    hero_a:"bangladesh top 1", hero_b:"professional trading education",
-    hero_sub:"Learn forex trading with a trusted mentor. Manage risk and trade with confidence.",
-    hero_cta:"Enroll Now",
-    next_batch:"Next Batch", starting_on:"Starting on ★",
-    unit_days:"DAYS", unit_hours:"HOURS", unit_mins:"MINS", unit_secs:"SECS",
-    pdf_label:"Premium Course", pdf_title:"Full Curriculum", pdf_btn:"⬇ Download PDF",
-    mini_tag:"09 · TRADING MINDSET", mini_title:"Trading Mindset",
-    mini_desc:"Master trading psychology, discipline and emotional control.",
-    feat_badge:"Featured",
-    feat_title:"Master Professional Trading & Market Analysis",
-    feat_desc:"A complete trading framework — from candlestick reading and market structure to risk control and disciplined execution in live markets.",
-    feat_lessons:"Lessons", feat_hours:"Hours", feat_level:"Beginner → Pro",
-    feat_join:"Join Course", feat_learn:"Learn More",
-    tag_top:"Top Pick", tag_pop:"Popular",
-    side_title:"Professional Trading Education",
-    side_desc:"Structured lessons built for real execution and risk-first decision making.",
-    side_lessons:"Lessons", side_hours:"Hours",
-    l1:"Starting Your Trading Journey", l2:"Mastering Trading Psychology",
-    l3:"Reading Market Structure", l4:"Risk & Money Management",
-    stat_subs:"Our Subscribers", stat_traders:"Active Traders",
-    stat_students:"Active Students", stat_years:"Years Experience",
-    modal_tab_curr:"Curriculum", modal_tab_terms:"Terms & Conditions",
-    modal_warn:"Trading involves substantial financial risk.",
-    modal_download:"⬇ Download PDF"
-  },
-  bn: {
-    nav_home:"হোম", nav_courses:"কোর্স ও সার্ভিস", nav_contact:"যোগাযোগ করুন", nav_enroll:"এনরোল করুন",
-    hero_a:"বাংলাদেশের ১ নম্বর", hero_b:"প্রফেশনাল ট্রেডিং এডুকেশন",
-    hero_sub:"বিশ্বস্ত মেন্টরের সাথে Forex ট্রেডিং শিখুন। Risk ম্যানেজ করে আত্মবিশ্বাসের সাথে ট্রেড করুন।",
-    hero_cta:"এনরোল করুন",
-    next_batch:"পরবর্তী ব্যাচ", starting_on:"শুরু হবে ★",
-    unit_days:"দিন", unit_hours:"ঘণ্টা", unit_mins:"মিনিট", unit_secs:"সেকেন্ড",
-    pdf_label:"প্রিমিয়াম কোর্স", pdf_title:"সম্পূর্ণ কারিকুলাম", pdf_btn:"⬇ PDF ডাউনলোড",
-    mini_tag:"০৯ · ট্রেডিং মাইন্ডসেট", mini_title:"ট্রেডিং মাইন্ডসেট",
-    mini_desc:"ট্রেডিং সাইকোলজি, ডিসিপ্লিন ও ইমোশনাল কন্ট্রোল আয়ত্ত করুন।",
-    feat_badge:"ফিচার্ড",
-    feat_title:"প্রফেশনাল ট্রেডিং ও মার্কেট অ্যানালাইসিস মাস্টার করুন",
-    feat_desc:"ক্যান্ডেলস্টিক রিডিং ও মার্কেট স্ট্রাকচার থেকে শুরু করে Risk কন্ট্রোল ও লাইভ মার্কেটে ডিসিপ্লিনড এক্সিকিউশন — সম্পূর্ণ ট্রেডিং ফ্রেমওয়ার্ক।",
-    feat_lessons:"লেসন", feat_hours:"ঘণ্টা", feat_level:"বিগিনার → প্রো",
-    feat_join:"কোর্সে যোগ দিন", feat_learn:"আরও জানুন",
-    tag_top:"টপ পিক", tag_pop:"জনপ্রিয়",
-    side_title:"প্রফেশনাল ট্রেডিং এডুকেশন",
-    side_desc:"বাস্তব এক্সিকিউশন ও Risk-ফার্স্ট সিদ্ধান্তের জন্য সাজানো স্ট্রাকচার্ড লেসন।",
-    side_lessons:"লেসন", side_hours:"ঘণ্টা",
-    l1:"আপনার ট্রেডিং যাত্রা শুরু", l2:"ট্রেডিং সাইকোলজি আয়ত্ত করা",
-    l3:"মার্কেট স্ট্রাকচার পড়া", l4:"Risk ও মানি ম্যানেজমেন্ট",
-    stat_subs:"আমাদের সাবস্ক্রাইবার", stat_traders:"অ্যাক্টিভ ট্রেডার",
-    stat_students:"অ্যাক্টিভ স্টুডেন্ট", stat_years:"বছরের অভিজ্ঞতা",
-    modal_tab_curr:"কারিকুলাম", modal_tab_terms:"শর্তাবলী",
-    modal_warn:"ট্রেডিংয়ে উল্লেখযোগ্য আর্থিক ঝুঁকি রয়েছে।",
-    modal_download:"⬇ PDF ডাউনলোড"
-  }
-};
+const modal      = document.getElementById('enrollModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalSub   = document.getElementById('modalSubtitle');
+const closeBtn   = document.getElementById('modalClose');
+const formBody   = document.getElementById('modalBodyForm');
+const orderBody  = document.getElementById('modalBodyOrder');
+const orderRows  = document.getElementById('orderRows');
+const btnCopy    = document.getElementById('btnCopy');
+const btnCopyLbl = document.getElementById('btnCopyLabel');
 
-const MODAL_CONTENT = {
-  en: {
-    curriculum: [
-      "Forex - Crypto - Futures Trading & Investing Core Basics to Advanced Complete Masterclass",
-      "Market Mechanics, Structure & Liquidity Understanding",
-      "Real Market Behavior & Live Trade Execution",
-      "Everyday Live Practical Chart Analysis & Professional Trading Insights",
-      "Price Action, SMC & ICT Concepts with Professional Market Experience",
-      "Master Technical & Fundamental Analysis with Smart Indicators That Actually Work",
-      "Entry, Exit & Holding Trades for Bigger Market Moves",
-      "Smart Risk, Capital & Psychological Management System with Live Market Execution",
-      "Build Your Own Trading Strategy, Backtest with Team Support & Improve Day by Day",
-      "Emotional Control, Trading Discipline & Daily Performance Growth"
-    ],
-    terms: [
-      "Trading Chart provides educational and informational content related to Forex, Cryptocurrency, Futures Trading, Technical Analysis, Risk Management, and Market Education only.",
-      "Trading Chart does not provide financial advice, investment advice, portfolio management, brokerage services, or guaranteed trading signals.",
-      "All trading activities involve substantial financial risk. Users may lose part or all of their capital.",
-      "Past performance, screenshots, testimonials, live trades, or trading examples do not guarantee future results.",
-      "All trading decisions are made solely at the user's own discretion and risk.",
-      "Live trading sessions, chart analysis, consultations, and copy-trading related content are strictly for educational demonstration purposes only.",
-      "Users maintain full control over their broker accounts at all times. Trading Chart does not directly manage user funds or trading accounts.",
-      "Trading Chart is not responsible for trading losses, broker issues, withdrawal problems, technical failures, slippage, spread variation, execution delays, or financial damages.",
-      "Course fees, memberships, and digital services are generally non-refundable after significant access, attendance, or content consumption.",
-      "Users are responsible for ensuring compliance with the laws and regulations applicable in their own country or jurisdiction.",
-      "All course materials, videos, charts, branding, and educational content are intellectual property of Trading Chart and may not be copied, redistributed, recorded, or resold without permission.",
-      "Trading Chart may suspend or terminate access to any user for violations, misuse, abuse, fraud, or harmful conduct.",
-      "Trading Chart may participate in affiliate partnerships with brokers or service providers and may receive referral commissions without additional cost to users.",
-      "By accessing or using any Trading Chart service, platform, website, social media page, community, or educational material, users acknowledge and agree to these Terms & Conditions."
-    ]
-  },
-  bn: {
-    curriculum: [
-      "ফরেক্স – ক্রিপ্টো – ফিউচার্স ট্রেডিং ও ইনভেস্টিং: সম্পূর্ণ বেসিক থেকে অ্যাডভান্সড মাস্টারক্লাস",
-      "মার্কেট মেকানিক্স, স্ট্রাকচার ও লিকুইডিটি বোঝার কৌশল",
-      "বাস্তব মার্কেটের আচরণ ও লাইভ ট্রেড এক্সিকিউশন",
-      "প্রতিদিনের লাইভ প্র্যাকটিক্যাল চার্ট অ্যানালাইসিস ও প্রফেশনাল ট্রেডিং ইনসাইট",
-      "Price Action, SMC ও ICT কনসেপ্টস এবং প্রফেশনাল মার্কেট অভিজ্ঞতা",
-      "কার্যকর স্মার্ট ইন্ডিকেটরসহ মাস্টার টেকনিক্যাল ও ফান্ডামেন্টাল অ্যানালাইসিস",
-      "বড় মার্কেট মুভের জন্য এন্ট্রি, এক্সিট ও ট্রেড ধরে রাখার কৌশল",
-      "স্মার্ট Risk, ক্যাপিটাল ও সাইকোলজিক্যাল ম্যানেজমেন্ট সিস্টেম এবং লাইভ মার্কেট এক্সিকিউশন",
-      "নিজের ট্রেডিং স্ট্র্যাটেজি তৈরি, টিম সাপোর্টে Backtest এবং প্রতিদিন উন্নতি",
-      "ইমোশনাল কন্ট্রোল, ট্রেডিং ডিসিপ্লিন ও দৈনিক পারফরম্যান্স গ্রোথ"
-    ],
-    terms: [
-      "Trading Chart শুধুমাত্র Forex, Cryptocurrency, Futures Trading, Technical Analysis, Risk Management এবং মার্কেট এডুকেশন সম্পর্কিত শিক্ষামূলক ও তথ্যমূলক কনটেন্ট প্রদান করে।",
-      "Trading Chart কোনো আর্থিক পরামর্শ, বিনিয়োগ পরামর্শ, পোর্টফোলিও ম্যানেজমেন্ট, ব্রোকারেজ সার্ভিস বা নিশ্চিত ট্রেডিং সিগন্যাল প্রদান করে না।",
-      "সকল ট্রেডিং কার্যক্রমে উল্লেখযোগ্য আর্থিক ঝুঁকি রয়েছে। ব্যবহারকারী তার সম্পদের আংশিক বা সম্পূর্ণ অংশ হারাতে পারেন।",
-      "অতীত পারফরম্যান্স, স্ক্রিনশট, প্রশংসাপত্র, লাইভ ট্রেড বা ট্রেডিং উদাহরণ ভবিষ্যতের ফলাফলের নিশ্চয়তা দেয় না।",
-      "সকল ট্রেডিং সিদ্ধান্ত সম্পূর্ণভাবে ব্যবহারকারীর নিজস্ব বিবেচনা ও ঝুঁকিতে নেওয়া হয়।",
-      "লাইভ ট্রেডিং সেশন, চার্ট অ্যানালাইসিস, পরামর্শ এবং কপি-ট্রেডিং সংক্রান্ত কনটেন্ট কেবল শিক্ষামূলক প্রদর্শনের উদ্দেশ্যে।",
-      "ব্যবহারকারী সব সময় তার ব্রোকার অ্যাকাউন্টের উপর সম্পূর্ণ নিয়ন্ত্রণ রাখেন। Trading Chart সরাসরি ব্যবহারকারীর ফান্ড বা ট্রেডিং অ্যাকাউন্ট পরিচালনা করে না।",
-      "ট্রেডিং লস, ব্রোকার সমস্যা, উইথড্রয়াল সমস্যা, টেকনিক্যাল ত্রুটি, স্লিপেজ, স্প্রেড পরিবর্তন, এক্সিকিউশন বিলম্ব বা আর্থিক ক্ষতির জন্য Trading Chart দায়ী নয়।",
-      "উল্লেখযোগ্য অ্যাক্সেস, উপস্থিতি বা কনটেন্ট ব্যবহারের পর কোর্স ফি, মেম্বারশিপ এবং ডিজিটাল সার্ভিস সাধারণত অ-ফেরতযোগ্য।",
-      "ব্যবহারকারী নিজ দেশ বা এখতিয়ারে প্রযোজ্য আইন ও বিধিমালা মেনে চলার জন্য দায়ী।",
-      "সকল কোর্স ম্যাটেরিয়াল, ভিডিও, চার্ট, ব্র্যান্ডিং এবং শিক্ষামূলক কনটেন্ট Trading Chart-এর বৌদ্ধিক সম্পত্তি এবং অনুমতি ছাড়া কপি, পুনর্বিতরণ, রেকর্ড বা পুনরায় বিক্রি করা যাবে না।",
-      "লঙ্ঘন, অপব্যবহার, জালিয়াতি বা ক্ষতিকর আচরণের জন্য Trading Chart যেকোনো ব্যবহারকারীর অ্যাক্সেস স্থগিত বা বাতিল করতে পারে।",
-      "Trading Chart ব্রোকার বা সার্ভিস প্রোভাইডারের সাথে অ্যাফিলিয়েট পার্টনারশিপে অংশ নিতে পারে এবং ব্যবহারকারীর অতিরিক্ত খরচ ছাড়াই রেফারেল কমিশন পেতে পারে।",
-      "যেকোনো Trading Chart সার্ভিস, প্ল্যাটফর্ম, ওয়েবসাইট, সোশ্যাল মিডিয়া পেজ, কমিউনিটি বা শিক্ষামূলক উপকরণ ব্যবহার বা অ্যাক্সেস করার মাধ্যমে ব্যবহারকারী এই শর্তাবলী স্বীকার ও সম্মত হন।"
-    ]
-  }
-};
-
-const PAGE_TITLE = {
-  en: "SA TRADER — Professional Trading Education",
-  bn: "SA TRADER — প্রফেশনাল ট্রেডিং এডুকেশন"
-};
+const form       = document.getElementById('enrollForm');
+const inpName    = document.getElementById('inpName');
+const inpPhone   = document.getElementById('inpPhone');
+const inpTx      = document.getElementById('inpTx');
+const fieldName  = document.getElementById('fieldName');
+const fieldPhone = document.getElementById('fieldPhone');
+const fieldTx    = document.getElementById('fieldTx');
+const lblTx      = document.getElementById('lblTx');
+const errName    = document.getElementById('errName');
+const errPhone   = document.getElementById('errPhone');
+const errMethod  = document.getElementById('errMethod');
+const errTx      = document.getElementById('errTx');
+const methodNote = document.getElementById('methodNote');
+const amountVal  = document.getElementById('amountVal');
 
 /* =========================================================
-   setLang(lang)
+   STATE
    ========================================================= */
-function setLang(lang){
-  if (lang !== 'en' && lang !== 'bn') lang = 'en';
-  const dict = I18N[lang];
-  const fallback = I18N.en;
+let currentPackage = { name: 'Personal 1 to 1', price: '$100' };
+let lastOrderData  = null;
+let lastFocusedEl  = null;
 
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    let val = dict[key];
-    if (val === undefined) { val = fallback[key]; console.warn('[i18n] missing key:', key); }
-    if (val !== undefined) el.textContent = val;
-  });
-  document.querySelectorAll('[data-i18n-html]').forEach(el => {
-    const key = el.getAttribute('data-i18n-html');
-    let val = dict[key];
-    if (val === undefined) { val = fallback[key]; console.warn('[i18n] missing key:', key); }
-    if (val !== undefined) el.innerHTML = val;
-  });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    let val = dict[key];
-    if (val === undefined) { val = fallback[key]; console.warn('[i18n] missing key:', key); }
-    if (val !== undefined) el.setAttribute('placeholder', val);
-  });
-  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
-    const key = el.getAttribute('data-i18n-aria');
-    let val = dict[key];
-    if (val === undefined) { val = fallback[key]; console.warn('[i18n] missing key:', key); }
-    if (val !== undefined) el.setAttribute('aria-label', val);
-  });
+/* =========================================================
+   MODAL: open / close
+   ========================================================= */
+function openModal(pkg){
+  currentPackage = pkg || currentPackage;
+  modalTitle.textContent = 'Enroll — ' + currentPackage.name;
+  modalSub.textContent   = 'Fill in your details and complete the payment to confirm your order.';
+  amountVal.textContent  = currentPackage.price;
 
-  document.documentElement.lang = lang;
-  document.title = PAGE_TITLE[lang] || PAGE_TITLE.en;
+  // Reset to form view
+  formBody.style.display  = '';
+  orderBody.style.display = 'none';
+  form.reset();
+  clearErrors();
+  updateMethodUI();
 
-  const sel = document.getElementById('langSelect');
-  if (sel) sel.value = lang;
-  document.querySelectorAll('.menu-lang button').forEach(b => {
-    b.classList.toggle('active', b.dataset.lang === lang);
-  });
-  if (typeof renderModal === 'function') renderModal(lang);
-  try { localStorage.setItem('sa_lang', lang); } catch(e){ /* ignore */ }
+  lastFocusedEl = document.activeElement;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => inpName.focus(), 100);
 }
 
-/* =========================================================
-   Modal content rendering
-   ========================================================= */
-function renderModal(lang){
-  const data = MODAL_CONTENT[lang] || MODAL_CONTENT.en;
-  const currList = document.getElementById('currList');
-  const termsList = document.getElementById('termsList');
-  if (currList) {
-    currList.innerHTML = data.curriculum.map((title, i) => `
-      <div class="curr-card">
-        <div class="curr-num">#${i+1}</div>
-        <div class="curr-title">${title}</div>
-      </div>`).join('');
-  }
-  if (termsList) {
-    termsList.innerHTML = data.terms.map((text, i) => `
-      <div class="term-item">
-        <div class="term-num">${i+1}</div>
-        <div class="term-text">${text}</div>
-      </div>`).join('');
-  }
+function closeModal(){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  if (lastFocusedEl && lastFocusedEl.focus) lastFocusedEl.focus();
 }
 
-/* =========================================================
-   Language selectors + restore
-   ========================================================= */
-(function(){
-  const sel = document.getElementById('langSelect');
-  if (sel) sel.addEventListener('change', e => setLang(e.target.value));
-  document.querySelectorAll('.menu-lang button').forEach(b => {
-    b.addEventListener('click', () => setLang(b.dataset.lang));
-  });
-  let saved = 'en';
-  try { saved = localStorage.getItem('sa_lang') || 'en'; } catch(e){ /* ignore */ }
-  setLang(saved);
-})();
-
-/* =========================================================
-   MODAL LOGIC
-   ========================================================= */
-(function(){
-  const backdrop  = document.getElementById('pdfModal');
-  if (!backdrop) return;
-  const modal     = backdrop.querySelector('.modal');
-  const openBtn   = document.getElementById('openPdfModal');
-  const closeBtn  = document.getElementById('closePdfModal');
-  const printBtn  = document.getElementById('printPdf');
-  const tabs      = backdrop.querySelectorAll('.modal-tab');
-  const panels    = backdrop.querySelectorAll('.modal-panel');
-  const modalLangBtns = backdrop.querySelectorAll('.modal-lang button');
-  let lastFocused = null;
-
-  function openModal(){
-    lastFocused = document.activeElement;
-    const cur = document.documentElement.lang === 'bn' ? 'bn' : 'en';
-    renderModal(cur);
-    modalLangBtns.forEach(b => b.classList.toggle('active', b.dataset.modalLang === cur));
-    backdrop.classList.add('open');
-    backdrop.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-open');
-    setTimeout(() => closeBtn.focus(), 50);
-  }
-  function closeModal(){
-    backdrop.classList.remove('open');
-    backdrop.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('modal-open');
-    if (lastFocused) lastFocused.focus();
-  }
-  openBtn.addEventListener('click', openModal);
-  closeBtn.addEventListener('click', closeModal);
-  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeModal(); });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && backdrop.classList.contains('open')) closeModal();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key !== 'Tab' || !backdrop.classList.contains('open')) return;
-    const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-    const list = Array.from(focusables).filter(el => !el.disabled && el.offsetParent !== null);
-    if (!list.length) return;
-    const first = list[0], last = list[list.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  });
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.tab;
-      tabs.forEach(t => {
-        const active = t.dataset.tab === target;
-        t.classList.toggle('active', active);
-        t.setAttribute('aria-selected', active);
-      });
-      panels.forEach(p => { p.classList.toggle('active', p.id === 'panel-' + target); });
+/* Wire all enroll buttons */
+document.querySelectorAll('.btn-enroll').forEach(btn => {
+  btn.addEventListener('click', () => {
+    openModal({
+      name:  btn.dataset.package  || 'Personal 1 to 1',
+      price: btn.dataset.price    || '$100'
     });
   });
-  modalLangBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.modalLang;
-      setLang(target);
-      modalLangBtns.forEach(b => b.classList.toggle('active', b.dataset.modalLang === target));
-    });
-  });
-  printBtn.addEventListener('click', () => setTimeout(() => window.print(), 60));
-})();
+});
+
+closeBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+});
 
 /* =========================================================
-   FLOATING ELEMENTS — scroll-to-top + chat
+   PAYMENT METHOD — selection + dynamic input
    ========================================================= */
-(function(){
-  const topBtn  = document.getElementById('rsvcTop');
-  const chatBtn = document.getElementById('rsvcChat');
-  if (!topBtn || !chatBtn) return;
-
-  function onScroll(){
-    if (window.scrollY > 400) topBtn.classList.add('show');
-    else topBtn.classList.remove('show');
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  topBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+document.querySelectorAll('.pay-opt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const radio = opt.querySelector('input[type="radio"]');
+    radio.checked = true;
+    updateMethodUI();
   });
-  chatBtn.addEventListener('click', () => {
-    const c = document.getElementById('contact');
-    if (c) c.scrollIntoView({ behavior: 'smooth' });
-  });
-})();
+});
 
-/* =========================================================
-   ENROLL NOW — close mobile menu when clicked
-   (smooth scroll is handled natively via href + scroll-behavior)
-   ========================================================= */
-(function(){
-  const b = document.getElementById('burger');
-  const m = document.getElementById('menu');
-  document.querySelectorAll('a[data-i18n="nav_enroll"], a[data-i18n="hero_cta"]').forEach(link => {
-    link.addEventListener('click', () => {
-      if (m && m.classList.contains('open')) {
-        m.classList.remove('open');
-        if (b) { b.textContent = '☰'; b.setAttribute('aria-expanded', 'false'); }
-      }
-    });
-  });
-})();
+function handlePaymentChange(){
+  updateMethodUI();
+}
 
-/* =========================================================
-   EXISTING PAGE JS
-   ========================================================= */
-(function(){
-  const b = document.getElementById('burger');
-  const m = document.getElementById('menu');
-  if (b && m) {
-    b.addEventListener('click', () => {
-      const o = m.classList.toggle('open');
-      b.setAttribute('aria-expanded', o);
-      b.textContent = o ? '✕' : '☰';
-    });
-    m.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      m.classList.remove('open');
-      b.textContent = '☰';
-      b.setAttribute('aria-expanded', 'false');
-    }));
-  }
-  const fadeEls = document.querySelectorAll('.fade-up');
-  if ('IntersectionObserver' in window) {
-    const fadeObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add('visible'); fadeObs.unobserve(entry.target); }
-      });
-    }, { threshold: 0.15 });
-    fadeEls.forEach(el => fadeObs.observe(el));
+function updateMethodUI(){
+  const selected = document.querySelector('.pay-opt input:checked');
+  const value    = selected ? selected.value : '';
+
+  // Highlight selected
+  document.querySelectorAll('.pay-opt').forEach(opt => {
+    const r = opt.querySelector('input');
+    opt.classList.toggle('selected', r.checked);
+  });
+
+  // Dynamic label + placeholder
+  if (value === 'bKash' || value === 'Nagad'){
+    fieldTx.style.display = '';
+    lblTx.innerHTML = 'Transaction ID <span class="req">*</span>';
+    inpTx.placeholder = 'Enter your Transaction ID';
+    methodNote.textContent = 'Paying via ' + value + ' · send ' + currentPackage.price + ' to our ' + value + ' number';
+  } else if (value === 'Binance'){
+    fieldTx.style.display = '';
+    lblTx.innerHTML = 'Order ID <span class="req">*</span>';
+    inpTx.placeholder = 'Enter your Binance Order ID';
+    methodNote.textContent = 'Paying via Binance · send ' + currentPackage.price + ' USDT to our Binance wallet';
   } else {
-    fadeEls.forEach(el => el.classList.add('visible'));
+    fieldTx.style.display = 'none';
+    methodNote.textContent = 'Select a payment method';
   }
-  const counters = document.querySelectorAll('.stat-num[data-target]');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function animateCounter(el){
-    const target = parseFloat(el.getAttribute('data-target'));
-    const suffix = el.getAttribute('data-suffix') || '';
-    const duration = 1400;
-    const start = performance.now();
-    function step(now){
-      const t = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - t, 3);
-      const current = Math.round(target * eased);
-      el.innerHTML = '<span>' + current + '</span>' + suffix;
-      if (t < 1) requestAnimationFrame(step);
+
+  // Clear method-level error if user picks
+  if (value) errMethod.textContent = '';
+}
+
+/* =========================================================
+   VALIDATION
+   ========================================================= */
+function clearErrors(){
+  [errName, errPhone, errTx, errMethod].forEach(el => el.textContent = '');
+  [fieldName, fieldPhone, fieldTx].forEach(el => el.classList.remove('invalid'));
+}
+
+function validateForm(){
+  clearErrors();
+  let ok = true;
+
+  // Name
+  const name = inpName.value.trim();
+  if (!name){
+    errName.textContent = 'Please enter your name.';
+    fieldName.classList.add('invalid');
+    ok = false;
+  } else if (name.length < 2){
+    errName.textContent = 'Name must be at least 2 characters.';
+    fieldName.classList.add('invalid');
+    ok = false;
+  }
+
+  // Phone: digits only, min 10
+  const phoneRaw = inpPhone.value.trim();
+  const phoneDigits = phoneRaw.replace(/\D/g, '');
+  if (!phoneRaw){
+    errPhone.textContent = 'Please enter your phone number.';
+    fieldPhone.classList.add('invalid');
+    ok = false;
+  } else if (phoneDigits.length < 10){
+    errPhone.textContent = 'Phone number must be at least 10 digits.';
+    fieldPhone.classList.add('invalid');
+    ok = false;
+  } else if (/\D/.test(phoneRaw.replace(/[\s\-+()]/g, ''))){
+    errPhone.textContent = 'Phone number can only contain digits.';
+    fieldPhone.classList.add('invalid');
+    ok = false;
+  }
+
+  // Payment method
+  const method = document.querySelector('.pay-opt input:checked');
+  if (!method){
+    errMethod.textContent = 'Please select a payment method.';
+    ok = false;
+  }
+
+  // Transaction / Order ID
+  if (method){
+    const tx = inpTx.value.trim();
+    const label = method.value === 'Binance' ? 'Order ID' : 'Transaction ID';
+    if (!tx){
+      errTx.textContent = 'Please enter your ' + label + '.';
+      fieldTx.classList.add('invalid');
+      ok = false;
     }
-    requestAnimationFrame(step);
   }
-  if (counters.length) {
-    if (reduceMotion || !('IntersectionObserver' in window)) {
-      counters.forEach(el => {
-        const target = el.getAttribute('data-target');
-        const suffix = el.getAttribute('data-suffix') || '';
-        el.innerHTML = '<span>' + target + '</span>' + suffix;
-      });
+
+  return ok;
+}
+
+/* =========================================================
+   SUBMIT → show order details
+   ========================================================= */
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (!validateForm()) return;
+
+  const method   = document.querySelector('.pay-opt input:checked').value;
+  const txLabel  = method === 'Binance' ? 'Order ID' : 'Transaction ID';
+  const order    = {
+    name:    inpName.value.trim(),
+    phone:   inpPhone.value.trim(),
+    method:  method,
+    txLabel: txLabel,
+    txValue: inpTx.value.trim(),
+    package: currentPackage.name,
+    price:   currentPackage.price,
+    datetime: formatDateTime(new Date()),
+    status:  'Pending Confirmation'
+  };
+
+  lastOrderData = order;
+  showOrderDetails(order);
+});
+
+/* =========================================================
+   SHOW ORDER DETAILS SCREEN
+   ========================================================= */
+function showOrderDetails(order){
+  modalTitle.textContent = 'Order Details';
+  modalSub.textContent   = 'Thank you! Please save this information and send it to our support.';
+
+  orderRows.innerHTML = `
+    <div class="order-row"><span class="k">Name</span><span class="v">${escapeHTML(order.name)}</span></div>
+    <div class="order-row"><span class="k">Phone Number</span><span class="v">${escapeHTML(order.phone)}</span></div>
+    <div class="order-row"><span class="k">Payment Method</span><span class="v">${escapeHTML(order.method)}</span></div>
+    <div class="order-row"><span class="k">${escapeHTML(order.txLabel)}</span><span class="v">${escapeHTML(order.txValue)}</span></div>
+    <div class="order-row"><span class="k">Date &amp; Time</span><span class="v">${escapeHTML(order.datetime)}</span></div>
+    <div class="order-row"><span class="k">Package</span><span class="v">${escapeHTML(order.package)}</span></div>
+    <div class="order-row"><span class="k">Price</span><span class="v">${escapeHTML(order.price)}</span></div>
+    <div class="order-row"><span class="k">Status</span><span class="v"><span class="badge-pending">${escapeHTML(order.status)}</span></span></div>
+  `;
+
+  // Reset copy button state
+  btnCopy.classList.remove('copied');
+  btnCopyLbl.textContent = 'Copy Order Details';
+
+  // Switch views
+  formBody.style.display  = 'none';
+  orderBody.style.display = '';
+  orderBody.scrollTop = 0;
+}
+
+/* =========================================================
+   DATE FORMAT: DD/MM/YYYY, hh:mm AM/PM
+   ========================================================= */
+function formatDateTime(d){
+  const dd = String(d.getDate()).padStart(2,'0');
+  const mm = String(d.getMonth()+1).padStart(2,'0');
+  const yyyy = d.getFullYear();
+  let hh = d.getHours();
+  const min = String(d.getMinutes()).padStart(2,'0');
+  const ampm = hh >= 12 ? 'PM' : 'AM';
+  hh = hh % 12; if (hh === 0) hh = 12;
+  hh = String(hh).padStart(2,'0');
+  return `${dd}/${mm}/${yyyy}, ${hh}:${min} ${ampm}`;
+}
+
+/* =========================================================
+   COPY ORDER DETAILS
+   ========================================================= */
+btnCopy.addEventListener('click', () => {
+  if (!lastOrderData) return;
+  const o = lastOrderData;
+  const text =
+`SA TRADER — Order Details
+------------------------------
+Name: ${o.name}
+Phone Number: ${o.phone}
+Payment Method: ${o.method}
+${o.txLabel}: ${o.txValue}
+Date & Time: ${o.datetime}
+Package: ${o.package}
+Price: ${o.price}
+Status: ${o.status}`;
+
+  copyToClipboard(text).then(ok => {
+    if (ok){
+      btnCopy.classList.add('copied');
+      btnCopyLbl.textContent = 'Copied!';
+      setTimeout(() => {
+        btnCopy.classList.remove('copied');
+        btnCopyLbl.textContent = 'Copy Order Details';
+      }, 1800);
     } else {
-      const cObs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) { animateCounter(entry.target); cObs.unobserve(entry.target); }
-        });
-      }, { threshold: 0.4 });
-      counters.forEach(el => cObs.observe(el));
+      btnCopyLbl.textContent = 'Copy failed — long-press to select';
+      setTimeout(() => { btnCopyLbl.textContent = 'Copy Order Details'; }, 2000);
     }
+  });
+});
+
+function copyToClipboard(text){
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    return navigator.clipboard.writeText(text).then(()=>true).catch(()=>fallbackCopy(text));
   }
-})();
+  return Promise.resolve(fallbackCopy(text));
+}
+function fallbackCopy(text){
+  try{
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  } catch(e){ return false; }
+}
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+function escapeHTML(s){
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+/* Real-time field clearing as user types */
+inpName.addEventListener('input',  () => { if (errName.textContent)  { errName.textContent = '';  fieldName.classList.remove('invalid'); } });
+inpPhone.addEventListener('input', () => { if (errPhone.textContent) { errPhone.textContent = ''; fieldPhone.classList.remove('invalid'); } });
+inpTx.addEventListener('input',    () => { if (errTx.textContent)    { errTx.textContent = '';    fieldTx.classList.remove('invalid'); } });
+
+/* Init */
+updateMethodUI();
 </script>
 </body>
 </html>
