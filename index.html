@@ -1194,7 +1194,6 @@
       position: relative;
       max-width: 720px;
       margin: 0 auto;
-      /* ensure nothing above overlaps */
       z-index: 1;
     }
 
@@ -1207,12 +1206,10 @@
       background: #000;
       box-shadow: 0 25px 60px rgba(0, 0, 0, .6);
       border: 1px solid var(--line);
-      /* ensure video box sits above decorative overlays */
       z-index: 1;
       isolation: isolate;
     }
 
-    /* video element: explicit sizing, real block, no overlay hiding it */
     .v-box video {
       display: block;
       width: 100%;
@@ -1222,12 +1219,10 @@
       border-radius: 22px;
       background: #000;
       pointer-events: none;
-      /* make sure it's above any ::before/::after inside .v-box */
       position: relative;
       z-index: 2;
     }
 
-    /* badges must sit above video: higher z-index than .v-box video */
     .v-badge {
       position: absolute;
       display: flex;
@@ -1244,7 +1239,6 @@
       letter-spacing: .01em;
       box-shadow: 0 12px 30px rgba(0, 0, 0, .55);
       white-space: nowrap;
-      /* above video */
       z-index: 10;
       animation: v-float 3.5s ease-in-out infinite;
     }
@@ -1320,7 +1314,6 @@
       margin: 0 0 26px;
     }
 
-    /* Success ring block */
     .rv-success {
       display: flex;
       align-items: center;
@@ -1351,7 +1344,7 @@
       stroke: url(#rvGoldGrad);
       stroke-width: 10;
       stroke-linecap: round;
-      stroke-dasharray: 339.29; /* 2πr, r=54 */
+      stroke-dasharray: 339.29;
       stroke-dashoffset: 339.29;
       transition: stroke-dashoffset 1.6s cubic-bezier(.2, .7, .2, 1);
     }
@@ -1376,7 +1369,6 @@
       line-height: 1.55;
     }
 
-    /* Cards grid (main section) */
     .rv-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1403,7 +1395,6 @@
       border-color: rgba(255, 193, 7, .4);
       box-shadow: 0 18px 40px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 193, 7, .2);
     }
-    /* middle card slightly higher on desktop */
     .rv-card.rv-card--mid {
       transform: translateY(-18px);
     }
@@ -1558,7 +1549,6 @@
       fill: #333333;
     }
 
-    /* See More button */
     .rv-see-more-wrap {
       display: flex;
       justify-content: center;
@@ -1874,7 +1864,6 @@
       z-index: 0;
     }
 
-    /* decorative blurred yellow glow circles */
     .ct-glow {
       position: absolute;
       border-radius: 50%;
@@ -3191,12 +3180,102 @@
       animation: servicesPulse 1.2s ease;
     }
 
+    /* =========================================================
+       CHANGE 2 — JOIN COURSE POPUP STYLES
+       ========================================================= */
+    .join-popup-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      background: rgba(5, 5, 5, .78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease, visibility .3s ease;
+    }
+    .join-popup-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .join-popup {
+      width: min(440px, 92%);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 28px 24px 24px;
+      box-shadow: var(--shadow-card-hover);
+      position: relative;
+      transform: scale(.94) translateY(10px);
+      opacity: 0;
+      transition: transform .35s cubic-bezier(.2, .7, .2, 1), opacity .35s ease;
+    }
+    .join-popup-backdrop.open .join-popup {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+    .join-popup-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .04);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: background .2s, transform .2s;
+    }
+    .join-popup-close:hover {
+      background: rgba(255, 255, 255, .1);
+      transform: rotate(90deg);
+    }
+    .join-popup .svc-title {
+      font-size: 18px;
+      margin-bottom: 4px;
+      padding-right: 40px;
+    }
+    .join-popup .svc-sub {
+      font-size: 13.5px;
+      margin-bottom: 16px;
+    }
+    .join-popup .svc-features {
+      margin-bottom: 20px;
+    }
+    .join-popup .svc-features li {
+      font-size: 13.5px;
+    }
+    .join-popup .svc-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .join-popup .svc-price {
+      font-size: 28px;
+    }
+    .join-popup .svc-price small {
+      font-size: 10.5px;
+    }
+
     /* ============ PRINT ============ */
     @media print {
       body { background: #fff !important; color: #000 !important; }
       body::before, .nav, .hero, .showcase, .stats-wrap, .rsvc, .cw, .rsvc-floats,
       .modal-head, .modal-tabs, .modal-foot, .modal-close, .modal-lang,
-      .rv-overlay, .ft-footer, .ct-overlay, .admin-overlay { display: none !important; }
+      .rv-overlay, .ft-footer, .ct-overlay, .admin-overlay, .join-popup-backdrop { display: none !important; }
       .modal-backdrop {
         position: static;
         background: #fff;
@@ -3468,6 +3547,11 @@
       .ct-card-title { font-size: 16.5px; }
       .admin-modal { padding: 22px 16px; }
       .admin-row { grid-template-columns: 1fr; }
+      .join-popup-backdrop { padding: 16px; }
+      .join-popup { width: 92%; max-height: 88vh; padding: 24px 18px 20px; }
+      .join-popup .svc-price { font-size: 24px; }
+      .join-popup .svc-foot { flex-wrap: wrap; }
+      .join-popup .btn-enroll { flex: 1; justify-content: center; }
     }
     @media (max-width: 600px) {
       .cw-grid { grid-template-columns: 1fr; }
@@ -3505,6 +3589,7 @@
       .admin-overlay { transition: none; }
       .countdown-digit.flip { animation: none; }
       .services-highlight { animation: none; }
+      .join-popup, .join-popup-backdrop { transition: none; }
     }
   </style>
 </head>
@@ -3605,7 +3690,7 @@
             <span><span class="dot"></span><span data-i18n="feat_level">Beginner → Pro</span></span>
           </div>
           <div class="featured-cta">
-            <a class="btn enroll-trigger" href="#services" data-i18n="feat_join">Join Course</a>
+            <button class="btn join-course-trigger" type="button" data-i18n="feat_join">Join Course</button>
             <a class="btn ghost" href="#learn-more" data-i18n="feat_learn">Learn More</a>
             <button class="featured-plus" type="button" aria-label="Add to list">+</button>
           </div>
@@ -4013,25 +4098,21 @@
      ========================================================= -->
 <footer class="ft-footer" aria-label="Site footer">
   <div class="ft-inner">
-    <!-- Top row: logo + social icons (YouTube, Telegram, Facebook only) -->
     <div class="ft-top">
       <a class="ft-logo" href="#home" aria-label="SA Trader – Home">
         <img src="IMG_20261007_001230_648.jpg" alt="SA Trader">
       </a>
       <div class="ft-social" role="navigation" aria-label="Social links">
-        <!-- YouTube link reused from Connect section -->
         <a href="https://youtube.com/@satrader10?si=gj69U_lFkXYlSZg5" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
           <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M46.3 12.6a5.7 5.7 0 0 0-4-4C38.7 7.6 24 7.6 24 7.6s-14.7 0-18.3 1a5.7 5.7 0 0 0-4 4C.7 16.2.7 24 .7 24s0 7.8 1 11.4a5.7 5.7 0 0 0 4 4c3.6 1 18.3 1 18.3 1s14.7 0 18.3-1a5.7 5.7 0 0 0 4-4c1-3.6 1-11.4 1-11.4s0-7.8-1-11.4zM19.2 31V17l12.1 7-12.1 7z"/>
           </svg>
         </a>
-        <!-- Telegram link reused from Order confirmation + floating/contact -->
         <a href="https://t.me/sa_doller5" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
           <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M24 4C12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20S35.1 4 24 4zm9.4 13.6l-3.1 14.6c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2l-11.3 7.1-4.8-1.5c-1-.3-1.1-1 .2-1.6l18.9-7.3c.9-.3 1.7.2 1.4 1.5z"/>
           </svg>
         </a>
-        <!-- Facebook link reused from Connect section -->
         <a href="https://www.facebook.com/profile.php?id=61591068602740" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
           <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M24 4C12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20S35.1 4 24 4zm3.4 20.5h-3.1V37h-5.4V24.5h-2.2v-4.6h2.2v-2.6c0-3.7 1.5-5.9 5.9-5.9h3.6v4.6h-2.3c-1.7 0-1.8.6-1.8 1.8v2.1h4.2l-.5 4.6z"/>
@@ -4040,18 +4121,15 @@
       </div>
     </div>
 
-    <!-- Description paragraph -->
     <p class="ft-desc">
       We focus on helping every student grow in forex through step-by-step guidance, real market insights, and hands-on learning. Using modern strategies and smart analysis, we develop practical skills that drive steady progress and long-term trading success.
     </p>
 
-    <!-- Links row -->
     <div class="ft-links">
-      <a href="#">About Us</a> <!-- ADD LINK HERE -->
-      <a href="#">Terms &amp; Policies</a> <!-- ADD LINK HERE -->
+      <a href="#">About Us</a>
+      <a href="#">Terms &amp; Policies</a>
     </div>
 
-    <!-- Copyright -->
     <div class="ft-copy">© <span id="ftYear">2026</span> SA Trader. All rights reserved.</div>
   </div>
 </footer>
@@ -4060,7 +4138,6 @@
      CONTACT SCREEN
      ========================================================= -->
 <div class="ct-overlay" id="ctOverlay" role="dialog" aria-modal="true" aria-labelledby="ctHeading" aria-hidden="true">
-  <!-- decorative blurred yellow glow circles -->
   <span class="ct-glow ct-glow-1" aria-hidden="true"></span>
   <span class="ct-glow ct-glow-2" aria-hidden="true"></span>
   <span class="ct-glow ct-glow-3" aria-hidden="true"></span>
@@ -4081,7 +4158,6 @@
       <p class="ct-sub">Have a question or want to enroll? Reach us directly on Telegram.</p>
 
       <div class="ct-grid">
-        <!-- Telegram Channel -->
         <article class="ct-card">
           <div class="ct-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -4096,7 +4172,6 @@
           </a>
         </article>
 
-        <!-- Owner -->
         <article class="ct-card">
           <div class="ct-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -4122,7 +4197,6 @@
           </a>
         </article>
 
-        <!-- Admin / Support -->
         <article class="ct-card">
           <div class="ct-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -4149,7 +4223,6 @@
         </article>
       </div>
 
-      <!-- Info strip -->
       <div class="ct-info">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="12" r="10"/>
@@ -4179,6 +4252,30 @@
     <div class="rv-overlay-grid" id="rvOverlayGrid"></div>
     <div class="rv-load-more-wrap">
       <button class="rv-load-more" id="rvLoadMore" type="button">Load more</button>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     CHANGE 2 — JOIN COURSE POPUP
+     ========================================================= -->
+<div class="join-popup-backdrop" id="joinPopupBackdrop" aria-hidden="true">
+  <div class="join-popup" role="dialog" aria-modal="true" aria-labelledby="joinPopupTitle">
+    <button class="join-popup-close" id="joinPopupClose" type="button" aria-label="Close">✕</button>
+    <h3 class="svc-title" id="joinPopupTitle">SA TRADER #01 COURSE</h3>
+    <p class="svc-sub" id="joinPopupSubtitle">Professional Trading &amp; Market Analysis</p>
+    <div class="svc-divider"></div>
+    <ul class="svc-features" id="joinPopupFeatures">
+      <li>10 Lessons</li>
+      <li>1.5 Hours</li>
+      <li>Beginner to Pro</li>
+      <li>Candlestick Reading &amp; Market Structure</li>
+      <li>Risk Control</li>
+      <li>Disciplined Live Execution</li>
+    </ul>
+    <div class="svc-foot">
+      <div class="svc-price" id="joinPopupPrice">$32<small>one-time</small></div>
+      <button class="btn-enroll" id="joinPopupEnroll" type="button">Enroll Now</button>
     </div>
   </div>
 </div>
@@ -4240,29 +4337,24 @@
      ========================================================= -->
 <div class="modal-backdrop enroll-modal" id="enrollModal" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <!-- Header -->
     <div class="modal-head">
       <h3 id="modalTitle">Enroll — Personal 1 to 1</h3>
       <p id="modalSubtitle" style="font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.5;">Fill in your details and complete the payment to confirm your order.</p>
       <button class="modal-close" id="modalClose" type="button" aria-label="Close">✕</button>
     </div>
 
-    <!-- Body: form (Step A) -->
     <div class="modal-body" id="modalBodyForm">
       <form id="enrollForm" novalidate>
-        <!-- Full Name -->
         <div class="field" id="fieldName">
           <label for="inpName">Full Name / Username <span class="req">*</span></label>
           <input type="text" id="inpName" name="name" placeholder="e.g. Rakib Hasan" autocomplete="name" required>
           <span class="field-error" id="errName"></span>
         </div>
-        <!-- Phone -->
         <div class="field" id="fieldPhone">
           <label for="inpPhone">Phone Number <span class="req">*</span></label>
           <input type="tel" id="inpPhone" name="phone" placeholder="e.g. 01712345678" autocomplete="tel" inputmode="numeric" required>
           <span class="field-error" id="errPhone"></span>
         </div>
-        <!-- Payment method -->
         <div class="pay-title">Payment Method <span class="req">*</span></div>
         <div class="pay-grid" role="radiogroup" aria-label="Payment method">
           <label class="pay-opt" data-method="bKash">
@@ -4279,13 +4371,11 @@
           </label>
         </div>
         <span class="field-error" id="errMethod" style="display:block;margin:-8px 0 14px"></span>
-        <!-- Dynamic input: Transaction ID / Order ID -->
         <div class="field" id="fieldTx" style="display:none">
           <label for="inpTx" id="lblTx">Transaction ID <span class="req">*</span></label>
           <input type="text" id="inpTx" name="tx" placeholder="Enter your Transaction ID" autocomplete="off">
           <span class="field-error" id="errTx"></span>
         </div>
-        <!-- Amount + method note -->
         <div class="amount-box" id="amountBox">
           <div class="amount-left">
             <span class="lbl">Amount to pay</span>
@@ -4293,20 +4383,16 @@
           </div>
           <span class="val" id="amountVal">$100</span>
         </div>
-        <!-- Submit -->
         <button class="btn-submit" type="submit">Submit Order</button>
       </form>
     </div>
 
-    <!-- Body: order confirmation (Step B) -->
     <div class="modal-body" id="modalBodyOrder" style="display:none">
       <div class="order-box">
         <div class="order-rows" id="orderRows"></div>
-        <!-- Bangla note -->
         <div class="bn-note">
           আপনার অর্ডারটি কনফার্ম করার জন্য নিচে যোগাযোগ করুন। অর্ডার ডিটেইলস ও পেমেন্টের স্ক্রিনশটটি এখনই আমাদের সাপোর্টে পাঠান।
         </div>
-        <!-- Actions -->
         <div class="order-actions">
           <a class="btn-telegram" href="https://t.me/sa_doller5" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -4328,25 +4414,15 @@
 </div>
 
 <!-- =========================================================
-     ADMIN PANEL (hidden, opens via "aa" shortcut)
+     ADMIN PANEL (hidden, opens via "aa" shortcut) — CHANGE 1: no password
      ========================================================= -->
 <div class="admin-overlay" id="adminOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Admin panel">
   <div class="admin-modal" id="adminModal">
     <h2>Admin Panel</h2>
     <p class="admin-sub">Manage the "Next Batch" countdown. Changes are saved to Firebase and appear to all visitors instantly.</p>
 
-    <!-- Password gate -->
-    <div id="adminPasswordGate">
-      <div class="admin-field">
-        <label for="adminPass">Password</label>
-        <input type="password" id="adminPass" placeholder="Enter admin password" autocomplete="off">
-      </div>
-      <div class="admin-error" id="adminPassError"></div>
-      <button class="btn-submit" id="adminLoginBtn" type="button" style="margin-top:4px;">Unlock</button>
-    </div>
-
-    <!-- Main panel (hidden until logged in) -->
-    <div id="adminPanel" style="display:none;">
+    <!-- Main panel (no password gate) -->
+    <div id="adminPanel">
       <div class="admin-field">
         <label for="adminTitle">Batch title</label>
         <input type="text" id="adminTitle" placeholder="e.g. October batch starting" maxlength="80">
@@ -4377,7 +4453,6 @@
         <button class="btn-hold" id="adminHoldBtn" type="button">Hold</button>
         <button class="btn-resume" id="adminResumeBtn" type="button">Resume</button>
         <button class="btn-stop" id="adminStopBtn" type="button">Stop / Reset</button>
-        <button class="btn-lock" id="adminLockBtn" type="button">Lock / Logout</button>
       </div>
 
       <div class="admin-preview">
@@ -4430,7 +4505,11 @@ const I18N = {
     modal_tab_curr: "Curriculum", modal_tab_terms: "Terms & Conditions",
     modal_warn: "Trading involves substantial financial risk.",
     modal_download: "⬇ Download PDF",
-    batch_started: "Batch Started 🚀"
+    batch_started: "Batch Started 🚀",
+    // CHANGE 2 — new popup i18n
+    join_popup_title: "SA TRADER #01 COURSE",
+    join_popup_subtitle: "Professional Trading & Market Analysis",
+    join_popup_enroll: "Enroll Now"
   },
   bn: {
     nav_home: "হোম", nav_courses: "কোর্স ও সার্ভিস", nav_contact: "যোগাযোগ করুন", nav_enroll: "এনরোল করুন",
@@ -4458,7 +4537,11 @@ const I18N = {
     modal_tab_curr: "কারিকুলাম", modal_tab_terms: "শর্তাবলী",
     modal_warn: "ট্রেডিংয়ে উল্লেখযোগ্য আর্থিক ঝুঁকি রয়েছে।",
     modal_download: "⬇ PDF ডাউনলোড",
-    batch_started: "ব্যাচ শুরু হয়েছে 🚀"
+    batch_started: "ব্যাচ শুরু হয়েছে 🚀",
+    // CHANGE 2 — new popup i18n (Bengali)
+    join_popup_title: "SA ট্রেডার #০১ কোর্স",
+    join_popup_subtitle: "প্রফেশনাল ট্রেডিং ও মার্কেট অ্যানালাইসিস",
+    join_popup_enroll: "এখনই এনরোল করুন"
   }
 };
 
@@ -4598,7 +4681,6 @@ function setLang(lang) {
   if (typeof renderModal === 'function') renderModal(lang);
   try { localStorage.setItem('sa_lang', lang); } catch (e) { /* ignore */ }
 
-  // Update batch title if it was showing the default translation
   const batchTitle = document.getElementById('batchTitle');
   if (batchTitle && batchTitle.dataset.i18n === 'starting_on' && !batchTitle.dataset.customTitle) {
     batchTitle.textContent = dict.starting_on || fallback.starting_on;
@@ -4768,7 +4850,6 @@ function renderModal(lang) {
     if (lastFocusedEl && lastFocusedEl.focus) lastFocusedEl.focus();
   }
 
-  // Wire all enroll buttons
   document.querySelectorAll('.btn-enroll').forEach(btn => {
     btn.addEventListener('click', () => {
       openModal({
@@ -4784,7 +4865,6 @@ function renderModal(lang) {
     if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
   });
 
-  /* Payment method — selection + dynamic input */
   document.querySelectorAll('.pay-opt').forEach(opt => {
     opt.addEventListener('click', () => {
       const radio = opt.querySelector('input[type="radio"]');
@@ -4820,7 +4900,6 @@ function renderModal(lang) {
     if (value) errMethod.textContent = '';
   }
 
-  /* Validation */
   function clearErrors() {
     [errName, errPhone, errTx, errMethod].forEach(el => el.textContent = '');
     [fieldName, fieldPhone, fieldTx].forEach(el => el.classList.remove('invalid'));
@@ -4876,7 +4955,6 @@ function renderModal(lang) {
     return ok;
   }
 
-  /* Submit → show order details */
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -4934,7 +5012,6 @@ function renderModal(lang) {
     return `${dd}/${mm}/${yyyy}, ${hh}:${min} ${ampm}`;
   }
 
-  /* Copy order details */
   btnCopy.addEventListener('click', () => {
     if (!lastOrderData) return;
     const o = lastOrderData;
@@ -4991,13 +5068,14 @@ Status: ${o.status}`;
     }[c]));
   }
 
-  /* Real-time field clearing */
   inpName.addEventListener('input', () => { if (errName.textContent) { errName.textContent = ''; fieldName.classList.remove('invalid'); } });
   inpPhone.addEventListener('input', () => { if (errPhone.textContent) { errPhone.textContent = ''; fieldPhone.classList.remove('invalid'); } });
   inpTx.addEventListener('input', () => { if (errTx.textContent) { errTx.textContent = ''; fieldTx.classList.remove('invalid'); } });
 
-  // Init
   updateMethodUI();
+
+  // Expose openModal for CHANGE 2 popup
+  window.__openEnrollModal = openModal;
 })();
 
 /* =========================================================
@@ -5018,17 +5096,14 @@ Status: ${o.status}`;
     loadMore: document.getElementById('rvLoadMore')
   };
 
-  // Heading config
   if (el.totalStudents) el.totalStudents.textContent = TOTAL_STUDENTS;
 
-  // Safe HTML escape for text rendering
   function esc(str) {
     return String(str == null ? '' : str).replace(/[&<>"']/g, c => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
     }[c]));
   }
 
-  // Build a single review card
   function buildCard(review, index, isMiddle) {
     const card = document.createElement('article');
     card.className = 'rv-card' + (isMiddle ? ' rv-card--mid' : '');
@@ -5036,7 +5111,6 @@ Status: ${o.status}`;
     const rating = Math.max(0, Math.min(5, Number(review.rating) || 0));
     const verified = review.verified === true;
 
-    // Head
     const head = document.createElement('div');
     head.className = 'rv-card-head';
 
@@ -5071,12 +5145,10 @@ Status: ${o.status}`;
     head.appendChild(info);
     card.appendChild(head);
 
-    // Divider
     const d1 = document.createElement('div');
     d1.className = 'rv-divider';
     card.appendChild(d1);
 
-    // Course label + name
     const courseLabel = document.createElement('div');
     courseLabel.className = 'rv-course-label';
     courseLabel.textContent = 'Student at';
@@ -5087,12 +5159,10 @@ Status: ${o.status}`;
     courseName.textContent = review.course || 'SA Trader';
     card.appendChild(courseName);
 
-    // Divider
     const d2 = document.createElement('div');
     d2.className = 'rv-divider';
     card.appendChild(d2);
 
-    // Quote
     const quote = document.createElement('div');
     quote.className = 'rv-quote';
     const qMark = document.createElement('span');
@@ -5106,7 +5176,6 @@ Status: ${o.status}`;
     quote.appendChild(qText);
     card.appendChild(quote);
 
-    // Footer: rating + stars
     const foot = document.createElement('div');
     foot.className = 'rv-foot';
 
@@ -5135,7 +5204,6 @@ Status: ${o.status}`;
     return card;
   }
 
-  // Render first 3 cards in main grid (middle card elevated)
   function renderMain() {
     if (!el.mainGrid) return;
     el.mainGrid.innerHTML = '';
@@ -5145,7 +5213,6 @@ Status: ${o.status}`;
     });
   }
 
-  // Success ring animation
   function animateRing() {
     if (!el.ringFill || !el.ringVal) return;
     const r = 54;
@@ -5154,7 +5221,6 @@ Status: ${o.status}`;
     el.ringFill.style.strokeDasharray = String(circumference);
     el.ringFill.style.strokeDashoffset = String(circumference);
 
-    // Animate numeric value alongside the ring
     const duration = 1600;
     const start = performance.now();
     function step(now) {
@@ -5166,7 +5232,6 @@ Status: ${o.status}`;
     }
     requestAnimationFrame(step);
 
-    // Trigger stroke animation on next frame
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         const offset = circumference * (1 - target / 100);
@@ -5175,13 +5240,11 @@ Status: ${o.status}`;
     });
   }
 
-  // IntersectionObserver: animate ring once when visible
   (function initRingObserver() {
     const section = document.getElementById('reviews');
     if (!section) return;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce || !('IntersectionObserver' in window)) {
-      // Instantly set final state
       if (el.ringFill && el.ringVal) {
         const r = 54;
         const circumference = 2 * Math.PI * r;
@@ -5203,7 +5266,6 @@ Status: ${o.status}`;
     obs.observe(section);
   })();
 
-  // Overlay: paginated full reviews
   let overlayShown = 0;
 
   function renderOverlayBatch() {
@@ -5258,7 +5320,6 @@ Status: ${o.status}`;
     }
   });
 
-  // Initial render
   renderMain();
 })();
 
@@ -5289,7 +5350,6 @@ Status: ${o.status}`;
     if (lastFocused && lastFocused.focus) lastFocused.focus();
   }
 
-  // Open from navbar (desktop)
   if (navContact) {
     navContact.addEventListener('click', (e) => {
       e.preventDefault();
@@ -5297,11 +5357,9 @@ Status: ${o.status}`;
     });
   }
 
-  // Open from mobile menu "Contact Us" link
   document.querySelectorAll('.menu a[data-i18n="nav_contact"]').forEach(a => {
     a.addEventListener('click', (e) => {
       e.preventDefault();
-      // Close mobile menu first
       const m = document.getElementById('menu');
       const b = document.getElementById('burger');
       if (m && m.classList.contains('open')) {
@@ -5312,10 +5370,8 @@ Status: ${o.status}`;
     });
   });
 
-  // Close via Back
   if (backBtn) backBtn.addEventListener('click', closeContact);
 
-  // Close via Home logo inside overlay (clicking the logo closes overlay)
   if (logoHome) {
     logoHome.addEventListener('click', (e) => {
       e.preventDefault();
@@ -5323,14 +5379,12 @@ Status: ${o.status}`;
     });
   }
 
-  // Close on ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && overlay.classList.contains('ct-open')) {
       closeContact();
     }
   });
 
-  // Copy buttons inside Contact screen
   document.querySelectorAll('.ct-copy-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const value = btn.getAttribute('data-copy') || '';
@@ -5347,7 +5401,6 @@ Status: ${o.status}`;
       };
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(value).then(done).catch(() => {
-          // fallback
           try {
             const ta = document.createElement('textarea');
             ta.value = value;
@@ -5376,17 +5429,13 @@ Status: ${o.status}`;
     });
   });
 
-  // Also make the floating chat button open the contact screen (same as contact)
   const chatBtn = document.getElementById('rsvcChat');
   if (chatBtn) {
-    // Replace its existing click behavior to open Contact overlay
-    // Since the original handler scrolled to #contact, we override it here.
-    // (The original listener is in another IIFE; we attach a new listener and prevent default scroll.)
     chatBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopImmediatePropagation();
       openContact();
-    }, true); // capture to run before others
+    }, true);
   }
 })();
 
@@ -5416,7 +5465,6 @@ Status: ${o.status}`;
   topBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-  // Note: chatBtn handler is set in the Contact Screen IIFE to open the Contact overlay.
 })();
 
 /* =========================================================
@@ -5437,7 +5485,6 @@ Status: ${o.status}`;
       b.setAttribute('aria-expanded', 'false');
     }));
   }
-  // Close mobile menu on enroll clicks
   document.querySelectorAll('.enroll-trigger').forEach(link => {
     link.addEventListener('click', () => {
       if (m && m.classList.contains('open')) {
@@ -5507,13 +5554,11 @@ Status: ${o.status}`;
   const video = document.getElementById('vPlayer');
   if (!video) return;
 
-  // Force muted & volume 0 (no sound at all)
   video.muted = true;
   video.volume = 0;
   video.defaultMuted = true;
   video.setAttribute('muted', '');
 
-  // Block any attempt to unmute via JS or user gesture
   const originalPlay = video.play.bind(video);
   video.play = function () {
     video.muted = true;
@@ -5527,7 +5572,6 @@ Status: ${o.status}`;
     }
   });
 
-  // Attempt autoplay on load and retry on first user interaction
   function tryPlay() {
     video.muted = true;
     video.volume = 0;
@@ -5535,7 +5579,6 @@ Status: ${o.status}`;
     if (p && p.catch) p.catch(() => {});
   }
 
-  // Play only when visible (IntersectionObserver threshold 0.25)
   if ('IntersectionObserver' in window) {
     const vObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -5551,7 +5594,6 @@ Status: ${o.status}`;
     tryPlay();
   }
 
-  // Retry autoplay on first user interaction if blocked
   function retryOnInteraction() {
     if (video.paused) tryPlay();
     document.removeEventListener('touchstart', retryOnInteraction);
@@ -5564,10 +5606,8 @@ Status: ${o.status}`;
   document.addEventListener('scroll', retryOnInteraction, { passive: true, once: true });
   document.addEventListener('keydown', retryOnInteraction, { once: true });
 
-  // Kick off immediately too
   window.addEventListener('load', tryPlay);
 
-  // Prevent interaction with the video element
   video.addEventListener('click', (e) => e.preventDefault());
   video.addEventListener('contextmenu', (e) => e.preventDefault());
 })();
@@ -5576,7 +5616,6 @@ Status: ${o.status}`;
    FEATURE 2: ENROLL NOW SCROLLS TO SERVICES SECTION
    ========================================================= */
 (function () {
-  // Ensure #services exists; if not, assign it to the services grid header
   if (!document.getElementById('services')) {
     const svcHeader = document.querySelector('.svc-header');
     if (svcHeader) svcHeader.id = 'services';
@@ -5585,10 +5624,8 @@ Status: ${o.status}`;
   const servicesEl = document.getElementById('services');
   if (!servicesEl) return;
 
-  // Add scroll-margin-top for sticky navbar
   servicesEl.style.scrollMarginTop = '100px';
 
-  // Highlight pulse on services cards
   function highlightServices() {
     const grid = document.getElementById('servicesGrid');
     if (!grid) return;
@@ -5596,12 +5633,10 @@ Status: ${o.status}`;
     setTimeout(() => grid.classList.remove('services-highlight'), 1300);
   }
 
-  // Smooth scroll for all enroll triggers
   document.querySelectorAll('.enroll-trigger').forEach(trigger => {
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
 
-      // Close mobile menu if open
       const m = document.getElementById('menu');
       const b = document.getElementById('burger');
       if (m && m.classList.contains('open')) {
@@ -5609,17 +5644,134 @@ Status: ${o.status}`;
         if (b) { b.textContent = '☰'; b.setAttribute('aria-expanded', 'false'); }
       }
 
-      // Smooth scroll
       servicesEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-      // Highlight after scroll
       setTimeout(highlightServices, 500);
     });
   });
 })();
 
 /* =========================================================
+   CHANGE 2 — JOIN COURSE POPUP
+   ========================================================= */
+(function () {
+  // One small JS object for the course data
+  const JOIN_COURSE = {
+    title: 'SA TRADER #01 COURSE',
+    subtitle: 'Professional Trading & Market Analysis',
+    features: [
+      '10 Lessons',
+      '1.5 Hours',
+      'Beginner to Pro',
+      'Candlestick Reading & Market Structure',
+      'Risk Control',
+      'Disciplined Live Execution'
+    ],
+    price: 32,
+    priceLabel: 'one-time'
+  };
+
+  const backdrop = document.getElementById('joinPopupBackdrop');
+  const popup = backdrop ? backdrop.querySelector('.join-popup') : null;
+  const closeBtn = document.getElementById('joinPopupClose');
+  const titleEl = document.getElementById('joinPopupTitle');
+  const subtitleEl = document.getElementById('joinPopupSubtitle');
+  const featuresEl = document.getElementById('joinPopupFeatures');
+  const priceEl = document.getElementById('joinPopupPrice');
+  const enrollBtn = document.getElementById('joinPopupEnroll');
+  const trigger = document.querySelector('.join-course-trigger');
+  const servicesEl = document.getElementById('our-services');
+
+  if (!backdrop || !popup || !trigger) return;
+
+  // Fill popup content from JOIN_COURSE object
+  function renderPopupContent() {
+    const lang = document.documentElement.lang === 'bn' ? 'bn' : 'en';
+    const dict = I18N[lang] || I18N.en;
+
+    titleEl.textContent = dict.join_popup_title || JOIN_COURSE.title;
+    subtitleEl.textContent = dict.join_popup_subtitle || JOIN_COURSE.subtitle;
+    enrollBtn.textContent = dict.join_popup_enroll || 'Enroll Now';
+
+    featuresEl.innerHTML = JOIN_COURSE.features
+      .map(f => `<li>${f}</li>`)
+      .join('');
+
+    priceEl.innerHTML = `$${JOIN_COURSE.price}<small>${JOIN_COURSE.priceLabel}</small>`;
+  }
+
+  let lastFocused = null;
+
+  function openPopup() {
+    renderPopupContent();
+
+    // Scroll to services section and glow the cards
+    if (servicesEl) {
+      servicesEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => {
+        const grid = document.getElementById('servicesGrid');
+        if (grid) {
+          grid.classList.add('services-highlight');
+          setTimeout(() => grid.classList.remove('services-highlight'), 1300);
+        }
+      }, 500);
+    }
+
+    // Open popup after a short delay so scroll starts first
+    setTimeout(() => {
+      lastFocused = document.activeElement;
+      backdrop.classList.add('open');
+      backdrop.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => closeBtn.focus(), 50);
+    }, 520);
+  }
+
+  function closePopup() {
+    backdrop.classList.remove('open');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  trigger.addEventListener('click', (e) => {
+    e.preventDefault();
+    openPopup();
+  });
+
+  closeBtn.addEventListener('click', closePopup);
+  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closePopup(); });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && backdrop.classList.contains('open')) closePopup();
+  });
+
+  // Trap focus inside popup
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || !backdrop.classList.contains('open')) return;
+    const focusables = popup.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const list = Array.from(focusables).filter(el => !el.disabled && el.offsetParent !== null);
+    if (!list.length) return;
+    const first = list[0], last = list[list.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  // Enroll button — runs the SAME action as the $100 card enroll button
+  enrollBtn.addEventListener('click', () => {
+    closePopup();
+    // Reuse the existing enroll modal handler with the $32 package
+    if (window.__openEnrollModal) {
+      window.__openEnrollModal({
+        name: JOIN_COURSE.title,
+        price: '$' + JOIN_COURSE.price
+      });
+    }
+  });
+})();
+
+/* =========================================================
    FEATURE 1: HIDDEN ADMIN PANEL + LIVE COUNTDOWN (Firebase)
+   — CHANGE 1: password gate removed; "aa" opens panel directly.
    ========================================================= */
 </script>
 
@@ -5654,17 +5806,10 @@ Status: ${o.status}`;
   const countdownRef = db ? ref(db, 'countdown') : null;
 
   /* =========================================================
-     2. ADMIN PANEL UI & PASSWORD GATE
+     2. ADMIN PANEL UI (no password, no lock button)
      ========================================================= */
-  const ADMIN_PASSWORD_HASH = '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4'; // SHA-256 of "4321"
-  const USE_FIREBASE_AUTH = false; // Set to true after enabling Firebase Auth (see SECURITY NOTES)
-
   const overlay = document.getElementById('adminOverlay');
-  const passwordGate = document.getElementById('adminPasswordGate');
   const adminPanel = document.getElementById('adminPanel');
-  const adminPass = document.getElementById('adminPass');
-  const adminPassError = document.getElementById('adminPassError');
-  const adminLoginBtn = document.getElementById('adminLoginBtn');
   const adminTitle = document.getElementById('adminTitle');
   const adminDate = document.getElementById('adminDate');
   const adminTime = document.getElementById('adminTime');
@@ -5673,7 +5818,6 @@ Status: ${o.status}`;
   const adminHoldBtn = document.getElementById('adminHoldBtn');
   const adminResumeBtn = document.getElementById('adminResumeBtn');
   const adminStopBtn = document.getElementById('adminStopBtn');
-  const adminLockBtn = document.getElementById('adminLockBtn');
   const adminError = document.getElementById('adminError');
   const adminPreviewTitle = document.getElementById('adminPreviewTitle');
   const adminPreviewDays = document.getElementById('adminPreviewDays');
@@ -5682,19 +5826,9 @@ Status: ${o.status}`;
   const adminPreviewSecs = document.getElementById('adminPreviewSecs');
   const adminToast = document.getElementById('adminToast');
 
-  let isAdminUnlocked = false;
-  let wrongAttempts = 0;
-  let lockUntil = 0;
   let lastKeyPress = 0;
   let previewInterval = null;
   let currentAdminStatus = 'running';
-
-  // Restore session
-  try {
-    if (sessionStorage.getItem('sa_admin_unlocked') === 'true') {
-      isAdminUnlocked = true;
-    }
-  } catch (e) { /* ignore */ }
 
   function showToast(msg) {
     adminToast.textContent = msg;
@@ -5702,22 +5836,11 @@ Status: ${o.status}`;
     setTimeout(() => adminToast.classList.remove('show'), 2000);
   }
 
+  // CHANGE 1: open admin panel directly — no password gate
   function openAdmin() {
-    if (isAdminUnlocked) {
-      passwordGate.style.display = 'none';
-      adminPanel.style.display = '';
-      overlay.classList.add('open');
-      overlay.setAttribute('aria-hidden', 'false');
-      loadAdminData();
-    } else {
-      passwordGate.style.display = '';
-      adminPanel.style.display = 'none';
-      adminPass.value = '';
-      adminPassError.textContent = '';
-      overlay.classList.add('open');
-      overlay.setAttribute('aria-hidden', 'false');
-      setTimeout(() => adminPass.focus(), 100);
-    }
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    loadAdminData();
   }
 
   function closeAdmin() {
@@ -5726,50 +5849,7 @@ Status: ${o.status}`;
     if (previewInterval) { clearInterval(previewInterval); previewInterval = null; }
   }
 
-  function lockAdmin() {
-    isAdminUnlocked = false;
-    try { sessionStorage.removeItem('sa_admin_unlocked'); } catch (e) { /* ignore */ }
-    closeAdmin();
-  }
-
-  // Password check with SHA-256
-  async function sha256(text) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(text);
-    const hash = await crypto.subtle.digest('SHA-256', data);
-    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
-  }
-
-  adminLoginBtn.addEventListener('click', async () => {
-    if (Date.now() < lockUntil) {
-      adminPassError.textContent = 'Too many attempts. Please wait.';
-      return;
-    }
-    const input = adminPass.value;
-    const hash = await sha256(input);
-    if (hash === ADMIN_PASSWORD_HASH) {
-      isAdminUnlocked = true;
-      wrongAttempts = 0;
-      try { sessionStorage.setItem('sa_admin_unlocked', 'true'); } catch (e) { /* ignore */ }
-      passwordGate.style.display = 'none';
-      adminPanel.style.display = '';
-      loadAdminData();
-    } else {
-      wrongAttempts++;
-      adminPassError.textContent = 'Wrong password.';
-      adminPass.classList.add('password-shake');
-      setTimeout(() => adminPass.classList.remove('password-shake'), 500);
-      if (wrongAttempts >= 5) {
-        lockUntil = Date.now() + 30000;
-        adminPassError.textContent = 'Locked for 30 seconds.';
-        wrongAttempts = 0;
-      }
-    }
-  });
-
-  adminPass.addEventListener('keydown', (e) => { if (e.key === 'Enter') adminLoginBtn.click(); });
-
-  // Double "A" key shortcut
+  // Double "A" key shortcut (ignores when typing in inputs / textareas / selects / contentEditable)
   document.addEventListener('keydown', (e) => {
     const tag = document.activeElement.tagName.toLowerCase();
     if (tag === 'input' || tag === 'textarea' || tag === 'select' || document.activeElement.isContentEditable) return;
@@ -5791,8 +5871,6 @@ Status: ${o.status}`;
 
   overlay.addEventListener('click', (e) => { if (e.target === overlay) closeAdmin(); });
 
-  adminLockBtn.addEventListener('click', lockAdmin);
-
   /* =========================================================
      3. ADMIN DATA & PREVIEW
      ========================================================= */
@@ -5803,7 +5881,7 @@ Status: ${o.status}`;
       if (data) {
         adminTitle.value = data.title || '';
         if (data.targetTime) {
-          const d = new Date(data.targetTime + 6 * 3600000); // Display in Dhaka time
+          const d = new Date(data.targetTime + 6 * 3600000);
           adminDate.value = d.toISOString().slice(0, 10);
           adminTime.value = d.toISOString().slice(11, 16);
         }
@@ -5841,7 +5919,6 @@ Status: ${o.status}`;
   function getTargetTime() {
     if (!adminDate.value) return null;
     const timeStr = adminTime.value || '00:00';
-    // Combine date + time as Dhaka time (UTC+6)
     const dateTimeStr = adminDate.value + 'T' + timeStr + ':00+06:00';
     const ts = Date.parse(dateTimeStr);
     return isNaN(ts) ? null : ts;
@@ -5868,7 +5945,6 @@ Status: ${o.status}`;
     }
   }
 
-  // Live preview interval
   function startPreviewInterval() {
     if (previewInterval) clearInterval(previewInterval);
     previewInterval = setInterval(() => {
@@ -5879,7 +5955,6 @@ Status: ${o.status}`;
   }
   startPreviewInterval();
 
-  // Update preview when inputs change
   adminTitle.addEventListener('input', () => updatePreview(adminTitle.value, getTargetTime(), currentAdminStatus));
   adminDate.addEventListener('change', () => updatePreview(adminTitle.value, getTargetTime(), currentAdminStatus));
   adminTime.addEventListener('change', () => updatePreview(adminTitle.value, getTargetTime(), currentAdminStatus));
@@ -5926,7 +6001,6 @@ Status: ${o.status}`;
 
   adminResumeBtn.addEventListener('click', () => {
     if (!countdownRef) return;
-    // Resume means set status back to running with existing targetTime
     const ts = getTargetTime();
     if (!ts) { adminError.textContent = 'Set a date first.'; return; }
     update(countdownRef, {
@@ -5976,7 +6050,6 @@ Status: ${o.status}`;
   let serverTimeOffset = 0;
   let currentData = null;
 
-  // Server time offset
   if (db) {
     onValue(ref(db, '.info/serverTimeOffset'), (snap) => {
       serverTimeOffset = snap.val() || 0;
@@ -6033,7 +6106,6 @@ Status: ${o.status}`;
         animateDigit(cdSecs, String(secs).padStart(2, '0'));
       }
     } else {
-      // hold or stop
       batchTitle.textContent = title || (I18N[document.documentElement.lang]?.starting_on || 'Starting on ★');
       batchTitle.dataset.customTitle = title ? 'yes' : '';
       animateDigit(cdDays, '00');
@@ -6052,7 +6124,6 @@ Status: ${o.status}`;
     }, 1000);
   }
 
-  // Firebase real-time listener
   if (countdownRef) {
     onValue(countdownRef, (snapshot) => {
       const data = snapshot.val();
@@ -6062,24 +6133,7 @@ Status: ${o.status}`;
       startCountdown(null);
     });
   } else {
-    // Offline fallback
     startCountdown(null);
-  }
-
-  /* =========================================================
-     6. OPTIONAL FIREBASE AUTH (commented, switch on later)
-     ========================================================= */
-  if (USE_FIREBASE_AUTH) {
-    // Uncomment and use the following imports + code after enabling Email/Password auth
-    // and setting the database rules to require auth.uid === 'OWNER_UID_HERE'.
-    /*
-    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-    const auth = getAuth(app);
-    // Example: sign in with email/password
-    // signInWithEmailAndPassword(auth, 'owner@example.com', 'password')
-    //   .then(() => { isAdminUnlocked = true; ... })
-    //   .catch(err => console.error(err));
-    */
   }
 </script>
 </body>
