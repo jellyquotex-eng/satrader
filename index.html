@@ -1193,6 +1193,8 @@
       position: relative;
       max-width: 720px;
       margin: 0 auto;
+      /* ensure nothing above overlaps */
+      z-index: 1;
     }
 
     .v-box {
@@ -1201,20 +1203,30 @@
       aspect-ratio: 16 / 9;
       border-radius: 22px;
       overflow: hidden;
-      background: #1a1a1a;
+      background: #000;
       box-shadow: 0 25px 60px rgba(0, 0, 0, .6);
       border: 1px solid var(--line);
+      /* ensure video box sits above decorative overlays */
+      z-index: 1;
+      isolation: isolate;
     }
 
+    /* video element: explicit sizing, real block, no overlay hiding it */
     .v-box video {
+      display: block;
       width: 100%;
       height: 100%;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
-      display: block;
+      border-radius: 22px;
+      background: #000;
       pointer-events: none;
-      background: #111;
+      /* make sure it's above any ::before/::after inside .v-box */
+      position: relative;
+      z-index: 2;
     }
 
+    /* badges must sit above video: higher z-index than .v-box video */
     .v-badge {
       position: absolute;
       display: flex;
@@ -1231,7 +1243,8 @@
       letter-spacing: .01em;
       box-shadow: 0 12px 30px rgba(0, 0, 0, .55);
       white-space: nowrap;
-      z-index: 3;
+      /* above video */
+      z-index: 10;
       animation: v-float 3.5s ease-in-out infinite;
     }
 
@@ -2301,7 +2314,6 @@
     <nav class="links" aria-label="Main">
       <a class="active" href="#home" data-i18n="nav_home">Home</a>
       <a href="#our-services" data-i18n="nav_courses">Courses &amp; Services</a>
-      <a href="#video" data-i18n="nav_video">Video</a>
       <a href="#contact" data-i18n="nav_contact">Contact Us</a>
     </nav>
     <div class="actions">
@@ -2316,7 +2328,6 @@
   <nav class="menu" id="menu" aria-label="Mobile">
     <a class="active" href="#home" data-i18n="nav_home">Home</a>
     <a href="#our-services" data-i18n="nav_courses">Courses &amp; Services</a>
-    <a href="#video" data-i18n="nav_video">Video</a>
     <a href="#contact" data-i18n="nav_contact">Contact Us</a>
     <div class="menu-lang" role="group" aria-label="Language">
       <button type="button" data-lang="en">EN</button>
@@ -2641,16 +2652,17 @@
           muted
           loop
           playsinline
-          preload="metadata"
+          preload="auto"
           disablepictureinpicture
           controlslist="nodownload nofullscreen noremoteplayback"
-          poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Crect width='16' height='9' fill='%23111'/%3E%3C/svg%3E"
+          poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Crect width='16' height='9' fill='%23000'/%3E%3C/svg%3E"
         >
+          <source src="video.mp4" type="video/mp4">
           Your browser does not support the video tag. Please update your browser to view this video.
         </video>
       </div>
 
-      <!-- Floating feature badges -->
+      <!-- Floating feature badges (above video via z-index) -->
       <div class="v-badge v-badge-1">
         <span class="v-badge-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg>
@@ -2903,7 +2915,7 @@
    ========================================================= */
 const I18N = {
   en: {
-    nav_home: "Home", nav_courses: "Courses & Services", nav_contact: "Contact Us", nav_enroll: "Enroll Now", nav_video: "Video",
+    nav_home: "Home", nav_courses: "Courses & Services", nav_contact: "Contact Us", nav_enroll: "Enroll Now",
     hero_a: "bangladesh top 1", hero_b: "professional trading education",
     hero_sub: "Learn forex trading with a trusted mentor. Manage risk and trade with confidence.",
     hero_cta: "Enroll Now",
@@ -2930,7 +2942,7 @@ const I18N = {
     modal_download: "⬇ Download PDF"
   },
   bn: {
-    nav_home: "হোম", nav_courses: "কোর্স ও সার্ভিস", nav_contact: "যোগাযোগ করুন", nav_enroll: "এনরোল করুন", nav_video: "ভিডিও",
+    nav_home: "হোম", nav_courses: "কোর্স ও সার্ভিস", nav_contact: "যোগাযোগ করুন", nav_enroll: "এনরোল করুন",
     hero_a: "বাংলাদেশের ১ নম্বর", hero_b: "প্রফেশনাল ট্রেডিং এডুকেশন",
     hero_sub: "বিশ্বস্ত মেন্টরের সাথে Forex ট্রেডিং শিখুন। Risk ম্যানেজ করে আত্মবিশ্বাসের সাথে ট্রেড করুন।",
     hero_cta: "এনরোল করুন",
@@ -3598,15 +3610,20 @@ Status: ${o.status}`;
     }
   });
 
+  // Attempt autoplay on load and retry on first user interaction
+  function tryPlay() {
+    video.muted = true;
+    video.volume = 0;
+    const p = video.play();
+    if (p && p.catch) p.catch(() => {});
+  }
+
   // Play only when visible (IntersectionObserver threshold 0.25)
   if ('IntersectionObserver' in window) {
     const vObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          video.muted = true;
-          video.volume = 0;
-          const p = video.play();
-          if (p && p.catch) p.catch(() => {});
+          tryPlay();
         } else {
           video.pause();
         }
@@ -3614,12 +3631,24 @@ Status: ${o.status}`;
     }, { threshold: 0.25 });
     vObs.observe(video);
   } else {
-    // Fallback: try to play once
-    video.muted = true;
-    video.volume = 0;
-    const p = video.play();
-    if (p && p.catch) p.catch(() => {});
+    tryPlay();
   }
+
+  // Retry autoplay on first user interaction if blocked
+  function retryOnInteraction() {
+    if (video.paused) tryPlay();
+    document.removeEventListener('touchstart', retryOnInteraction);
+    document.removeEventListener('click', retryOnInteraction);
+    document.removeEventListener('scroll', retryOnInteraction);
+    document.removeEventListener('keydown', retryOnInteraction);
+  }
+  document.addEventListener('touchstart', retryOnInteraction, { passive: true, once: true });
+  document.addEventListener('click', retryOnInteraction, { passive: true, once: true });
+  document.addEventListener('scroll', retryOnInteraction, { passive: true, once: true });
+  document.addEventListener('keydown', retryOnInteraction, { once: true });
+
+  // Kick off immediately too
+  window.addEventListener('load', tryPlay);
 
   // Prevent interaction with the video element
   video.addEventListener('click', (e) => e.preventDefault());
