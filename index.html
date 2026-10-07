@@ -1726,6 +1726,111 @@
 
     body.rv-lock { overflow: hidden; }
 
+    /* =========================================================
+       FOOTER (new)
+       ========================================================= */
+    .ft-footer {
+      position: relative;
+      z-index: 2;
+      background: #111;
+      border-top: 1px solid #222;
+      font-family: 'Poppins', system-ui, sans-serif;
+      color: #e3e3e3;
+      padding: 40px 20px 28px;
+      margin-top: 40px;
+    }
+    .ft-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .ft-top {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      flex-wrap: wrap;
+      padding-bottom: 26px;
+      border-bottom: 1px solid #222;
+    }
+    .ft-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: none;
+    }
+    .ft-logo img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      display: block;
+    }
+    .ft-social {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .ft-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid #222;
+      background: rgba(255, 255, 255, .02);
+      color: #ffffff;
+      transition: color .25s ease, transform .25s ease, border-color .25s ease, background .25s ease;
+    }
+    .ft-social a:hover {
+      color: var(--yellow);
+      transform: translateY(-3px);
+      border-color: rgba(255, 193, 7, .5);
+      background: rgba(255, 193, 7, .06);
+    }
+    .ft-social a svg {
+      width: 26px;
+      height: 26px;
+      display: block;
+      fill: currentColor;
+    }
+    .ft-desc {
+      max-width: 1000px;
+      text-align: center;
+      margin: 26px auto 0;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #c9c9c9;
+    }
+    .ft-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin: 22px auto 0;
+    }
+    .ft-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      transition: color .25s ease;
+    }
+    .ft-links a:hover { color: var(--yellow); }
+    .ft-copy {
+      margin-top: 26px;
+      text-align: center;
+      font-size: 12.5px;
+      color: #8a8a8a;
+      line-height: 1.5;
+    }
+
     /* ============ ANIMATIONS ============ */
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
     @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
@@ -2399,7 +2504,7 @@
       position: fixed;
       right: 24px;
       bottom: 24px;
-      z-index: 60;
+      z-index: 500;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -2459,7 +2564,7 @@
       body { background: #fff !important; color: #000 !important; }
       body::before, .nav, .hero, .showcase, .stats-wrap, .rsvc, .cw, .rsvc-floats,
       .modal-head, .modal-tabs, .modal-foot, .modal-close, .modal-lang,
-      .rv-overlay { display: none !important; }
+      .rv-overlay, .ft-footer { display: none !important; }
       .modal-backdrop {
         position: static;
         background: #fff;
@@ -2641,6 +2746,8 @@
       .rv-ring .rv-val { font-size: 22px; }
       .rv-success-text { text-align: center; }
       .rv-grid { grid-template-columns: 1fr; max-width: 440px; }
+      .ft-top { flex-direction: column; align-items: center; }
+      .ft-social { justify-content: center; }
     }
     @media (max-width: 640px) {
       .nav, .wrap { padding: 0 14px; }
@@ -3139,7 +3246,7 @@
        REVIEWS SECTION
        ========================================================= -->
   <section class="rv-section" id="reviews" aria-labelledby="rvHeading">
-    <h2 class="rv-heading" id="rvHeading">Trusted by <span id="rvTotalStudents">X,XXX+</span> Successful Students</h2>
+    <h2 class="rv-heading" id="rvHeading">Trusted by <span id="rvTotalStudents">SA TRADER</span> Successful Students</h2>
 
     <!-- Success ring -->
     <div class="rv-success" aria-label="Success rate">
@@ -3251,6 +3358,70 @@
 
   <span id="contact"></span>
 </main>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="ft-footer" aria-label="Site footer">
+  <div class="ft-inner">
+    <!-- Top row: logo + social icons -->
+    <div class="ft-top">
+      <a class="ft-logo" href="#home" aria-label="SA Trader – Home">
+        <img src="IMG_20261007_001230_648.jpg" alt="SA Trader">
+      </a>
+      <div class="ft-social" role="navigation" aria-label="Social links">
+        <!-- YouTube link reused from Connect section -->
+        <a href="https://youtube.com/@satrader10?si=gj69U_lFkXYlSZg5" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M46.3 12.6a5.7 5.7 0 0 0-4-4C38.7 7.6 24 7.6 24 7.6s-14.7 0-18.3 1a5.7 5.7 0 0 0-4 4C.7 16.2.7 24 .7 24s0 7.8 1 11.4a5.7 5.7 0 0 0 4 4c3.6 1 18.3 1 18.3 1s14.7 0 18.3-1a5.7 5.7 0 0 0 4-4c1-3.6 1-11.4 1-11.4s0-7.8-1-11.4zM19.2 31V17l12.1 7-12.1 7z"/>
+          </svg>
+        </a>
+        <!-- Instagram: no link found in current code -->
+        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <!-- ADD LINK HERE -->
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M24 4.3c6.4 0 7.2 0 9.7.1 2.3.1 3.6.5 4.4.8 1.1.4 1.9 1 2.7 1.8.8.8 1.4 1.6 1.8 2.7.3.8.7 2.1.8 4.4.1 2.5.1 3.3.1 9.7s0 7.2-.1 9.7c-.1 2.3-.5 3.6-.8 4.4-.4 1.1-1 1.9-1.8 2.7-.8.8-1.6 1.4-2.7 1.8-.8.3-2.1.7-4.4.8-2.5.1-3.3.1-9.7.1s-7.2 0-9.7-.1c-2.3-.1-3.6-.5-4.4-.8-1.1-.4-1.9-1-2.7-1.8-.8-.8-1.4-1.6-1.8-2.7-.3-.8-.7-2.1-.8-4.4-.1-2.5-.1-3.3-.1-9.7s0-7.2.1-9.7c.1-2.3.5-3.6.8-4.4.4-1.1 1-1.9 1.8-2.7.8-.8 1.6-1.4 2.7-1.8.8-.3 2.1-.7 4.4-.8 2.5-.1 3.3-.1 9.7-.1zm0-4.3C17.5 0 16.6 0 14.1.1 11.6.2 9.9.6 8.4 1.2 6.9 1.8 5.6 2.6 4.3 3.9 3 5.2 2.2 6.5 1.6 8c-.6 1.5-1 3.2-1.1 5.7C.4 16.2.4 17.1.4 23.6s0 7.4.1 9.9c.1 2.5.5 4.2 1.1 5.7.6 1.5 1.4 2.8 2.7 4.1 1.3 1.3 2.6 2.1 4.1 2.7 1.5.6 3.2 1 5.7 1.1 2.5.1 3.4.1 9.9.1s7.4 0 9.9-.1c2.5-.1 4.2-.5 5.7-1.1 1.5-.6 2.8-1.4 4.1-2.7 1.3-1.3 2.1-2.6 2.7-4.1.6-1.5 1-3.2 1.1-5.7.1-2.5.1-3.4.1-9.9s0-7.4-.1-9.9c-.1-2.5-.5-4.2-1.1-5.7-.6-1.5-1.4-2.8-2.7-4.1C42.4 2.2 41.1 1.4 39.6.8c-1.5-.6-3.2-1-5.7-1.1C31.4 0 30.5 0 24 0z"/>
+            <path d="M24 11.7a12.3 12.3 0 1 0 0 24.6 12.3 12.3 0 0 0 0-24.6zm0 20.3a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/>
+            <circle cx="36.8" cy="11.2" r="2.9"/>
+          </svg>
+        </a>
+        <!-- TikTok: no link found in current code -->
+        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <!-- ADD LINK HERE -->
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M41.5 12.6c-2.8-.6-5.2-2.2-6.8-4.4-1.4-1.9-2.2-4.1-2.3-6.6h-6.6v27.6c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6c.6 0 1.2.1 1.7.2v-6.7c-.6-.1-1.1-.1-1.7-.1-7 0-12.7 5.7-12.7 12.7S13 42 20 42s12.7-5.7 12.7-12.7V16.6c1.9 1.3 4.1 2.2 6.4 2.5v-6.5z"/>
+          </svg>
+        </a>
+        <!-- Telegram link reused from Order confirmation + floating/contact -->
+        <a href="https://t.me/sa_doller5" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M24 4C12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20S35.1 4 24 4zm9.4 13.6l-3.1 14.6c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2l-11.3 7.1-4.8-1.5c-1-.3-1.1-1 .2-1.6l18.9-7.3c.9-.3 1.7.2 1.4 1.5z"/>
+          </svg>
+        </a>
+        <!-- Facebook link reused from Connect section -->
+        <a href="https://www.facebook.com/profile.php?id=61591068602740" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M24 4C12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20S35.1 4 24 4zm3.4 20.5h-3.1V37h-5.4V24.5h-2.2v-4.6h2.2v-2.6c0-3.7 1.5-5.9 5.9-5.9h3.6v4.6h-2.3c-1.7 0-1.8.6-1.8 1.8v2.1h4.2l-.5 4.6z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Description paragraph -->
+    <p class="ft-desc">
+      We focus on helping every student grow in forex through step-by-step guidance, real market insights, and hands-on learning. Using modern strategies and smart analysis, we develop practical skills that drive steady progress and long-term trading success.
+    </p>
+
+    <!-- Links row -->
+    <div class="ft-links">
+      <a href="#">About Us</a> <!-- ADD LINK HERE -->
+      <a href="#">Terms &amp; Policies</a> <!-- ADD LINK HERE -->
+    </div>
+
+    <!-- Copyright -->
+    <div class="ft-copy">© <span id="ftYear">2026</span> SA Trader. All rights reserved.</div>
+  </div>
+</footer>
 
 <!-- =========================================================
      REVIEWS OVERLAY (See More)
@@ -3531,7 +3702,7 @@ const MODAL_CONTENT = {
       "ট্রেডিং লস, ব্রোকার সমস্যা, উইথড্রয়াল সমস্যা, টেকনিক্যাল ত্রুটি, স্লিপেজ, স্প্রেড পরিবর্তন, এক্সিকিউশন বিলম্ব বা আর্থিক ক্ষতির জন্য Trading Chart দায়ী নয়।",
       "উল্লেখযোগ্য অ্যাক্সেস, উপস্থিতি বা কনটেন্ট ব্যবহারের পর কোর্স ফি, মেম্বারশিপ এবং ডিজিটাল সার্ভিস সাধারণত অ-ফেরতযোগ্য।",
       "ব্যবহারকারী নিজ দেশ বা এখতিয়ারে প্রযোজ্য আইন ও বিধিমালা মেনে চলার জন্য দায়ী।",
-      "সকল কোর্স ম্যাটেরিয়াল, ভিডিও, চার্ট, ব্র্যান্ডিং এবং শিক্ষামূলক কনটেন্ট Trading Chart-এর বৌদ্ধিক সম্পত্তি এবং অনুমতি ছাড়া কপি, পুনর্বিতরণ, রেকর্ড বা পুনরায় বিক্রি করা যাবে না।",
+      "সকল কোর্স ম্যাটেরিয়াল, ভিডিও, চার্ট, ব্র্যান্ডিং এবং শিক্ষামূলক কনটেন্ট Trading Chart-এর বৌদ্ধিক সম্পত্তি এবং অনুমতি ছাড়া কপি, পুনর্বিবরণ, রেকর্ড বা পুনরায় বিক্রি করা যাবে না।",
       "লঙ্ঘন, অপব্যবহার, জালিয়াতি বা ক্ষতিকর আচরণের জন্য Trading Chart যেকোনো ব্যবহারকারীর অ্যাক্সেস স্থগিত বা বাতিল করতে পারে।",
       "Trading Chart ব্রোকার বা সার্ভিস প্রোভাইডারের সাথে অ্যাফিলিয়েট পার্টনারশিপে অংশ নিতে পারে এবং ব্যবহারকারীর অতিরিক্ত খরচ ছাড়াই রেফারেল কমিশন পেতে পারে।",
       "যেকোনো Trading Chart সার্ভিস, প্ল্যাটফর্ম, ওয়েবসাইট, সোশ্যাল মিডিয়া পেজ, কমিউনিটি বা শিক্ষামূলক উপকরণ ব্যবহার বা অ্যাক্সেস করার মাধ্যমে ব্যবহারকারী এই শর্তাবলী স্বীকার ও সম্মত হন।"
@@ -3547,8 +3718,8 @@ const PAGE_TITLE = {
 /* =========================================================
    REVIEWS DATA
    ========================================================= */
-const TOTAL_STUDENTS = "X,XXX+";
-const SUCCESS_RATE = 0;
+const TOTAL_STUDENTS = "SA TRADER";
+const SUCCESS_RATE = 99;
 
 const REVIEWS = [
   { name: "Arif Hasan", course: "SA Trader", rating: 5, verified: false, text: "SA Trader-e join korar por amar biggest change holo chart dekhar approach. Age price up-down dekhei confused hotam, ekhon market-er context bujhe decision neyar try kori. 📊" },
@@ -4268,6 +4439,14 @@ Status: ${o.status}`;
 
   // Initial render
   renderMain();
+})();
+
+/* =========================================================
+   FOOTER — current year
+   ========================================================= */
+(function () {
+  const y = document.getElementById('ftYear');
+  if (y) y.textContent = String(new Date().getFullYear());
 })();
 
 /* =========================================================
