@@ -206,211 +206,160 @@ h1 span.hl{color:var(--yellow)}
   gap:150px;
   align-items:center;
 }
+.rsvc-card{background:#161616;overflow:hidden;width:100%}
+.rsvc-photo{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;display:block;background:#0d0d0d}
+.rsvc-info{display:grid;grid-template-columns:1fr 1fr;align-items:center;background:#161616;border-top:1px solid rgba(255,255,255,.08);min-height:74px}
+.rsvc-info-left{padding:14px 18px;border-right:1px solid rgba(255,255,255,.08);min-width:0}
+.rsvc-name{font-family:'Poppins',sans-serif;font-weight:700;font-size:22px;line-height:1.15;color:#ffffff;margin-bottom:6px}
+.rsvc-verified{display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-weight:400;font-size:12px;line-height:1.2;color:#ffffff}
+.rsvc-verified svg{width:14px;height:14px;flex:none;display:block}
+.rsvc-info-right{padding:14px 18px;display:flex;align-items:center;justify-content:center}
+.rsvc-tag{font-family:'Poppins',sans-serif;font-weight:700;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:#6ea8ff;background:#1e3a8a;padding:4px 14px;border-radius:4px;white-space:nowrap;line-height:1.4}
+.rsvc-content{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.rsvc-heading{font-family:'Poppins',sans-serif;font-weight:700;font-size:36px;line-height:1.2;color:#ffffff;letter-spacing:-.01em;margin:0}
+.rsvc-quote{margin-top:40px;display:flex;align-items:flex-start;gap:12px;max-width:520px}
+.rsvc-quote-mark{font-family:Georgia, 'Times New Roman', serif;font-size:34px;line-height:.8;color:#7a7a7a;flex:none;margin-top:2px;user-select:none}
+.rsvc-quote-text{font-family:'Poppins',sans-serif;font-style:italic;font-weight:600;font-size:17px;line-height:1.55;color:#ffffff}
+.rsvc-quote-attr{margin-top:12px;margin-left:46px;display:flex;align-items:center;gap:12px}
+.rsvc-quote-line{display:block;width:35px;height:1px;background:rgba(255,255,255,.25);flex:none}
+.rsvc-quote-label{font-family:'Poppins',sans-serif;font-weight:400;font-style:normal;font-size:13px;color:#ffffff;line-height:1.2}
+.rsvc-para{margin-top:50px;font-family:'Poppins',sans-serif;font-weight:400;font-size:16px;line-height:1.6;color:#ffffff;max-width:520px}
 
-/* ---------- LEFT: profile card ---------- */
-.rsvc-card{
-  background:#161616;
-  overflow:hidden;
-  width:100%;
-}
-.rsvc-photo{
-  width:100%;
-  aspect-ratio:4/5;
-  object-fit:cover;
-  object-position:center top;
-  display:block;
+/* =========================================================
+   CONNECT WITH US — new section (scoped .cw- prefix)
+   ========================================================= */
+.cw{
   background:#0d0d0d;
+  max-width:1240px;
+  margin:0 auto 90px;
+  padding:clamp(20px,3vw,40px) 0;
 }
-.rsvc-info{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  background:#161616;
-  border-top:1px solid rgba(255,255,255,.08);
-  min-height:74px;
+.cw-head{
+  text-align:center;
+  margin-bottom:50px;
 }
-.rsvc-info-left{
-  padding:14px 18px;
-  border-right:1px solid rgba(255,255,255,.08);
-  min-width:0;
-}
-.rsvc-name{
-  font-family:'Poppins',sans-serif;
-  font-weight:700;
-  font-size:22px;
-  line-height:1.15;
-  color:#ffffff;
-  margin-bottom:6px;
-}
-.rsvc-verified{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  font-family:'Poppins',sans-serif;
-  font-weight:400;
-  font-size:12px;
-  line-height:1.2;
-  color:#ffffff;
-}
-.rsvc-verified svg{
-  width:14px;height:14px;flex:none;display:block;
-}
-.rsvc-info-right{
-  padding:14px 18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.rsvc-tag{
-  font-family:'Poppins',sans-serif;
-  font-weight:700;
-  font-size:11px;
-  letter-spacing:.5px;
-  text-transform:uppercase;
-  color:#6ea8ff;
-  background:#1e3a8a;
-  padding:4px 14px;
-  border-radius:4px;
-  white-space:nowrap;
-  line-height:1.4;
-}
-
-/* ---------- RIGHT: content ---------- */
-.rsvc-content{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  min-width:0;
-}
-.rsvc-heading{
+.cw-head h2{
   font-family:'Poppins',sans-serif;
   font-weight:700;
   font-size:36px;
   line-height:1.2;
   color:#ffffff;
   letter-spacing:-.01em;
-  margin:0;
+  margin:0 0 10px;
 }
-
-/* Quote block — no box, no bg, no border */
-.rsvc-quote{
-  margin-top:40px;
-  display:flex;
-  align-items:flex-start;
-  gap:12px;
-  max-width:520px;
-}
-.rsvc-quote-mark{
-  font-family:Georgia, 'Times New Roman', serif;
-  font-size:34px;
-  line-height:.8;
-  color:#7a7a7a;
-  flex:none;
-  margin-top:2px;
-  user-select:none;
-}
-.rsvc-quote-text{
+.cw-head p{
   font-family:'Poppins',sans-serif;
-  font-style:italic;
-  font-weight:600;
-  font-size:17px;
+  font-weight:400;
+  font-size:14.5px;
   line-height:1.55;
-  color:#ffffff;
-}
-.rsvc-quote-attr{
-  margin-top:12px;
-  margin-left:46px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.rsvc-quote-line{
-  display:block;
-  width:35px;
-  height:1px;
-  background:rgba(255,255,255,.25);
-  flex:none;
-}
-.rsvc-quote-label{
-  font-family:'Poppins',sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:13px;
-  color:#ffffff;
-  line-height:1.2;
-}
-
-/* Paragraph */
-.rsvc-para{
-  margin-top:50px;
-  font-family:'Poppins',sans-serif;
-  font-weight:400;
-  font-size:16px;
-  line-height:1.6;
-  color:#ffffff;
+  color:#9a9a9a;
   max-width:520px;
+  margin:0 auto;
 }
-
-/* =========================================================
-   FLOATING ELEMENTS — chat + scroll-to-top
-   ========================================================= */
-.rsvc-floats{
-  position:fixed;
-  right:26px;
-  bottom:26px;
-  z-index:60;
+.cw-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+  max-width:1200px;
+  margin:0 auto;
+}
+.cw-card{
   display:flex;
   flex-direction:column;
+  background:#181818;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  padding:16px;
+  transition:transform .3s ease, border-color .3s ease;
+  color:inherit;
+  text-decoration:none;
+}
+.cw-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(245,197,24,.4);
+}
+.cw-top{
+  display:flex;
   align-items:center;
-  gap:16px;
-  pointer-events:none;
+  gap:14px;
+  padding-bottom:14px;
 }
-.rsvc-floats > *{pointer-events:auto}
-
-/* Scroll-to-top: bare yellow chevron, no circle */
-.rsvc-top{
-  background:transparent;
-  border:0;
-  padding:6px;
-  cursor:pointer;
+.cw-icon{
+  width:55px;height:55px;
+  flex:none;
+  background:#1f1f1f;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+}
+.cw-icon svg{width:32px;height:32px;display:block}
+.cw-id{min-width:0;flex:1}
+.cw-name{
+  font-family:'Poppins',sans-serif;
+  font-weight:700;
+  font-size:18px;
+  line-height:1.2;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+  color:#ffffff;
+  margin-bottom:4px;
+}
+.cw-link{
+  font-family:'Poppins',sans-serif;
+  font-weight:500;
+  font-size:13px;
+  line-height:1.3;
   color:#f5c518;
-  line-height:0;
-  opacity:0;
-  visibility:hidden;
-  transform:translateY(6px);
-  transition:opacity .3s ease, visibility .3s ease, transform .3s ease;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
-.rsvc-top.show{opacity:1;visibility:visible;transform:translateY(0)}
-.rsvc-top svg{
-  width:22px;height:22px;
+.cw-divider{
+  height:1px;
+  background:rgba(255,255,255,.08);
+  margin:0 0 14px;
+}
+.cw-desc{
+  font-family:'Poppins',sans-serif;
+  font-weight:400;
+  font-size:14px;
+  line-height:1.55;
+  color:#8a8a8a;
+  margin-bottom:18px;
+}
+.cw-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+  background:#0f0f0f;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+  padding:10px 12px;
+  font-family:'Poppins',sans-serif;
+  font-weight:500;
+  font-size:13px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#ffffff;
+  transition:background .25s ease, color .25s ease, border-color .25s ease;
+}
+.cw-card:hover .cw-btn{
+  background:#f5c518;
+  color:#000000;
+  border-color:#f5c518;
+}
+.cw-btn svg{
+  width:14px;height:14px;
+  flex:none;
   display:block;
-  stroke:#f5c518;
-  stroke-width:2.4;
+  stroke:currentColor;
+  stroke-width:2;
   fill:none;
   stroke-linecap:round;
   stroke-linejoin:round;
-}
-
-/* Chat button: 60px yellow circle, dark bubble, soft glow ring */
-.rsvc-chat{
-  width:60px;height:60px;
-  border-radius:50%;
-  border:0;
-  cursor:pointer;
-  background:#f5c518;
-  display:grid;
-  place-items:center;
-  box-shadow:0 0 0 6px rgba(245,197,24,.18), 0 10px 30px rgba(245,197,24,.35);
-  transition:transform .25s ease, box-shadow .25s ease;
-}
-.rsvc-chat:hover{
-  transform:translateY(-2px);
-  box-shadow:0 0 0 8px rgba(245,197,24,.22), 0 14px 38px rgba(245,197,24,.5);
-}
-.rsvc-chat svg{
-  width:26px;height:26px;
-  display:block;
-  fill:#111111;
 }
 
 /* ============ ANIMATIONS ============ */
@@ -481,7 +430,7 @@ body.modal-open{overflow:hidden}
 /* Print */
 @media print{
   body{background:#fff !important;color:#000 !important}
-  body::before,.nav,.hero,.showcase,.stats-wrap,.rsvc,.rsvc-floats,.modal-head,.modal-tabs,.modal-foot,
+  body::before,.nav,.hero,.showcase,.stats-wrap,.rsvc,.cw,.rsvc-floats,.modal-head,.modal-tabs,.modal-foot,
   .modal-close,.modal-lang{display:none !important}
   .modal-backdrop{position:static;background:#fff;padding:0;opacity:1;visibility:visible;display:block;backdrop-filter:none;-webkit-backdrop-filter:none}
   .modal{max-height:none;width:100%;box-shadow:none;border:0;background:#fff;transform:none;opacity:1;display:block;border-radius:0;overflow:visible}
@@ -538,8 +487,11 @@ body.modal-open{overflow:hidden}
   .logo-text{font-size:clamp(14px,1.5vw,18px)}
 }
 
+@media(max-width:992px){
+  .cw-grid{grid-template-columns:repeat(2,1fr)}
+}
+
 @media(max-width:768px){
-  /* rsvc — stack, card on top, content below */
   .rsvc{padding:32px 0;margin-bottom:40px}
   .rsvc-inner{grid-template-columns:1fr;gap:36px;justify-items:center}
   .rsvc-card{max-width:360px;width:100%}
@@ -554,6 +506,12 @@ body.modal-open{overflow:hidden}
   .rsvc-chat{width:54px;height:54px}
   .rsvc-chat svg{width:22px;height:22px}
   .rsvc-top svg{width:20px;height:20px}
+
+  .cw{padding:20px 0;margin-bottom:60px}
+  .cw-head{margin-bottom:36px}
+  .cw-head h2{font-size:28px}
+  .cw-head p{font-size:13.5px}
+  .cw-grid{gap:18px}
 }
 
 @media(max-width:640px){
@@ -585,7 +543,6 @@ body.modal-open{overflow:hidden}
   .stat-icon svg{width:36px;height:36px}
   .stat-card .stat-label{font-size:11px}
 
-  /* rsvc mobile tweaks */
   .rsvc-card{max-width:100%}
   .rsvc-info-left{padding:12px 14px}
   .rsvc-info-right{padding:12px 14px}
@@ -595,6 +552,19 @@ body.modal-open{overflow:hidden}
   .rsvc-quote-text{font-size:15px}
   .rsvc-para{font-size:14.5px}
 }
+
+@media(max-width:600px){
+  .cw-grid{grid-template-columns:1fr}
+  .cw-head h2{font-size:26px}
+  .cw-card{padding:14px}
+  .cw-icon{width:50px;height:50px}
+  .cw-icon svg{width:28px;height:28px}
+  .cw-name{font-size:17px}
+  .cw-link{font-size:12.5px}
+  .cw-desc{font-size:13.5px}
+  .cw-btn{font-size:12.5px;padding:10px}
+}
+
 @media(max-width:380px){
   .logo-text{display:none}
   .stats-grid{grid-template-columns:1fr}
@@ -602,6 +572,7 @@ body.modal-open{overflow:hidden}
   .video-row{grid-template-columns:repeat(2,1fr)}
   .rsvc-heading{font-size:22px}
   .rsvc-quote-text{font-size:14.5px}
+  .cw-head h2{font-size:22px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -850,20 +821,15 @@ body.modal-open{overflow:hidden}
     </div>
   </section>
 
-  <!-- =========================================================
-       OUR SERVICES — pixel-faithful replica of reference
-       ========================================================= -->
+  <!-- ============ OUR SERVICES ============ -->
   <section class="rsvc fade-up" id="services" aria-labelledby="rsvcHeading">
     <div class="rsvc-inner">
-
-      <!-- LEFT: profile card -->
       <article class="rsvc-card" aria-label="Sakil – profile">
         <img class="rsvc-photo" src="IMG_20261007_001230_648.jpg" alt="Sakil">
         <div class="rsvc-info">
           <div class="rsvc-info-left">
             <div class="rsvc-name">Sakil</div>
             <div class="rsvc-verified">
-              <!-- small yellow circular check icon -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <circle cx="12" cy="12" r="10" fill="#f5c518"/>
                 <path d="M7.5 12.3l3 3 6-6" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -877,11 +843,9 @@ body.modal-open{overflow:hidden}
         </div>
       </article>
 
-      <!-- RIGHT: content -->
       <div class="rsvc-content">
         <h2 class="rsvc-heading" id="rsvcHeading">Build a Successful Trading Career</h2>
 
-        <!-- Quote — no box, no bg, no border -->
         <div class="rsvc-quote">
           <span class="rsvc-quote-mark" aria-hidden="true">&ldquo;</span>
           <span class="rsvc-quote-text">Consistency is the key to success in trading. Stay disciplined — results will follow.&rdquo;</span>
@@ -893,6 +857,85 @@ body.modal-open{overflow:hidden}
 
         <p class="rsvc-para">Start your journey to becoming a professional trader today.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CONNECT WITH US — new section (below Our Services)
+       ========================================================= -->
+  <section class="cw fade-up" id="connect" aria-labelledby="cwHeading">
+    <div class="cw-head">
+      <h2 id="cwHeading">Connect With Us</h2>
+      <p>Join our community and stay updated on all platforms.</p>
+    </div>
+
+    <div class="cw-grid">
+
+      <!-- CARD 1: TELEGRAM -->
+      <a class="cw-card" href="https://t.me/satrader1992" target="_blank" rel="noopener noreferrer" aria-label="Telegram – t.me/satrader1992">
+        <div class="cw-top">
+          <div class="cw-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="22" fill="#29b6f6"/>
+              <path d="M10 24l24-9.5-4.5 22-6.5-6.5-4.5 4.5-1-6.5 11-10.5-13.5 7.5L10 24z" fill="#ffffff"/>
+            </svg>
+          </div>
+          <div class="cw-id">
+            <div class="cw-name">Telegram</div>
+            <div class="cw-link">t.me/satrader1992</div>
+          </div>
+        </div>
+        <div class="cw-divider"></div>
+        <div class="cw-desc">Join our community</div>
+        <span class="cw-btn">
+          JOIN
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <!-- CARD 2: YOUTUBE -->
+      <a class="cw-card" href="https://youtube.com/@satrader10?si=gj69U_lFkXYlSZg5" target="_blank" rel="noopener noreferrer" aria-label="YouTube – youtube.com/@satrader10">
+        <div class="cw-top">
+          <div class="cw-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="12" width="40" height="24" rx="6" fill="#ff0000"/>
+              <path d="M20 18.5l10 5.5-10 5.5z" fill="#ffffff"/>
+            </svg>
+          </div>
+          <div class="cw-id">
+            <div class="cw-name">YouTube</div>
+            <div class="cw-link">youtube.com/@satrader10</div>
+          </div>
+        </div>
+        <div class="cw-divider"></div>
+        <div class="cw-desc">Subscribe to our official channel</div>
+        <span class="cw-btn">
+          SUBSCRIBE
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <!-- CARD 3: FACEBOOK -->
+      <a class="cw-card" href="https://www.facebook.com/profile.php?id=61591068602740" target="_blank" rel="noopener noreferrer" aria-label="Facebook – facebook.com/satrader">
+        <div class="cw-top">
+          <div class="cw-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="22" fill="#1877f2"/>
+              <path d="M28 26h4l1-5h-5v-3.2c0-1.4.4-2.3 2.4-2.3H33V11c-.5-.1-2.2-.2-4.2-.2-4.1 0-7 2.5-7 7.1V21h-4v5h4v11h6V26z" fill="#ffffff"/>
+            </svg>
+          </div>
+          <div class="cw-id">
+            <div class="cw-name">Facebook</div>
+            <div class="cw-link">facebook.com/satrader</div>
+          </div>
+        </div>
+        <div class="cw-divider"></div>
+        <div class="cw-desc">Follow us on Facebook</div>
+        <span class="cw-btn">
+          FOLLOW
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
 
     </div>
   </section>
@@ -1068,7 +1111,7 @@ const MODAL_CONTENT = {
       "ট্রেডিং লস, ব্রোকার সমস্যা, উইথড্রয়াল সমস্যা, টেকনিক্যাল ত্রুটি, স্লিপেজ, স্প্রেড পরিবর্তন, এক্সিকিউশন বিলম্ব বা আর্থিক ক্ষতির জন্য Trading Chart দায়ী নয়।",
       "উল্লেখযোগ্য অ্যাক্সেস, উপস্থিতি বা কনটেন্ট ব্যবহারের পর কোর্স ফি, মেম্বারশিপ এবং ডিজিটাল সার্ভিস সাধারণত অ-ফেরতযোগ্য।",
       "ব্যবহারকারী নিজ দেশ বা এখতিয়ারে প্রযোজ্য আইন ও বিধিমালা মেনে চলার জন্য দায়ী।",
-      "সকল কোর্স ম্যাটেরিয়াল, ভিডিও, চার্ট, ব্র্যান্ডিং এবং শিক্ষামূলক কনটেন্ট Trading Chart-এর বৌদ্ধিক সম্পত্তি এবং অনুমতি ছাড়া কপি, পুনর্বিবরণ, রেকর্ড বা পুনরায় বিক্রি করা যাবে না।",
+      "সকল কোর্স ম্যাটেরিয়াল, ভিডিও, চার্ট, ব্র্যান্ডিং এবং শিক্ষামূলক কনটেন্ট Trading Chart-এর বৌদ্ধিক সম্পত্তি এবং অনুমতি ছাড়া কপি, পুনর্বিতরণ, রেকর্ড বা পুনরায় বিক্রি করা যাবে না।",
       "লঙ্ঘন, অপব্যবহার, জালিয়াতি বা ক্ষতিকর আচরণের জন্য Trading Chart যেকোনো ব্যবহারকারীর অ্যাক্সেস স্থগিত বা বাতিল করতে পারে।",
       "Trading Chart ব্রোকার বা সার্ভিস প্রোভাইডারের সাথে অ্যাফিলিয়েট পার্টনারশিপে অংশ নিতে পারে এবং ব্যবহারকারীর অতিরিক্ত খরচ ছাড়াই রেফারেল কমিশন পেতে পারে।",
       "যেকোনো Trading Chart সার্ভিস, প্ল্যাটফর্ম, ওয়েবসাইট, সোশ্যাল মিডিয়া পেজ, কমিউনিটি বা শিক্ষামূলক উপকরণ ব্যবহার বা অ্যাক্সেস করার মাধ্যমে ব্যবহারকারী এই শর্তাবলী স্বীকার ও সম্মত হন।"
