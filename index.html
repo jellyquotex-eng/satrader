@@ -4075,6 +4075,249 @@
       .pay-info-box { transition: none; }
       .wa-btn { transition: none; }
     }
+
+    /* =========================================================
+       FEEDBACK SYSTEM — admin tab + card styles
+       ========================================================= */
+    .admin-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 18px;
+      background: #101010;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px;
+    }
+    .admin-tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      border: 0;
+      transition: background .2s, color .2s;
+    }
+    .admin-tab.active {
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: #111;
+    }
+    .admin-tab-panel { display: none; }
+    .admin-tab-panel.active { display: block; }
+
+    .fb-list { display: flex; flex-direction: column; gap: 16px; }
+    .fb-card {
+      background: #101010;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color .2s;
+    }
+    .fb-card:hover { border-color: rgba(255,193,7,.3); }
+
+    .fb-card .fb-preview {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #181818;
+      border-radius: 12px;
+      padding: 10px 12px;
+      border: 1px dashed #333;
+    }
+    .fb-card .fb-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      flex: none;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 14px;
+      color: #111;
+      overflow: hidden;
+    }
+    .fb-card .fb-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .fb-card .fb-preview-text { min-width: 0; flex: 1; }
+    .fb-card .fb-preview-name { font-weight: 700; font-size: 13px; color: #fff; }
+    .fb-card .fb-preview-role { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .fb-card .fb-preview-body {
+      font-size: 12px;
+      color: #c9c9c9;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .fb-card .fb-preview-stars { display: flex; gap: 2px; margin-top: 4px; }
+    .fb-card .fb-preview-stars svg { width: 12px; height: 12px; fill: var(--yellow); }
+    .fb-card .fb-preview-stars svg.empty { fill: #333; }
+
+    .fb-card .fb-field { display: flex; flex-direction: column; gap: 4px; }
+    .fb-card .fb-field label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #aaa;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .fb-card .fb-field input,
+    .fb-card .fb-field textarea {
+      width: 100%;
+      padding: 9px 12px;
+      background: #181818;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      transition: border-color .2s;
+      font-family: inherit;
+    }
+    .fb-card .fb-field input:focus,
+    .fb-card .fb-field textarea:focus {
+      border-color: var(--yellow);
+      box-shadow: 0 0 0 2px rgba(255,193,7,.15);
+    }
+    .fb-card .fb-field textarea { resize: vertical; min-height: 60px; }
+    .fb-card .fb-char-count {
+      font-size: 10px;
+      color: var(--muted-2);
+      text-align: right;
+    }
+    .fb-card .fb-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .fb-card .fb-actions button {
+      flex: 1;
+      min-width: 70px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: #ccc;
+    }
+    .fb-card .fb-actions button:hover { transform: translateY(-1px); }
+    .fb-card .fb-actions .fb-save-btn {
+      background: var(--yellow-grad);
+      color: #111;
+      border: none;
+    }
+    .fb-card .fb-actions .fb-delete-btn {
+      border-color: #ff5a5a;
+      color: #ff5a5a;
+    }
+    .fb-card .fb-actions .fb-delete-btn:hover { background: rgba(255,90,90,.1); }
+    .fb-card .fb-actions .fb-move-btn { min-width: 40px; flex: 0 0 auto; }
+
+    .fb-card .fb-vis-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #ccc;
+    }
+    .fb-card .fb-vis-row input[type="checkbox"] {
+      accent-color: var(--yellow);
+      width: 16px;
+      height: 16px;
+    }
+
+    .fb-empty {
+      text-align: center;
+      color: var(--muted-2);
+      padding: 30px 16px;
+      font-size: 13px;
+    }
+
+    .fb-toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      align-items: center;
+    }
+    .fb-toolbar input {
+      flex: 1;
+      min-width: 120px;
+      padding: 10px 14px;
+      background: #101010;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+    }
+    .fb-toolbar input:focus { border-color: var(--yellow); }
+    .fb-toolbar button {
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: transform .2s;
+    }
+    .fb-toolbar .fb-add-btn {
+      background: var(--yellow-grad);
+      color: #111;
+    }
+    .fb-toolbar .fb-add-btn:hover { transform: translateY(-1px); }
+    .fb-toolbar .fb-import-btn {
+      background: transparent;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+    }
+    .fb-toolbar .fb-import-btn:hover { background: rgba(255,193,7,.1); }
+
+    /* Mobile friendly admin scroll */
+    @media (max-width: 640px) {
+      .admin-modal { padding: 20px 14px; }
+      .fb-card .fb-actions button { font-size: 11px; padding: 7px 8px; }
+      .fb-toolbar { flex-direction: column; }
+      .fb-toolbar input { width: 100%; }
+    }
+
+    /* ===== FEEDBACK SYSTEM: DEFAULT STYLES FOR REVIEWS GRID ===== */
+    /* (Already exist; add avatar styles if needed) */
+    .rv-card-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: #111;
+      overflow: hidden;
+      flex: none;
+    }
+    .rv-card-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -4973,9 +5216,16 @@
 <div class="admin-overlay" id="adminOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Admin panel">
   <div class="admin-modal" id="adminModal">
     <h2>Admin Panel</h2>
-    <p class="admin-sub">Manage the "Next Batch" countdown. Changes are saved to Firebase and appear to all visitors instantly.</p>
+    <p class="admin-sub">Manage the countdown and feedbacks. Changes are saved to Firebase and appear to all visitors instantly.</p>
 
-    <div id="adminPanel">
+    <!-- ===== FEEDBACK SYSTEM: admin tabs ===== -->
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-admin-tab="countdown">Countdown</button>
+      <button class="admin-tab" data-admin-tab="feedbacks">Feedbacks</button>
+    </div>
+
+    <!-- Countdown tab -->
+    <div id="adminPanel" class="admin-tab-panel active">
       <div class="admin-field">
         <label for="adminTitle">Batch title</label>
         <input type="text" id="adminTitle" placeholder="e.g. October batch starting" maxlength="80">
@@ -5020,6 +5270,19 @@
       </div>
 
       <div class="admin-error" id="adminError" style="margin-top:12px;"></div>
+    </div>
+
+    <!-- ===== FEEDBACK SYSTEM: feedbacks tab ===== -->
+    <div id="adminFeedbacksPanel" class="admin-tab-panel">
+      <div class="fb-toolbar">
+        <input type="text" id="fbSearch" placeholder="Search feedbacks by name…">
+        <button class="fb-add-btn" id="fbAddBtn" type="button">+ Add new feedback</button>
+        <button class="fb-import-btn" id="fbImportBtn" type="button">Import current feedbacks</button>
+      </div>
+      <div class="fb-list" id="fbList">
+        <div class="fb-empty">Loading feedbacks…</div>
+      </div>
+      <div class="admin-error" id="fbError" style="margin-top:12px;"></div>
     </div>
   </div>
 </div>
@@ -5199,7 +5462,7 @@ const I18N = {
     pay_tx_ph_binance: "আপনার বাইনান্স পে অর্ডার আইডি লিখুন",
     pay_amount_bkash: "বিকাশে পেমেন্ট · উপরের নাম্বারে $AMOUNT সমপরিমাণ BDT সেন্ড মানি করুন",
     pay_amount_nagad: "নগদে পেমেন্ট · উপরের নাম্বারে $AMOUNT সমপরিমাণ BDT সেন্ড মানি করুন",
-    pay_amount_binance: "বাইনান্স পে-তে পেমেন্ট · উপরের আইডিতে $AMOUNT পাঠান",
+    pay_amount_binance: "বাইন্যান্স পে-তে পেমেন্ট · উপরের আইডিতে $AMOUNT পাঠান",
     pay_err_phone: "ফোন নাম্বার ০১ দিয়ে শুরু হওয়া ১১ ডিজিটের হতে হবে।",
     pay_err_tx_min: "ট্রানজেকশন আইডি কমপক্ষে ৬ অক্ষরের হতে হবে।",
     free_course_title: "আমাদের ফ্রি কোর্স",
@@ -5279,27 +5542,31 @@ const PAGE_TITLE = {
 };
 
 /* =========================================================
-   REVIEWS DATA
+   REVIEWS DATA (now from Firebase; kept as fallback)
    ========================================================= */
 const TOTAL_STUDENTS = "SA TRADER";
 const SUCCESS_RATE = 99;
 
-const REVIEWS = [
-  { name: "Arif Hasan", course: "SA Trader", rating: 5, verified: false, text: "SA Trader-e join korar por amar biggest change holo chart dekhar approach. Age price up-down dekhei confused hotam, ekhon market-er context bujhe decision neyar try kori. 📊" },
-  { name: "Shuvo Rahman", course: "SA Trader", rating: 5, verified: false, text: "Ami age ek sathe onek strategy use kortam. SA Trader amar learning process-ta simple kore diyeche. Ekhon ekta setup properly understand kore tarpor practice kori. 💯" },
-  { name: "Noman Ahmed", course: "SA Trader", rating: 5, verified: false, text: "Trading-er kichu basic concept ageo jantam, but kothay apply korte hoy seta clear chilo na. SA Trader-er practical examples-er karone amar understanding onek better hoyeche. 🔥" },
-  { name: "Fahad Karim", course: "SA Trader", rating: 5, verified: false, text: "Amar jonno SA Trader-er best part holo unnecessary information diye overload kore na. Important jinisgula focus kore practice korar opportunity peyechi, ja learning-er jonno onek helpful. 💙" },
-  { name: "Rakibul Islam", course: "SA Trader", rating: 5, verified: false, text: "Trading-e amar main problem chilo plan na kore entry neya. Ekhon trade-er age scenario, invalidation and risk niye agei bhabi. Ei habit-ta amar jonno valuable hoyeche. 🤝" },
-  { name: "Siam Chowdhury", course: "SA Trader", rating: 5, verified: false, text: "SA Trader-er explanation style ta beginner-friendly. Jeta bujhtam na, real chart-e dekhar por concept-ta much easier hoye jay. Practice korar jonnoo clear direction peyechi. 😊" },
-  { name: "Hasan Mahmud", course: "SA Trader", rating: 5, verified: false, text: "Ager moto prottekta market movement follow kori na. Quality setup-er jonno wait kora and capital protect kora je important, SA Trader theke eta strongly realize korechi. 🖤" },
-  { name: "Rifat Hossain", course: "SA Trader", rating: 5, verified: false, text: "Live analysis dekhar experience-ta different chilo. Chart-er ekta idea kivabe step-by-step build kora hoy seta dekhe amar nijer analysis practice korte confidence esheche. 🚀" },
-  { name: "Ashik Ahmed", course: "SA Trader", rating: 5, verified: false, text: "Trading shuru korar age amar mone hoto beshi indicator use korlei analysis better hobe. SA Trader-er lessons-er por bujhlam simple chart reading and proper process-er importance koto beshi. 📈" },
-  { name: "Jisan Rahman", course: "SA Trader", rating: 5, verified: false, text: "SA Trader amar trading-ke shortcut-er jayga theke learning process-er dike niye geche. Ekhon immediate result-er cheye skill build kora and consistency maintain korake beshi priority dei. ❤️" },
-  { name: "Emon Hossain", course: "SA Trader", rating: 5, verified: false, text: "Market-er movement predict korar chesta na kore possible scenarios niye prepare kora shikhechi. Ei mindset change-ta amar trading practice-er jonno onek important mone hoyeche. 💡" },
-  { name: "Abrar Khan", course: "SA Trader", rating: 5, verified: false, text: "SA Trader-er content-er ekta bhalo dik holo practical focus. Theory porar sathe sathe chart-e seta kivabe identify korte hoy, sheta practice korar scope ache. 📚" },
-  { name: "Munna Islam", course: "SA Trader", rating: 5, verified: false, text: "Ami normally decision nite onek hurry kortam. Ekhon confirmation na paoa porjonto wait korar habit develop korchi. Trading-er sathe patience-er connection-ta ekhane bhalo vabe bujhechi. 🫶" },
-  { name: "Rayhan Kabir", course: "SA Trader", rating: 5, verified: false, text: "SA Trader-e learning-er por amar focus profit chase theke process-er dike shift hoyeche. Risk fixed rakha, setup select kora and journal maintain kora niye onek better idea peyechi. 💛" },
-  { name: "Zubair Ahmed", course: "SA Trader", rating: 5, verified: false, text: "Trading-ke age onek complicated mone hoto. SA Trader-er structured lessons-er karone ekhon learning-ta manageable mone hoy. Step by step practice korar jonno ekta clear roadmap peyechi. 🔥" }
+/* =========================================================
+   FEEDBACK SYSTEM — DEFAULT_FEEDBACKS (from existing HTML)
+   ========================================================= */
+// FEEDBACK SYSTEM: default feedbacks copied from current review cards
+const DEFAULT_FEEDBACKS = [
+  { name: "Arif Hasan", role: "", course: "SA Trader", rating: 5, verified: false, text: "SA Trader-e join korar por amar biggest change holo chart dekhar approach. Age price up-down dekhei confused hotam, ekhon market-er context bujhe decision neyar try kori. 📊" },
+  { name: "Shuvo Rahman", role: "", course: "SA Trader", rating: 5, verified: false, text: "Ami age ek sathe onek strategy use kortam. SA Trader amar learning process-ta simple kore diyeche. Ekhon ekta setup properly understand kore tarpor practice kori. 💯" },
+  { name: "Noman Ahmed", role: "", course: "SA Trader", rating: 5, verified: false, text: "Trading-er kichu basic concept ageo jantam, but kothay apply korte hoy seta clear chilo na. SA Trader-er practical examples-er karone amar understanding onek better hoyeche. 🔥" },
+  { name: "Fahad Karim", role: "", course: "SA Trader", rating: 5, verified: false, text: "Amar jonno SA Trader-er best part holo unnecessary information diye overload kore na. Important jinisgula focus kore practice korar opportunity peyechi, ja learning-er jonno onek helpful. 💙" },
+  { name: "Rakibul Islam", role: "", course: "SA Trader", rating: 5, verified: false, text: "Trading-e amar main problem chilo plan na kore entry neya. Ekhon trade-er age scenario, invalidation and risk niye agei bhabi. Ei habit-ta amar jonno valuable hoyeche. 🤝" },
+  { name: "Siam Chowdhury", role: "", course: "SA Trader", rating: 5, verified: false, text: "SA Trader-er explanation style ta beginner-friendly. Jeta bujhtam na, real chart-e dekhar por concept-ta much easier hoye jay. Practice korar jonnoo clear direction peyechi. 😊" },
+  { name: "Hasan Mahmud", role: "", course: "SA Trader", rating: 5, verified: false, text: "Ager moto prottekta market movement follow kori na. Quality setup-er jonno wait kora and capital protect kora je important, SA Trader theke eta strongly realize korechi. 🖤" },
+  { name: "Rifat Hossain", role: "", course: "SA Trader", rating: 5, verified: false, text: "Live analysis dekhar experience-ta different chilo. Chart-er ekta idea kivabe step-by-step build kora hoy seta dekhe amar nijer analysis practice korte confidence esheche. 🚀" },
+  { name: "Ashik Ahmed", role: "", course: "SA Trader", rating: 5, verified: false, text: "Trading shuru korar age amar mone hoto beshi indicator use korlei analysis better hobe. SA Trader-er lessons-er por bujhlam simple chart reading and proper process-er importance koto beshi. 📈" },
+  { name: "Jisan Rahman", role: "", course: "SA Trader", rating: 5, verified: false, text: "SA Trader amar trading-ke shortcut-er jayga theke learning process-er dike niye geche. Ekhon immediate result-er cheye skill build kora and consistency maintain korake beshi priority dei. ❤️" },
+  { name: "Emon Hossain", role: "", course: "SA Trader", rating: 5, verified: false, text: "Market-er movement predict korar chesta na kore possible scenarios niye prepare kora shikhechi. Ei mindset change-ta amar trading practice-er jonno onek important mone hoyeche. 💡" },
+  { name: "Abrar Khan", role: "", course: "SA Trader", rating: 5, verified: false, text: "SA Trader-er content-er ekta bhalo dik holo practical focus. Theory porar sathe sathe chart-e seta kivabe identify korte hoy, sheta practice korar scope ache. 📚" },
+  { name: "Munna Islam", role: "", course: "SA Trader", rating: 5, verified: false, text: "Ami normally decision nite onek hurry kortam. Ekhon confirmation na paoa porjonto wait korar habit develop korchi. Trading-er sathe patience-er connection-ta ekhane bhalo vabe bujhechi. 🫶" },
+  { name: "Rayhan Kabir", role: "", course: "SA Trader", rating: 5, verified: false, text: "SA Trader-e learning-er por amar focus profit chase theke process-er dike shift hoyeche. Risk fixed rakha, setup select kora and journal maintain kora niye onek better idea peyechi. 💛" },
+  { name: "Zubair Ahmed", role: "", course: "SA Trader", rating: 5, verified: false, text: "Trading-ke age onek complicated mone hoto. SA Trader-er structured lessons-er karone ekhon learning-ta manageable mone hoy. Step by step practice korar jonno ekta clear roadmap peyechi. 🔥" }
 ];
 
 /* =========================================================
@@ -5414,13 +5681,11 @@ function renderSmcVideoGroup(containerId, videos, groupLabel) {
     a.rel = 'noopener noreferrer';
     a.setAttribute('aria-label', groupLabel + ' video ' + String(v.n).padStart(2, '0') + ' on YouTube');
 
-    // number badge
     const num = document.createElement('span');
     num.className = 'smc-vid-num';
     num.textContent = String(v.n).padStart(2, '0');
     a.appendChild(num);
 
-    // master class badge (only for the 4th liquidity video)
     if (v.master) {
       const mb = document.createElement('span');
       mb.className = 'smc-master-badge';
@@ -6018,7 +6283,7 @@ Status: ${o.status}`;
 })();
 
 /* =========================================================
-   REVIEWS SECTION LOGIC
+   REVIEWS SECTION LOGIC (now using Firebase feedbacks)
    ========================================================= */
 (function () {
   const OVERLAY_BATCH = 6;
@@ -6049,26 +6314,45 @@ Status: ${o.status}`;
 
     const rating = Math.max(0, Math.min(5, Number(review.rating) || 0));
     const verified = review.verified === true;
+    const name = review.name || 'Student Name';
+    const role = review.role || '';
+    const photo = review.photo || '';
+    const course = review.course || 'SA Trader';
 
     const head = document.createElement('div');
     head.className = 'rv-card-head';
 
-    const iconWrap = document.createElement('span');
-    iconWrap.className = 'rv-card-head-icon';
-    iconWrap.setAttribute('aria-hidden', 'true');
-    iconWrap.innerHTML =
-      '<svg viewBox="0 0 24 24">' +
-        '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>' +
-      '</svg>';
-    head.appendChild(iconWrap);
+    // FEEDBACK SYSTEM: avatar (photo or initial)
+    const avatarWrap = document.createElement('span');
+    avatarWrap.className = 'rv-card-avatar';
+    if (photo) {
+      const img = document.createElement('img');
+      img.src = photo;
+      img.alt = '';
+      img.loading = 'lazy';
+      img.referrerPolicy = 'no-referrer';
+      img.onerror = () => { img.remove(); avatarWrap.textContent = name.charAt(0).toUpperCase(); };
+      avatarWrap.appendChild(img);
+    } else {
+      avatarWrap.textContent = name.charAt(0).toUpperCase();
+    }
+    head.appendChild(avatarWrap);
 
     const info = document.createElement('div');
     info.className = 'rv-card-head-info';
 
     const nameEl = document.createElement('div');
     nameEl.className = 'rv-card-name';
-    nameEl.textContent = review.name || 'Student Name';
+    nameEl.textContent = name;
     info.appendChild(nameEl);
+
+    if (role) {
+      const roleEl = document.createElement('div');
+      roleEl.style.fontSize = '11px';
+      roleEl.style.color = 'var(--muted)';
+      roleEl.textContent = role;
+      info.appendChild(roleEl);
+    }
 
     if (verified) {
       const badge = document.createElement('span');
@@ -6095,7 +6379,7 @@ Status: ${o.status}`;
 
     const courseName = document.createElement('div');
     courseName.className = 'rv-course-name';
-    courseName.textContent = review.course || 'SA Trader';
+    courseName.textContent = course;
     card.appendChild(courseName);
 
     const d2 = document.createElement('div');
@@ -6143,13 +6427,17 @@ Status: ${o.status}`;
     return card;
   }
 
-  function renderMain() {
+  function renderMain(feedbacks) {
     if (!el.mainGrid) return;
     el.mainGrid.innerHTML = '';
-    const firstThree = REVIEWS.slice(0, 3);
+    const list = feedbacks || [];
+    const firstThree = list.slice(0, 3);
     firstThree.forEach((review, i) => {
       el.mainGrid.appendChild(buildCard(review, i, i === 1));
     });
+    // hide section if no feedbacks
+    const section = document.getElementById('reviews');
+    if (section) section.style.display = list.length === 0 ? 'none' : '';
   }
 
   function animateRing() {
@@ -6205,17 +6493,18 @@ Status: ${o.status}`;
     obs.observe(section);
   })();
 
+  let currentFeedbacks = [];
   let overlayShown = 0;
 
   function renderOverlayBatch() {
     if (!el.overlayGrid) return;
-    const next = REVIEWS.slice(overlayShown, overlayShown + OVERLAY_BATCH);
+    const next = currentFeedbacks.slice(overlayShown, overlayShown + OVERLAY_BATCH);
     next.forEach((review) => {
       el.overlayGrid.appendChild(buildCard(review, 0, false));
     });
     overlayShown += next.length;
     if (el.loadMore) {
-      el.loadMore.hidden = overlayShown >= REVIEWS.length;
+      el.loadMore.hidden = overlayShown >= currentFeedbacks.length;
     }
   }
 
@@ -6225,7 +6514,7 @@ Status: ${o.status}`;
     overlayShown = 0;
     if (el.loadMore) el.loadMore.hidden = false;
 
-    if (REVIEWS.length === 0) {
+    if (currentFeedbacks.length === 0) {
       const empty = document.createElement('div');
       empty.className = 'rv-empty';
       empty.textContent = 'No reviews yet.';
@@ -6259,7 +6548,28 @@ Status: ${o.status}`;
     }
   });
 
-  renderMain();
+  // FEEDBACK SYSTEM: expose a render function for Firebase updates
+  window.__renderFeedbacks = function(feedbacks) {
+    currentFeedbacks = feedbacks || [];
+    renderMain(currentFeedbacks);
+    // Re-render overlay if open
+    if (el.overlay && el.overlay.classList.contains('rv-open')) {
+      el.overlayGrid.innerHTML = '';
+      overlayShown = 0;
+      if (currentFeedbacks.length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'rv-empty';
+        empty.textContent = 'No reviews yet.';
+        el.overlayGrid.appendChild(empty);
+        if (el.loadMore) el.loadMore.hidden = true;
+      } else {
+        renderOverlayBatch();
+      }
+    }
+  };
+
+  // Initial render with empty; Firebase will populate
+  renderMain([]);
 })();
 
 /* =========================================================
@@ -6716,14 +7026,17 @@ Status: ${o.status}`;
 })();
 
 /* =========================================================
-   HIDDEN ADMIN PANEL + LIVE COUNTDOWN (Firebase)
+   HIDDEN ADMIN PANEL + LIVE COUNTDOWN + FEEDBACK SYSTEM
    ========================================================= */
 </script>
 
 <!-- Firebase SDK (modular) -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-  import { getDatabase, ref, onValue, set, update } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+  import { getDatabase, ref, onValue, set, update, push, remove } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+  // FEEDBACK SYSTEM: toggle for Firebase Auth
+  const USE_FIREBASE_AUTH = false; // set true to require login for admin save actions
 
   const firebaseConfig = {
     apiKey: "AIzaSyCKYglTOd1lrWqFvbnhB3MSlSurPvVN7RI",
@@ -6746,9 +7059,15 @@ Status: ${o.status}`;
   }
 
   const countdownRef = db ? ref(db, 'countdown') : null;
+  const feedbacksRef = db ? ref(db, 'feedbacks') : null;
 
+  /* =========================================================
+     ADMIN PANEL — TAB SWITCHING
+     ========================================================= */
   const overlay = document.getElementById('adminOverlay');
-  const adminPanel = document.getElementById('adminPanel');
+  const adminTabs = document.querySelectorAll('.admin-tab');
+  const countdownPanel = document.getElementById('adminPanel');
+  const feedbacksPanel = document.getElementById('adminFeedbacksPanel');
   const adminTitle = document.getElementById('adminTitle');
   const adminDate = document.getElementById('adminDate');
   const adminTime = document.getElementById('adminTime');
@@ -6765,9 +7084,17 @@ Status: ${o.status}`;
   const adminPreviewSecs = document.getElementById('adminPreviewSecs');
   const adminToast = document.getElementById('adminToast');
 
+  // Feedback tab elements
+  const fbList = document.getElementById('fbList');
+  const fbSearch = document.getElementById('fbSearch');
+  const fbAddBtn = document.getElementById('fbAddBtn');
+  const fbImportBtn = document.getElementById('fbImportBtn');
+  const fbError = document.getElementById('fbError');
+
   let lastKeyPress = 0;
   let previewInterval = null;
   let currentAdminStatus = 'running';
+  let currentFeedbacks = {}; // local cache
 
   function showToast(msg) {
     adminToast.textContent = msg;
@@ -6807,6 +7134,19 @@ Status: ${o.status}`;
 
   overlay.addEventListener('click', (e) => { if (e.target === overlay) closeAdmin(); });
 
+  // Tab switching
+  adminTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.adminTab;
+      adminTabs.forEach(t => t.classList.toggle('active', t.dataset.adminTab === target));
+      countdownPanel.classList.toggle('active', target === 'countdown');
+      feedbacksPanel.classList.toggle('active', target === 'feedbacks');
+    });
+  });
+
+  /* =========================================================
+     COUNTDOWN TAB LOGIC (existing, unchanged)
+     ========================================================= */
   function loadAdminData() {
     if (!countdownRef) { adminError.textContent = 'Firebase not available.'; return; }
     onValue(countdownRef, (snapshot) => {
@@ -6967,6 +7307,9 @@ Status: ${o.status}`;
     });
   });
 
+  /* =========================================================
+     COUNTDOWN DISPLAY (public)
+     ========================================================= */
   const cdDays = document.getElementById('cdDays');
   const cdHours = document.getElementById('cdHours');
   const cdMins = document.getElementById('cdMins');
@@ -7062,6 +7405,330 @@ Status: ${o.status}`;
   } else {
     startCountdown(null);
   }
+
+  /* =========================================================
+     FEEDBACK SYSTEM — ADMIN & PUBLIC RENDERING
+     ========================================================= */
+
+  // Fetch and render feedbacks on visitor side
+  function renderPublicFeedbacks(data) {
+    if (!window.__renderFeedbacks) return;
+    let list = [];
+    if (data) {
+      list = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+      // sort by order (ascending), then by updatedAt desc as fallback
+      list.sort((a, b) => {
+        const oa = (a.order != null ? a.order : 0);
+        const ob = (b.order != null ? b.order : 0);
+        if (oa !== ob) return oa - ob;
+        return (b.updatedAt || 0) - (a.updatedAt || 0);
+      });
+    }
+    // filter visible only
+    const visible = list.filter(f => f.visible !== false);
+    window.__renderFeedbacks(visible);
+  }
+
+  if (feedbacksRef) {
+    onValue(feedbacksRef, (snapshot) => {
+      const data = snapshot.val();
+      currentFeedbacks = data || {};
+      renderPublicFeedbacks(data);
+      // If admin panel is open, re-render admin list
+      if (overlay.classList.contains('open')) {
+        renderAdminFeedbacks(data);
+      }
+    }, (error) => {
+      console.warn('[Firebase] Feedbacks read error, using defaults.', error);
+      // Fallback to DEFAULT_FEEDBACKS
+      const fallback = DEFAULT_FEEDBACKS.map((f, i) => ({ ...f, id: 'default_' + i, order: i, visible: true }));
+      window.__renderFeedbacks && window.__renderFeedbacks(fallback);
+      currentFeedbacks = {};
+      if (overlay.classList.contains('open')) renderAdminFeedbacks({});
+    });
+  } else {
+    // No Firebase — use defaults
+    const fallback = DEFAULT_FEEDBACKS.map((f, i) => ({ ...f, id: 'default_' + i, order: i, visible: true }));
+    window.__renderFeedbacks && window.__renderFeedbacks(fallback);
+    if (overlay.classList.contains('open')) renderAdminFeedbacks({});
+  }
+
+  // Admin: render editable feedback cards
+  function renderAdminFeedbacks(data) {
+    if (!fbList) return;
+    const entries = Object.entries(data || {});
+    // sort by order
+    entries.sort((a, b) => {
+      const oa = (a[1].order != null ? a[1].order : 0);
+      const ob = (b[1].order != null ? b[1].order : 0);
+      if (oa !== ob) return oa - ob;
+      return (b[1].updatedAt || 0) - (a[1].updatedAt || 0);
+    });
+
+    const searchTerm = (fbSearch.value || '').trim().toLowerCase();
+
+    if (entries.length === 0) {
+      fbList.innerHTML = '<div class="fb-empty">No feedbacks in database. Click “Import current feedbacks” to load the existing ones.</div>';
+      return;
+    }
+
+    let html = '';
+    entries.forEach(([id, fb]) => {
+      const name = (fb.name || '').trim();
+      if (searchTerm && !name.toLowerCase().includes(searchTerm)) return;
+
+      const role = fb.role || '';
+      const text = fb.text || '';
+      const rating = Math.max(1, Math.min(5, Number(fb.rating) || 5));
+      const photo = fb.photo || '';
+      const visible = fb.visible !== false;
+      const order = fb.order != null ? fb.order : 0;
+
+      // avatar preview
+      const avatarLetter = (name || '?').charAt(0).toUpperCase();
+      const avatarHtml = photo
+        ? `<img src="${escapeAttr(photo)}" alt="" onerror="this.remove(); this.parentElement.textContent='${avatarLetter}';" style="width:100%;height:100%;object-fit:cover;">`
+        : avatarLetter;
+
+      // stars preview
+      let starsHtml = '';
+      for (let i = 1; i <= 5; i++) {
+        starsHtml += `<svg viewBox="0 0 24 24" class="${i <= rating ? '' : 'empty'}"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+      }
+
+      html += `
+        <div class="fb-card" data-fb-id="${id}" data-fb-order="${order}">
+          <div class="fb-preview">
+            <div class="fb-avatar">${avatarHtml}</div>
+            <div class="fb-preview-text">
+              <div class="fb-preview-name">${escapeHtml(name || '—')}</div>
+              ${role ? `<div class="fb-preview-role">${escapeHtml(role)}</div>` : ''}
+              <div class="fb-preview-body">${escapeHtml(text || '—')}</div>
+              <div class="fb-preview-stars">${starsHtml}</div>
+            </div>
+          </div>
+
+          <div class="fb-field">
+            <label>Name</label>
+            <input type="text" class="fb-input-name" value="${escapeAttr(name)}" maxlength="60" placeholder="Name">
+          </div>
+          <div class="fb-field">
+            <label>Role (optional)</label>
+            <input type="text" class="fb-input-role" value="${escapeAttr(role)}" maxlength="60" placeholder="e.g. Student">
+          </div>
+          <div class="fb-field">
+            <label>Feedback text</label>
+            <textarea class="fb-input-text" maxlength="600" rows="3" placeholder="Feedback text">${escapeHtml(text)}</textarea>
+            <div class="fb-char-count"><span class="fb-char-num">0</span>/600</div>
+          </div>
+          <div class="fb-field">
+            <label>Rating (1–5)</label>
+            <input type="number" class="fb-input-rating" min="1" max="5" value="${rating}" style="width:80px;">
+          </div>
+          <div class="fb-field">
+            <label>Photo URL (optional)</label>
+            <input type="text" class="fb-input-photo" value="${escapeAttr(photo)}" maxlength="500" placeholder="https://…">
+          </div>
+          <div class="fb-vis-row">
+            <input type="checkbox" class="fb-input-visible" ${visible ? 'checked' : ''}>
+            <span>Visible on website</span>
+          </div>
+
+          <div class="fb-actions">
+            <button class="fb-save-btn" type="button">Save</button>
+            <button class="fb-delete-btn" type="button">Delete</button>
+            <button class="fb-move-btn fb-move-up" type="button" title="Move up">↑</button>
+            <button class="fb-move-btn fb-move-down" type="button" title="Move down">↓</button>
+          </div>
+        </div>
+      `;
+    });
+
+    if (!html) {
+      html = '<div class="fb-empty">No feedbacks match your search.</div>';
+    }
+    fbList.innerHTML = html;
+
+    // update char counters
+    fbList.querySelectorAll('.fb-input-text').forEach(ta => {
+      const counter = ta.parentElement.querySelector('.fb-char-num');
+      const update = () => { if (counter) counter.textContent = ta.value.length; };
+      ta.addEventListener('input', update);
+      update();
+    });
+
+    // attach save handlers
+    fbList.querySelectorAll('.fb-card').forEach(card => {
+      const id = card.dataset.fbId;
+      const saveBtn = card.querySelector('.fb-save-btn');
+      const delBtn = card.querySelector('.fb-delete-btn');
+      const upBtn = card.querySelector('.fb-move-up');
+      const downBtn = card.querySelector('.fb-move-down');
+
+      saveBtn?.addEventListener('click', () => {
+        const name = card.querySelector('.fb-input-name').value.trim();
+        const role = card.querySelector('.fb-input-role').value.trim();
+        const text = card.querySelector('.fb-input-text').value.trim();
+        const rating = parseInt(card.querySelector('.fb-input-rating').value, 10);
+        const photo = card.querySelector('.fb-input-photo').value.trim();
+        const visible = card.querySelector('.fb-input-visible').checked;
+
+        fbError.textContent = '';
+        if (!name) { fbError.textContent = 'Name is required.'; return; }
+        if (name.length > 60) { fbError.textContent = 'Name must be ≤ 60 characters.'; return; }
+        if (!text) { fbError.textContent = 'Feedback text is required.'; return; }
+        if (text.length > 600) { fbError.textContent = 'Feedback text must be ≤ 600 characters.'; return; }
+        if (role.length > 60) { fbError.textContent = 'Role must be ≤ 60 characters.'; return; }
+        if (photo.length > 500) { fbError.textContent = 'Photo URL must be ≤ 500 characters.'; return; }
+        if (!(rating >= 1 && rating <= 5)) { fbError.textContent = 'Rating must be 1–5.'; return; }
+
+        if (!db) { fbError.textContent = 'Firebase not available.'; return; }
+        update(ref(db, 'feedbacks/' + id), {
+          name, role, text, rating, photo, visible,
+          updatedAt: Date.now()
+        }).then(() => {
+          showToast('Saved ✓');
+        }).catch(err => {
+          console.error(err);
+          fbError.textContent = 'Save failed. Check rules.';
+          showToast('Failed, try again');
+        });
+      });
+
+      delBtn?.addEventListener('click', () => {
+        if (!confirm('Are you sure you want to delete this feedback?')) return;
+        if (!db) { fbError.textContent = 'Firebase not available.'; return; }
+        remove(ref(db, 'feedbacks/' + id)).then(() => {
+          showToast('Deleted');
+        }).catch(err => {
+          console.error(err);
+          fbError.textContent = 'Delete failed.';
+          showToast('Failed, try again');
+        });
+      });
+
+      upBtn?.addEventListener('click', () => {
+        if (!db) return;
+        const cards = Array.from(fbList.querySelectorAll('.fb-card'));
+        const idx = cards.indexOf(card);
+        if (idx <= 0) return;
+        const prev = cards[idx - 1];
+        const currentOrder = parseInt(card.dataset.fbOrder, 10) || 0;
+        const prevOrder = parseInt(prev.dataset.fbOrder, 10) || 0;
+        const currentId = card.dataset.fbId;
+        const prevId = prev.dataset.fbId;
+        Promise.all([
+          update(ref(db, 'feedbacks/' + currentId), { order: prevOrder, updatedAt: Date.now() }),
+          update(ref(db, 'feedbacks/' + prevId), { order: currentOrder, updatedAt: Date.now() })
+        ]).then(() => {
+          showToast('Reordered ✓');
+        }).catch(err => {
+          console.error(err);
+          fbError.textContent = 'Reorder failed.';
+        });
+      });
+
+      downBtn?.addEventListener('click', () => {
+        if (!db) return;
+        const cards = Array.from(fbList.querySelectorAll('.fb-card'));
+        const idx = cards.indexOf(card);
+        if (idx < 0 || idx >= cards.length - 1) return;
+        const next = cards[idx + 1];
+        const currentOrder = parseInt(card.dataset.fbOrder, 10) || 0;
+        const nextOrder = parseInt(next.dataset.fbOrder, 10) || 0;
+        const currentId = card.dataset.fbId;
+        const nextId = next.dataset.fbId;
+        Promise.all([
+          update(ref(db, 'feedbacks/' + currentId), { order: nextOrder, updatedAt: Date.now() }),
+          update(ref(db, 'feedbacks/' + nextId), { order: currentOrder, updatedAt: Date.now() })
+        ]).then(() => {
+          showToast('Reordered ✓');
+        }).catch(err => {
+          console.error(err);
+          fbError.textContent = 'Reorder failed.';
+        });
+      });
+    });
+  }
+
+  // Add new feedback
+  fbAddBtn?.addEventListener('click', () => {
+    if (!db) { fbError.textContent = 'Firebase not available.'; return; }
+    const newRef = push(feedbacksRef);
+    const id = newRef.key;
+    const order = Object.keys(currentFeedbacks).length;
+    set(ref(db, 'feedbacks/' + id), {
+      name: 'New Student',
+      role: '',
+      text: 'Write feedback here…',
+      rating: 5,
+      photo: '',
+      order: order,
+      visible: true,
+      updatedAt: Date.now()
+    }).then(() => {
+      showToast('Added ✓');
+    }).catch(err => {
+      console.error(err);
+      fbError.textContent = 'Could not add feedback.';
+    });
+  });
+
+  // Import default feedbacks
+  fbImportBtn?.addEventListener('click', () => {
+    if (!db) { fbError.textContent = 'Firebase not available.'; return; }
+    if (!confirm('Import the current default feedbacks into the database? This will overwrite any existing feedbacks.')) return;
+    const updates = {};
+    DEFAULT_FEEDBACKS.forEach((fb, i) => {
+      const newRef = push(feedbacksRef);
+      updates[newRef.key] = {
+        name: fb.name,
+        role: fb.role || '',
+        text: fb.text,
+        rating: fb.rating || 5,
+        photo: fb.photo || '',
+        course: fb.course || 'SA Trader',
+        order: i,
+        visible: true,
+        updatedAt: Date.now()
+      };
+    });
+    // First remove all existing (optional, but we use set on each key so it's fine)
+    set(feedbacksRef, updates).then(() => {
+      showToast('Imported ✓');
+      fbError.textContent = '';
+    }).catch(err => {
+      console.error(err);
+      fbError.textContent = 'Import failed.';
+    });
+  });
+
+  // Search filter
+  fbSearch?.addEventListener('input', () => {
+    renderAdminFeedbacks(currentFeedbacks);
+  });
+
+  // When admin panel opens, also render feedbacks
+  const origOpenAdmin = openAdmin;
+  openAdmin = function() {
+    origOpenAdmin();
+    renderAdminFeedbacks(currentFeedbacks);
+  };
+
+  // Helper functions for escaping
+  function escapeHtml(str) {
+    return String(str || '').replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+  }
+  function escapeAttr(str) {
+    return String(str || '').replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+  }
+
+  // Expose for use in other scripts (already declared in global)
+  window.__currentFeedbacks = currentFeedbacks;
 </script>
 </body>
 </html>
