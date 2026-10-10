@@ -6,7 +6,7 @@
   <title>WELCOME-SA TRADER</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Great+Vibes&family=Mrs+Saint+Delafield&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&family=Great+Vibes&family=Mrs+Saint+Delafield&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* =========================================================
        ROOT TOKENS / CSS VARIABLES
@@ -4038,7 +4038,6 @@
       .cert-modal { width: 100% !important; max-width: 100% !important; margin: 0; border-radius: 0; height: 100vh; max-height: 100vh; }
       .cert-search-tabs { flex-wrap: wrap; }
       .cert-tab { flex: 1; min-width: 120px; }
-      .cert-certificate { transform-origin: top left; }
       .cert-card { padding: 16px 12px !important; }
       .cert-admin-card { padding: 14px !important; }
       .cert-admin-actions { flex-wrap: wrap; }
@@ -4313,7 +4312,6 @@
     }
 
     /* ===== FEEDBACK SYSTEM: DEFAULT STYLES FOR REVIEWS GRID ===== */
-    /* (Already exist; add avatar styles if needed) */
     .rv-card-avatar {
       width: 40px;
       height: 40px;
@@ -4881,273 +4879,476 @@
     }
 
     /* =========================================================
-       CERTIFICATE DESIGN (1200x850 landscape)
+       CERTIFICATE DESIGN (1491 x 1054)
        ========================================================= */
-    .cert-certificate {
+    .cert-wrapper {
       position: relative;
       width: 100%;
-      max-width: 1200px;
-      aspect-ratio: 1200 / 850;
-      margin: 0 auto;
-      background: #0b0b0b;
-      background-image:
-        radial-gradient(ellipse at 50% 50%, rgba(30, 30, 40, .9) 0%, #0b0b0b 70%),
-        linear-gradient(160deg, #141420, #0b0b0b);
-      border: 3px solid #d4a017;
-      border-radius: 12px;
-      padding: clamp(12px, 2.5%, 28px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, .8), 0 0 0 1px rgba(255, 213, 79, .3), inset 0 0 80px rgba(0, 0, 0, .6);
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
       overflow: hidden;
-      isolation: isolate;
     }
-    .cert-certificate-inner {
+    .cert-scale-box {
       position: relative;
-      width: 100%;
-      height: 100%;
-      border: 1px solid rgba(212, 160, 23, .6);
-      border-radius: 6px;
-      padding: clamp(16px, 3.5%, 40px) clamp(20px, 4%, 60px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      text-align: center;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      overflow: hidden;
+      transform-origin: top left;
     }
-    .cert-watermark {
+    .certificate {
+      position: relative;
+      width: 1491px;
+      height: 1054px;
+      background: linear-gradient(160deg, #ffffff 0%, #f3f7fd 100%);
+      color: #0b2a6f;
+      font-family: 'Montserrat', 'Poppins', system-ui, sans-serif;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+    }
+    /* double navy border */
+    .certificate::before {
+      content: "";
+      position: absolute;
+      inset: 24px;
+      border: 3px solid #0b2a6f;
+      pointer-events: none;
+    }
+    .certificate::after {
+      content: "";
+      position: absolute;
+      inset: 36px;
+      border: 1px solid rgba(11, 42, 111, .5);
+      pointer-events: none;
+    }
+    /* corner notches */
+    .cert-notch {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background: #0b2a6f;
+      z-index: 5;
+    }
+    .cert-notch.tl { top: 24px; left: 24px; }
+    .cert-notch.tr { top: 24px; right: 24px; }
+    .cert-notch.bl { bottom: 24px; left: 24px; }
+    .cert-notch.br { bottom: 24px; right: 24px; }
+
+    /* ribbon bands (inline SVG polygons) */
+    .cert-ribbon {
+      position: absolute;
+      z-index: 4;
+      pointer-events: none;
+    }
+    .cert-ribbon-tl {
+      top: 0; left: 0;
+      width: 420px;
+      height: 420px;
+    }
+    .cert-ribbon-br {
+      bottom: 0; right: 0;
+      width: 420px;
+      height: 420px;
+    }
+
+    /* decorative background */
+    .cert-deco {
       position: absolute;
       inset: 0;
-      z-index: 0;
       pointer-events: none;
-      opacity: .06;
-    }
-    .cert-watermark svg {
-      width: 100%;
-      height: 100%;
-    }
-    .cert-certificate-inner > * {
-      position: relative;
       z-index: 1;
     }
-    .cert-top-bar {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: clamp(6px, 1.5%, 16px);
+    .cert-deco-left {
+      position: absolute;
+      left: 60px;
+      top: 180px;
+      width: 220px;
+      height: 700px;
     }
-    .cert-top-bar img {
-      width: clamp(48px, 7%, 80px);
+    .cert-deco-right {
+      position: absolute;
+      right: 60px;
+      top: 180px;
+      width: 260px;
+      height: 700px;
+    }
+
+    /* corner taglines */
+    .cert-tagline {
+      position: absolute;
+      z-index: 6;
+      font-family: 'Montserrat', 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #0b2a6f;
+      line-height: 1.4;
+    }
+    .cert-tagline .cert-tagline-line {
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: #0b2a6f;
+      margin-top: 6px;
+    }
+    .cert-tagline-tl {
+      top: 60px;
+      left: 70px;
+      text-align: left;
+    }
+    .cert-tagline-tr {
+      top: 60px;
+      right: 70px;
+      text-align: right;
+    }
+    .cert-tagline-tr .cert-tagline-line { margin-left: auto; }
+    .cert-tagline-bl {
+      bottom: 60px;
+      left: 70px;
+      text-align: left;
+    }
+
+    /* logo */
+    .cert-logo-wrap {
+      position: absolute;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      text-align: center;
+    }
+    .cert-logo-img {
+      width: 480px;
+      max-width: 100%;
       height: auto;
-      border-radius: 8px;
+      display: block;
+      margin: 0 auto;
+    }
+    .cert-logo-fallback {
+      display: none;
+      align-items: center;
+      gap: 16px;
+      justify-content: center;
+    }
+    .cert-logo-fallback img {
+      width: 90px;
+      height: 90px;
       object-fit: contain;
+      border-radius: 12px;
     }
-    .cert-brand-name {
-      font-family: 'Poppins', sans-serif;
+    .cert-logo-fallback-text {
+      text-align: left;
+    }
+    .cert-logo-fallback-text .cert-brand {
+      font-family: 'Playfair Display', Georgia, serif;
       font-weight: 800;
-      font-size: clamp(16px, 2.2%, 26px);
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, #ffd54f, #d4a017);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent;
+      font-size: 56px;
+      color: #0b2a6f;
+      line-height: 1;
+      letter-spacing: 2px;
     }
-    .cert-main-title {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 900;
-      font-size: clamp(20px, 3.6%, 42px);
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, #ffd54f 0%, #d4a017 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent;
-      margin: clamp(4px, 1%, 12px) 0 clamp(2px, .5%, 6px);
-      line-height: 1.2;
+    .cert-logo-fallback-text .cert-tagline-small {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 6px;
+      color: #0b2a6f;
+      margin-top: 6px;
     }
-    .cert-sub-title {
-      font-size: clamp(10px, 1.3%, 15px);
-      font-weight: 400;
-      color: #b0b0b0;
-      letter-spacing: .08em;
-      margin-bottom: clamp(6px, 1.5%, 18px);
-      font-family: 'Poppins', sans-serif;
+
+    /* title */
+    .cert-title-wrap {
+      position: absolute;
+      top: 300px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 6;
     }
-    .cert-recipient {
-      font-family: 'Great Vibes', 'Playfair Display', cursive;
-      font-size: clamp(28px, 6%, 72px);
-      font-weight: 400;
-      color: #ffffff;
+    .cert-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 800;
+      font-size: 76px;
+      color: #0b2a6f;
+      letter-spacing: 2px;
       line-height: 1.1;
-      margin: clamp(2px, .5%, 8px) 0;
-      text-shadow: 0 0 30px rgba(255, 213, 79, .35);
-      max-width: 90%;
-      word-break: break-word;
-      border-bottom: 2px solid rgba(212, 160, 23, .6);
-      padding-bottom: clamp(4px, 1%, 12px);
+    }
+    .cert-title .cert-title-of {
+      font-size: 56px;
+      font-weight: 700;
+      letter-spacing: 4px;
       display: inline-block;
-      padding-left: 20px;
-      padding-right: 20px;
+      margin: 0 12px;
     }
-    .cert-completion-text {
-      font-size: clamp(11px, 1.5%, 17px);
-      color: #c9c9c9;
-      margin: clamp(4px, 1%, 12px) 0;
-      font-family: 'Poppins', sans-serif;
-      letter-spacing: .02em;
-      line-height: 1.6;
-      max-width: 80%;
+
+    /* presented line */
+    .cert-presented {
+      position: absolute;
+      top: 410px;
+      left: 0;
+      right: 0;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 0 120px;
     }
-    .cert-course-name {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 800;
-      font-size: clamp(14px, 2.4%, 28px);
-      letter-spacing: .1em;
+    .cert-presented-line {
+      flex: 1;
+      max-width: 260px;
+      height: 1px;
+      background: #0b2a6f;
+    }
+    .cert-presented-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      color: #ffd54f;
-      margin: clamp(2px, .6%, 8px) 0;
-      line-height: 1.3;
-      max-width: 90%;
+      color: #0b2a6f;
+      white-space: nowrap;
+    }
+
+    /* name */
+    .cert-name-wrap {
+      position: absolute;
+      top: 470px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 6;
+      padding: 0 120px;
+    }
+    .cert-name {
+      font-family: 'Great Vibes', 'Pinyon Script', cursive;
+      font-size: 100px;
+      color: #0b2a6f;
+      line-height: 1.1;
+      display: inline-block;
+      max-width: 100%;
       word-break: break-word;
     }
-    .cert-course-desc {
-      font-size: clamp(10px, 1.4%, 15px);
-      color: #a0a0a0;
-      margin: clamp(2px, .5%, 8px) 0;
-      max-width: 80%;
-      line-height: 1.55;
+
+    /* info grid 2x2 */
+    .cert-info-grid {
+      position: absolute;
+      top: 640px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 900px;
+      background: rgba(255, 255, 255, .6);
+      border: 1px solid rgba(11, 42, 111, .25);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .cert-info-cell {
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-right: 1px solid rgba(11, 42, 111, .18);
+      border-bottom: 1px solid rgba(11, 42, 111, .18);
+    }
+    .cert-info-cell:nth-child(2n) { border-right: none; }
+    .cert-info-cell:nth-child(3),
+    .cert-info-cell:nth-child(4) { border-bottom: none; }
+    .cert-info-icon {
+      width: 34px;
+      height: 34px;
+      flex: none;
+      color: #0b2a6f;
+    }
+    .cert-info-icon svg { width: 100%; height: 100%; display: block; }
+    .cert-info-text { min-width: 0; }
+    .cert-info-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #0b2a6f;
+      margin-bottom: 3px;
+    }
+    .cert-info-value {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #0b2a6f;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+    .cert-info-value.pending {
+      color: #6b8cc7;
       font-style: italic;
+      font-weight: 600;
+      font-size: 18px;
     }
-    .cert-meta-small {
-      font-size: clamp(9px, 1.2%, 13px);
-      color: #8a8a8a;
-      margin: clamp(2px, .5%, 6px) 0;
-      letter-spacing: .04em;
+
+    /* description paragraph */
+    .cert-desc {
+      position: absolute;
+      top: 790px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      text-align: center;
+      z-index: 6;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      line-height: 1.7;
+      color: #0b2a6f;
     }
+    .cert-desc .cert-desc-course {
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* bottom row */
     .cert-bottom-row {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 70px;
+      z-index: 6;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      width: 100%;
-      margin-top: auto;
-      padding-top: clamp(8px, 2%, 20px);
-      gap: clamp(8px, 2%, 20px);
-      flex-wrap: wrap;
+      padding: 0 100px;
     }
     .cert-bottom-left {
-      text-align: left;
       flex: 1 1 0;
-      min-width: 120px;
+      text-align: left;
+      max-width: 320px;
     }
     .cert-bottom-center {
       flex: 0 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 0 20px;
     }
     .cert-bottom-right {
-      text-align: right;
       flex: 1 1 0;
-      min-width: 140px;
+      text-align: right;
+      max-width: 360px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
     }
     .cert-bottom-label {
-      font-size: clamp(8px, 1%, 11px);
-      font-weight: 600;
-      letter-spacing: .12em;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: #8a8a8a;
-      margin-bottom: 4px;
+      color: #0b2a6f;
+      margin-bottom: 6px;
     }
     .cert-bottom-value {
-      font-size: clamp(10px, 1.3%, 14px);
-      font-weight: 600;
-      color: #e3e3e3;
-      line-height: 1.4;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #0b2a6f;
+      line-height: 1.2;
     }
-    .cert-seal {
-      width: clamp(50px, 8%, 90px);
-      height: clamp(50px, 8%, 90px);
-      flex: none;
+    .cert-bottom-time {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #4a5a82;
+      margin-top: 2px;
     }
+    .cert-bottom-line {
+      width: 220px;
+      height: 1px;
+      background: #0b2a6f;
+      margin: 8px 0 4px;
+    }
+
+    /* signature */
     .cert-signature {
-      font-family: 'Mrs Saint Delafield', 'Great Vibes', cursive;
-      font-size: clamp(22px, 4%, 44px);
-      color: #ffd54f;
+      font-family: 'Mrs Saint Delafield', 'Mea Culpa', cursive;
+      font-size: 70px;
+      color: #0b2a6f;
       line-height: 1;
-      margin-bottom: 4px;
       transform: rotate(-4deg);
       display: inline-block;
-      text-shadow: 0 0 20px rgba(255, 213, 79, .3);
+      margin-bottom: 2px;
     }
     .cert-sign-line {
-      width: clamp(100px, 20%, 200px);
+      width: 240px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, #d4a017, transparent);
-      margin: 0 auto 6px;
+      background: #0b2a6f;
+      margin: 4px 0 6px;
+    }
+    .cert-sign-caption {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #0b2a6f;
     }
     .cert-sign-name {
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(8px, 1.1%, 12px);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
       font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: #e3e3e3;
+      letter-spacing: 2px;
+      color: #0b2a6f;
+      margin-top: 2px;
     }
     .cert-sign-title {
-      font-size: clamp(7px, .9%, 10px);
-      color: #8a8a8a;
-      letter-spacing: .06em;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      color: #4a5a82;
       margin-top: 2px;
     }
-    .cert-cert-id-bar {
-      position: absolute;
-      bottom: clamp(6px, 1.5%, 14px);
-      left: 0;
-      right: 0;
-      text-align: center;
-      z-index: 2;
+
+    /* seal */
+    .cert-seal {
+      width: 140px;
+      height: 140px;
+      flex: none;
     }
-    .cert-cert-id {
-      font-family: 'Courier New', monospace;
-      font-size: clamp(10px, 1.3%, 14px);
-      font-weight: 700;
-      color: #ffd54f;
-      letter-spacing: .12em;
+    .cert-seal svg { width: 100%; height: 100%; display: block; }
+
+    /* wrapper scaling */
+    .cert-scale-box {
+      transform-origin: top left;
     }
-    .cert-cert-id-note {
-      font-size: clamp(7px, .9%, 10px);
-      color: #7a7a7a;
-      letter-spacing: .04em;
-      margin-top: 2px;
-    }
-    .cert-download-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    .cert-download-actions .btn {
-      min-width: 180px;
-    }
-    .cert-download-actions .btn-outline {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: #fff;
-      box-shadow: none;
-    }
-    .cert-download-actions .btn-outline:hover {
-      background: rgba(255, 255, 255, .06);
-      border-color: rgba(255, 193, 7, .5);
+
+    /* print only certificate */
+    @media print {
+      @page { size: A4 landscape; margin: 0; }
+      body.cert-print-mode * {
+        visibility: hidden;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      body.cert-print-mode .cert-wrapper,
+      body.cert-print-mode .cert-wrapper * {
+        visibility: visible;
+      }
+      body.cert-print-mode .cert-wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+      }
+      body.cert-print-mode .cert-scale-box {
+        transform: none !important;
+      }
+      body.cert-print-mode .certificate {
+        width: 100% !important;
+        height: auto !important;
+        box-shadow: none !important;
+        aspect-ratio: 1491 / 1054;
+      }
     }
 
     /* =========================================================
@@ -5213,6 +5414,7 @@
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 4px;
+      align-items: center;
     }
     .cert-admin-actions button,
     .cert-admin-actions a {
@@ -5371,63 +5573,48 @@
       background: #0b0b0b;
       padding: 8px;
     }
-    .cert-preview-wrap .cert-certificate {
-      width: 100% !important;
-      max-width: 100% !important;
-      aspect-ratio: 1200 / 850;
-      border-width: 2px !important;
-      border-radius: 6px !important;
-      padding: 8px !important;
+    /* admin grade control */
+    .cert-admin-grade-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(255, 193, 7, .05);
+      border: 1px solid rgba(255, 193, 7, .2);
     }
-    .cert-preview-wrap .cert-certificate-inner {
-      padding: 10px 12px !important;
+    .cert-admin-grade-row label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #d8d8d8;
+      letter-spacing: .02em;
+      white-space: nowrap;
     }
-    .cert-preview-wrap .cert-recipient {
-      font-size: clamp(16px, 3vw, 36px) !important;
+    .cert-admin-grade-select,
+    .cert-admin-grade-input {
+      flex: 1;
+      min-width: 120px;
+      padding: 8px 10px;
+      background: #101010;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 12.5px;
+      outline: none;
+      font-family: inherit;
     }
-    .cert-preview-wrap .cert-main-title {
-      font-size: clamp(12px, 2vw, 22px) !important;
+    .cert-admin-grade-select:focus,
+    .cert-admin-grade-input:focus {
+      border-color: var(--yellow);
     }
-    .cert-preview-wrap .cert-course-name {
-      font-size: clamp(10px, 1.6vw, 18px) !important;
+    .cert-admin-grade-custom {
+      display: none;
+      flex: 1;
+      min-width: 120px;
     }
-    .cert-preview-wrap .cert-bottom-row {
-      gap: 6px !important;
-    }
-    .cert-preview-wrap .cert-seal {
-      width: clamp(30px, 5vw, 50px) !important;
-      height: clamp(30px, 5vw, 50px) !important;
-    }
-    .cert-preview-wrap .cert-signature {
-      font-size: clamp(14px, 2.5vw, 26px) !important;
-    }
-
-    /* Print only certificate */
-    @media print {
-      body.cert-print-mode * {
-        visibility: hidden;
-      }
-      body.cert-print-mode .cert-certificate,
-      body.cert-print-mode .cert-certificate * {
-        visibility: visible;
-      }
-      body.cert-print-mode .cert-certificate {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        max-width: 100%;
-        border: 3px solid #d4a017 !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        aspect-ratio: auto;
-        page-break-inside: avoid;
-      }
-      @page {
-        size: A4 landscape;
-        margin: 0.5cm;
-      }
-    }
+    .cert-admin-grade-custom.show { display: block; }
   </style>
 </head>
 <body>
@@ -7057,8 +7244,19 @@ const CERT_COURSES = [
   "Other"
 ];
 
-// Signer title constant
-const CERT_SIGNER_TITLE = "Founder & Lead Mentor, SA Trader";
+// Edit this to change the signer title
+const CERT_SIGNER_TITLE = "Head Instructor";
+
+// Grades admin can select before approving
+const CERT_GRADES = [
+  "A+ (Outstanding)",
+  "A (Excellent)",
+  "B+ (Very Good)",
+  "B (Good)",
+  "C (Satisfactory)",
+  "Pass",
+  "Custom..."
+];
 
 /* =========================================================
    setLang(lang)
@@ -7662,7 +7860,6 @@ Status: ${o.status}`;
     const head = document.createElement('div');
     head.className = 'rv-card-head';
 
-    // FEEDBACK SYSTEM: avatar (photo or initial)
     const avatarWrap = document.createElement('span');
     avatarWrap.className = 'rv-card-avatar';
     if (photo) {
@@ -7775,7 +7972,6 @@ Status: ${o.status}`;
     firstThree.forEach((review, i) => {
       el.mainGrid.appendChild(buildCard(review, i, i === 1));
     });
-    // hide section if no feedbacks
     const section = document.getElementById('reviews');
     if (section) section.style.display = list.length === 0 ? 'none' : '';
   }
@@ -7888,11 +8084,9 @@ Status: ${o.status}`;
     }
   });
 
-  // FEEDBACK SYSTEM: expose a render function for Firebase updates
   window.__renderFeedbacks = function(feedbacks) {
     currentFeedbacks = feedbacks || [];
     renderMain(currentFeedbacks);
-    // Re-render overlay if open
     if (el.overlay && el.overlay.classList.contains('rv-open')) {
       el.overlayGrid.innerHTML = '';
       overlayShown = 0;
@@ -7908,7 +8102,6 @@ Status: ${o.status}`;
     }
   };
 
-  // Initial render with empty; Firebase will populate
   renderMain([]);
 })();
 
@@ -8366,7 +8559,7 @@ Status: ${o.status}`;
 })();
 
 /* =========================================================
-   CERTIFICATE PUBLIC SECTION
+   CERTIFICATE PUBLIC SECTION + SHARED RENDERER
    ========================================================= */
 (function () {
   // Render courses into dropdown
@@ -8486,17 +8679,14 @@ Status: ${o.status}`;
   let lastSubmitTime = 0;
   applyForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    // Honeypot
     const honeypot = document.getElementById('certWebsite').value;
     if (honeypot) return;
-    // Rate limit
     const now = Date.now();
     if (now - lastSubmitTime < 60000) {
       alert('Please wait a moment before submitting again.');
       return;
     }
 
-    // Validate
     let valid = true;
     const name = document.getElementById('certName').value.trim();
     const profession = document.getElementById('certProfession').value.trim();
@@ -8509,7 +8699,6 @@ Status: ${o.status}`;
     const feedback = document.getElementById('certFeedback').value.trim();
     const consent = document.getElementById('certConsent').checked;
 
-    // Clear errors
     document.querySelectorAll('.cert-field-error').forEach(el => el.textContent = '');
     document.querySelectorAll('.cert-field').forEach(el => el.classList.remove('invalid'));
 
@@ -8523,14 +8712,12 @@ Status: ${o.status}`;
       document.getElementById('certFieldProfession').classList.add('invalid');
       valid = false;
     }
-    // Telegram
     if (telegram && !telegram.startsWith('@')) telegram = '@' + telegram;
     if (!telegram || !/^@[A-Za-z0-9_]{4,31}$/.test(telegram)) {
       document.getElementById('certErrTelegram').textContent = 'Enter a valid Telegram username (letters, numbers, underscore, 5–32 chars).';
       document.getElementById('certFieldTelegram').classList.add('invalid');
       valid = false;
     }
-    // Course
     let finalCourse = courseSel;
     if (courseSel === 'Other') {
       if (!courseOther) {
@@ -8565,16 +8752,13 @@ Status: ${o.status}`;
 
     if (!valid) return;
 
-    // Disable submit
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting…';
 
-    // Generate unique ref code
     let ref = '';
     let attempts = 0;
     const maxAttempts = 20;
     try {
-      // Access global db from module script
       const db = window.__certDb;
       if (!db) throw new Error('Firebase not ready');
 
@@ -8608,7 +8792,6 @@ Status: ${o.status}`;
       });
 
       lastSubmitTime = Date.now();
-      // Show success
       refDisplay.textContent = ref;
       applyForm.style.display = 'none';
       applySuccess.style.display = '';
@@ -8622,7 +8805,6 @@ Status: ${o.status}`;
     }
   });
 
-  // Copy ref code
   refCopy.addEventListener('click', () => {
     const code = refDisplay.textContent.trim();
     if (!code || code === '------') return;
@@ -8645,10 +8827,8 @@ Status: ${o.status}`;
     }
   });
 
-  // Success actions
   successCheckStatus.addEventListener('click', () => {
     closeApplyModal();
-    // Switch to status tab
     document.querySelector('.cert-tab[data-cert-tab="status"]').click();
     document.getElementById('certRefInput').value = refDisplay.textContent.trim();
     openSearchModal();
@@ -8783,7 +8963,6 @@ Status: ${o.status}`;
       }
 
       if (found.status === 'approved' && found.uid) {
-        // Fetch certificate
         const certSnap = await window.__certGet(window.__certRef(db, 'certificates/' + found.uid));
         if (certSnap.exists()) {
           const cert = certSnap.val();
@@ -8813,9 +8992,8 @@ Status: ${o.status}`;
 <!-- Firebase SDK (modular) -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-  import { getDatabase, ref, onValue, set, update, push, remove, get, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+  import { getDatabase, ref, onValue, set, update, push, remove, get } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
-  // FEEDBACK SYSTEM: toggle for Firebase Auth
   const USE_FIREBASE_AUTH = false;
 
   const firebaseConfig = {
@@ -8833,7 +9011,6 @@ Status: ${o.status}`;
   try {
     app = initializeApp(firebaseConfig);
     db = getDatabase(app);
-    // Expose for non-module scripts
     window.__certDb = db;
     window.__certRef = ref;
     window.__certGet = get;
@@ -8876,14 +9053,12 @@ Status: ${o.status}`;
   const adminPreviewSecs = document.getElementById('adminPreviewSecs');
   const adminToast = document.getElementById('adminToast');
 
-  // Feedback tab elements
   const fbList = document.getElementById('fbList');
   const fbSearch = document.getElementById('fbSearch');
   const fbAddBtn = document.getElementById('fbAddBtn');
   const fbImportBtn = document.getElementById('fbImportBtn');
   const fbError = document.getElementById('fbError');
 
-  // Certificate tab elements
   const certAdminList = document.getElementById('certAdminList');
   const certAdminSearch = document.getElementById('certAdminSearch');
   const certAdminError = document.getElementById('certAdminError');
@@ -8934,7 +9109,6 @@ Status: ${o.status}`;
 
   overlay.addEventListener('click', (e) => { if (e.target === overlay) closeAdmin(); });
 
-  // Tab switching
   adminTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const target = tab.dataset.adminTab;
@@ -8943,12 +9117,8 @@ Status: ${o.status}`;
       feedbacksPanel.classList.toggle('active', target === 'feedbacks');
       certificatesPanel.classList.toggle('active', target === 'certificates');
 
-      if (target === 'feedbacks') {
-        renderAdminFeedbacks(currentFeedbacks);
-      }
-      if (target === 'certificates') {
-        renderAdminCertificates(currentCertRequests);
-      }
+      if (target === 'feedbacks') renderAdminFeedbacks(currentFeedbacks);
+      if (target === 'certificates') renderAdminCertificates(currentCertRequests);
     });
   });
 
@@ -9217,8 +9387,6 @@ Status: ${o.status}`;
   /* =========================================================
      FEEDBACK SYSTEM — ADMIN & PUBLIC RENDERING
      ========================================================= */
-
-  // Fetch and render feedbacks on visitor side
   function renderPublicFeedbacks(data) {
     if (!window.__renderFeedbacks) return;
     let list = [];
@@ -9240,9 +9408,7 @@ Status: ${o.status}`;
       const data = snapshot.val();
       currentFeedbacks = data || {};
       renderPublicFeedbacks(data);
-      if (overlay.classList.contains('open')) {
-        renderAdminFeedbacks(data);
-      }
+      if (overlay.classList.contains('open')) renderAdminFeedbacks(data);
     }, (error) => {
       console.warn('[Firebase] Feedbacks read error, using defaults.', error);
       const fallback = DEFAULT_FEEDBACKS.map((f, i) => ({ ...f, id: 'default_' + i, order: i, visible: true }));
@@ -9256,7 +9422,6 @@ Status: ${o.status}`;
     if (overlay.classList.contains('open')) renderAdminFeedbacks({});
   }
 
-  // Admin: render editable feedback cards
   function renderAdminFeedbacks(data) {
     if (!fbList) return;
     const entries = Object.entries(data || {});
@@ -9505,7 +9670,6 @@ Status: ${o.status}`;
   /* =========================================================
      ADMIN: CERTIFICATES TAB
      ========================================================= */
-  // Helper: generate unique 6-digit UID
   async function generateUniqueCertUid() {
     if (!db) return null;
     let attempts = 0;
@@ -9527,21 +9691,12 @@ Status: ${o.status}`;
   function renderAdminCertificates(data) {
     if (!certAdminList) return;
     const entries = Object.entries(data || {});
-    // sort newest first
     entries.sort((a, b) => (b[1].createdAt || 0) - (a[1].createdAt || 0));
 
     const searchTerm = (certAdminSearch.value || '').trim().toLowerCase();
 
     let html = '';
-    let counts = { pending: 0, approved: 0, rejected: 0, total: 0 };
-
     entries.forEach(([id, req]) => {
-      counts.total++;
-      if (req.status === 'pending') counts.pending++;
-      else if (req.status === 'approved') counts.approved++;
-      else if (req.status === 'rejected') counts.rejected++;
-
-      // Filter
       if (certFilter !== 'all' && req.status !== certFilter) return;
       if (searchTerm) {
         const hay = (req.name || '') + ' ' + (req.telegram || '') + ' ' + (req.ref || '');
@@ -9550,10 +9705,11 @@ Status: ${o.status}`;
 
       const statusClass = req.status || 'pending';
       const statusLabel = statusClass === 'pending' ? 'Pending' : statusClass === 'approved' ? 'Approved' : 'Rejected';
-
       const tgLink = req.telegram ? `<a href="https://t.me/${req.telegram.replace('@','')}" target="_blank" rel="noopener">${escapeHtml(req.telegram)}</a>` : '—';
 
-      html += `
+      const gradeValue = req.grade || '';
+
+      let html2 = `
         <div class="cert-admin-card" data-cert-id="${id}">
           <div class="cert-admin-card-head">
             <div>
@@ -9569,22 +9725,39 @@ Status: ${o.status}`;
             <div><strong>Learned via:</strong> ${escapeHtml(req.learnedVia || '—')}</div>
             ${req.feedback ? `<div><strong>Feedback:</strong> ${escapeHtml(req.feedback)}</div>` : ''}
             <div><strong>Submitted:</strong> ${formatDateTimeBD(req.createdAt)}</div>
-            <div><strong>Ref:</strong> ${escapeHtml(req.ref || '—')} ${req.uid ? '| <strong>UID:</strong> ' + escapeHtml(req.uid) : ''}</div>
+            <div><strong>Ref:</strong> ${escapeHtml(req.ref || '—')} ${req.uid ? '| <strong>UID:</strong> ' + escapeHtml(req.uid) : ''} ${gradeValue ? '| <strong>Grade:</strong> ' + escapeHtml(gradeValue) : ''}</div>
             ${req.note ? `<div style="color:var(--danger);"><strong>Note:</strong> ${escapeHtml(req.note)}</div>` : ''}
           </div>
+      `;
+
+      if (statusClass === 'pending') {
+        html2 += `
+          <div class="cert-admin-grade-row">
+            <label>Grade:</label>
+            <select class="cert-admin-grade-select" data-grade-select>
+              <option value="">— Select grade —</option>
+              ${CERT_GRADES.map(g => `<option value="${escapeAttr(g)}">${escapeHtml(g)}</option>`).join('')}
+            </select>
+            <input type="text" class="cert-admin-grade-input cert-admin-grade-custom" maxlength="30" placeholder="Custom grade" style="display:none;">
+          </div>
+        `;
+      }
+
+      html2 += `
           <div class="cert-admin-actions">
-            ${req.status === 'pending' ? `
+            ${statusClass === 'pending' ? `
               <button class="cert-admin-approve" data-action="approve" data-id="${id}">Approve</button>
               <button class="cert-admin-reject" data-action="reject" data-id="${id}">Reject</button>
             ` : ''}
-            ${req.status === 'approved' ? `
+            ${statusClass === 'approved' ? `
               <button class="cert-admin-copy" data-action="copy-uid" data-uid="${req.uid || ''}">Copy UID</button>
               <button class="cert-admin-tg-msg" data-action="copy-msg" data-id="${id}">Copy TG Message</button>
               <a class="cert-admin-open-tg" href="https://t.me/${(req.telegram || '').replace('@','')}" target="_blank" rel="noopener">Open TG</a>
               <button class="cert-admin-preview" data-action="preview" data-id="${id}">Preview</button>
+              <button class="cert-admin-edit-grade" data-action="edit-grade" data-id="${id}">Edit Grade</button>
               <button class="cert-admin-revoke" data-action="revoke" data-id="${id}">Revoke</button>
             ` : ''}
-            ${req.status === 'rejected' ? `
+            ${statusClass === 'rejected' ? `
               <button class="cert-admin-approve" data-action="approve" data-id="${id}">Re-approve</button>
             ` : ''}
             <button class="cert-admin-edit" data-action="edit" data-id="${id}">Edit</button>
@@ -9592,12 +9765,29 @@ Status: ${o.status}`;
           </div>
         </div>
       `;
+
+      html += html2;
     });
 
     if (!html) {
       html = '<div class="cert-admin-empty">No certificate requests found.</div>';
     }
     certAdminList.innerHTML = html;
+
+    // Grade select change to show custom input
+    certAdminList.querySelectorAll('.cert-admin-grade-select').forEach(sel => {
+      sel.addEventListener('change', () => {
+        const card = sel.closest('.cert-admin-card');
+        const customInput = card.querySelector('.cert-admin-grade-custom');
+        if (sel.value === 'Custom...') {
+          customInput.style.display = '';
+          customInput.focus();
+        } else {
+          customInput.style.display = 'none';
+          customInput.value = '';
+        }
+      });
+    });
 
     // Attach action handlers
     certAdminList.querySelectorAll('button[data-action]').forEach(btn => {
@@ -9612,6 +9802,19 @@ Status: ${o.status}`;
             showToast('Already approved');
             return;
           }
+          // Get grade
+          const card = btn.closest('.cert-admin-card');
+          const gradeSelect = card.querySelector('.cert-admin-grade-select');
+          const gradeCustom = card.querySelector('.cert-admin-grade-custom');
+          let grade = gradeSelect ? gradeSelect.value : '';
+          if (grade === 'Custom...') {
+            grade = gradeCustom ? gradeCustom.value.trim() : '';
+          }
+          if (!grade) {
+            showToast('Select a grade first');
+            return;
+          }
+
           btn.disabled = true;
           const uid = await generateUniqueCertUid();
           if (!uid) {
@@ -9627,6 +9830,7 @@ Status: ${o.status}`;
             course: req.course,
             batchMonth: req.batchMonth,
             batchYear: req.batchYear,
+            grade: grade,
             issuedAt: now,
             requestId: id
           };
@@ -9635,12 +9839,34 @@ Status: ${o.status}`;
             await update(ref(db, 'certRequests/' + id), {
               status: 'approved',
               uid: uid,
+              grade: grade,
               approvedAt: now
             });
             showToast('Approved ✓ UID: ' + uid);
           } catch (err) {
             console.error(err);
             certAdminError.textContent = 'Approval failed. Check rules.';
+          } finally {
+            btn.disabled = false;
+          }
+        }
+
+        if (action === 'edit-grade') {
+          const currentGrade = req.grade || '';
+          const newGrade = prompt('Edit grade:', currentGrade);
+          if (newGrade === null) return;
+          const trimmed = newGrade.trim();
+          if (!trimmed) { showToast('Grade cannot be empty'); return; }
+          btn.disabled = true;
+          try {
+            if (req.uid) {
+              await update(ref(db, 'certificates/' + req.uid), { grade: trimmed });
+            }
+            await update(ref(db, 'certRequests/' + id), { grade: trimmed });
+            showToast('Grade updated ✓');
+          } catch (err) {
+            console.error(err);
+            certAdminError.textContent = 'Grade update failed.';
           } finally {
             btn.disabled = false;
           }
@@ -9665,9 +9891,7 @@ Status: ${o.status}`;
 
         if (action === 'copy-uid') {
           const uid = btn.dataset.uid;
-          if (uid) {
-            navigator.clipboard.writeText(uid).then(() => showToast('UID copied ✓'));
-          }
+          if (uid) navigator.clipboard.writeText(uid).then(() => showToast('UID copied ✓'));
         }
 
         if (action === 'copy-msg') {
@@ -9676,7 +9900,6 @@ Status: ${o.status}`;
         }
 
         if (action === 'preview') {
-          // Render preview inside card
           const card = btn.closest('.cert-admin-card');
           const existing = card.querySelector('.cert-preview-wrap');
           if (existing) { existing.remove(); return; }
@@ -9710,7 +9933,6 @@ Status: ${o.status}`;
         }
 
         if (action === 'edit') {
-          // Simple edit: prompt for name, profession, course
           const newName = prompt('Edit name:', req.name || '');
           if (newName === null) return;
           const newProf = prompt('Edit profession:', req.profession || '');
@@ -9747,7 +9969,6 @@ Status: ${o.status}`;
     });
   }
 
-  // Filter chips
   certFilterChips.forEach(chip => {
     chip.addEventListener('click', () => {
       certFilterChips.forEach(c => c.classList.toggle('active', c === chip));
@@ -9760,7 +9981,6 @@ Status: ${o.status}`;
     renderAdminCertificates(currentCertRequests);
   });
 
-  // Listen to certificate requests
   if (certRequestsRef) {
     onValue(certRequestsRef, (snapshot) => {
       currentCertRequests = snapshot.val() || {};
@@ -9777,138 +9997,317 @@ Status: ${o.status}`;
     if (overlay.classList.contains('open')) renderAdminCertificates({});
   }
 
-  // Expose render certificate function globally
-  window.__certRenderCertificate = function(cert) {
-    const el = document.createElement('div');
-    el.className = 'cert-certificate';
-    el.innerHTML = `
-      <div class="cert-certificate-inner">
-        <div class="cert-watermark" aria-hidden="true">
-          <svg viewBox="0 0 1200 850" xmlns="http://www.w3.org/2000/svg">
-            <g opacity="0.5">
-              <rect x="100" y="400" width="20" height="120" fill="#22c55e"/>
-              <rect x="130" y="380" width="20" height="140" fill="#ef4444"/>
-              <rect x="160" y="420" width="20" height="100" fill="#22c55e"/>
-              <rect x="190" y="360" width="20" height="160" fill="#ef4444"/>
-              <rect x="220" y="390" width="20" height="130" fill="#22c55e"/>
-              <rect x="250" y="430" width="20" height="90" fill="#ef4444"/>
-              <rect x="280" y="370" width="20" height="150" fill="#22c55e"/>
-              <rect x="310" y="410" width="20" height="110" fill="#ef4444"/>
-              <rect x="340" y="350" width="20" height="170" fill="#22c55e"/>
-              <rect x="370" y="440" width="20" height="80" fill="#ef4444"/>
-              <rect x="400" y="390" width="20" height="130" fill="#22c55e"/>
-              <rect x="430" y="420" width="20" height="100" fill="#ef4444"/>
-              <rect x="460" y="360" width="20" height="160" fill="#22c55e"/>
-              <rect x="490" y="400" width="20" height="120" fill="#ef4444"/>
-              <rect x="520" y="380" width="20" height="140" fill="#22c55e"/>
-              <rect x="550" y="430" width="20" height="90" fill="#ef4444"/>
-              <rect x="580" y="370" width="20" height="150" fill="#22c55e"/>
-              <rect x="610" y="410" width="20" height="110" fill="#ef4444"/>
-              <rect x="640" y="350" width="20" height="170" fill="#22c55e"/>
-              <rect x="670" y="390" width="20" height="130" fill="#ef4444"/>
-              <rect x="700" y="420" width="20" height="100" fill="#22c55e"/>
-              <rect x="730" y="360" width="20" height="160" fill="#ef4444"/>
-              <rect x="760" y="400" width="20" height="120" fill="#22c55e"/>
-              <rect x="790" y="430" width="20" height="90" fill="#ef4444"/>
-              <rect x="820" y="370" width="20" height="150" fill="#22c55e"/>
-              <rect x="850" y="410" width="20" height="110" fill="#ef4444"/>
-              <rect x="880" y="350" width="20" height="170" fill="#22c55e"/>
-              <rect x="910" y="390" width="20" height="130" fill="#ef4444"/>
-              <rect x="940" y="420" width="20" height="100" fill="#22c55e"/>
-              <rect x="970" y="360" width="20" height="160" fill="#ef4444"/>
-              <rect x="1000" y="400" width="20" height="120" fill="#22c55e"/>
-              <rect x="1030" y="430" width="20" height="90" fill="#ef4444"/>
-              <rect x="1060" y="370" width="20" height="150" fill="#22c55e"/>
-              <rect x="1090" y="410" width="20" height="110" fill="#ef4444"/>
-            </g>
-          </svg>
-        </div>
+  /* =========================================================
+     CERTIFICATE RENDER (shared — used everywhere)
+     ========================================================= */
+  window.__certRenderCertificate = function(data) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'cert-wrapper';
 
-        <div class="cert-top-bar">
-          <img src="IMG_20261007_001230_648.jpg" alt="SA Trader Logo">
-          <div class="cert-brand-name">SA TRADER</div>
-        </div>
+    const box = document.createElement('div');
+    box.className = 'cert-scale-box';
 
-        <div class="cert-main-title">CERTIFICATE OF COMPLETION</div>
-        <div class="cert-sub-title">This is to certify that</div>
+    const cert = document.createElement('div');
+    cert.className = 'certificate';
 
-        <div class="cert-recipient">${escapeHtml(cert.name || 'Student Name')}</div>
+    // ---- corner notches ----
+    ['tl','tr','bl','br'].forEach(pos => {
+      const n = document.createElement('div');
+      n.className = 'cert-notch ' + pos;
+      cert.appendChild(n);
+    });
 
-        <div class="cert-completion-text">has successfully completed the course</div>
-        <div class="cert-course-name">${escapeHtml(cert.course || 'Forex Trading')}</div>
-        <div class="cert-course-desc">in Forex Trading Education, covering market structure, price action and risk management, at SA Trader.</div>
-        <div class="cert-meta-small">Profession: ${escapeHtml(cert.profession || '—')}</div>
-        <div class="cert-meta-small">Batch: ${escapeHtml((cert.batchMonth || '') + ' ' + (cert.batchYear || ''))}</div>
-
-        <div class="cert-bottom-row">
-          <div class="cert-bottom-left">
-            <div class="cert-bottom-label">Date &amp; Time of Issue</div>
-            <div class="cert-bottom-value">${formatDateTimeBD(cert.issuedAt)} (BST)</div>
-          </div>
-          <div class="cert-bottom-center">
-            <svg class="cert-seal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="45" fill="none" stroke="#d4a017" stroke-width="3"/>
-              <circle cx="50" cy="50" r="38" fill="none" stroke="#d4a017" stroke-width="1.5"/>
-              <path d="M50 20l6 18 18 6-18 6-6 18-6-18-18-6 18-6z" fill="#d4a017"/>
-              <text x="50" y="78" font-size="7" fill="#d4a017" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="700">OFFICIAL SA TRADER</text>
-            </svg>
-          </div>
-          <div class="cert-bottom-right">
-            <div class="cert-signature">SHAKIL AHMED</div>
-            <div class="cert-sign-line"></div>
-            <div class="cert-sign-name">SHAKIL AHMED</div>
-            <div class="cert-sign-title">${CERT_SIGNER_TITLE}</div>
-          </div>
-        </div>
-
-        <div class="cert-cert-id-bar">
-          <div class="cert-cert-id">Certificate ID: ${escapeHtml(cert.uid || '------')}</div>
-          <div class="cert-cert-id-note">Verify this certificate on our website using this ID.</div>
-        </div>
-      </div>
+    // ---- ribbon top-left (inline SVG polygons) ----
+    const ribbonTL = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    ribbonTL.setAttribute('class', 'cert-ribbon cert-ribbon-tl');
+    ribbonTL.setAttribute('viewBox', '0 0 420 420');
+    ribbonTL.innerHTML = `
+      <polygon points="0,0 260,0 0,260" fill="#0b2a6f"/>
+      <polygon points="0,260 200,0 260,0 0,320" fill="#123a8a"/>
+      <polygon points="0,0 260,0 0,260" fill="none" stroke="#d4a62a" stroke-width="4"/>
+      <polygon points="0,260 200,0" fill="none" stroke="#f1d27a" stroke-width="2"/>
+      <polygon points="30,0 0,30 0,60 60,0" fill="#4a7bd0" opacity="0.6"/>
     `;
-    return el;
-  };
+    cert.appendChild(ribbonTL);
 
-  // Download certificate using html2canvas
-  window.__certDownload = function(certEl, uid) {
-    // Lazy load html2canvas
-    if (!window.html2canvas) {
-      const script = document.createElement('script');
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-      script.onload = () => doDownload(certEl, uid);
-      document.head.appendChild(script);
-    } else {
-      doDownload(certEl, uid);
+    // ---- ribbon bottom-right ----
+    const ribbonBR = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    ribbonBR.setAttribute('class', 'cert-ribbon cert-ribbon-br');
+    ribbonBR.setAttribute('viewBox', '0 0 420 420');
+    ribbonBR.innerHTML = `
+      <polygon points="420,420 160,420 420,160" fill="#0b2a6f"/>
+      <polygon points="420,160 220,420 160,420 420,100" fill="#123a8a"/>
+      <polygon points="420,420 160,420 420,160" fill="none" stroke="#d4a62a" stroke-width="4"/>
+      <polygon points="420,160 220,420" fill="none" stroke="#f1d27a" stroke-width="2"/>
+      <polygon points="390,420 420,390 420,360 360,420" fill="#4a7bd0" opacity="0.6"/>
+    `;
+    cert.appendChild(ribbonBR);
+
+    // ---- decorative background ----
+    const deco = document.createElement('div');
+    deco.className = 'cert-deco';
+    deco.innerHTML = `
+      <svg class="cert-deco-left" viewBox="0 0 220 700" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.06" fill="#0b2a6f">
+          <rect x="20" y="300" width="14" height="80"/>
+          <rect x="44" y="280" width="14" height="100"/>
+          <rect x="68" y="320" width="14" height="60"/>
+          <rect x="92" y="260" width="14" height="120"/>
+          <rect x="116" y="290" width="14" height="90"/>
+          <rect x="140" y="340" width="14" height="50"/>
+          <rect x="164" y="270" width="14" height="110"/>
+          <rect x="188" y="310" width="14" height="70"/>
+        </g>
+      </svg>
+      <svg class="cert-deco-right" viewBox="0 0 260 700" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.06">
+          <circle cx="130" cy="350" r="110" fill="none" stroke="#0b2a6f" stroke-width="2"/>
+          <circle cx="130" cy="350" r="80" fill="none" stroke="#0b2a6f" stroke-width="1.5"/>
+          <ellipse cx="130" cy="350" rx="110" ry="40" fill="none" stroke="#0b2a6f" stroke-width="1.5"/>
+          <ellipse cx="130" cy="350" rx="40" ry="110" fill="none" stroke="#0b2a6f" stroke-width="1.5"/>
+          <path d="M130 230 L130 470 M20 350 L240 350" stroke="#0b2a6f" stroke-width="1.5" fill="none"/>
+          <path d="M130 180 L130 220 M130 480 L130 520" stroke="#0b2a6f" stroke-width="3" fill="none"/>
+          <path d="M120 210 L130 180 L140 210 Z" fill="#0b2a6f"/>
+          <rect x="100" y="560" width="10" height="50" fill="#0b2a6f"/>
+          <rect x="115" y="540" width="10" height="70" fill="#0b2a6f"/>
+          <rect x="130" y="570" width="10" height="40" fill="#0b2a6f"/>
+          <rect x="145" y="530" width="10" height="80" fill="#0b2a6f"/>
+        </g>
+      </svg>
+    `;
+    cert.appendChild(deco);
+
+    // ---- taglines ----
+    const tagTL = document.createElement('div');
+    tagTL.className = 'cert-tagline cert-tagline-tl';
+    tagTL.innerHTML = 'FOREX TRADING EDUCATION PLATFORM<span class="cert-tagline-line"></span>';
+    cert.appendChild(tagTL);
+
+    const tagTR = document.createElement('div');
+    tagTR.className = 'cert-tagline cert-tagline-tr';
+    tagTR.innerHTML = 'BETTER KNOWLEDGE BIGGER OPPORTUNITIES<span class="cert-tagline-line"></span>';
+    cert.appendChild(tagTR);
+
+    const tagBL = document.createElement('div');
+    tagBL.className = 'cert-tagline cert-tagline-bl';
+    tagBL.innerHTML = 'DISCIPLINE BUILDS LONG TERM SUCCESS<span class="cert-tagline-line"></span>';
+    cert.appendChild(tagBL);
+
+    // ---- logo ----
+    const logoWrap = document.createElement('div');
+    logoWrap.className = 'cert-logo-wrap';
+    const logoImg = document.createElement('img');
+    logoImg.className = 'cert-logo-img';
+    logoImg.src = 'certificate-logo.png';
+    logoImg.alt = 'SA Trader Logo';
+    logoImg.crossOrigin = 'anonymous';
+    logoImg.onerror = function () {
+      logoImg.style.display = 'none';
+      const fb = logoWrap.querySelector('.cert-logo-fallback');
+      if (fb) fb.style.display = 'flex';
+    };
+    logoWrap.appendChild(logoImg);
+
+    const logoFallback = document.createElement('div');
+    logoFallback.className = 'cert-logo-fallback';
+    const fbImg = document.createElement('img');
+    fbImg.src = 'IMG_20261007_001230_648.jpg';
+    fbImg.alt = 'SA Trader';
+    fbImg.crossOrigin = 'anonymous';
+    logoFallback.appendChild(fbImg);
+    const fbText = document.createElement('div');
+    fbText.className = 'cert-logo-fallback-text';
+    const brand = document.createElement('div');
+    brand.className = 'cert-brand';
+    brand.textContent = 'SA TRADER';
+    fbText.appendChild(brand);
+    const taglineSmall = document.createElement('div');
+    taglineSmall.className = 'cert-tagline-small';
+    taglineSmall.textContent = 'LEARN · TRADE · GROW';
+    fbText.appendChild(taglineSmall);
+    logoFallback.appendChild(fbText);
+    logoWrap.appendChild(logoFallback);
+    cert.appendChild(logoWrap);
+
+    // ---- title ----
+    const titleWrap = document.createElement('div');
+    titleWrap.className = 'cert-title-wrap';
+    const title = document.createElement('div');
+    title.className = 'cert-title';
+    title.innerHTML = 'CERTIFICATE <span class="cert-title-of">of</span> COMPLETION';
+    titleWrap.appendChild(title);
+    cert.appendChild(titleWrap);
+
+    // ---- presented line ----
+    const presented = document.createElement('div');
+    presented.className = 'cert-presented';
+    const lineL = document.createElement('span');
+    lineL.className = 'cert-presented-line';
+    const pText = document.createElement('span');
+    pText.className = 'cert-presented-text';
+    pText.textContent = 'THIS CERTIFICATE IS PROUDLY PRESENTED TO';
+    const lineR = document.createElement('span');
+    lineR.className = 'cert-presented-line';
+    presented.appendChild(lineL);
+    presented.appendChild(pText);
+    presented.appendChild(lineR);
+    cert.appendChild(presented);
+
+    // ---- name ----
+    const nameWrap = document.createElement('div');
+    nameWrap.className = 'cert-name-wrap';
+    const nameEl = document.createElement('div');
+    nameEl.className = 'cert-name';
+    nameEl.textContent = data.name || 'Student Name';
+    // auto-shrink
+    const nameLen = (data.name || '').length;
+    if (nameLen > 26) nameEl.style.fontSize = '64px';
+    else if (nameLen > 20) nameEl.style.fontSize = '80px';
+    else if (nameLen > 16) nameEl.style.fontSize = '90px';
+    nameWrap.appendChild(nameEl);
+    cert.appendChild(nameWrap);
+
+    // ---- info grid ----
+    const grid = document.createElement('div');
+    grid.className = 'cert-info-grid';
+
+    function infoCell(iconSVG, label, value, isPending) {
+      const cell = document.createElement('div');
+      cell.className = 'cert-info-cell';
+      const icon = document.createElement('div');
+      icon.className = 'cert-info-icon';
+      icon.innerHTML = iconSVG;
+      const txt = document.createElement('div');
+      txt.className = 'cert-info-text';
+      const lbl = document.createElement('div');
+      lbl.className = 'cert-info-label';
+      lbl.textContent = label;
+      const val = document.createElement('div');
+      val.className = 'cert-info-value' + (isPending ? ' pending' : '');
+      val.textContent = value;
+      txt.appendChild(lbl);
+      txt.appendChild(val);
+      cell.appendChild(icon);
+      cell.appendChild(txt);
+      return cell;
     }
+
+    const personIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="#0b2a6f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>`;
+    const capIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="#0b2a6f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.5 2 6 2s6-1 6-2v-5"/></svg>`;
+    const idIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="#0b2a6f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2"/><path d="M14 10h5M14 14h4"/></svg>`;
+    const starIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="#0b2a6f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+
+    grid.appendChild(infoCell(personIcon, 'PROFESSION', data.profession || '—'));
+    grid.appendChild(infoCell(capIcon, 'COURSE', data.course || '—'));
+    grid.appendChild(infoCell(idIcon, 'CERTIFICATE ID', data.uid || '------'));
+
+    const gradeText = data.grade && String(data.grade).trim() ? data.grade : 'Pending Approval';
+    const gradePending = !(data.grade && String(data.grade).trim());
+    grid.appendChild(infoCell(starIcon, 'GRADE', gradeText, gradePending));
+
+    cert.appendChild(grid);
+
+    // ---- description ----
+    const desc = document.createElement('div');
+    desc.className = 'cert-desc';
+    const courseName = data.course || 'the course';
+    desc.innerHTML = `This certificate acknowledges the successful completion of the <span class="cert-desc-course">${escapeHtml(courseName)}</span> provided by SA TRADER. With dedication and commitment, the recipient has demonstrated a strong understanding of forex trading concepts and strategies.`;
+    cert.appendChild(desc);
+
+    // ---- bottom row ----
+    const bottom = document.createElement('div');
+    bottom.className = 'cert-bottom-row';
+
+    // LEFT: date
+    const left = document.createElement('div');
+    left.className = 'cert-bottom-left';
+    const leftLabel = document.createElement('div');
+    leftLabel.className = 'cert-bottom-label';
+    leftLabel.textContent = 'ISSUE DATE';
+    const leftDate = document.createElement('div');
+    leftDate.className = 'cert-bottom-value';
+    const issueDate = data.issuedAt ? new Date(data.issuedAt) : new Date();
+    const dd = String(issueDate.getDate()).padStart(2, '0');
+    const mm = String(issueDate.getMonth() + 1).padStart(2, '0');
+    const yyyy = issueDate.getFullYear();
+    leftDate.textContent = `${dd} / ${mm} / ${yyyy}`;
+    const leftLine = document.createElement('div');
+    leftLine.className = 'cert-bottom-line';
+    const leftTime = document.createElement('div');
+    leftTime.className = 'cert-bottom-time';
+    const timeStr = issueDate.toLocaleString('en-GB', { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit', hour12: true });
+    leftTime.textContent = `${timeStr} (BST)`;
+    left.appendChild(leftLabel);
+    left.appendChild(leftDate);
+    left.appendChild(leftLine);
+    left.appendChild(leftTime);
+    bottom.appendChild(left);
+
+    // CENTER: seal
+    const center = document.createElement('div');
+    center.className = 'cert-bottom-center';
+    const seal = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    seal.setAttribute('class', 'cert-seal');
+    seal.setAttribute('viewBox', '0 0 140 140');
+    seal.innerHTML = `
+      <circle cx="70" cy="60" r="52" fill="#d4a62a" stroke="#0b2a6f" stroke-width="2"/>
+      <circle cx="70" cy="60" r="44" fill="#0b2a6f"/>
+      <circle cx="70" cy="60" r="38" fill="none" stroke="#d4a62a" stroke-width="1.5"/>
+      <path d="M70 30l4 12 12 4-12 4-4 12-4-12-12-4 12-4z" fill="#f1d27a"/>
+      <path d="M58 60 Q70 50 82 60 Q70 70 58 60" fill="none" stroke="#f1d27a" stroke-width="1.5"/>
+      <text x="70" y="82" font-family="Montserrat, Arial, sans-serif" font-size="10" font-weight="700" fill="#f1d27a" text-anchor="middle">SA TRADER</text>
+      <text x="70" y="95" font-family="Montserrat, Arial, sans-serif" font-size="7" font-weight="600" fill="#f1d27a" text-anchor="middle" letter-spacing="2">CERTIFIED</text>
+      <path d="M40 98 L34 125 L48 118 L62 125 L56 98" fill="#0b2a6f" stroke="#d4a62a" stroke-width="1"/>
+      <path d="M100 98 L106 125 L92 118 L78 125 L84 98" fill="#0b2a6f" stroke="#d4a62a" stroke-width="1"/>
+      <circle cx="58" cy="110" r="2" fill="#f1d27a"/>
+      <circle cx="70" cy="112" r="2" fill="#f1d27a"/>
+      <circle cx="82" cy="110" r="2" fill="#f1d27a"/>
+    `;
+    center.appendChild(seal);
+    bottom.appendChild(center);
+
+    // RIGHT: signature
+    const right = document.createElement('div');
+    right.className = 'cert-bottom-right';
+    const sig = document.createElement('div');
+    sig.className = 'cert-signature';
+    sig.textContent = 'Shakil Ahmed';
+    const sigLine = document.createElement('div');
+    sigLine.className = 'cert-sign-line';
+    const sigCaption = document.createElement('div');
+    sigCaption.className = 'cert-sign-caption';
+    sigCaption.textContent = 'Authorized Signature';
+    const sigName = document.createElement('div');
+    sigName.className = 'cert-sign-name';
+    sigName.textContent = 'SHAKIL AHMED';
+    const sigTitle = document.createElement('div');
+    sigTitle.className = 'cert-sign-title';
+    sigTitle.textContent = CERT_SIGNER_TITLE;
+    right.appendChild(sig);
+    right.appendChild(sigLine);
+    right.appendChild(sigCaption);
+    right.appendChild(sigName);
+    right.appendChild(sigTitle);
+    bottom.appendChild(right);
+
+    cert.appendChild(bottom);
+
+    box.appendChild(cert);
+    wrapper.appendChild(box);
+
+    // scale to fit container
+    requestAnimationFrame(() => {
+      const w = wrapper.clientWidth || wrapper.parentElement?.clientWidth || 1200;
+      const scale = Math.min(1, w / 1491);
+      box.style.transform = `scale(${scale})`;
+      box.style.width = '1491px';
+      box.style.height = '1054px';
+      wrapper.style.height = (1054 * scale) + 'px';
+    });
+
+    return wrapper;
   };
 
-  async function doDownload(certEl, uid) {
-    try {
-      await document.fonts.ready;
-      const canvas = await html2canvas(certEl, { scale: 2, backgroundColor: '#0b0b0b', useCORS: true });
-      const link = document.createElement('a');
-      link.download = 'SA-Trader-Certificate-' + (uid || 'unknown') + '.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-    } catch (err) {
-      console.error(err);
-      alert('Could not generate image. Please try again.');
-    }
-  }
-
-  window.__certPrint = function(certEl) {
-    document.body.classList.add('cert-print-mode');
-    // Temporarily move cert to body
-    const clone = certEl.cloneNode(true);
-    clone.id = 'certPrintClone';
-    document.body.appendChild(clone);
-    window.print();
-    document.body.classList.remove('cert-print-mode');
-    setTimeout(() => clone.remove(), 500);
-  };
-
-  // Helper functions for escaping
   function escapeHtml(str) {
     return String(str || '').replace(/[&<>"']/g, c => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -9920,7 +10319,112 @@ Status: ${o.status}`;
     }[c]));
   }
 
-  // Expose for use
+  /* =========================================================
+     CERTIFICATE DOWNLOAD (fixed)
+     ========================================================= */
+  window.__certDownload = function (certEl, uid) {
+    if (!window.html2canvas) {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+      script.onload = () => doDownload(certEl, uid);
+      script.onerror = () => alert('Could not load download library. Check your connection.');
+      document.head.appendChild(script);
+    } else {
+      doDownload(certEl, uid);
+    }
+  };
+
+  async function doDownload(certEl, uid) {
+    const btn = document.activeElement;
+    const originalText = btn && btn.textContent;
+    if (btn && btn.classList && btn.classList.contains('cert-submit-btn')) {
+      btn.disabled = true;
+      btn.textContent = 'Preparing your certificate...';
+    }
+    let clone;
+    try {
+      await document.fonts.ready;
+
+      // Build offscreen clone at full fixed size, no transform
+      clone = document.createElement('div');
+      clone.style.position = 'fixed';
+      clone.style.left = '-99999px';
+      clone.style.top = '0';
+      clone.style.width = '1491px';
+      clone.style.height = '1054px';
+      clone.style.background = '#ffffff';
+      clone.style.zIndex = '-1';
+
+      const cert = certEl.querySelector('.certificate') || certEl;
+      const inner = cert.cloneNode(true);
+      inner.style.transform = 'none';
+      inner.style.width = '1491px';
+      inner.style.height = '1054px';
+      inner.style.boxShadow = 'none';
+      clone.appendChild(inner);
+      document.body.appendChild(clone);
+
+      // Wait for all images in clone
+      const imgs = Array.from(clone.querySelectorAll('img'));
+      await Promise.all(imgs.map(img => {
+        if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+        return new Promise(resolve => {
+          const timer = setTimeout(() => resolve(), 4000);
+          img.onload = () => { clearTimeout(timer); resolve(); };
+          img.onerror = () => { clearTimeout(timer); resolve(); };
+        });
+      }));
+
+      const canvas = await html2canvas(clone, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        width: 1491,
+        height: 1054,
+        windowWidth: 1491,
+        windowHeight: 1054,
+        scrollX: 0,
+        scrollY: 0,
+        logging: false
+      });
+      const link = document.createElement('a');
+      link.download = 'SA-Trader-Certificate-' + (uid || 'unknown') + '.png';
+      link.href = canvas.toDataURL('image/png');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      console.error(err);
+      alert('Could not generate certificate image. Please try again.');
+    } finally {
+      if (clone && clone.parentNode) clone.parentNode.removeChild(clone);
+      if (btn && btn.classList && btn.classList.contains('cert-submit-btn')) {
+        btn.disabled = false;
+        btn.textContent = originalText || 'Download Certificate';
+      }
+    }
+  }
+
+  window.__certPrint = function (certEl) {
+    // Create a dedicated print root
+    const printRoot = document.createElement('div');
+    printRoot.id = 'certPrintRoot';
+    const clone = certEl.cloneNode(true);
+    clone.style.transform = 'none';
+    const cert = clone.querySelector('.certificate') || clone;
+    cert.style.transform = 'none';
+    cert.style.width = '100%';
+    cert.style.height = 'auto';
+    printRoot.appendChild(clone);
+    document.body.appendChild(printRoot);
+    document.body.classList.add('cert-print-mode');
+    window.print();
+    setTimeout(() => {
+      document.body.classList.remove('cert-print-mode');
+      if (printRoot.parentNode) printRoot.parentNode.removeChild(printRoot);
+    }, 600);
+  };
+
   window.__currentFeedbacks = currentFeedbacks;
 </script>
 </body>
