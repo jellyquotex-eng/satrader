@@ -6,7 +6,7 @@
   <title>WELCOME-SA TRADER</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Great+Vibes&family=Mrs+Saint+Delafield&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
   <style>
     /* =========================================================
        ROOT TOKENS / CSS VARIABLES
@@ -51,6 +51,7 @@
     #our-services { scroll-margin-top: 90px; }
     #video { scroll-margin-top: 90px; }
     #reviews { scroll-margin-top: 90px; }
+    #certificate { scroll-margin-top: 90px; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -4028,6 +4029,20 @@
       .join-popup .svc-price { font-size: 24px; }
       .join-popup .svc-foot { flex-wrap: wrap; }
       .join-popup .btn-enroll { flex: 1; justify-content: center; }
+      /* CERTIFICATE responsive */
+      .cert-banner { padding: 28px 16px !important; }
+      .cert-banner-title { font-size: 26px !important; }
+      .cert-banner-chips { flex-wrap: wrap; justify-content: center; }
+      .cert-banner-actions { flex-direction: column; width: 100%; }
+      .cert-banner-actions .btn { width: 100%; text-align: center; }
+      .cert-modal { width: 100% !important; max-width: 100% !important; margin: 0; border-radius: 0; height: 100vh; max-height: 100vh; }
+      .cert-search-tabs { flex-wrap: wrap; }
+      .cert-tab { flex: 1; min-width: 120px; }
+      .cert-certificate { transform-origin: top left; }
+      .cert-card { padding: 16px 12px !important; }
+      .cert-admin-card { padding: 14px !important; }
+      .cert-admin-actions { flex-wrap: wrap; }
+      .cert-admin-actions button { flex: 1; min-width: 80px; font-size: 11px; padding: 8px 8px; }
     }
     @media (max-width: 600px) {
       .cw-grid { grid-template-columns: 1fr; }
@@ -4318,6 +4333,1101 @@
       object-fit: cover;
       display: block;
     }
+
+    /* =========================================================
+       CERTIFICATE SECTION — public page
+       ========================================================= */
+    .cert-banner {
+      position: relative;
+      max-width: 1240px;
+      margin: 0 auto 80px;
+      padding: clamp(30px, 5vw, 60px) clamp(20px, 4vw, 50px);
+      border-radius: 32px;
+      background: linear-gradient(160deg, #141414, #0b0b0b);
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .7), 0 0 60px rgba(255, 179, 0, .08);
+      text-align: center;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .cert-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 32px;
+      padding: 2px;
+      background: linear-gradient(135deg, #d4a017, #ffd54f, #d4a017);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cert-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 32px;
+      background: radial-gradient(600px 300px at 50% 0%, rgba(255, 193, 7, .12), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cert-banner > * { position: relative; z-index: 1; }
+    .cert-icon-float {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 193, 7, .12);
+      border: 1px solid rgba(255, 193, 7, .35);
+      border-radius: 20px;
+      animation: certFloat 4s ease-in-out infinite;
+    }
+    @keyframes certFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
+    }
+    .cert-banner-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      background: linear-gradient(180deg, #ffd54f 0%, #ffb300 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      margin: 0 0 12px;
+    }
+    .cert-banner-sub {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(14px, 1.8vw, 17px);
+      color: #c9c9c9;
+      max-width: 600px;
+      margin: 0 auto 28px;
+      line-height: 1.65;
+    }
+    .cert-banner-chips {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .cert-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .1);
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #e3e3e3;
+      transition: border-color .25s, background .25s;
+    }
+    .cert-chip:hover {
+      border-color: rgba(255, 193, 7, .5);
+      background: rgba(255, 193, 7, .06);
+    }
+    .cert-chip svg {
+      width: 16px;
+      height: 16px;
+      flex: none;
+      stroke: var(--yellow);
+      stroke-width: 2.2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .cert-banner-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .cert-banner-actions .btn {
+      min-width: 200px;
+    }
+    .cert-banner-actions .btn.ghost {
+      border-color: rgba(255, 193, 7, .5);
+      color: var(--yellow);
+    }
+    .cert-banner-actions .btn.ghost:hover {
+      background: rgba(255, 193, 7, .1);
+      border-color: var(--yellow);
+    }
+
+    /* =========================================================
+       CERTIFICATE MODALS
+       ========================================================= */
+    .cert-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 450;
+      background: rgba(5, 5, 5, .82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease, visibility .3s ease;
+    }
+    .cert-modal-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .cert-modal {
+      width: min(560px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      background: linear-gradient(160deg, #1a1a1a, #101010);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, .85), 0 0 0 1px rgba(255, 194, 26, .1);
+      padding: 28px 24px;
+      transform: scale(.94) translateY(10px);
+      opacity: 0;
+      transition: transform .35s cubic-bezier(.2, .7, .2, 1), opacity .35s ease;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 194, 26, .4) transparent;
+      position: relative;
+    }
+    .cert-modal-backdrop.open .cert-modal {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+    .cert-modal::-webkit-scrollbar { width: 6px; }
+    .cert-modal::-webkit-scrollbar-thumb { background: rgba(255, 194, 26, .35); border-radius: 6px; }
+    .cert-modal-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: #fff;
+      margin-bottom: 4px;
+      padding-right: 40px;
+    }
+    .cert-modal-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .cert-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .04);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: background .2s, transform .2s;
+      z-index: 2;
+    }
+    .cert-modal-close:hover {
+      background: rgba(255, 255, 255, .1);
+      transform: rotate(90deg);
+    }
+    .cert-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .cert-field label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #d8d8d8;
+      letter-spacing: .02em;
+    }
+    .cert-field label .req { color: var(--yellow); margin-left: 2px; }
+    .cert-field input,
+    .cert-field select,
+    .cert-field textarea {
+      width: 100%;
+      padding: 12px 14px;
+      background: #101010;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-input);
+      color: var(--text);
+      font-size: 14px;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+      font-family: inherit;
+    }
+    .cert-field input::placeholder,
+    .cert-field textarea::placeholder { color: #555; }
+    .cert-field input:focus,
+    .cert-field select:focus,
+    .cert-field textarea:focus {
+      border-color: var(--yellow);
+      box-shadow: 0 0 0 3px rgba(255, 193, 7, .18);
+    }
+    .cert-field.invalid input,
+    .cert-field.invalid select,
+    .cert-field.invalid textarea {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 3px rgba(255, 90, 90, .15);
+    }
+    .cert-field-error {
+      font-size: 11.5px;
+      color: var(--danger);
+      min-height: 14px;
+      line-height: 1.3;
+    }
+    .cert-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .cert-radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cert-radio-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #101010;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      font-size: 13.5px;
+      color: #d8d8d8;
+    }
+    .cert-radio-option:hover {
+      border-color: rgba(255, 193, 7, .4);
+    }
+    .cert-radio-option input[type="radio"] {
+      accent-color: var(--yellow);
+      width: 16px;
+      height: 16px;
+      flex: none;
+      cursor: pointer;
+    }
+    .cert-radio-option.selected {
+      border-color: var(--yellow);
+      background: rgba(255, 193, 7, .08);
+    }
+    .cert-checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #101010;
+      font-size: 13px;
+      color: #d8d8d8;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+    .cert-checkbox-row input[type="checkbox"] {
+      accent-color: var(--yellow);
+      width: 18px;
+      height: 18px;
+      flex: none;
+      margin-top: 2px;
+      cursor: pointer;
+    }
+    .cert-char-counter {
+      font-size: 11px;
+      color: var(--muted-2);
+      text-align: right;
+    }
+    .cert-submit-btn {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 20px;
+      border-radius: var(--radius-pill);
+      background: var(--yellow-grad);
+      color: #111;
+      font-weight: 800;
+      font-size: 14.5px;
+      letter-spacing: .03em;
+      box-shadow: 0 10px 26px rgba(255, 179, 0, .35);
+      transition: transform .25s ease, box-shadow .25s ease;
+      margin-top: 6px;
+      border: none;
+      cursor: pointer;
+    }
+    .cert-submit-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(255, 179, 0, .5);
+    }
+    .cert-submit-btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+    .cert-honeypot {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      opacity: 0;
+      height: 0;
+      width: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .cert-success {
+      text-align: center;
+      padding: 10px 0;
+    }
+    .cert-success-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      background: rgba(34, 197, 94, .12);
+      border: 1px solid rgba(34, 197, 94, .5);
+      display: grid;
+      place-items: center;
+    }
+    .cert-success-icon svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--success);
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .cert-success h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .cert-success p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .cert-ref-code {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: clamp(28px, 6vw, 42px);
+      letter-spacing: .1em;
+      color: var(--yellow);
+      background: rgba(255, 193, 7, .08);
+      border: 2px dashed rgba(255, 193, 7, .5);
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin: 0 auto 12px;
+      display: inline-block;
+      min-width: 200px;
+      word-break: break-all;
+    }
+    .cert-ref-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .04);
+      color: #cfcfcf;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, color .2s;
+      margin-bottom: 20px;
+    }
+    .cert-ref-copy:hover {
+      background: rgba(255, 193, 7, .12);
+      border-color: rgba(255, 193, 7, .5);
+      color: var(--yellow);
+    }
+    .cert-ref-copy.copied {
+      border-color: var(--success);
+      color: var(--success);
+    }
+    .cert-ref-copy svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .cert-success-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .cert-btn-outline {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      background: transparent;
+      border: 1px solid var(--border);
+      color: #fff;
+      font-weight: 700;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+    .cert-btn-outline:hover {
+      background: rgba(255, 193, 7, .08);
+      border-color: rgba(255, 193, 7, .5);
+      transform: translateY(-2px);
+    }
+
+    /* =========================================================
+       CERTIFICATE SEARCH TABS
+       ========================================================= */
+    .cert-search-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      background: #101010;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px;
+    }
+    .cert-tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 12.5px;
+      cursor: pointer;
+      border: 0;
+      transition: background .2s, color .2s;
+      font-family: inherit;
+    }
+    .cert-tab.active {
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: #111;
+    }
+    .cert-tab-panel { display: none; }
+    .cert-tab-panel.active { display: block; }
+
+    .cert-status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .cert-status-chip.pending {
+      background: rgba(255, 193, 7, .14);
+      color: var(--yellow);
+      border: 1px solid rgba(255, 193, 7, .4);
+    }
+    .cert-status-chip.approved {
+      background: rgba(34, 197, 94, .14);
+      color: var(--success);
+      border: 1px solid rgba(34, 197, 94, .5);
+    }
+    .cert-status-chip.rejected {
+      background: rgba(255, 90, 90, .14);
+      color: var(--danger);
+      border: 1px solid rgba(255, 90, 90, .45);
+    }
+    .cert-status-chip.verified {
+      background: rgba(34, 197, 94, .14);
+      color: var(--success);
+      border: 1px solid rgba(34, 197, 94, .5);
+    }
+
+    .cert-info-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #c9c9c9;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .cert-info-row strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* =========================================================
+       CERTIFICATE DESIGN (1200x850 landscape)
+       ========================================================= */
+    .cert-certificate {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      aspect-ratio: 1200 / 850;
+      margin: 0 auto;
+      background: #0b0b0b;
+      background-image:
+        radial-gradient(ellipse at 50% 50%, rgba(30, 30, 40, .9) 0%, #0b0b0b 70%),
+        linear-gradient(160deg, #141420, #0b0b0b);
+      border: 3px solid #d4a017;
+      border-radius: 12px;
+      padding: clamp(12px, 2.5%, 28px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .8), 0 0 0 1px rgba(255, 213, 79, .3), inset 0 0 80px rgba(0, 0, 0, .6);
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .cert-certificate-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(212, 160, 23, .6);
+      border-radius: 6px;
+      padding: clamp(16px, 3.5%, 40px) clamp(20px, 4%, 60px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      overflow: hidden;
+    }
+    .cert-watermark {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .06;
+    }
+    .cert-watermark svg {
+      width: 100%;
+      height: 100%;
+    }
+    .cert-certificate-inner > * {
+      position: relative;
+      z-index: 1;
+    }
+    .cert-top-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: clamp(6px, 1.5%, 16px);
+    }
+    .cert-top-bar img {
+      width: clamp(48px, 7%, 80px);
+      height: auto;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    .cert-brand-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: clamp(16px, 2.2%, 26px);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ffd54f, #d4a017);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    .cert-main-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: clamp(20px, 3.6%, 42px);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ffd54f 0%, #d4a017 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      margin: clamp(4px, 1%, 12px) 0 clamp(2px, .5%, 6px);
+      line-height: 1.2;
+    }
+    .cert-sub-title {
+      font-size: clamp(10px, 1.3%, 15px);
+      font-weight: 400;
+      color: #b0b0b0;
+      letter-spacing: .08em;
+      margin-bottom: clamp(6px, 1.5%, 18px);
+      font-family: 'Poppins', sans-serif;
+    }
+    .cert-recipient {
+      font-family: 'Great Vibes', 'Playfair Display', cursive;
+      font-size: clamp(28px, 6%, 72px);
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 1.1;
+      margin: clamp(2px, .5%, 8px) 0;
+      text-shadow: 0 0 30px rgba(255, 213, 79, .35);
+      max-width: 90%;
+      word-break: break-word;
+      border-bottom: 2px solid rgba(212, 160, 23, .6);
+      padding-bottom: clamp(4px, 1%, 12px);
+      display: inline-block;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .cert-completion-text {
+      font-size: clamp(11px, 1.5%, 17px);
+      color: #c9c9c9;
+      margin: clamp(4px, 1%, 12px) 0;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: .02em;
+      line-height: 1.6;
+      max-width: 80%;
+    }
+    .cert-course-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: clamp(14px, 2.4%, 28px);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #ffd54f;
+      margin: clamp(2px, .6%, 8px) 0;
+      line-height: 1.3;
+      max-width: 90%;
+      word-break: break-word;
+    }
+    .cert-course-desc {
+      font-size: clamp(10px, 1.4%, 15px);
+      color: #a0a0a0;
+      margin: clamp(2px, .5%, 8px) 0;
+      max-width: 80%;
+      line-height: 1.55;
+      font-style: italic;
+    }
+    .cert-meta-small {
+      font-size: clamp(9px, 1.2%, 13px);
+      color: #8a8a8a;
+      margin: clamp(2px, .5%, 6px) 0;
+      letter-spacing: .04em;
+    }
+    .cert-bottom-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: auto;
+      padding-top: clamp(8px, 2%, 20px);
+      gap: clamp(8px, 2%, 20px);
+      flex-wrap: wrap;
+    }
+    .cert-bottom-left {
+      text-align: left;
+      flex: 1 1 0;
+      min-width: 120px;
+    }
+    .cert-bottom-center {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cert-bottom-right {
+      text-align: right;
+      flex: 1 1 0;
+      min-width: 140px;
+    }
+    .cert-bottom-label {
+      font-size: clamp(8px, 1%, 11px);
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #8a8a8a;
+      margin-bottom: 4px;
+    }
+    .cert-bottom-value {
+      font-size: clamp(10px, 1.3%, 14px);
+      font-weight: 600;
+      color: #e3e3e3;
+      line-height: 1.4;
+    }
+    .cert-seal {
+      width: clamp(50px, 8%, 90px);
+      height: clamp(50px, 8%, 90px);
+      flex: none;
+    }
+    .cert-signature {
+      font-family: 'Mrs Saint Delafield', 'Great Vibes', cursive;
+      font-size: clamp(22px, 4%, 44px);
+      color: #ffd54f;
+      line-height: 1;
+      margin-bottom: 4px;
+      transform: rotate(-4deg);
+      display: inline-block;
+      text-shadow: 0 0 20px rgba(255, 213, 79, .3);
+    }
+    .cert-sign-line {
+      width: clamp(100px, 20%, 200px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #d4a017, transparent);
+      margin: 0 auto 6px;
+    }
+    .cert-sign-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(8px, 1.1%, 12px);
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #e3e3e3;
+    }
+    .cert-sign-title {
+      font-size: clamp(7px, .9%, 10px);
+      color: #8a8a8a;
+      letter-spacing: .06em;
+      margin-top: 2px;
+    }
+    .cert-cert-id-bar {
+      position: absolute;
+      bottom: clamp(6px, 1.5%, 14px);
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 2;
+    }
+    .cert-cert-id {
+      font-family: 'Courier New', monospace;
+      font-size: clamp(10px, 1.3%, 14px);
+      font-weight: 700;
+      color: #ffd54f;
+      letter-spacing: .12em;
+    }
+    .cert-cert-id-note {
+      font-size: clamp(7px, .9%, 10px);
+      color: #7a7a7a;
+      letter-spacing: .04em;
+      margin-top: 2px;
+    }
+    .cert-download-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .cert-download-actions .btn {
+      min-width: 180px;
+    }
+    .cert-download-actions .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: #fff;
+      box-shadow: none;
+    }
+    .cert-download-actions .btn-outline:hover {
+      background: rgba(255, 255, 255, .06);
+      border-color: rgba(255, 193, 7, .5);
+    }
+
+    /* =========================================================
+       ADMIN: CERTIFICATES TAB
+       ========================================================= */
+    .cert-admin-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .cert-admin-card {
+      background: #101010;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color .2s;
+    }
+    .cert-admin-card:hover {
+      border-color: rgba(255, 193, 7, .3);
+    }
+    .cert-admin-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .cert-admin-card-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: #fff;
+      line-height: 1.3;
+    }
+    .cert-admin-card-sub {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .cert-admin-card-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12.5px;
+      color: #c9c9c9;
+    }
+    .cert-admin-card-rows strong {
+      color: #fff;
+      font-weight: 600;
+    }
+    .cert-admin-card-rows a {
+      color: var(--yellow);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .cert-admin-card-rows a:hover {
+      color: #fff;
+    }
+    .cert-admin-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .cert-admin-actions button,
+    .cert-admin-actions a {
+      flex: 1;
+      min-width: 70px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, transform .2s, border-color .2s;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: #ccc;
+      text-align: center;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-family: inherit;
+      line-height: 1.3;
+    }
+    .cert-admin-actions button:hover,
+    .cert-admin-actions a:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255, 193, 7, .5);
+      color: #fff;
+    }
+    .cert-admin-actions .cert-admin-approve {
+      background: rgba(34, 197, 94, .12);
+      border-color: rgba(34, 197, 94, .5);
+      color: var(--success);
+    }
+    .cert-admin-actions .cert-admin-approve:hover {
+      background: rgba(34, 197, 94, .2);
+    }
+    .cert-admin-actions .cert-admin-reject {
+      background: rgba(255, 90, 90, .12);
+      border-color: rgba(255, 90, 90, .5);
+      color: var(--danger);
+    }
+    .cert-admin-actions .cert-admin-reject:hover {
+      background: rgba(255, 90, 90, .2);
+    }
+    .cert-admin-actions .cert-admin-revoke {
+      background: rgba(255, 138, 31, .12);
+      border-color: rgba(255, 138, 31, .5);
+      color: #ff8a1f;
+    }
+    .cert-admin-actions .cert-admin-revoke:hover {
+      background: rgba(255, 138, 31, .2);
+    }
+    .cert-admin-actions .cert-admin-edit {
+      border-color: rgba(255, 193, 7, .5);
+      color: var(--yellow);
+    }
+    .cert-admin-actions .cert-admin-edit:hover {
+      background: rgba(255, 193, 7, .1);
+    }
+    .cert-admin-actions .cert-admin-delete {
+      border-color: rgba(255, 90, 90, .4);
+      color: var(--danger);
+    }
+    .cert-admin-actions .cert-admin-delete:hover {
+      background: rgba(255, 90, 90, .1);
+    }
+    .cert-admin-actions .cert-admin-preview {
+      border-color: var(--line);
+      color: #ccc;
+    }
+    .cert-admin-actions .cert-admin-preview:hover {
+      border-color: #fff;
+      color: #fff;
+    }
+    .cert-admin-actions .cert-admin-copy {
+      border-color: rgba(255, 193, 7, .5);
+      color: var(--yellow);
+    }
+    .cert-admin-actions .cert-admin-copy:hover {
+      background: rgba(255, 193, 7, .1);
+    }
+    .cert-admin-actions .cert-admin-tg-msg {
+      border-color: var(--telegram);
+      color: var(--telegram);
+    }
+    .cert-admin-actions .cert-admin-tg-msg:hover {
+      background: rgba(34, 158, 217, .12);
+    }
+    .cert-admin-actions .cert-admin-open-tg {
+      border-color: var(--telegram);
+      color: var(--telegram);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .cert-admin-actions .cert-admin-open-tg:hover {
+      background: rgba(34, 158, 217, .12);
+    }
+    .cert-admin-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+    .cert-filter-chip {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #101010;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .cert-filter-chip:hover {
+      border-color: rgba(255, 193, 7, .4);
+      color: #fff;
+    }
+    .cert-filter-chip.active {
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: #111;
+      border-color: transparent;
+    }
+    .cert-admin-search {
+      flex: 1;
+      min-width: 140px;
+      padding: 9px 14px;
+      background: #101010;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      font-family: inherit;
+    }
+    .cert-admin-search:focus {
+      border-color: var(--yellow);
+    }
+    .cert-admin-empty {
+      text-align: center;
+      color: var(--muted-2);
+      padding: 30px 16px;
+      font-size: 13px;
+    }
+    .cert-preview-wrap {
+      margin-top: 14px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #0b0b0b;
+      padding: 8px;
+    }
+    .cert-preview-wrap .cert-certificate {
+      width: 100% !important;
+      max-width: 100% !important;
+      aspect-ratio: 1200 / 850;
+      border-width: 2px !important;
+      border-radius: 6px !important;
+      padding: 8px !important;
+    }
+    .cert-preview-wrap .cert-certificate-inner {
+      padding: 10px 12px !important;
+    }
+    .cert-preview-wrap .cert-recipient {
+      font-size: clamp(16px, 3vw, 36px) !important;
+    }
+    .cert-preview-wrap .cert-main-title {
+      font-size: clamp(12px, 2vw, 22px) !important;
+    }
+    .cert-preview-wrap .cert-course-name {
+      font-size: clamp(10px, 1.6vw, 18px) !important;
+    }
+    .cert-preview-wrap .cert-bottom-row {
+      gap: 6px !important;
+    }
+    .cert-preview-wrap .cert-seal {
+      width: clamp(30px, 5vw, 50px) !important;
+      height: clamp(30px, 5vw, 50px) !important;
+    }
+    .cert-preview-wrap .cert-signature {
+      font-size: clamp(14px, 2.5vw, 26px) !important;
+    }
+
+    /* Print only certificate */
+    @media print {
+      body.cert-print-mode * {
+        visibility: hidden;
+      }
+      body.cert-print-mode .cert-certificate,
+      body.cert-print-mode .cert-certificate * {
+        visibility: visible;
+      }
+      body.cert-print-mode .cert-certificate {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        max-width: 100%;
+        border: 3px solid #d4a017 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        aspect-ratio: auto;
+        page-break-inside: avoid;
+      }
+      @page {
+        size: A4 landscape;
+        margin: 0.5cm;
+      }
+    }
   </style>
 </head>
 <body>
@@ -4332,6 +5442,7 @@
     <nav class="links" aria-label="Main">
       <a class="active" href="#home" data-i18n="nav_home">Home</a>
       <a href="#our-services" data-i18n="nav_courses">Courses &amp; Services</a>
+      <a href="#certificate" data-i18n="nav_certificate">Certificate</a>
       <a href="#contact" id="navContactLink" data-i18n="nav_contact">Contact Us</a>
     </nav>
     <div class="actions">
@@ -4346,6 +5457,7 @@
   <nav class="menu" id="menu" aria-label="Mobile">
     <a class="active" href="#home" data-i18n="nav_home">Home</a>
     <a href="#our-services" data-i18n="nav_courses">Courses &amp; Services</a>
+    <a href="#certificate" data-i18n="nav_certificate">Certificate</a>
     <a href="#contact" data-i18n="nav_contact">Contact Us</a>
     <a href="#services" class="enroll-trigger" data-i18n="nav_enroll">Enroll Now</a>
     <div class="menu-lang" role="group" aria-label="Language">
@@ -4771,6 +5883,40 @@
   </section>
 
   <!-- =========================================================
+       CERTIFICATE SECTION
+       ========================================================= -->
+  <section class="cert-banner fade-up" id="certificate" aria-labelledby="certBannerTitle">
+    <div class="cert-icon-float" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ffc107" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 15l-2 5-2-5-2-5 4-7 4 7 4-7-2 5-2 5z"/>
+        <circle cx="12" cy="12" r="1" fill="#ffc107"/>
+        <rect x="4" y="3" width="16" height="18" rx="2" ry="2"/>
+        <path d="M8 7h8M8 11h4"/>
+      </svg>
+    </div>
+    <h2 class="cert-banner-title" id="certBannerTitle">Get Your Certificate</h2>
+    <p class="cert-banner-sub">Completed your course with us? Apply for your official SA Trader certificate of completion.</p>
+    <div class="cert-banner-chips">
+      <span class="cert-chip">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        Verified with a unique ID
+      </span>
+      <span class="cert-chip">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Downloadable PNG
+      </span>
+      <span class="cert-chip">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+        Shareable proof of learning
+      </span>
+    </div>
+    <div class="cert-banner-actions">
+      <button class="btn" id="certApplyBtn" type="button">Apply for Certificate</button>
+      <button class="btn ghost" id="certSearchBtn" type="button">Search Certificate</button>
+    </div>
+  </section>
+
+  <!-- =========================================================
        CONNECT WITH US
        ========================================================= -->
   <section class="cw fade-up" id="connect" aria-labelledby="cwHeading">
@@ -5011,6 +6157,167 @@
 </div>
 
 <!-- =========================================================
+     CERTIFICATE MODALS
+     ========================================================= -->
+<div class="cert-modal-backdrop" id="certApplyBackdrop" aria-hidden="true">
+  <div class="cert-modal" role="dialog" aria-modal="true" aria-labelledby="certApplyTitle">
+    <button class="cert-modal-close" id="certApplyClose" type="button" aria-label="Close">✕</button>
+    <h3 class="cert-modal-title" id="certApplyTitle">Apply for Certificate</h3>
+    <p class="cert-modal-sub">Fill in your details below. All fields marked with * are required.</p>
+    <form id="certApplyForm" novalidate>
+      <div class="cert-field" id="certFieldName">
+        <label for="certName">Full Name <span class="req">*</span></label>
+        <input type="text" id="certName" name="name" placeholder="Your full name as it should appear on the certificate" maxlength="60" required>
+        <span class="cert-field-error" id="certErrName"></span>
+      </div>
+      <div class="cert-field" id="certFieldProfession">
+        <label for="certProfession">Profession <span class="req">*</span></label>
+        <input type="text" id="certProfession" name="profession" placeholder="Student, Business, Job holder" maxlength="60" required>
+        <span class="cert-field-error" id="certErrProfession"></span>
+      </div>
+      <div class="cert-field" id="certFieldTelegram">
+        <label for="certTelegram">Telegram Username <span class="req">*</span></label>
+        <input type="text" id="certTelegram" name="telegram" placeholder="@yourusername" maxlength="32" required>
+        <span class="cert-field-error" id="certErrTelegram"></span>
+      </div>
+      <div class="cert-field" id="certFieldCourse">
+        <label for="certCourse">Course / Subject <span class="req">*</span></label>
+        <select id="certCourse" name="course" required>
+          <option value="">Select a course…</option>
+        </select>
+        <span class="cert-field-error" id="certErrCourse"></span>
+      </div>
+      <div class="cert-field" id="certFieldCourseOther" style="display:none;">
+        <label for="certCourseOther">Please specify your course <span class="req">*</span></label>
+        <input type="text" id="certCourseOther" name="courseOther" placeholder="Enter your course name" maxlength="80">
+        <span class="cert-field-error" id="certErrCourseOther"></span>
+      </div>
+      <div class="cert-row">
+        <div class="cert-field" id="certFieldBatchMonth">
+          <label for="certBatchMonth">Batch / Completion Month <span class="req">*</span></label>
+          <select id="certBatchMonth" name="batchMonth" required>
+            <option value="">Month</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+          </select>
+          <span class="cert-field-error" id="certErrBatchMonth"></span>
+        </div>
+        <div class="cert-field" id="certFieldBatchYear">
+          <label for="certBatchYear">Year <span class="req">*</span></label>
+          <select id="certBatchYear" name="batchYear" required>
+            <option value="">Year</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+          </select>
+          <span class="cert-field-error" id="certErrBatchYear"></span>
+        </div>
+      </div>
+      <div class="cert-field" id="certFieldLearnedVia">
+        <label>How did you learn with us? <span class="req">*</span></label>
+        <div class="cert-radio-group">
+          <label class="cert-radio-option">
+            <input type="radio" name="learnedVia" value="Live classes"> Live classes
+          </label>
+          <label class="cert-radio-option">
+            <input type="radio" name="learnedVia" value="One-to-one mentorship"> One-to-one mentorship
+          </label>
+          <label class="cert-radio-option">
+            <input type="radio" name="learnedVia" value="Recorded classes"> Recorded classes
+          </label>
+          <label class="cert-radio-option">
+            <input type="radio" name="learnedVia" value="Other"> Other
+          </label>
+        </div>
+        <span class="cert-field-error" id="certErrLearnedVia"></span>
+      </div>
+      <div class="cert-field" id="certFieldFeedback">
+        <label for="certFeedback">Short feedback about the course (optional)</label>
+        <textarea id="certFeedback" name="feedback" rows="3" maxlength="300" placeholder="Share your experience…"></textarea>
+        <div class="cert-char-counter"><span id="certFeedbackCount">0</span>/300</div>
+        <span class="cert-field-error" id="certErrFeedback"></span>
+      </div>
+      <div class="cert-field" id="certFieldConsent">
+        <label class="cert-checkbox-row">
+          <input type="checkbox" id="certConsent" name="consent" required>
+          <span>I confirm that I have completed this course and the information above is correct. <span class="req">*</span></span>
+        </label>
+        <span class="cert-field-error" id="certErrConsent"></span>
+      </div>
+      <div class="cert-honeypot" aria-hidden="true">
+        <label for="certWebsite">Website</label>
+        <input type="text" id="certWebsite" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <button class="cert-submit-btn" type="submit" id="certSubmitBtn">Submit Application</button>
+    </form>
+    <div id="certApplySuccess" style="display:none;">
+      <div class="cert-success">
+        <div class="cert-success-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h3>Application submitted!</h3>
+        <p>Save this reference code. Admin will review your application. Use 'Check Application Status' to see when your certificate is ready.</p>
+        <div class="cert-ref-code" id="certRefDisplay">------</div>
+        <button class="cert-ref-copy" id="certRefCopy" type="button">
+          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+          Copy reference code
+        </button>
+        <div class="cert-success-actions">
+          <button class="btn" id="certSuccessCheckStatus" type="button">Check Application Status</button>
+          <button class="cert-btn-outline" id="certSuccessClose" type="button">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cert-modal-backdrop" id="certSearchBackdrop" aria-hidden="true">
+  <div class="cert-modal" role="dialog" aria-modal="true" aria-labelledby="certSearchTitle">
+    <button class="cert-modal-close" id="certSearchClose" type="button" aria-label="Close">✕</button>
+    <h3 class="cert-modal-title" id="certSearchTitle">Search Certificate</h3>
+    <p class="cert-modal-sub">Look up your certificate by its unique ID or check your application status using your reference code.</p>
+    <div class="cert-search-tabs">
+      <button class="cert-tab active" data-cert-tab="uid" type="button">Search by Certificate ID</button>
+      <button class="cert-tab" data-cert-tab="status" type="button">Check Application Status</button>
+    </div>
+    <div class="cert-tab-panel active" id="certPanelUid">
+      <div class="cert-field" id="certFieldUid">
+        <label for="certUidInput">Certificate ID (6-digit UID)</label>
+        <input type="text" id="certUidInput" placeholder="e.g. 123456" maxlength="6" inputmode="numeric" pattern="[0-9]*">
+        <span class="cert-field-error" id="certErrUid"></span>
+      </div>
+      <button class="cert-submit-btn" id="certUidSearchBtn" type="button">Search Certificate</button>
+      <div id="certUidResult" style="margin-top:20px;"></div>
+    </div>
+    <div class="cert-tab-panel" id="certPanelStatus">
+      <div class="cert-field" id="certFieldRef">
+        <label for="certRefInput">Reference Code</label>
+        <input type="text" id="certRefInput" placeholder="e.g. 123456" maxlength="6" inputmode="numeric" pattern="[0-9]*">
+        <span class="cert-field-error" id="certErrRef"></span>
+      </div>
+      <div class="cert-field" id="certFieldStatusTelegram">
+        <label for="certStatusTelegram">Telegram Username</label>
+        <input type="text" id="certStatusTelegram" placeholder="@yourusername" maxlength="32">
+        <span class="cert-field-error" id="certErrStatusTelegram"></span>
+      </div>
+      <button class="cert-submit-btn" id="certStatusSearchBtn" type="button">Check Status</button>
+      <div id="certStatusResult" style="margin-top:20px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
      REVIEWS OVERLAY (See More)
      ========================================================= -->
 <div class="rv-overlay" id="rvOverlay" role="dialog" aria-modal="true" aria-labelledby="rvOverlayTitle" aria-hidden="true">
@@ -5216,12 +6523,13 @@
 <div class="admin-overlay" id="adminOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Admin panel">
   <div class="admin-modal" id="adminModal">
     <h2>Admin Panel</h2>
-    <p class="admin-sub">Manage the countdown and feedbacks. Changes are saved to Firebase and appear to all visitors instantly.</p>
+    <p class="admin-sub">Manage the countdown, feedbacks and certificates. Changes are saved to Firebase and appear to all visitors instantly.</p>
 
-    <!-- ===== FEEDBACK SYSTEM: admin tabs ===== -->
+    <!-- ===== ADMIN TABS ===== -->
     <div class="admin-tabs">
       <button class="admin-tab active" data-admin-tab="countdown">Countdown</button>
       <button class="admin-tab" data-admin-tab="feedbacks">Feedbacks</button>
+      <button class="admin-tab" data-admin-tab="certificates">Certificates</button>
     </div>
 
     <!-- Countdown tab -->
@@ -5272,7 +6580,7 @@
       <div class="admin-error" id="adminError" style="margin-top:12px;"></div>
     </div>
 
-    <!-- ===== FEEDBACK SYSTEM: feedbacks tab ===== -->
+    <!-- ===== FEEDBACKS TAB ===== -->
     <div id="adminFeedbacksPanel" class="admin-tab-panel">
       <div class="fb-toolbar">
         <input type="text" id="fbSearch" placeholder="Search feedbacks by name…">
@@ -5283,6 +6591,21 @@
         <div class="fb-empty">Loading feedbacks…</div>
       </div>
       <div class="admin-error" id="fbError" style="margin-top:12px;"></div>
+    </div>
+
+    <!-- ===== ADMIN: CERTIFICATES TAB ===== -->
+    <div id="adminCertificatesPanel" class="admin-tab-panel">
+      <div class="cert-admin-filter-bar" id="certAdminFilterBar">
+        <button class="cert-filter-chip active" data-cert-filter="all" type="button">All</button>
+        <button class="cert-filter-chip" data-cert-filter="pending" type="button">Pending</button>
+        <button class="cert-filter-chip" data-cert-filter="approved" type="button">Approved</button>
+        <button class="cert-filter-chip" data-cert-filter="rejected" type="button">Rejected</button>
+        <input type="text" class="cert-admin-search" id="certAdminSearch" placeholder="Search by name, Telegram or ref code…">
+      </div>
+      <div class="cert-admin-list" id="certAdminList">
+        <div class="cert-admin-empty">Loading certificate requests…</div>
+      </div>
+      <div class="admin-error" id="certAdminError" style="margin-top:12px;"></div>
     </div>
   </div>
 </div>
@@ -5359,6 +6682,7 @@
 const I18N = {
   en: {
     nav_home: "Home", nav_courses: "Courses & Services", nav_contact: "Contact Us", nav_enroll: "Enroll Now",
+    nav_certificate: "Certificate",
     hero_a: "bangladesh top 1", hero_b: "professional trading education",
     hero_sub: "Learn forex trading with a trusted mentor. Manage risk and trade with confidence.",
     hero_cta: "Enroll Now",
@@ -5416,6 +6740,7 @@ const I18N = {
   },
   bn: {
     nav_home: "হোম", nav_courses: "কোর্স ও সার্ভিস", nav_contact: "যোগাযোগ করুন", nav_enroll: "এনরোল করুন",
+    nav_certificate: "সার্টিফিকেট",
     hero_a: "বাংলাদেশের ১ নম্বর", hero_b: "প্রফেশনাল ট্রেডিং এডুকেশন",
     hero_sub: "বিশ্বস্ত মেন্টরের সাথে Forex ট্রেডিং শিখুন। Risk ম্যানেজ করে আত্মবিশ্বাসের সাথে ট্রেড করুন।",
     hero_cta: "এনরোল করুন",
@@ -5719,6 +7044,21 @@ function renderSmcLiquidityVideos() {
   renderSmcVideoGroup('smcVideosGrid', SMC_VIDEOS, 'SMC');
   renderSmcVideoGroup('liquidityVideosGrid', LIQUIDITY_VIDEOS, 'Liquidity');
 }
+
+/* =========================================================
+   CERTIFICATE CONFIG
+   ========================================================= */
+// Edit these course names to match your services
+const CERT_COURSES = [
+  "Personal 1 to 1",
+  "SA TRADER #01 Course",
+  "SMC & Liquidity Course",
+  "Trading Mindset",
+  "Other"
+];
+
+// Signer title constant
+const CERT_SIGNER_TITLE = "Founder & Lead Mentor, SA Trader";
 
 /* =========================================================
    setLang(lang)
@@ -7026,6 +8366,446 @@ Status: ${o.status}`;
 })();
 
 /* =========================================================
+   CERTIFICATE PUBLIC SECTION
+   ========================================================= */
+(function () {
+  // Render courses into dropdown
+  const courseSelect = document.getElementById('certCourse');
+  if (courseSelect) {
+    courseSelect.innerHTML = '<option value="">Select a course…</option>';
+    CERT_COURSES.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c;
+      opt.textContent = c;
+      courseSelect.appendChild(opt);
+    });
+  }
+
+  // Toggle "Other" field
+  const courseOtherField = document.getElementById('certFieldCourseOther');
+  if (courseSelect && courseOtherField) {
+    courseSelect.addEventListener('change', () => {
+      if (courseSelect.value === 'Other') {
+        courseOtherField.style.display = '';
+      } else {
+        courseOtherField.style.display = 'none';
+        document.getElementById('certErrCourseOther').textContent = '';
+      }
+    });
+  }
+
+  // Feedback char counter
+  const feedbackEl = document.getElementById('certFeedback');
+  const feedbackCount = document.getElementById('certFeedbackCount');
+  if (feedbackEl && feedbackCount) {
+    feedbackEl.addEventListener('input', () => {
+      feedbackCount.textContent = String(feedbackEl.value.length);
+    });
+  }
+
+  // Radio styling
+  document.querySelectorAll('.cert-radio-option input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.cert-radio-option').forEach(opt => {
+        opt.classList.toggle('selected', opt.querySelector('input').checked);
+      });
+    });
+  });
+
+  // ---- Application modal ----
+  const applyBackdrop = document.getElementById('certApplyBackdrop');
+  const applyClose = document.getElementById('certApplyClose');
+  const applyForm = document.getElementById('certApplyForm');
+  const applySuccess = document.getElementById('certApplySuccess');
+  const refDisplay = document.getElementById('certRefDisplay');
+  const refCopy = document.getElementById('certRefCopy');
+  const successCheckStatus = document.getElementById('certSuccessCheckStatus');
+  const successClose = document.getElementById('certSuccessClose');
+  const submitBtn = document.getElementById('certSubmitBtn');
+
+  let lastFocusedApply = null;
+
+  function openApplyModal() {
+    lastFocusedApply = document.activeElement;
+    applyBackdrop.classList.add('open');
+    applyBackdrop.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    applyForm.style.display = '';
+    applySuccess.style.display = 'none';
+    setTimeout(() => document.getElementById('certName').focus(), 80);
+  }
+
+  function closeApplyModal() {
+    applyBackdrop.classList.remove('open');
+    applyBackdrop.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocusedApply && lastFocusedApply.focus) lastFocusedApply.focus();
+  }
+
+  document.getElementById('certApplyBtn').addEventListener('click', openApplyModal);
+  applyClose.addEventListener('click', closeApplyModal);
+  applyBackdrop.addEventListener('click', (e) => { if (e.target === applyBackdrop) closeApplyModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && applyBackdrop.classList.contains('open')) closeApplyModal();
+  });
+
+  // ---- Search modal ----
+  const searchBackdrop = document.getElementById('certSearchBackdrop');
+  const searchClose = document.getElementById('certSearchClose');
+
+  function openSearchModal() {
+    searchBackdrop.classList.add('open');
+    searchBackdrop.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('certUidInput').focus(), 80);
+  }
+
+  function closeSearchModal() {
+    searchBackdrop.classList.remove('open');
+    searchBackdrop.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('certSearchBtn').addEventListener('click', openSearchModal);
+  searchClose.addEventListener('click', closeSearchModal);
+  searchBackdrop.addEventListener('click', (e) => { if (e.target === searchBackdrop) closeSearchModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && searchBackdrop.classList.contains('open')) closeSearchModal();
+  });
+
+  // Tabs inside search
+  document.querySelectorAll('.cert-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.certTab;
+      document.querySelectorAll('.cert-tab').forEach(t => t.classList.toggle('active', t.dataset.certTab === target));
+      document.querySelectorAll('.cert-tab-panel').forEach(p => p.classList.toggle('active', p.id === 'certPanel' + target.charAt(0).toUpperCase() + target.slice(1)));
+    });
+  });
+
+  // ---- Form submission ----
+  let lastSubmitTime = 0;
+  applyForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    // Honeypot
+    const honeypot = document.getElementById('certWebsite').value;
+    if (honeypot) return;
+    // Rate limit
+    const now = Date.now();
+    if (now - lastSubmitTime < 60000) {
+      alert('Please wait a moment before submitting again.');
+      return;
+    }
+
+    // Validate
+    let valid = true;
+    const name = document.getElementById('certName').value.trim();
+    const profession = document.getElementById('certProfession').value.trim();
+    let telegram = document.getElementById('certTelegram').value.trim();
+    const courseSel = document.getElementById('certCourse').value;
+    const courseOther = document.getElementById('certCourseOther').value.trim();
+    const batchMonth = document.getElementById('certBatchMonth').value;
+    const batchYear = document.getElementById('certBatchYear').value;
+    const learnedVia = document.querySelector('input[name="learnedVia"]:checked');
+    const feedback = document.getElementById('certFeedback').value.trim();
+    const consent = document.getElementById('certConsent').checked;
+
+    // Clear errors
+    document.querySelectorAll('.cert-field-error').forEach(el => el.textContent = '');
+    document.querySelectorAll('.cert-field').forEach(el => el.classList.remove('invalid'));
+
+    if (!name || name.length < 2 || name.length > 60) {
+      document.getElementById('certErrName').textContent = 'Please enter a valid name (2–60 characters).';
+      document.getElementById('certFieldName').classList.add('invalid');
+      valid = false;
+    }
+    if (!profession || profession.length < 2 || profession.length > 60) {
+      document.getElementById('certErrProfession').textContent = 'Please enter your profession (2–60 characters).';
+      document.getElementById('certFieldProfession').classList.add('invalid');
+      valid = false;
+    }
+    // Telegram
+    if (telegram && !telegram.startsWith('@')) telegram = '@' + telegram;
+    if (!telegram || !/^@[A-Za-z0-9_]{4,31}$/.test(telegram)) {
+      document.getElementById('certErrTelegram').textContent = 'Enter a valid Telegram username (letters, numbers, underscore, 5–32 chars).';
+      document.getElementById('certFieldTelegram').classList.add('invalid');
+      valid = false;
+    }
+    // Course
+    let finalCourse = courseSel;
+    if (courseSel === 'Other') {
+      if (!courseOther) {
+        document.getElementById('certErrCourseOther').textContent = 'Please specify your course.';
+        document.getElementById('certFieldCourseOther').classList.add('invalid');
+        valid = false;
+      } else {
+        finalCourse = courseOther;
+      }
+    }
+    if (!courseSel) {
+      document.getElementById('certErrCourse').textContent = 'Please select a course.';
+      document.getElementById('certFieldCourse').classList.add('invalid');
+      valid = false;
+    }
+    if (!batchMonth) {
+      document.getElementById('certErrBatchMonth').textContent = 'Select month.';
+      valid = false;
+    }
+    if (!batchYear) {
+      document.getElementById('certErrBatchYear').textContent = 'Select year.';
+      valid = false;
+    }
+    if (!learnedVia) {
+      document.getElementById('certErrLearnedVia').textContent = 'Please select how you learned.';
+      valid = false;
+    }
+    if (!consent) {
+      document.getElementById('certErrConsent').textContent = 'You must confirm the information is correct.';
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    // Disable submit
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting…';
+
+    // Generate unique ref code
+    let ref = '';
+    let attempts = 0;
+    const maxAttempts = 20;
+    try {
+      // Access global db from module script
+      const db = window.__certDb;
+      if (!db) throw new Error('Firebase not ready');
+
+      while (attempts < maxAttempts) {
+        ref = String(Math.floor(100000 + Math.random() * 900000));
+        const snap = await window.__certGet(window.__certRef(db, 'certRequests'));
+        if (snap.exists()) {
+          const data = snap.val();
+          const exists = Object.values(data).some(r => r.ref === ref);
+          if (!exists) break;
+        } else {
+          break;
+        }
+        attempts++;
+      }
+      if (attempts >= maxAttempts) throw new Error('Could not generate unique ref');
+
+      const newRef = window.__certPush(window.__certRef(db, 'certRequests'));
+      await window.__certSet(newRef, {
+        name: name,
+        profession: profession,
+        telegram: telegram,
+        course: finalCourse,
+        batchMonth: batchMonth,
+        batchYear: batchYear,
+        learnedVia: learnedVia.value,
+        feedback: feedback,
+        status: 'pending',
+        ref: ref,
+        createdAt: Date.now()
+      });
+
+      lastSubmitTime = Date.now();
+      // Show success
+      refDisplay.textContent = ref;
+      applyForm.style.display = 'none';
+      applySuccess.style.display = '';
+
+    } catch (err) {
+      console.error(err);
+      alert('Could not connect. Please try again.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Application';
+    }
+  });
+
+  // Copy ref code
+  refCopy.addEventListener('click', () => {
+    const code = refDisplay.textContent.trim();
+    if (!code || code === '------') return;
+    const done = () => {
+      refCopy.classList.add('copied');
+      setTimeout(() => refCopy.classList.remove('copied'), 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(done).catch(() => {});
+    } else {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = code;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        done();
+      } catch (e) {}
+    }
+  });
+
+  // Success actions
+  successCheckStatus.addEventListener('click', () => {
+    closeApplyModal();
+    // Switch to status tab
+    document.querySelector('.cert-tab[data-cert-tab="status"]').click();
+    document.getElementById('certRefInput').value = refDisplay.textContent.trim();
+    openSearchModal();
+  });
+  successClose.addEventListener('click', closeApplyModal);
+
+  // ---- Search by UID ----
+  document.getElementById('certUidSearchBtn').addEventListener('click', async () => {
+    const uidInput = document.getElementById('certUidInput');
+    const uid = uidInput.value.trim();
+    const resultDiv = document.getElementById('certUidResult');
+    document.getElementById('certErrUid').textContent = '';
+
+    if (!/^\d{6}$/.test(uid)) {
+      document.getElementById('certErrUid').textContent = 'Please enter a valid 6-digit certificate ID.';
+      return;
+    }
+
+    resultDiv.innerHTML = '<p style="color:var(--muted);text-align:center;">Searching…</p>';
+    try {
+      const db = window.__certDb;
+      if (!db) throw new Error('Firebase not ready');
+      const snap = await window.__certGet(window.__certRef(db, 'certificates/' + uid));
+      if (snap.exists()) {
+        const cert = snap.val();
+        resultDiv.innerHTML = '';
+        const badge = document.createElement('div');
+        badge.className = 'cert-status-chip verified';
+        badge.textContent = 'Verified Certificate';
+        resultDiv.appendChild(badge);
+        const meta = document.createElement('div');
+        meta.style.margin = '10px 0';
+        meta.innerHTML = `
+          <div class="cert-info-row"><strong>Name:</strong> ${cert.name || '—'}</div>
+          <div class="cert-info-row"><strong>Course:</strong> ${cert.course || '—'}</div>
+          <div class="cert-info-row"><strong>Issued:</strong> ${new Date(cert.issuedAt).toLocaleString('en-GB', { timeZone: 'Asia/Dhaka' })}</div>
+        `;
+        resultDiv.appendChild(meta);
+
+        const certEl = window.__certRenderCertificate(cert);
+        resultDiv.appendChild(certEl);
+
+        const dlBtn = document.createElement('button');
+        dlBtn.className = 'cert-submit-btn';
+        dlBtn.style.marginTop = '16px';
+        dlBtn.textContent = 'Download Certificate';
+        dlBtn.addEventListener('click', () => window.__certDownload(certEl, uid));
+        resultDiv.appendChild(dlBtn);
+
+        const printBtn = document.createElement('button');
+        printBtn.className = 'cert-submit-btn';
+        printBtn.style.marginTop = '8px';
+        printBtn.style.background = 'transparent';
+        printBtn.style.border = '1px solid var(--border)';
+        printBtn.style.color = '#fff';
+        printBtn.textContent = 'Print / Save as PDF';
+        printBtn.addEventListener('click', () => window.__certPrint(certEl));
+        resultDiv.appendChild(printBtn);
+
+      } else {
+        resultDiv.innerHTML = '<p style="color:var(--danger);text-align:center;">Certificate not found. Please check the ID.</p>';
+      }
+    } catch (err) {
+      console.error(err);
+      resultDiv.innerHTML = '<p style="color:var(--danger);text-align:center;">Could not connect. Please try again.</p>';
+    }
+  });
+
+  // ---- Check application status ----
+  document.getElementById('certStatusSearchBtn').addEventListener('click', async () => {
+    const refInput = document.getElementById('certRefInput');
+    const tgInput = document.getElementById('certStatusTelegram');
+    const ref = refInput.value.trim();
+    let tg = tgInput.value.trim();
+    const resultDiv = document.getElementById('certStatusResult');
+    document.getElementById('certErrRef').textContent = '';
+    document.getElementById('certErrStatusTelegram').textContent = '';
+
+    if (!/^\d{6}$/.test(ref)) {
+      document.getElementById('certErrRef').textContent = 'Enter a valid 6-digit reference code.';
+      return;
+    }
+    if (!tg) {
+      document.getElementById('certErrStatusTelegram').textContent = 'Enter your Telegram username.';
+      return;
+    }
+    if (!tg.startsWith('@')) tg = '@' + tg;
+
+    resultDiv.innerHTML = '<p style="color:var(--muted);text-align:center;">Checking…</p>';
+    try {
+      const db = window.__certDb;
+      if (!db) throw new Error('Firebase not ready');
+      const snap = await window.__certGet(window.__certRef(db, 'certRequests'));
+      let found = null;
+      if (snap.exists()) {
+        const data = snap.val();
+        for (const key in data) {
+          if (data[key].ref === ref && data[key].telegram === tg) {
+            found = { id: key, ...data[key] };
+            break;
+          }
+        }
+      }
+      resultDiv.innerHTML = '';
+      if (!found) {
+        resultDiv.innerHTML = '<p style="color:var(--danger);text-align:center;">No application found. Check your reference code and Telegram username.</p>';
+        return;
+      }
+
+      const statusChip = document.createElement('div');
+      statusChip.className = 'cert-status-chip ' + found.status;
+      if (found.status === 'pending') statusChip.textContent = 'Under review';
+      else if (found.status === 'approved') statusChip.textContent = 'Approved';
+      else statusChip.textContent = 'Rejected';
+      resultDiv.appendChild(statusChip);
+
+      const details = document.createElement('div');
+      details.style.marginTop = '12px';
+      details.innerHTML = `
+        <div class="cert-info-row"><strong>Name:</strong> ${found.name || '—'}</div>
+        <div class="cert-info-row"><strong>Course:</strong> ${found.course || '—'}</div>
+        <div class="cert-info-row"><strong>Reference:</strong> ${found.ref}</div>
+      `;
+      resultDiv.appendChild(details);
+
+      if (found.status === 'rejected' && found.note) {
+        const noteEl = document.createElement('div');
+        noteEl.style.marginTop = '10px';
+        noteEl.style.color = 'var(--danger)';
+        noteEl.textContent = 'Note: ' + found.note;
+        resultDiv.appendChild(noteEl);
+      }
+
+      if (found.status === 'approved' && found.uid) {
+        // Fetch certificate
+        const certSnap = await window.__certGet(window.__certRef(db, 'certificates/' + found.uid));
+        if (certSnap.exists()) {
+          const cert = certSnap.val();
+          const certEl = window.__certRenderCertificate(cert);
+          resultDiv.appendChild(certEl);
+
+          const dlBtn = document.createElement('button');
+          dlBtn.className = 'cert-submit-btn';
+          dlBtn.style.marginTop = '16px';
+          dlBtn.textContent = 'Download Certificate';
+          dlBtn.addEventListener('click', () => window.__certDownload(certEl, found.uid));
+          resultDiv.appendChild(dlBtn);
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      resultDiv.innerHTML = '<p style="color:var(--danger);text-align:center;">Could not connect. Please try again.</p>';
+    }
+  });
+})();
+
+/* =========================================================
    HIDDEN ADMIN PANEL + LIVE COUNTDOWN + FEEDBACK SYSTEM
    ========================================================= */
 </script>
@@ -7033,10 +8813,10 @@ Status: ${o.status}`;
 <!-- Firebase SDK (modular) -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-  import { getDatabase, ref, onValue, set, update, push, remove } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+  import { getDatabase, ref, onValue, set, update, push, remove, get, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
   // FEEDBACK SYSTEM: toggle for Firebase Auth
-  const USE_FIREBASE_AUTH = false; // set true to require login for admin save actions
+  const USE_FIREBASE_AUTH = false;
 
   const firebaseConfig = {
     apiKey: "AIzaSyCKYglTOd1lrWqFvbnhB3MSlSurPvVN7RI",
@@ -7053,6 +8833,15 @@ Status: ${o.status}`;
   try {
     app = initializeApp(firebaseConfig);
     db = getDatabase(app);
+    // Expose for non-module scripts
+    window.__certDb = db;
+    window.__certRef = ref;
+    window.__certGet = get;
+    window.__certSet = set;
+    window.__certUpdate = update;
+    window.__certPush = push;
+    window.__certRemove = remove;
+    window.__certOnValue = onValue;
   } catch (e) {
     console.warn('[Firebase] Init failed, falling back to offline mode.', e);
     db = null;
@@ -7060,6 +8849,8 @@ Status: ${o.status}`;
 
   const countdownRef = db ? ref(db, 'countdown') : null;
   const feedbacksRef = db ? ref(db, 'feedbacks') : null;
+  const certRequestsRef = db ? ref(db, 'certRequests') : null;
+  const certificatesRef = db ? ref(db, 'certificates') : null;
 
   /* =========================================================
      ADMIN PANEL — TAB SWITCHING
@@ -7068,6 +8859,7 @@ Status: ${o.status}`;
   const adminTabs = document.querySelectorAll('.admin-tab');
   const countdownPanel = document.getElementById('adminPanel');
   const feedbacksPanel = document.getElementById('adminFeedbacksPanel');
+  const certificatesPanel = document.getElementById('adminCertificatesPanel');
   const adminTitle = document.getElementById('adminTitle');
   const adminDate = document.getElementById('adminDate');
   const adminTime = document.getElementById('adminTime');
@@ -7091,10 +8883,18 @@ Status: ${o.status}`;
   const fbImportBtn = document.getElementById('fbImportBtn');
   const fbError = document.getElementById('fbError');
 
+  // Certificate tab elements
+  const certAdminList = document.getElementById('certAdminList');
+  const certAdminSearch = document.getElementById('certAdminSearch');
+  const certAdminError = document.getElementById('certAdminError');
+  const certFilterChips = document.querySelectorAll('.cert-filter-chip');
+
   let lastKeyPress = 0;
   let previewInterval = null;
   let currentAdminStatus = 'running';
-  let currentFeedbacks = {}; // local cache
+  let currentFeedbacks = {};
+  let currentCertRequests = {};
+  let certFilter = 'all';
 
   function showToast(msg) {
     adminToast.textContent = msg;
@@ -7141,11 +8941,19 @@ Status: ${o.status}`;
       adminTabs.forEach(t => t.classList.toggle('active', t.dataset.adminTab === target));
       countdownPanel.classList.toggle('active', target === 'countdown');
       feedbacksPanel.classList.toggle('active', target === 'feedbacks');
+      certificatesPanel.classList.toggle('active', target === 'certificates');
+
+      if (target === 'feedbacks') {
+        renderAdminFeedbacks(currentFeedbacks);
+      }
+      if (target === 'certificates') {
+        renderAdminCertificates(currentCertRequests);
+      }
     });
   });
 
   /* =========================================================
-     COUNTDOWN TAB LOGIC (existing, unchanged)
+     COUNTDOWN TAB LOGIC
      ========================================================= */
   function loadAdminData() {
     if (!countdownRef) { adminError.textContent = 'Firebase not available.'; return; }
@@ -7416,7 +9224,6 @@ Status: ${o.status}`;
     let list = [];
     if (data) {
       list = Object.keys(data).map(key => ({ id: key, ...data[key] }));
-      // sort by order (ascending), then by updatedAt desc as fallback
       list.sort((a, b) => {
         const oa = (a.order != null ? a.order : 0);
         const ob = (b.order != null ? b.order : 0);
@@ -7424,7 +9231,6 @@ Status: ${o.status}`;
         return (b.updatedAt || 0) - (a.updatedAt || 0);
       });
     }
-    // filter visible only
     const visible = list.filter(f => f.visible !== false);
     window.__renderFeedbacks(visible);
   }
@@ -7434,20 +9240,17 @@ Status: ${o.status}`;
       const data = snapshot.val();
       currentFeedbacks = data || {};
       renderPublicFeedbacks(data);
-      // If admin panel is open, re-render admin list
       if (overlay.classList.contains('open')) {
         renderAdminFeedbacks(data);
       }
     }, (error) => {
       console.warn('[Firebase] Feedbacks read error, using defaults.', error);
-      // Fallback to DEFAULT_FEEDBACKS
       const fallback = DEFAULT_FEEDBACKS.map((f, i) => ({ ...f, id: 'default_' + i, order: i, visible: true }));
       window.__renderFeedbacks && window.__renderFeedbacks(fallback);
       currentFeedbacks = {};
       if (overlay.classList.contains('open')) renderAdminFeedbacks({});
     });
   } else {
-    // No Firebase — use defaults
     const fallback = DEFAULT_FEEDBACKS.map((f, i) => ({ ...f, id: 'default_' + i, order: i, visible: true }));
     window.__renderFeedbacks && window.__renderFeedbacks(fallback);
     if (overlay.classList.contains('open')) renderAdminFeedbacks({});
@@ -7457,7 +9260,6 @@ Status: ${o.status}`;
   function renderAdminFeedbacks(data) {
     if (!fbList) return;
     const entries = Object.entries(data || {});
-    // sort by order
     entries.sort((a, b) => {
       const oa = (a[1].order != null ? a[1].order : 0);
       const ob = (b[1].order != null ? b[1].order : 0);
@@ -7484,13 +9286,11 @@ Status: ${o.status}`;
       const visible = fb.visible !== false;
       const order = fb.order != null ? fb.order : 0;
 
-      // avatar preview
       const avatarLetter = (name || '?').charAt(0).toUpperCase();
       const avatarHtml = photo
         ? `<img src="${escapeAttr(photo)}" alt="" onerror="this.remove(); this.parentElement.textContent='${avatarLetter}';" style="width:100%;height:100%;object-fit:cover;">`
         : avatarLetter;
 
-      // stars preview
       let starsHtml = '';
       for (let i = 1; i <= 5; i++) {
         starsHtml += `<svg viewBox="0 0 24 24" class="${i <= rating ? '' : 'empty'}"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
@@ -7549,7 +9349,6 @@ Status: ${o.status}`;
     }
     fbList.innerHTML = html;
 
-    // update char counters
     fbList.querySelectorAll('.fb-input-text').forEach(ta => {
       const counter = ta.parentElement.querySelector('.fb-char-num');
       const update = () => { if (counter) counter.textContent = ta.value.length; };
@@ -7557,7 +9356,6 @@ Status: ${o.status}`;
       update();
     });
 
-    // attach save handlers
     fbList.querySelectorAll('.fb-card').forEach(card => {
       const id = card.dataset.fbId;
       const saveBtn = card.querySelector('.fb-save-btn');
@@ -7651,7 +9449,6 @@ Status: ${o.status}`;
     });
   }
 
-  // Add new feedback
   fbAddBtn?.addEventListener('click', () => {
     if (!db) { fbError.textContent = 'Firebase not available.'; return; }
     const newRef = push(feedbacksRef);
@@ -7674,7 +9471,6 @@ Status: ${o.status}`;
     });
   });
 
-  // Import default feedbacks
   fbImportBtn?.addEventListener('click', () => {
     if (!db) { fbError.textContent = 'Firebase not available.'; return; }
     if (!confirm('Import the current default feedbacks into the database? This will overwrite any existing feedbacks.')) return;
@@ -7693,7 +9489,6 @@ Status: ${o.status}`;
         updatedAt: Date.now()
       };
     });
-    // First remove all existing (optional, but we use set on each key so it's fine)
     set(feedbacksRef, updates).then(() => {
       showToast('Imported ✓');
       fbError.textContent = '';
@@ -7703,16 +9498,414 @@ Status: ${o.status}`;
     });
   });
 
-  // Search filter
   fbSearch?.addEventListener('input', () => {
     renderAdminFeedbacks(currentFeedbacks);
   });
 
-  // When admin panel opens, also render feedbacks
-  const origOpenAdmin = openAdmin;
-  openAdmin = function() {
-    origOpenAdmin();
-    renderAdminFeedbacks(currentFeedbacks);
+  /* =========================================================
+     ADMIN: CERTIFICATES TAB
+     ========================================================= */
+  // Helper: generate unique 6-digit UID
+  async function generateUniqueCertUid() {
+    if (!db) return null;
+    let attempts = 0;
+    while (attempts < 20) {
+      const uid = String(Math.floor(100000 + Math.random() * 900000));
+      const snap = await get(ref(db, 'certificates/' + uid));
+      if (!snap.exists()) return uid;
+      attempts++;
+    }
+    return null;
+  }
+
+  function formatDateTimeBD(ms) {
+    if (!ms) return '—';
+    const d = new Date(ms);
+    return d.toLocaleString('en-GB', { timeZone: 'Asia/Dhaka', day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
+  }
+
+  function renderAdminCertificates(data) {
+    if (!certAdminList) return;
+    const entries = Object.entries(data || {});
+    // sort newest first
+    entries.sort((a, b) => (b[1].createdAt || 0) - (a[1].createdAt || 0));
+
+    const searchTerm = (certAdminSearch.value || '').trim().toLowerCase();
+
+    let html = '';
+    let counts = { pending: 0, approved: 0, rejected: 0, total: 0 };
+
+    entries.forEach(([id, req]) => {
+      counts.total++;
+      if (req.status === 'pending') counts.pending++;
+      else if (req.status === 'approved') counts.approved++;
+      else if (req.status === 'rejected') counts.rejected++;
+
+      // Filter
+      if (certFilter !== 'all' && req.status !== certFilter) return;
+      if (searchTerm) {
+        const hay = (req.name || '') + ' ' + (req.telegram || '') + ' ' + (req.ref || '');
+        if (!hay.toLowerCase().includes(searchTerm)) return;
+      }
+
+      const statusClass = req.status || 'pending';
+      const statusLabel = statusClass === 'pending' ? 'Pending' : statusClass === 'approved' ? 'Approved' : 'Rejected';
+
+      const tgLink = req.telegram ? `<a href="https://t.me/${req.telegram.replace('@','')}" target="_blank" rel="noopener">${escapeHtml(req.telegram)}</a>` : '—';
+
+      html += `
+        <div class="cert-admin-card" data-cert-id="${id}">
+          <div class="cert-admin-card-head">
+            <div>
+              <div class="cert-admin-card-name">${escapeHtml(req.name || '—')}</div>
+              <div class="cert-admin-card-sub">${escapeHtml(req.profession || '')}</div>
+            </div>
+            <span class="cert-status-chip ${statusClass}">${statusLabel}</span>
+          </div>
+          <div class="cert-admin-card-rows">
+            <div><strong>Telegram:</strong> ${tgLink}</div>
+            <div><strong>Course:</strong> ${escapeHtml(req.course || '—')}</div>
+            <div><strong>Batch:</strong> ${escapeHtml((req.batchMonth || '') + ' ' + (req.batchYear || ''))}</div>
+            <div><strong>Learned via:</strong> ${escapeHtml(req.learnedVia || '—')}</div>
+            ${req.feedback ? `<div><strong>Feedback:</strong> ${escapeHtml(req.feedback)}</div>` : ''}
+            <div><strong>Submitted:</strong> ${formatDateTimeBD(req.createdAt)}</div>
+            <div><strong>Ref:</strong> ${escapeHtml(req.ref || '—')} ${req.uid ? '| <strong>UID:</strong> ' + escapeHtml(req.uid) : ''}</div>
+            ${req.note ? `<div style="color:var(--danger);"><strong>Note:</strong> ${escapeHtml(req.note)}</div>` : ''}
+          </div>
+          <div class="cert-admin-actions">
+            ${req.status === 'pending' ? `
+              <button class="cert-admin-approve" data-action="approve" data-id="${id}">Approve</button>
+              <button class="cert-admin-reject" data-action="reject" data-id="${id}">Reject</button>
+            ` : ''}
+            ${req.status === 'approved' ? `
+              <button class="cert-admin-copy" data-action="copy-uid" data-uid="${req.uid || ''}">Copy UID</button>
+              <button class="cert-admin-tg-msg" data-action="copy-msg" data-id="${id}">Copy TG Message</button>
+              <a class="cert-admin-open-tg" href="https://t.me/${(req.telegram || '').replace('@','')}" target="_blank" rel="noopener">Open TG</a>
+              <button class="cert-admin-preview" data-action="preview" data-id="${id}">Preview</button>
+              <button class="cert-admin-revoke" data-action="revoke" data-id="${id}">Revoke</button>
+            ` : ''}
+            ${req.status === 'rejected' ? `
+              <button class="cert-admin-approve" data-action="approve" data-id="${id}">Re-approve</button>
+            ` : ''}
+            <button class="cert-admin-edit" data-action="edit" data-id="${id}">Edit</button>
+            <button class="cert-admin-delete" data-action="delete" data-id="${id}">Delete</button>
+          </div>
+        </div>
+      `;
+    });
+
+    if (!html) {
+      html = '<div class="cert-admin-empty">No certificate requests found.</div>';
+    }
+    certAdminList.innerHTML = html;
+
+    // Attach action handlers
+    certAdminList.querySelectorAll('button[data-action]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const action = btn.dataset.action;
+        const id = btn.dataset.id;
+        const req = currentCertRequests[id];
+        if (!req) return;
+
+        if (action === 'approve') {
+          if (req.status === 'approved' || req.uid) {
+            showToast('Already approved');
+            return;
+          }
+          btn.disabled = true;
+          const uid = await generateUniqueCertUid();
+          if (!uid) {
+            btn.disabled = false;
+            certAdminError.textContent = 'Could not generate a unique UID. Try again.';
+            return;
+          }
+          const now = Date.now();
+          const certData = {
+            uid: uid,
+            name: req.name,
+            profession: req.profession,
+            course: req.course,
+            batchMonth: req.batchMonth,
+            batchYear: req.batchYear,
+            issuedAt: now,
+            requestId: id
+          };
+          try {
+            await set(ref(db, 'certificates/' + uid), certData);
+            await update(ref(db, 'certRequests/' + id), {
+              status: 'approved',
+              uid: uid,
+              approvedAt: now
+            });
+            showToast('Approved ✓ UID: ' + uid);
+          } catch (err) {
+            console.error(err);
+            certAdminError.textContent = 'Approval failed. Check rules.';
+          } finally {
+            btn.disabled = false;
+          }
+        }
+
+        if (action === 'reject') {
+          const note = prompt('Optional rejection note:', '');
+          btn.disabled = true;
+          try {
+            await update(ref(db, 'certRequests/' + id), {
+              status: 'rejected',
+              note: note || ''
+            });
+            showToast('Rejected');
+          } catch (err) {
+            console.error(err);
+            certAdminError.textContent = 'Reject failed.';
+          } finally {
+            btn.disabled = false;
+          }
+        }
+
+        if (action === 'copy-uid') {
+          const uid = btn.dataset.uid;
+          if (uid) {
+            navigator.clipboard.writeText(uid).then(() => showToast('UID copied ✓'));
+          }
+        }
+
+        if (action === 'copy-msg') {
+          const msg = `Congratulations ${req.name}! Your SA Trader certificate is approved. Certificate ID: ${req.uid}. You can view and download it from our website: ${location.origin}${location.pathname}#certificate`;
+          navigator.clipboard.writeText(msg).then(() => showToast('Message copied ✓'));
+        }
+
+        if (action === 'preview') {
+          // Render preview inside card
+          const card = btn.closest('.cert-admin-card');
+          const existing = card.querySelector('.cert-preview-wrap');
+          if (existing) { existing.remove(); return; }
+          const certSnap = await get(ref(db, 'certificates/' + req.uid));
+          if (certSnap.exists()) {
+            const cert = certSnap.val();
+            const wrap = document.createElement('div');
+            wrap.className = 'cert-preview-wrap';
+            wrap.appendChild(window.__certRenderCertificate(cert));
+            card.appendChild(wrap);
+          }
+        }
+
+        if (action === 'revoke') {
+          if (!confirm('Revoke this certificate? This will delete the certificate and set the request back to rejected.')) return;
+          btn.disabled = true;
+          try {
+            if (req.uid) await remove(ref(db, 'certificates/' + req.uid));
+            await update(ref(db, 'certRequests/' + id), {
+              status: 'rejected',
+              note: 'Revoked',
+              uid: null
+            });
+            showToast('Revoked');
+          } catch (err) {
+            console.error(err);
+            certAdminError.textContent = 'Revoke failed.';
+          } finally {
+            btn.disabled = false;
+          }
+        }
+
+        if (action === 'edit') {
+          // Simple edit: prompt for name, profession, course
+          const newName = prompt('Edit name:', req.name || '');
+          if (newName === null) return;
+          const newProf = prompt('Edit profession:', req.profession || '');
+          if (newProf === null) return;
+          const newCourse = prompt('Edit course:', req.course || '');
+          if (newCourse === null) return;
+          try {
+            await update(ref(db, 'certRequests/' + id), {
+              name: newName.trim() || req.name,
+              profession: newProf.trim() || req.profession,
+              course: newCourse.trim() || req.course
+            });
+            showToast('Updated ✓');
+          } catch (err) {
+            console.error(err);
+            certAdminError.textContent = 'Update failed.';
+          }
+        }
+
+        if (action === 'delete') {
+          if (!confirm('Delete this certificate request permanently?')) return;
+          btn.disabled = true;
+          try {
+            await remove(ref(db, 'certRequests/' + id));
+            showToast('Deleted');
+          } catch (err) {
+            console.error(err);
+            certAdminError.textContent = 'Delete failed.';
+          } finally {
+            btn.disabled = false;
+          }
+        }
+      });
+    });
+  }
+
+  // Filter chips
+  certFilterChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      certFilterChips.forEach(c => c.classList.toggle('active', c === chip));
+      certFilter = chip.dataset.certFilter;
+      renderAdminCertificates(currentCertRequests);
+    });
+  });
+
+  certAdminSearch?.addEventListener('input', () => {
+    renderAdminCertificates(currentCertRequests);
+  });
+
+  // Listen to certificate requests
+  if (certRequestsRef) {
+    onValue(certRequestsRef, (snapshot) => {
+      currentCertRequests = snapshot.val() || {};
+      if (overlay.classList.contains('open') && certificatesPanel.classList.contains('active')) {
+        renderAdminCertificates(currentCertRequests);
+      }
+    }, (error) => {
+      console.warn('[Firebase] Cert requests read error.', error);
+      currentCertRequests = {};
+      if (overlay.classList.contains('open')) renderAdminCertificates({});
+    });
+  } else {
+    currentCertRequests = {};
+    if (overlay.classList.contains('open')) renderAdminCertificates({});
+  }
+
+  // Expose render certificate function globally
+  window.__certRenderCertificate = function(cert) {
+    const el = document.createElement('div');
+    el.className = 'cert-certificate';
+    el.innerHTML = `
+      <div class="cert-certificate-inner">
+        <div class="cert-watermark" aria-hidden="true">
+          <svg viewBox="0 0 1200 850" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.5">
+              <rect x="100" y="400" width="20" height="120" fill="#22c55e"/>
+              <rect x="130" y="380" width="20" height="140" fill="#ef4444"/>
+              <rect x="160" y="420" width="20" height="100" fill="#22c55e"/>
+              <rect x="190" y="360" width="20" height="160" fill="#ef4444"/>
+              <rect x="220" y="390" width="20" height="130" fill="#22c55e"/>
+              <rect x="250" y="430" width="20" height="90" fill="#ef4444"/>
+              <rect x="280" y="370" width="20" height="150" fill="#22c55e"/>
+              <rect x="310" y="410" width="20" height="110" fill="#ef4444"/>
+              <rect x="340" y="350" width="20" height="170" fill="#22c55e"/>
+              <rect x="370" y="440" width="20" height="80" fill="#ef4444"/>
+              <rect x="400" y="390" width="20" height="130" fill="#22c55e"/>
+              <rect x="430" y="420" width="20" height="100" fill="#ef4444"/>
+              <rect x="460" y="360" width="20" height="160" fill="#22c55e"/>
+              <rect x="490" y="400" width="20" height="120" fill="#ef4444"/>
+              <rect x="520" y="380" width="20" height="140" fill="#22c55e"/>
+              <rect x="550" y="430" width="20" height="90" fill="#ef4444"/>
+              <rect x="580" y="370" width="20" height="150" fill="#22c55e"/>
+              <rect x="610" y="410" width="20" height="110" fill="#ef4444"/>
+              <rect x="640" y="350" width="20" height="170" fill="#22c55e"/>
+              <rect x="670" y="390" width="20" height="130" fill="#ef4444"/>
+              <rect x="700" y="420" width="20" height="100" fill="#22c55e"/>
+              <rect x="730" y="360" width="20" height="160" fill="#ef4444"/>
+              <rect x="760" y="400" width="20" height="120" fill="#22c55e"/>
+              <rect x="790" y="430" width="20" height="90" fill="#ef4444"/>
+              <rect x="820" y="370" width="20" height="150" fill="#22c55e"/>
+              <rect x="850" y="410" width="20" height="110" fill="#ef4444"/>
+              <rect x="880" y="350" width="20" height="170" fill="#22c55e"/>
+              <rect x="910" y="390" width="20" height="130" fill="#ef4444"/>
+              <rect x="940" y="420" width="20" height="100" fill="#22c55e"/>
+              <rect x="970" y="360" width="20" height="160" fill="#ef4444"/>
+              <rect x="1000" y="400" width="20" height="120" fill="#22c55e"/>
+              <rect x="1030" y="430" width="20" height="90" fill="#ef4444"/>
+              <rect x="1060" y="370" width="20" height="150" fill="#22c55e"/>
+              <rect x="1090" y="410" width="20" height="110" fill="#ef4444"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="cert-top-bar">
+          <img src="IMG_20261007_001230_648.jpg" alt="SA Trader Logo">
+          <div class="cert-brand-name">SA TRADER</div>
+        </div>
+
+        <div class="cert-main-title">CERTIFICATE OF COMPLETION</div>
+        <div class="cert-sub-title">This is to certify that</div>
+
+        <div class="cert-recipient">${escapeHtml(cert.name || 'Student Name')}</div>
+
+        <div class="cert-completion-text">has successfully completed the course</div>
+        <div class="cert-course-name">${escapeHtml(cert.course || 'Forex Trading')}</div>
+        <div class="cert-course-desc">in Forex Trading Education, covering market structure, price action and risk management, at SA Trader.</div>
+        <div class="cert-meta-small">Profession: ${escapeHtml(cert.profession || '—')}</div>
+        <div class="cert-meta-small">Batch: ${escapeHtml((cert.batchMonth || '') + ' ' + (cert.batchYear || ''))}</div>
+
+        <div class="cert-bottom-row">
+          <div class="cert-bottom-left">
+            <div class="cert-bottom-label">Date &amp; Time of Issue</div>
+            <div class="cert-bottom-value">${formatDateTimeBD(cert.issuedAt)} (BST)</div>
+          </div>
+          <div class="cert-bottom-center">
+            <svg class="cert-seal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="45" fill="none" stroke="#d4a017" stroke-width="3"/>
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#d4a017" stroke-width="1.5"/>
+              <path d="M50 20l6 18 18 6-18 6-6 18-6-18-18-6 18-6z" fill="#d4a017"/>
+              <text x="50" y="78" font-size="7" fill="#d4a017" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="700">OFFICIAL SA TRADER</text>
+            </svg>
+          </div>
+          <div class="cert-bottom-right">
+            <div class="cert-signature">SHAKIL AHMED</div>
+            <div class="cert-sign-line"></div>
+            <div class="cert-sign-name">SHAKIL AHMED</div>
+            <div class="cert-sign-title">${CERT_SIGNER_TITLE}</div>
+          </div>
+        </div>
+
+        <div class="cert-cert-id-bar">
+          <div class="cert-cert-id">Certificate ID: ${escapeHtml(cert.uid || '------')}</div>
+          <div class="cert-cert-id-note">Verify this certificate on our website using this ID.</div>
+        </div>
+      </div>
+    `;
+    return el;
+  };
+
+  // Download certificate using html2canvas
+  window.__certDownload = function(certEl, uid) {
+    // Lazy load html2canvas
+    if (!window.html2canvas) {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+      script.onload = () => doDownload(certEl, uid);
+      document.head.appendChild(script);
+    } else {
+      doDownload(certEl, uid);
+    }
+  };
+
+  async function doDownload(certEl, uid) {
+    try {
+      await document.fonts.ready;
+      const canvas = await html2canvas(certEl, { scale: 2, backgroundColor: '#0b0b0b', useCORS: true });
+      const link = document.createElement('a');
+      link.download = 'SA-Trader-Certificate-' + (uid || 'unknown') + '.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    } catch (err) {
+      console.error(err);
+      alert('Could not generate image. Please try again.');
+    }
+  }
+
+  window.__certPrint = function(certEl) {
+    document.body.classList.add('cert-print-mode');
+    // Temporarily move cert to body
+    const clone = certEl.cloneNode(true);
+    clone.id = 'certPrintClone';
+    document.body.appendChild(clone);
+    window.print();
+    document.body.classList.remove('cert-print-mode');
+    setTimeout(() => clone.remove(), 500);
   };
 
   // Helper functions for escaping
@@ -7727,7 +9920,7 @@ Status: ${o.status}`;
     }[c]));
   }
 
-  // Expose for use in other scripts (already declared in global)
+  // Expose for use
   window.__currentFeedbacks = currentFeedbacks;
 </script>
 </body>
