@@ -7475,6 +7475,7 @@ function renderModal(lang) {
   let currentPackage = { name: 'Personal 1 to 1', price: '$100' };
   let lastOrderData = null;
   let lastFocusedEl = null;
+  let isSubmitting = false; // guard double submit
 
   function methodKeyFromValue(v) {
     if (!v) return null;
@@ -7711,7 +7712,10 @@ function renderModal(lang) {
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
     if (!validateForm()) return;
+
+    isSubmitting = true; // guard double submit
 
     const method = document.querySelector('.pay-opt input:checked').value;
     const key = methodKeyFromValue(method);
@@ -7733,6 +7737,42 @@ function renderModal(lang) {
 
     lastOrderData = order;
     showOrderDetails(order);
+
+    // ===== TELEGRAM NOTIFICATION (fire-and-forget) =====
+    const NOTIFY_URL = "https://satrader-notify.cgagamer27.workers.dev";
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
+      fetch(NOTIFY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'order',
+          name: order.name,
+          phone: order.phone,
+          course: order.package,
+          price: order.price,
+          method: order.method,
+          txnId: order.txValue,
+          website: ''
+        }),
+        keepalive: true,
+        signal: controller.signal
+      })
+      .then(() => clearTimeout(timeoutId))
+      .catch(err => {
+        clearTimeout(timeoutId);
+        console.warn('[notify] Telegram send failed (fire-and-forget):', err);
+      })
+      .finally(() => {
+        // allow resubmit after the order screen is shown; no UI impact
+        isSubmitting = false;
+      });
+    } catch (err) {
+      console.warn('[notify] Telegram send setup failed:', err);
+      isSubmitting = false;
+    }
+    // ===== END TELEGRAM NOTIFICATION =====
   });
 
   function showOrderDetails(order) {
