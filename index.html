@@ -7773,8 +7773,14 @@ Reference Code: ${ref}`;
       applyForm.style.display = 'none';
       applySuccess.style.display = '';
     } catch (err) {
-      console.error(err);
-      alert('Could not connect. Please try again.');
+      console.error("CERT ERROR", err);
+      let msg = 'Something went wrong: ' + (err.message || 'Unknown error');
+      if (err.code === 'PERMISSION_DENIED' || (err.message && err.message.includes('permission'))) {
+        msg = 'Database permission denied. Please contact admin.';
+      } else if (err.message && (err.message.includes('network') || err.message.includes('offline'))) {
+        msg = 'Could not connect. Please check your internet.';
+      }
+      alert(msg);
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit Application';
@@ -7863,8 +7869,14 @@ Reference Code: ${ref}`;
         resultDiv.innerHTML = '<p style="color:var(--danger);text-align:center;">Certificate not found. Please check the ID.</p>';
       }
     } catch (err) {
-      console.error(err);
-      resultDiv.innerHTML = '<p style="color:var(--danger);text-align:center;">Could not connect. Please try again.</p>';
+      console.error("CERT ERROR", err);
+      let msg = 'Something went wrong: ' + (err.message || 'Unknown error');
+      if (err.code === 'PERMISSION_DENIED' || (err.message && err.message.includes('permission'))) {
+        msg = 'Database permission denied. Please contact admin.';
+      } else if (err.message && (err.message.includes('network') || err.message.includes('offline'))) {
+        msg = 'Could not connect. Please check your internet.';
+      }
+      resultDiv.innerHTML = '<p style="color:var(--danger);text-align:center;">' + msg + '</p>';
     }
   });
 
@@ -7941,8 +7953,14 @@ Reference Code: ${ref}`;
         }
       }
     } catch (err) {
-      console.error(err);
-      resultDiv.innerHTML = '<p style="color:var(--danger);text-align:center;">Could not connect. Please try again.</p>';
+      console.error("CERT ERROR", err);
+      let msg = 'Something went wrong: ' + (err.message || 'Unknown error');
+      if (err.code === 'PERMISSION_DENIED' || (err.message && err.message.includes('permission'))) {
+        msg = 'Database permission denied. Please contact admin.';
+      } else if (err.message && (err.message.includes('network') || err.message.includes('offline'))) {
+        msg = 'Could not connect. Please check your internet.';
+      }
+      resultDiv.innerHTML = '<p style="color:var(--danger);text-align:center;">' + msg + '</p>';
     }
   });
 })();
@@ -9327,6 +9345,7 @@ Reference Code: ${ref}`;
             await update(ref(db, 'certRequests/' + id), { status: 'approved', uid: uid, grade: gradeNum, approvedAt: now });
             showToast('Approved ✓ UID: ' + uid);
           } catch (err) {
+            console.error("CERT ERROR", err);
             certAdminError.textContent = 'Approval failed. Check rules.';
           } finally { btn.disabled = false; }
         }
